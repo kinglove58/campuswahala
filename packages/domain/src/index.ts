@@ -23,6 +23,36 @@ export const createGuestSchema = z
   })
   .strict();
 export type GuestInput = z.infer<typeof createGuestSchema>;
+export const ageBandSchema = z.enum(["under_18", "18_or_over", "unknown"]);
+export const accountBeginSchema = z
+  .object({ ageBand: ageBandSchema.default("unknown") })
+  .strict();
+export const accountCallbackSchema = z
+  .object({
+    state: z.string().regex(/^[A-Za-z0-9_-]{43}$/),
+    code: z.string().min(1).max(4096),
+  })
+  .strict();
+export const privacyInputSchema = z
+  .object({
+    ageBand: ageBandSchema.optional(),
+    analyticsConsent: z.boolean().optional(),
+  })
+  .strict();
+export const factFeedbackSchema = z
+  .object({
+    factId: z.string().uuid(),
+    kind: z.enum([
+      "correct",
+      "incorrect",
+      "outdated",
+      "closed",
+      "wrong_location",
+      "suggest_correction",
+    ]),
+    correction: z.string().max(240).optional(),
+  })
+  .strict();
 // Phase 1 contract proposal; no academic progression behavior or persistence yet.
 export interface AcademicPosition {
   programmeId: string;
@@ -39,6 +69,13 @@ export interface AcademicYear {
   id: string;
   label: string;
   semesterIds: string[];
+}
+export interface ProgrammeChangeIntent {
+  from: AcademicPosition;
+  targetProgrammeId: string;
+  targetStructureId: string;
+  effectiveAcademicYearId: string;
+  reason: "transfer" | "programme_change";
 }
 export interface GuestPlayer extends GuestInput {
   id: string;

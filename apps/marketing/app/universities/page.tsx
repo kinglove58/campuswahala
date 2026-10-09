@@ -5,6 +5,7 @@ export const metadata = {
   description:
     "Meet the three starting points for CampusWahala guest exploration.",
   alternates: { canonical: "/universities" },
+  robots: { index: false, follow: true },
 };
 export default function Universities() {
   return (

@@ -1,0 +1,15 @@
+# Initial official-source research, 9 October 2026
+
+This is a historical development observation, not a fixture seed or an assertion that all campus information is verified. Live retrieval used the worker's pinned-DNS fetcher, robots gate, limits, extractor and automatic publication policy against disposable local PostgreSQL. The bounded result snapshot is [2026-10-09-initial-results.json](research/2026-10-09-initial-results.json); it retains metadata, hashes and structured names, not downloaded pages.
+
+| Institution | Actual retrieval result                                                                                                                                                    | Publication result                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| FUTA        | [Official homepage](https://www.futa.edu.ng/home) was denied by the applicable robots policy                                                                               | No published fact; robots restriction respected                              |
+| OAU         | Homepage exceeded 256 KiB; permitted [public metadata](https://oauife.edu.ng/wp-json/?_fields=name,url,description) returned the literal name `Obafemi Awolowo University` | Automatic ALLOW from official evidence, observed 2026-10-09 18:04:11.964 UTC |
+| UNILAG      | Homepage exceeded 256 KiB; permitted [public metadata](https://unilag.edu.ng/wp-json/?_fields=name,url,description) returned the literal name `University Of Lagos`        | Automatic ALLOW from official evidence, observed 2026-10-09 18:04:14.696 UTC |
+
+The JSON adapter uses the ordinary documented WordPress REST API [\_fields parameter](https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/). It does not relax robots rules, download limits or platform restrictions. Metadata URLs remain separate controlled sources under the same institution's editorial group, so homepage/API copies cannot count as independent corroboration.
+
+The first observations used the name adapter; final adapter version `official-name/3` additionally enforces server-side quote/value grounding for every candidate. Historical records must be refetched and re-evaluated before operational reuse. University-name freshness is 365 days, with retained source timestamps and policy decisions; that does not make this snapshot a production catalogue.
+
+No faculty, department, programme, building, transport, emergency contact or cultural claim was fabricated or promoted. Category-specific extractors and further permitted research remain pending. All FUTA/OAU/UNILAG world packs and seeded programme structures remain labelled fictional fixtures. A guide with fewer than three eligible facts is noindex and excluded from the sitemap.

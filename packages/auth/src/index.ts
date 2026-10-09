@@ -1,13 +1,16 @@
 import { createHmac, randomBytes } from "node:crypto";
+import type { BrowserIdentityProvider, VerifiedIdentity } from "./identity";
+export * from "./identity";
 export interface Principal {
   subject: string;
   roles: readonly string[];
 }
-export interface IdentityProvider {
-  verifyAccessToken(token: string): Promise<Principal>;
-}
-export class DisabledIdentityProvider implements IdentityProvider {
-  async verifyAccessToken(): Promise<Principal> {
+export class DisabledIdentityProvider implements BrowserIdentityProvider {
+  readonly name = "disabled";
+  authorizationUrl(): string {
+    throw new Error("OIDC_NOT_CONFIGURED");
+  }
+  async exchange(): Promise<VerifiedIdentity> {
     throw new Error("OIDC_NOT_CONFIGURED");
   }
 }

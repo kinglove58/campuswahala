@@ -16,7 +16,8 @@
     "@campuswahala/config": "workspace:*",
     "@campuswahala/observability": "workspace:*",
     "@campuswahala/database": "workspace:*",
-    "@campuswahala/domain": "workspace:*"
+    "@campuswahala/domain": "workspace:*",
+    "@campuswahala/campus-content": "workspace:*"
   },
   "devDependencies": {
     "@types/express": "5.0.6"

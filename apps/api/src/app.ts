@@ -27,6 +27,8 @@ import { hashGuestToken, validGuestToken } from "@campuswahala/auth";
 import { campuses } from "@campuswahala/campus-content";
 import { PostgresPlayerRepository } from "@campuswahala/database";
 import type { PlayerRepository } from "@campuswahala/domain";
+import { factFeedbackSchema } from "@campuswahala/domain";
+import { AccountService } from "./accounts";
 import type { AppConfig } from "@campuswahala/config";
 import { log } from "@campuswahala/observability";
 import {
@@ -50,6 +52,7 @@ class ApiController {
   constructor(
     @Inject(PlayerService) private readonly players: PlayerService,
     @Inject(REPOSITORY) private readonly repository: PlayerRepository,
+    @Inject(AccountService) private readonly accounts: AccountService,
   ) {}
   @Get("health/live") live() {
     return { status: "ok", service: "campuswahala-api" };
@@ -62,6 +65,112 @@ class ApiController {
   }
   @Get("v1/campuses") catalogue() {
     return { campuses };
+  }
+  @Get("v1/catalogue/published") published() {
+    return this.accounts.publishedCatalogue();
+  }
+  @Post("v1/account/begin") begin(
+    @Body() body: unknown,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.accounts.begin(body, response.locals.client);
+  }
+  @Post("v1/account/callback") callback(
+    @Body() body: unknown,
+    @Headers("x-account-token") session: string,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.accounts.callback(body, response.locals.client, session);
+  }
+  @Get("v1/account/me") account(@Headers("x-account-token") token: unknown) {
+    return this.accounts.self(token);
+  }
+  @Post("v1/account/convert") convert(
+    @Body() body: unknown,
+    @Headers("x-account-token") token: unknown,
+    @Headers("x-guest-token") guest: unknown,
+  ) {
+    if (!body || typeof body !== "object" || Object.keys(body).length)
+      throw new HttpException("INVALID_CONVERSION_INPUT", 400);
+    return this.accounts.convert(token, guest);
+  }
+  @Post("v1/account/privacy") privacy(
+    @Body() body: unknown,
+    @Headers("x-account-token") token: unknown,
+  ) {
+    return this.accounts.privacy(token, body);
+  }
+  @Delete("v1/account/session") logout(
+    @Headers("x-account-token") token: unknown,
+  ) {
+    return this.accounts.logout(token);
+  }
+  @Delete("v1/account/me") deletion(
+    @Headers("x-account-token") token: unknown,
+  ) {
+    return this.accounts.requestDeletion(token);
+  }
+  @Post("v1/feedback") async feedback(
+    @Body() input: unknown,
+    @Headers("x-account-token") token: unknown,
+    @Headers("x-guest-token") guest: unknown,
+  ) {
+    const parsed = factFeedbackSchema.safeParse(input);
+    if (!parsed.success) throw new HttpException("INVALID_FEEDBACK", 400);
+    const db = this.accounts.db;
+    if (!db) throw new HttpException("CATALOGUE_UNAVAILABLE", 503);
+    const fact = await db.campusFact.findFirst({
+      where: {
+        id: parsed.data.factId,
+        status: "published",
+        staleAt: { gt: new Date() },
+      },
+    });
+    if (!fact) throw new HttpException("FACT_UNAVAILABLE", 404);
+    let userId: string | undefined;
+    let actorHash: string;
+    let weight = 0.1;
+    if (token) {
+      const user = await this.accounts.principal(token);
+      userId = user.id;
+      actorHash = this.accounts.hash(`feedback:${user.id}`);
+      const character = await db.playerCharacter.findUnique({
+        where: { userId },
+      });
+      const previous = await db.factFeedback.count({ where: { userId } });
+      weight =
+        Date.now() - user.createdAt.getTime() >= 7 * 86400000 &&
+        character?.campusId === fact.campusId
+          ? Math.min(0.8, 0.5 + previous * 0.01)
+          : 0.2;
+    } else {
+      await this.players.self(guest);
+      actorHash = this.accounts.hash(`feedback:${String(guest)}`);
+    }
+    await db.factFeedback.upsert({
+      where: { factId_actorHash: { factId: fact.id, actorHash } },
+      create: { ...parsed.data, userId, actorHash, weight },
+      update: {
+        kind: parsed.data.kind,
+        correction: parsed.data.correction,
+        weight,
+      },
+    });
+    log({ service: "api", event: "fact_feedback_received", count: 1 });
+    const evidence = await db.evidence.findMany({
+      where: { versions: { some: { version: { factId: fact.id } } } },
+      take: 100,
+      select: { observation: { select: { sourceId: true } } },
+    });
+    const recheckAt = new Date(Date.now() + 60000);
+    await db.contentSource.updateMany({
+      where: {
+        id: { in: [...new Set(evidence.map((e) => e.observation.sourceId))] },
+        nextFetchAt: { gt: recheckAt },
+      },
+      data: { nextFetchAt: recheckAt },
+    });
+    return { received: true };
   }
   @Post("v1/guests") create(@Body() body: unknown) {
     return this.players.create(body);
@@ -102,14 +211,17 @@ export async function createApi(
     (config.PLAYER_STORE === "postgres"
       ? new PostgresPlayerRepository(config.DATABASE_URL!)
       : new MemoryPlayerRepository());
+  const sessionKey = config.SESSION_SECRET ?? randomBytes(32).toString("hex");
+  const accounts = new AccountService(config, sessionKey);
   @Module({
     controllers: [ApiController],
     providers: [
       PlayerService,
+      { provide: AccountService, useValue: accounts },
       { provide: REPOSITORY, useValue: repository },
       {
         provide: HASH_KEY,
-        useValue: config.SESSION_SECRET ?? randomBytes(32).toString("hex"),
+        useValue: sessionKey,
       },
     ],
   })
@@ -198,7 +310,7 @@ export async function createApi(
       header,
       req.method,
       req.path,
-      `${res.locals.rawBody ?? ""}\n${req.headers["x-guest-token"] ?? ""}`,
+      `${res.locals.rawBody ?? ""}\n${req.headers["x-guest-token"] ?? ""}${req.path.startsWith("/v1/account/") || req.path === "/v1/feedback" ? `\n${req.headers["x-account-token"] ?? ""}` : ""}`,
       config.BFF_SERVICE_SECRET ?? localTrustKey,
     );
     if (header || config.APP_ENV !== "local") {
@@ -262,7 +374,38 @@ export async function createApi(
       : next(),
   );
   app.use("/v1/campuses", limiter(120, "client"));
+  app.use("/v1/catalogue", limiter(120, "client"));
+  app.use("/v1/account", limiter(60, "client"));
+  app.use("/v1/account", limiter(100, "network"));
+  app.use("/v1/feedback", limiter(20, "client"));
+  app.use("/v1/feedback", limiter(80, "network"));
+  const accountLimiter = rateLimit({
+    windowMs: 60000,
+    limit: 60,
+    keyGenerator: (_req, res) => String(res.locals.account),
+    standardHeaders: "draft-8",
+    legacyHeaders: false,
+    handler: (_req, res) =>
+      res.status(429).json(apiError("RATE_LIMITED", res.locals.requestId)),
+  });
+  app.use(async (req: Request, res: Response, next: NextFunction) => {
+    if (
+      ["/v1/account/begin", "/v1/account/callback"].includes(req.path) ||
+      (!req.path.startsWith("/v1/account/") && req.path !== "/v1/feedback") ||
+      !req.headers["x-account-token"]
+    )
+      return next();
+    try {
+      const user = await accounts.principal(req.headers["x-account-token"]);
+      res.locals.account = accounts.hash(`account-rate:${user.id}`);
+      return accountLimiter(req, res, next);
+    } catch {
+      return res
+        .status(401)
+        .json(apiError("ACCOUNT_SESSION_EXPIRED", res.locals.requestId));
+    }
+  });
   app.useGlobalFilters(new SafeExceptionFilter());
   await app.init();
-  return { app, repository };
+  return { app, repository, accounts };
 }

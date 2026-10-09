@@ -12,7 +12,8 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "@campuswahala/ui": "workspace:*",
-    "@campuswahala/campus-content": "workspace:*"
+    "@campuswahala/campus-content": "workspace:*",
+    "@campuswahala/security": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "19.2.14",

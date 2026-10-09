@@ -7,6 +7,8 @@ import {
   type CampusPack,
 } from "@campuswahala/campus-content";
 import type { GuestInput, GuestPlayer } from "@campuswahala/domain";
+import { AccountPanel, GuidePanel } from "./account-panel";
+type JourneyPlayer = Omit<GuestPlayer, "expiresAt"> & { expiresAt?: string };
 const CampusWorld = dynamic(() => import("./world"), {
   ssr: false,
   loading: () => (
@@ -34,12 +36,15 @@ type PhoneApp =
   | "map"
   | "schedule"
   | "profile"
+  | "account"
+  | "guide"
   | "inventory"
   | "notifications";
 export default function GuestJourney() {
   const [input, setInput] = useState<GuestInput>(initial);
   const [step, setStep] = useState(0);
-  const [player, setPlayer] = useState<GuestPlayer | null>(null);
+  const [player, setPlayer] = useState<JourneyPlayer | null>(null);
+  const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -60,8 +65,30 @@ export default function GuestJourney() {
     const pack = getCampus(selected ?? "");
     if (pack) setInput((v) => ({ ...v, ...campusDefaults(pack) }));
     const controller = new AbortController();
-    void fetch("/api/guest", { signal: controller.signal })
+    void (async () => {
+      const account = await fetch("/api/account/me", {
+        signal: controller.signal,
+      });
+      if (account.ok) {
+        const data = await account.json();
+        setSignedIn(true);
+        const conversion = await fetch("/api/account/convert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: "{}",
+          signal: controller.signal,
+        });
+        const converted = conversion.ok ? await conversion.json() : null;
+        const saved = converted?.character ?? data.character;
+        if (saved) {
+          setPlayer(saved);
+          return null;
+        }
+      }
+      return fetch("/api/guest", { signal: controller.signal });
+    })()
       .then(async (r) => {
+        if (!r) return;
         if (r.ok) setPlayer(await r.json());
         else if (r.status !== 401)
           setError(
@@ -415,9 +442,11 @@ export default function GuestJourney() {
         <button
           className="secondary exit-button"
           disabled={busy}
-          onClick={() => void leave()}
+          onClick={() =>
+            signedIn ? (setPhoneApp("account"), setPhone(true)) : void leave()
+          }
         >
-          {busy ? "Ending…" : "End guest session"}
+          {signedIn ? "Account" : busy ? "Ending…" : "End guest session"}
         </button>
       </header>
       <div className="world-wrap" aria-hidden={phone || !!interaction}>
@@ -520,7 +549,9 @@ export default function GuestJourney() {
               </button>
             </div>
             <div className="phone-header">
-              <span className="tag">{campus.shortName} · GUEST</span>
+              <span className="tag">
+                {campus.shortName} · {signedIn ? "PRIVATE" : "GUEST"}
+              </span>
               <h2>
                 {phoneApp === "home"
                   ? "Your campus, in your pocket."
@@ -536,6 +567,22 @@ export default function GuestJourney() {
               )}
             </div>
             <div className="phone-content">
+              {phoneApp === "account" && (
+                <AccountPanel
+                  signedIn={signedIn}
+                  onEnded={() => {
+                    try {
+                      sessionStorage.removeItem(`cw_world:${campus.id}`);
+                    } catch {
+                      /* Optional cosmetic cache. */
+                    }
+                    setSignedIn(false);
+                    setPlayer(null);
+                    setPhone(false);
+                  }}
+                />
+              )}
+              {phoneApp === "guide" && <GuidePanel campus={campus.id} />}
               {phoneApp === "home" && (
                 <>
                   <div className="phone-greeting">
@@ -548,6 +595,8 @@ export default function GuestJourney() {
                         { id: "map", icon: "⌖", name: "Campus map" },
                         { id: "schedule", icon: "▦", name: "Schedule" },
                         { id: "profile", icon: "☺", name: "My chapter" },
+                        { id: "account", icon: "◉", name: "Account & privacy" },
+                        { id: "guide", icon: "⌕", name: "Guide & feedback" },
                         { id: "inventory", icon: "▧", name: "Inventory" },
                         { id: "notifications", icon: "♧", name: "Updates" },
                       ] as const
@@ -653,10 +702,19 @@ export default function GuestJourney() {
                     <dd>{player.durationYears} years</dd>
                     <dt>Session</dt>
                     <dd>
-                      Temporary guest · expires{" "}
-                      {new Date(player.expiresAt).toLocaleDateString("en-GB", {
-                        timeZone: "Africa/Lagos",
-                      })}
+                      {signedIn ? (
+                        "Saved private character"
+                      ) : (
+                        <>
+                          Temporary guest · expires{" "}
+                          {new Date(player.expiresAt ?? "").toLocaleDateString(
+                            "en-GB",
+                            {
+                              timeZone: "Africa/Lagos",
+                            },
+                          )}
+                        </>
+                      )}
                     </dd>
                   </dl>
                 </>

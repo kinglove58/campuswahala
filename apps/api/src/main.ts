@@ -3,11 +3,12 @@ import { log } from "@campuswahala/observability";
 import { createApi } from "./app";
 async function main() {
   const config = readConfig(process.env);
-  const { app, repository } = await createApi(config);
+  const { app, repository, accounts } = await createApi(config);
   app.enableShutdownHooks();
   const close = async () => {
     await app.close();
     await repository.close();
+    await accounts.close();
   };
   process.once("SIGINT", () => {
     void close();

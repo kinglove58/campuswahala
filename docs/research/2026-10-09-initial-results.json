@@ -1,0 +1,74 @@
+{
+    "kind":  "historical_research_snapshot",
+    "recordedAt":  "2026-10-09T18:04:14.696Z",
+    "note":  "Actual safe-fetch worker observations, not runtime seed data. Re-fetch and re-evaluate policy before operational use. Preview academic/map content remains fixture.",
+    "sources":  [
+                    {
+                        "url":  "https://oauife.edu.ng/",
+                        "status":  "DISCOVERED",
+                        "robotsPolicy":  "allowed",
+                        "lastFetchedAt":  null,
+                        "nextFetchAt":  "2026-10-09T18:04:15.723Z",
+                        "contentHash":  null,
+                        "lastErrorCode":  "BODY_TOO_LARGE"
+                    },
+                    {
+                        "url":  "https://unilag.edu.ng/",
+                        "status":  "DISCOVERED",
+                        "robotsPolicy":  "allowed",
+                        "lastFetchedAt":  null,
+                        "nextFetchAt":  "2026-10-09T18:04:18.907Z",
+                        "contentHash":  null,
+                        "lastErrorCode":  "BODY_TOO_LARGE"
+                    },
+                    {
+                        "url":  "https://www.futa.edu.ng/home",
+                        "status":  "REJECTED",
+                        "robotsPolicy":  "denied",
+                        "lastFetchedAt":  null,
+                        "nextFetchAt":  "2026-10-09T18:06:19.524Z",
+                        "contentHash":  null,
+                        "lastErrorCode":  "ROBOTS_REJECTED"
+                    },
+                    {
+                        "url":  "https://oauife.edu.ng/wp-json/?_fields=name,url,description",
+                        "status":  "PUBLISHED",
+                        "robotsPolicy":  "allowed",
+                        "lastFetchedAt":  "2026-10-09T18:04:11.964Z",
+                        "nextFetchAt":  "2026-10-10T18:04:11.964Z",
+                        "contentHash":  "de5c293ee311e455b257388bb94583eae449b77c3c927e2ba40118ae3f12a4b5",
+                        "lastErrorCode":  null
+                    },
+                    {
+                        "url":  "https://unilag.edu.ng/wp-json/?_fields=name,url,description",
+                        "status":  "PUBLISHED",
+                        "robotsPolicy":  "allowed",
+                        "lastFetchedAt":  "2026-10-09T18:04:14.696Z",
+                        "nextFetchAt":  "2026-10-10T18:04:14.696Z",
+                        "contentHash":  "1d769ac22fc895f7f0897ee9165d49a7cabac42e5b6d3b31df3e9f1bb9a4edc4",
+                        "lastErrorCode":  null
+                    }
+                ],
+    "facts":  [
+                  {
+                      "key":  "name",
+                      "status":  "published",
+                      "staleAt":  "2027-10-09T18:04:11.964Z",
+                      "currentVersion":  {
+                                             "value":  "Obafemi Awolowo University",
+                                             "lastObservedAt":  "2026-10-09T18:04:11.964Z",
+                                             "category":  "university"
+                                         }
+                  },
+                  {
+                      "key":  "name",
+                      "status":  "published",
+                      "staleAt":  "2027-10-09T18:04:14.696Z",
+                      "currentVersion":  {
+                                             "value":  "University Of Lagos",
+                                             "lastObservedAt":  "2026-10-09T18:04:14.696Z",
+                                             "category":  "university"
+                                         }
+                  }
+              ]
+}

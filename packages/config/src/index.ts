@@ -10,6 +10,13 @@ const schema = z.object({
   SESSION_SECRET: z.string().min(32).optional(),
   BFF_SERVICE_SECRET: z.string().min(32).optional(),
   NETWORK_HMAC_SECRET: z.string().min(32).optional(),
+  AUTH_PROVIDER: z.enum(["disabled", "local", "entra"]).optional(),
+  ENTRA_ISSUER: z.string().url().optional(),
+  ENTRA_CLIENT_ID: z.string().optional(),
+  ENTRA_CLIENT_SECRET: z.string().min(32).optional(),
+  ENTRA_AUTHORIZATION_ENDPOINT: z.string().url().optional(),
+  ENTRA_TOKEN_ENDPOINT: z.string().url().optional(),
+  ENTRA_JWKS_URI: z.string().url().optional(),
 });
 export type AppConfig = z.infer<typeof schema>;
 export function readConfig(env: NodeJS.ProcessEnv): AppConfig {
@@ -21,6 +28,25 @@ export function readConfig(env: NodeJS.ProcessEnv): AppConfig {
       `INVALID_ENVIRONMENT:${result.error.issues.map((i) => i.path.join(".")).join(",")}`,
     );
   const c = result.data;
+  if (c.AUTH_PROVIDER === "local" && c.APP_ENV !== "local")
+    throw new Error("LOCAL_IDENTITY_FORBIDDEN");
+  if (
+    c.AUTH_PROVIDER === "entra" &&
+    c.APP_ENV !== "local" &&
+    !c.ENTRA_CLIENT_SECRET
+  )
+    throw new Error("ENTRA_CONFIDENTIAL_CLIENT_CREDENTIAL_REQUIRED");
+  if (
+    c.AUTH_PROVIDER === "entra" &&
+    [
+      c.ENTRA_ISSUER,
+      c.ENTRA_CLIENT_ID,
+      c.ENTRA_AUTHORIZATION_ENDPOINT,
+      c.ENTRA_TOKEN_ENDPOINT,
+      c.ENTRA_JWKS_URI,
+    ].some((v) => !v)
+  )
+    throw new Error("ENTRA_CONFIGURATION_REQUIRED");
   const origin = new URL(c.GAME_ORIGIN);
   if (origin.origin !== c.GAME_ORIGIN)
     throw new Error("GAME_ORIGIN_MUST_BE_ORIGIN");

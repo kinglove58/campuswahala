@@ -1,0 +1,11 @@
+# Phase 1 privacy, age and deletion
+
+Accounts, character, programme/stage, preferences, sessions and age band are private by default, not indexable and not discoverable. There is no public-profile feature or hidden client switch to enable one. Database constraints enforce private/undiscoverable settings. Public marketing has no account/player queries. Analytics consent defaults false.
+
+Age is self-declared `under_18`, `18_or_over` or `unknown`; no date of birth, age proof or unnecessary identity attributes are collected. Unknown/under-18 accounts retain stricter defaults and cannot enable analytics consent. Band/consent version is visible only through the owner's account endpoint. No public age labels or inferred age from programme stage. This is minimal classification, not age assurance for future restricted features.
+
+Deletion changes account status to deletion_pending and revokes every session in one transaction. All further private operations fail immediately. The minute worker locks and deletes the user, cascading identities, profile/privacy, sessions, character and conversion receipts; user feedback is removed rather than retaining suggestion text or user-correlated actor hashes. A completion record remains with userId nulled, no identity/profile content. Login attempts expire after ten minutes; session expiry is seven days and conversion receipts expire after 24 hours. Temporary guests remain independently removable and bounded to 24 hours; account deletion does not enumerate other guests. No financial retention exceptions exist in Phase 1.
+
+No capabilities/tokens/subjects/page bodies/age bands are logged. Database backups and deployment operational retention must adopt a reviewed erasure/restore procedure before public release; the local worker proves actual live-database deletion, not erasure from unconfigured cloud backups. Cosmetic virtual coordinates in same-tab sessionStorage confer no authority and contain no credentials; account logout clears them. No real GPS or real-world movement is collected.
+
+Guest feedback is transferred transactionally to its converted account so account deletion also removes those reports. An existing account report wins duplicate actor/fact pairs. Unconverted guest feedback expires after 24 hours; no permanent anonymous correction-text archive is retained.

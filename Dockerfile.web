@@ -11,6 +11,7 @@ RUN pnpm install --frozen-lockfile && pnpm exec turbo build --filter=@campuswaha
 RUN mkdir -p /output && cp -r apps/${APP}/.next/standalone/. /output/ && mkdir -p /output/apps/${APP}/.next/static && cp -r apps/${APP}/.next/static/. /output/apps/${APP}/.next/static/
 
 FROM ${NODE_IMAGE} AS runtime
+RUN rm -rf /usr/local/lib/node_modules/npm /opt/yarn-* /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/yarn /usr/local/bin/yarnpkg /usr/local/bin/corepack
 ARG APP=marketing
 ENV NODE_ENV=production APP_ENV=production HOSTNAME=0.0.0.0 PORT=3000 APP=$APP
 WORKDIR /app

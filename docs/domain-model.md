@@ -1,11 +1,13 @@
-# Domain model and schema proposal
+# Domain model and schema
+
+The ownership table and broad ER diagram include future contexts; only the Phase 1 implemented boundary below is executable today. Simulation, rewards, financial and social aggregates are design context, not seeded tables or active systems.
 
 ## Ownership and aggregates
 
 | Context              | Aggregate roots and owned records                                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Identity             | User, Profile, Session, role grants, Payout eligibility references                                                              |
-| Campus Catalogue     | University → Campus; Faculty → Department → Programme → ProgrammeLevel; Location, Building, Venue, Route, TransportMode, Hostel |
+| Campus Catalogue     | University → Campus; Faculty → Department → Programme → ProgrammeStage; Location, Building, Venue, Route, TransportMode, Hostel |
 | Simulation           | PlayerCharacter → PlayerStats, Inventory/Item ownership, Skill, Room/Roommate, WahalaEvent; WahalaTemplate                      |
 | Academics            | AcademicSession → Semester; Course, Enrollment → Assessment (Lecture/Assignment/Test/Exam), Result; Progression                 |
 | Economy              | VirtualWallet → immutable VirtualLedger; Hustle, simulated Job, virtual Business                                                |
@@ -20,13 +22,13 @@
 ```mermaid
 erDiagram
   UNIVERSITY ||--o{ CAMPUS : contains
-  UNIVERSITY ||--o{ FACULTY : owns
+  CAMPUS ||--o{ FACULTY : owns
   FACULTY ||--o{ DEPARTMENT : owns
   DEPARTMENT ||--o{ PROGRAMME : offers
   PROGRAMME ||--o{ PROGRAMME_STRUCTURE : versions
   PROGRAMME_STRUCTURE ||--o{ PROGRAMME_STAGE : defines
   ACADEMIC_YEAR ||--o{ SEMESTER : contains
-  USER ||--o{ PLAYER_CHARACTER : plays
+  USER ||--o| PLAYER_CHARACTER : plays
   CAMPUS ||--o{ PLAYER_CHARACTER : hosts
   PROGRAMME ||--o{ PLAYER_CHARACTER : studies
   PLAYER_CHARACTER ||--|| PLAYER_STATS : has
@@ -58,3 +60,7 @@ Programme → versioned ProgrammeStructure → ProgrammeStage → explicit semes
 Guests retain numeric `level` as a compatibility code (1..9999), selected from the registered programme's explicit stages. It need not be a multiple of 100. Personal durationYears (1..12) never validates or generates stages. Direct entry/transfers need future admission checks; repeated stages retain stage identity with a new attempt/history. Interruption/deferment changes enrollment state. SIWES/IT associates authored tags/templates with stage IDs. No universal internship year or numeric next-level formula.
 
 Migration 202610090002_explicit_stages removes both arithmetic CHECK constraints, adds independent bounds and an expiry/id index without rewriting guests. PlayerService enforces catalogue membership; configuration is not yet relational. The PostgreSQL regression test persists stage 42 with a one-year preference to prove arithmetic is gone. Phase 1 normalized imports must pin structure versions and add transactional catalogue FKs.
+
+## Phase 1 implemented boundary
+
+The current schema is packages/database/prisma/schema.prisma. Migrations 003-004 add User, ExternalIdentity, UserProfile, UserPrivacySettings, UserSession, LoginAttempt, DeletionRequest, PlayerCharacter and GuestConversion; University/Campus/Faculty/Department/Programme/ProgrammeStructure/ProgrammeStage/AcademicSemesterTemplate; Location/Building/Hostel/Route/TransportMode/CulturalFact/CampusBusinessReference; ContentSource/SourceObservation/Evidence/CampusFact/FactVersion/FactVersionEvidence/PublicationDecision/FactFeedback/EntityMergeHistory. UUID identities are distinct from public slugs. Versioned structures and explicit stages/entry modes have no duration or 100-level arithmetic. SQL guards relational position consistency. Preview academic rows are explicitly fixture; facts are empty on migration. Repeat/defer/interruption/transfer/programme-change remain contracts, not progression behavior.

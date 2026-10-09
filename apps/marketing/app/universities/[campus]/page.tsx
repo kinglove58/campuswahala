@@ -15,6 +15,7 @@ export async function generateMetadata({
     title: `${c.shortName} — Begin your story`,
     description: `Explore a fictional CampusWahala world inspired by ${c.name}. Guest preview with unverified sample content.`,
     alternates: { canonical: `/universities/${c.id}` },
+    robots: { index: false, follow: true },
   };
 }
 export default async function Campus({

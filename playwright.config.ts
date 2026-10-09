@@ -13,6 +13,13 @@ export default defineConfig({
   webServer: [
     {
       command: "node apps/api/dist/main.js",
+      env: {
+        APP_ENV: "local",
+        PLAYER_STORE: process.env.TEST_DATABASE_URL ? "postgres" : "memory",
+        DATABASE_URL: process.env.TEST_DATABASE_URL ?? "",
+        SESSION_SECRET: "local-only-playwright-account-session-secret-2026",
+        AUTH_PROVIDER: process.env.TEST_DATABASE_URL ? "local" : "disabled",
+      },
       url: "http://localhost:4000/health/live",
       reuseExistingServer: false,
     },

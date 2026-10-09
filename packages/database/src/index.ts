@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+export { PrismaClient, Prisma } from "@prisma/client";
 import {
   createGuestSchema,
   type GuestPlayer,

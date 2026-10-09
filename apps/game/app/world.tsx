@@ -39,6 +39,7 @@ export default function CampusWorld({
           private keys!: Record<string, Phaser.Input.Keyboard.Key>;
           private target = { x: 480, y: 360 };
           private nearest = "";
+          private lastSaved = 0;
           create() {
             const g = this.add.graphics();
             g.fillStyle(0xdce7c7);
@@ -166,6 +167,22 @@ export default function CampusWorld({
             this.person = this.add
               .container(480, 360, [shadow, body, head, hair])
               .setDepth(10);
+            try {
+              const saved = JSON.parse(
+                sessionStorage.getItem(`cw_world:${pack.id}`) ?? "null",
+              );
+              if (
+                saved &&
+                Number.isFinite(saved.x) &&
+                Number.isFinite(saved.y)
+              ) {
+                const point = clampPosition(saved);
+                this.person.setPosition(point.x, point.y);
+                this.target = point;
+              }
+            } catch {
+              /* Optional cosmetic position; no authority or credentials. */
+            }
             this.keys = this.input.keyboard!.addKeys(
               "W,A,S,D,UP,DOWN,LEFT,RIGHT",
             ) as Record<string, Phaser.Input.Keyboard.Key>;
@@ -215,6 +232,17 @@ export default function CampusWorld({
                 (l) =>
                   Math.hypot(l.x - this.person.x, l.y - this.person.y) < 115,
               ) ?? null;
+            if (Date.now() - this.lastSaved > 500) {
+              try {
+                sessionStorage.setItem(
+                  `cw_world:${pack.id}`,
+                  JSON.stringify({ x: this.person.x, y: this.person.y }),
+                );
+              } catch {
+                /* Storage may be unavailable. */
+              }
+              this.lastSaved = Date.now();
+            }
             if ((close?.id ?? "") !== this.nearest) {
               this.nearest = close?.id ?? "";
               nearbyCallback.current(close);

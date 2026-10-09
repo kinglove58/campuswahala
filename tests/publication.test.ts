@@ -1,0 +1,143 @@
+import { describe, expect, it } from "vitest";
+import { candidateSchema } from "../packages/campus-content/src/publication";
+import {
+  PublicationPolicyService,
+  matchEntity,
+  type PolicyEvidence,
+} from "../packages/campus-content/src/publication";
+const now = new Date("2026-10-09T00:00:00Z");
+const policy = new PublicationPolicyService();
+const evidence = (
+  group: string,
+  authority: PolicyEvidence["authority"] = "community",
+  ageDays = 0,
+): PolicyEvidence => ({
+  authority,
+  independentGroup: group,
+  generated: false,
+  confidence: 0.95,
+  observedAt: new Date(now.getTime() - ageDays * 86400000),
+});
+describe("server publication policy", () => {
+  it("rejects model category changes that would weaken academic source requirements", () => {
+    expect(
+      candidateSchema.safeParse({
+        entityType: "programme",
+        category: "cultural",
+        key: "name",
+        value: "Course",
+        excerpt: "Course",
+        locator: "p",
+        confidence: 1,
+      }).success,
+    ).toBe(false);
+  });
+  it("holds a single cultural source, allows two independent groups, holds syndicated copies", () => {
+    const decide = (rows: PolicyEvidence[]) =>
+      policy.decide({
+        category: "cultural",
+        evidence: rows,
+        contradiction: false,
+        now,
+      }).result;
+    expect(decide([evidence("student-a")])).toBe("HOLD");
+    expect(decide([evidence("student-a"), evidence("student-b")])).toBe(
+      "ALLOW",
+    );
+    expect(decide([evidence("student-a"), evidence("student-a")])).toBe("HOLD");
+    expect(
+      decide([
+        { ...evidence("a"), contentHash: "same-page" },
+        { ...evidence("b"), contentHash: "same-page" },
+      ]),
+    ).toBe("HOLD");
+    expect(
+      decide([
+        evidence("student-a"),
+        { ...evidence("generated"), generated: true },
+      ]),
+    ).toBe("HOLD");
+  });
+  it.each([
+    "university",
+    "faculty",
+    "department",
+    "programme",
+    "academic_structure",
+    "critical",
+  ] as const)("requires fresh official evidence for %s", (category) => {
+    expect(
+      policy.decide({
+        category,
+        evidence: [evidence("official", "official")],
+        contradiction: false,
+        now,
+      }).result,
+    ).toBe("ALLOW");
+    expect(
+      policy.decide({
+        category,
+        evidence: [evidence("blog-a"), evidence("blog-b")],
+        contradiction: false,
+        now,
+      }).result,
+    ).toBe("HOLD");
+  });
+  it("expires transport and holds conflicting prices instead of overwriting", () => {
+    expect(
+      policy.decide({
+        category: "transport",
+        evidence: [evidence("transport-office", "official", 8)],
+        contradiction: false,
+        now,
+      }).result,
+    ).toBe("STALE");
+    expect(
+      policy.decide({
+        category: "transport",
+        evidence: [evidence("transport-office", "official")],
+        contradiction: true,
+        now,
+      }).reasons,
+    ).toEqual(["UNRESOLVED_CONTRADICTION"]);
+    expect(
+      policy.decide({
+        category: "event",
+        evidence: [evidence("official", "official")],
+        contradiction: false,
+        now,
+        expiresAt: now,
+      }).result,
+    ).toBe("STALE");
+  });
+  it.each(["location", "building", "hostel", "business", "route"] as const)(
+    "allows official or independent reputable evidence for %s",
+    (category) => {
+      const decide = (rows: PolicyEvidence[]) =>
+        policy.decide({ category, evidence: rows, contradiction: false, now })
+          .result;
+      expect(decide([evidence("office", "official")])).toBe("ALLOW");
+      expect(
+        decide([evidence("a", "reputable"), evidence("b", "reputable")]),
+      ).toBe("ALLOW");
+      expect(decide([evidence("a"), evidence("b")])).toBe("HOLD");
+    },
+  );
+  it("matches aliases only when unambiguous; never fuzzy-merges", () => {
+    expect(
+      matchEntity("  GREAT Ife ", [
+        {
+          id: "oau",
+          name: "Obafemi Awolowo University",
+          aliases: ["Great Ife"],
+        },
+      ]).id,
+    ).toBe("oau");
+    expect(
+      matchEntity("Great Ife", [
+        { id: "a", name: "Great Ife", aliases: [] },
+        { id: "b", name: "Other", aliases: ["Great Ife"] },
+      ]).id,
+    ).toBeNull();
+  });
+});

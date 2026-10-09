@@ -1,6 +1,6 @@
 # CampusWahala
 
-The playable digital world of African university life. Phase 0 foundation and a guest exploration slice; not a production launch.
+The playable digital world of African university life. Phase 1 identity, private character and Campus Intelligence foundations, with the original guest exploration world. Not a production launch.
 
 ## Run locally
 
@@ -21,7 +21,7 @@ For local production output, run `pnpm build`, then start the API with `pnpm --f
 
 ## PostgreSQL mode
 
-Set `POSTGRES_PASSWORD` to a local password in your shell; `docker compose up -d`. Set `DATABASE_URL` to your local PostgreSQL connection string, `PLAYER_STORE=postgres`, and `SESSION_SECRET` to at least 32 random characters. Run `pnpm db:migrate`, then `pnpm dev`. Versioned SQL migrations are supplied and are not applied automatically at application boot. Readiness checks the connection. Production refuses memory storage, localhost origins and missing secrets. Entra login and production hosting remain unimplemented.
+Set `POSTGRES_PASSWORD` to a local password in your shell; `docker compose up -d`. Set `DATABASE_URL` to your local PostgreSQL connection string, `PLAYER_STORE=postgres`, and `SESSION_SECRET` to at least 32 random characters. Run `pnpm db:migrate`, then `pnpm dev`. Versioned SQL migrations are supplied and are not applied automatically at application boot. Readiness checks the connection. Production refuses memory storage, localhost origins and missing secrets. For durable local demo accounts set AUTH_PROVIDER=local explicitly. Default is disabled. Entra adapter configuration is available; no tenant is provisioned and live Entra sign-in remains unverified.
 
 ## Checks
 
@@ -35,10 +35,22 @@ Campus names come from the supplied brief. Programme durations, layouts, locatio
 
 ## Phase 0.5 hardening
 
-Apply `pnpm db:migrate` before using existing local PostgreSQL. The additive migration removes academic arithmetic and adds an ordered expiry index without rewriting guests. After build, `pnpm --filter @campuswahala/worker start` with the same exported database configuration cleans expired guests at startup/every 15 minutes, at most 5,000 per sweep. Local memory remains simple and ephemeral.
+Apply `pnpm db:migrate` before using existing local PostgreSQL. The additive migration removes academic arithmetic and adds an ordered expiry index without rewriting guests. After build, `pnpm --filter @campuswahala/worker start` with the same exported database configuration cleans expired guests at startup/every minute, at most 5,000 per sweep. Local memory remains simple and ephemeral.
 
-Nonlocal API requires independent SESSION_SECRET and BFF_SERVICE_SECRET. Nonlocal game BFF requires independent BFF_SERVICE_SECRET, NETWORK_HMAC_SECRET and EDGE_SERVICE_SECRET, plus explicit GAME_ORIGIN/API_INTERNAL_URL and a signed trusted-ingress assertion. It refuses unsigned ingress until the future private bridge is implemented. Local loopback startup needs no real secrets. ADRs 005–007, [supply chain](docs/supply-chain.md) and [infrastructure](docs/infrastructure.md) describe rotation and staging gates. Phase 1 is not implemented by this pass.
+Nonlocal API requires independent SESSION_SECRET and BFF_SERVICE_SECRET. Nonlocal game BFF requires independent BFF_SERVICE_SECRET, NETWORK_HMAC_SECRET and EDGE_SERVICE_SECRET, plus explicit GAME_ORIGIN/API_INTERNAL_URL and a signed trusted-ingress assertion. It refuses unsigned ingress until the future private bridge is implemented. Local loopback startup needs no real secrets. ADRs 005–007, [supply chain](docs/supply-chain.md) and [infrastructure](docs/infrastructure.md) describe rotation and staging gates. See the Phase 1 review and updated identity/publication decisions.
 
 Playwright owns its API/game/marketing servers (marketing test port 3100) and refuses occupied test ports. Set CAPTURE_VISUALS=1 for optional landing/world/phone screenshots; functional security tests omit those captures by default.
 
-The retention worker validates only APP_ENV, PLAYER_STORE and DATABASE_URL. Do not provision session or ingress signing keys to its production identity; grant only the necessary guest SELECT/DELETE database permissions.
+The retention worker validates only APP_ENV, PLAYER_STORE and DATABASE_URL. Do not provision session or ingress signing keys to its production identity; grant separately reviewed least-privilege cleanup/intelligence database permissions. It also deletes pending accounts and expires login attempts/sessions/conversion receipts.
+
+## Phase 1 local development
+
+Apply all four versioned migrations before starting PostgreSQL mode. Migration 003 adds normalized UUID catalogue, identity/privacy/sessions, durable characters, guest conversion receipts and provenance/version/policy/feedback tables. It seeds only labelled demo academic records so existing guest choices can convert; it creates no verified facts. Migration 004 adds explicit event expiry, source failure details and relational academic-position guards. The upgrade test first installs Phase 0.5, seeds a guest and then runs real migrate deploy to preserve it.
+
+`AUTH_PROVIDER=local` enables a clearly labelled shared demo identity only in APP_ENV=local. In the phone open Account & privacy -> Continue to sign in. The guest cookie survives login, then an owner-bound transaction saves the same character. An existing account character wins unchanged. Accounts are private, under-18/unknown privacy is strict, and deletion revokes immediately then removes account data through the worker. Authentically configured Entra uses code/PKCE/state/nonce/signature checks and server-held tokens; .env.example lists configuration names. No Google button, tenant, credentials or Azure deployment is created.
+
+Set `INTELLIGENCE_ENABLED=true` on the database-configured worker to begin permitted official-source research. It discovers FUTA/OAU/UNILAG public URLs, checks robots and safe DNS-pinned fetching, and initially extracts only observed university names. No slang, navigation or academic content is fabricated. Policy automatically publishes eligible evidence, holds contradictions and expires stale data. The Guide & feedback phone app and marketing `/guide/<campus>` read only published, unexpired facts. Fixture pages are noindex and removed from the sitemap; thin guides remain noindex. All existing fixture warnings remain.
+
+Read [Phase 1 review](docs/phase-1-review.md), [identity](docs/identity.md), [intelligence](docs/campus-intelligence.md), [publication policy](docs/publication-policy.md), [privacy/age](docs/privacy.md) and [actual CI triage](docs/ci-triage-phase-1.md). Local tests do not establish production readiness. Shared rate/replay/pacing, private ingress/egress/database roles, configured Entra/MFA, monitored cleanup and clean scans remain public-release gates. Phase 2 has not been started.
+
+Local Phase 1 validation passed 82 tests and 10 desktop/mobile browser cases. Both final runtime images use Alpine, passed non-root smoke and returned zero HIGH/CRITICAL Trivy 0.75.0 findings including unfixed findings; the API native Prisma engine was also tested against PostgreSQL. Complementary strict Semgrep Community scan passed. Remote CodeQL still requires corrected permission/repository code-scanning setup and a new remote run; see the review for exact limits and evidence.

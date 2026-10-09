@@ -20,3 +20,423 @@ model GuestPlayer {
   @@index([expiresAt, id], map: "GuestPlayer_expiry_id_idx")
   @@index([campusId, programmeId, level])
 }
+
+model User {
+  id String @id @default(uuid()) @db.Uuid
+  status String @default("active")
+  createdAt DateTime @default(now())
+  identities ExternalIdentity[]
+  profile UserProfile?
+  privacy UserPrivacySettings?
+  sessions UserSession[]
+  character PlayerCharacter?
+  conversions GuestConversion[]
+  deletion DeletionRequest?
+  feedback FactFeedback[]
+}
+model LoginAttempt {
+  stateHash String @id @db.Char(64)
+  clientHash String @db.Char(64)
+  provider String
+  nonce String
+  verifier String
+  redirectUri String
+  ageBand String
+  expiresAt DateTime
+  consumedAt DateTime?
+  @@index([expiresAt])
+}
+model ExternalIdentity {
+  id String @id @default(uuid()) @db.Uuid
+  userId String @db.Uuid
+  provider String @db.VarChar(100)
+  subject String @db.VarChar(255)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, subject])
+}
+model UserProfile {
+  userId String @id @db.Uuid
+  ageBand String @default("unknown")
+  consentVersion String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model UserPrivacySettings {
+  userId String @id @db.Uuid
+  visibility String @default("private")
+  discoverable Boolean @default(false)
+  analyticsConsent Boolean @default(false)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model UserSession {
+  id String @id @default(uuid()) @db.Uuid
+  userId String @db.Uuid
+  tokenHash String @unique @db.Char(64)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  revokedAt DateTime?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([expiresAt])
+}
+model DeletionRequest {
+  id String @id @default(uuid()) @db.Uuid
+  userId String? @unique @db.Uuid
+  requestedAt DateTime @default(now())
+  completedAt DateTime?
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+model PlayerCharacter {
+  id String @id @default(uuid()) @db.Uuid
+  userId String @unique @db.Uuid
+  campusId String @db.Uuid
+  programmeId String @db.Uuid
+  structureId String @db.Uuid
+  structureVersion Int
+  stageId String @db.Uuid
+  semesterId String? @db.Uuid
+  entryMode String @default("standard")
+  nickname String @db.VarChar(40)
+  avatar String @db.VarChar(20)
+  durationYears Int
+  preferences Json @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  campus Campus @relation(fields: [campusId], references: [id])
+  programme Programme @relation(fields: [programmeId], references: [id])
+  structure ProgrammeStructure @relation(fields: [structureId], references: [id])
+  stage ProgrammeStage @relation(fields: [stageId], references: [id])
+  semester AcademicSemesterTemplate? @relation(fields: [semesterId], references: [id])
+}
+model GuestConversion {
+  id String @id @default(uuid()) @db.Uuid
+  tokenHash String @unique @db.Char(64)
+  userId String @db.Uuid
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  outcome String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([expiresAt])
+}
+model University {
+  id String @id @default(uuid()) @db.Uuid
+  slug String @unique
+  name String
+  aliases String[]
+  status String @default("candidate")
+  campuses Campus[]
+}
+model Campus {
+  id String @id @default(uuid()) @db.Uuid
+  slug String @unique
+  name String
+  aliases String[]
+  status String @default("candidate")
+  universityId String @db.Uuid
+  university University @relation(fields: [universityId], references: [id])
+  faculties Faculty[]
+  locations Location[]
+  buildings Building[]
+  hostels Hostel[]
+  routes Route[]
+  modes TransportMode[]
+  culture CulturalFact[]
+  businesses CampusBusinessReference[]
+  characters PlayerCharacter[]
+  sources ContentSource[]
+  facts CampusFact[]
+}
+model Faculty {
+  id String @id @default(uuid()) @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  campusId String @db.Uuid
+  campus Campus @relation(fields: [campusId], references: [id])
+  departments Department[]
+  @@unique([campusId, slug])
+}
+model Department {
+  id String @id @default(uuid()) @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  facultyId String @db.Uuid
+  faculty Faculty @relation(fields: [facultyId], references: [id])
+  programmes Programme[]
+  @@unique([facultyId, slug])
+}
+model Programme {
+  id String @id @default(uuid()) @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  departmentId String @db.Uuid
+  department Department @relation(fields: [departmentId], references: [id])
+  structures ProgrammeStructure[]
+  characters PlayerCharacter[]
+  @@unique([departmentId, slug])
+}
+model ProgrammeStructure {
+  id String @id @default(uuid()) @db.Uuid
+  programmeId String @db.Uuid
+  version Int
+  effectiveFrom DateTime
+  effectiveUntil DateTime?
+  status String @default("candidate")
+  programme Programme @relation(fields: [programmeId], references: [id])
+  stages ProgrammeStage[]
+  semesters AcademicSemesterTemplate[]
+  characters PlayerCharacter[]
+  @@unique([programmeId, version])
+}
+model ProgrammeStage {
+  id String @id @default(uuid()) @db.Uuid
+  structureId String @db.Uuid
+  slug String
+  displayCode String
+  label String
+  order Int
+  entryModes String[]
+  activityTags String[]
+  status String @default("candidate")
+  structure ProgrammeStructure @relation(fields: [structureId], references: [id])
+  characters PlayerCharacter[]
+  @@unique([structureId, slug])
+  @@unique([structureId, order])
+}
+model AcademicSemesterTemplate {
+  id String @id @default(uuid()) @db.Uuid
+  structureId String @db.Uuid
+  slug String
+  label String
+  order Int
+  status String @default("candidate")
+  structure ProgrammeStructure @relation(fields: [structureId], references: [id])
+  characters PlayerCharacter[]
+  @@unique([structureId, slug])
+}
+
+model Location {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model Building {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model Hostel {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model Route {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model TransportMode {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model CulturalFact {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model CampusBusinessReference {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  slug String
+  name String
+  aliases String[]
+  status String @default("candidate")
+  details Json @default("{}")
+  lastObservedAt DateTime?
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  @@unique([campusId, slug])
+}
+
+model ContentSource {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  url String @unique
+  domain String
+  type String
+  authorityClass String
+  independentGroup String
+  discoveryMethod String
+  robotsPolicy String @default("pending")
+  robotsCheckedAt DateTime?
+  policyStatus String @default("pending")
+  lastFetchedAt DateTime?
+  nextFetchAt DateTime @default(now())
+  etag String?
+  lastModified String?
+  status String @default("DISCOVERED")
+  failureCount Int @default(0)
+  lastErrorCode String?
+  lastFailureAt DateTime?
+  contentHash String?
+  campus Campus @relation(fields: [campusId], references: [id])
+  observations SourceObservation[]
+  @@index([nextFetchAt, status])
+}
+model SourceObservation {
+  id String @id @default(uuid()) @db.Uuid
+  sourceId String @db.Uuid
+  contentHash String @db.Char(64)
+  observedAt DateTime @default(now())
+  extractorVersion String
+  state String @default("FETCHED")
+  transitions Json @default("[]")
+  errorCode String?
+  source ContentSource @relation(fields: [sourceId], references: [id])
+  evidence Evidence[]
+  @@unique([sourceId, contentHash, extractorVersion])
+}
+model Evidence {
+  id String @id @default(uuid()) @db.Uuid
+  observationId String @db.Uuid
+  locator String @db.VarChar(500)
+  excerpt String @db.VarChar(240)
+  confidence Float
+  generated Boolean @default(false)
+  observation SourceObservation @relation(fields: [observationId], references: [id])
+  versions FactVersionEvidence[]
+}
+model CampusFact {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  entityId String? @db.Uuid
+  entityType String
+  key String
+  status String @default("candidate")
+  currentVersionId String? @unique @db.Uuid
+  staleAt DateTime?
+  campus Campus @relation(fields: [campusId], references: [id])
+  versions FactVersion[] @relation("FactVersions")
+  currentVersion FactVersion? @relation("CurrentVersion", fields: [currentVersionId], references: [id])
+  feedback FactFeedback[]
+  @@unique([campusId, entityType, key])
+  @@index([status, staleAt])
+}
+model FactVersion {
+  id String @id @default(uuid()) @db.Uuid
+  factId String @db.Uuid
+  version Int
+  value Json
+  category String
+  confidence Float
+  extractedAt DateTime
+  lastObservedAt DateTime
+  expiresAt DateTime?
+  contradiction Boolean @default(false)
+  valueHash String @db.Char(64)
+  fact CampusFact @relation("FactVersions", fields: [factId], references: [id])
+  currentFor CampusFact? @relation("CurrentVersion")
+  evidence FactVersionEvidence[]
+  decisions PublicationDecision[]
+  @@unique([factId, version])
+  @@unique([factId, valueHash])
+}
+model FactVersionEvidence {
+  versionId String @db.Uuid
+  evidenceId String @db.Uuid
+  version FactVersion @relation(fields: [versionId], references: [id])
+  evidence Evidence @relation(fields: [evidenceId], references: [id])
+  @@id([versionId, evidenceId])
+}
+model PublicationDecision {
+  id String @id @default(uuid()) @db.Uuid
+  versionId String @db.Uuid
+  result String
+  reasons String[]
+  policyVersion String
+  decidedAt DateTime @default(now())
+  version FactVersion @relation(fields: [versionId], references: [id])
+}
+model FactFeedback {
+  id String @id @default(uuid()) @db.Uuid
+  factId String @db.Uuid
+  userId String? @db.Uuid
+  actorHash String @db.Char(64)
+  kind String
+  correction String? @db.VarChar(240)
+  weight Float
+  createdAt DateTime @default(now())
+  fact CampusFact @relation(fields: [factId], references: [id])
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  @@index([factId, createdAt])
+  @@unique([factId, actorHash])
+}
+model EntityMergeHistory {
+  id String @id @default(uuid()) @db.Uuid
+  entityType String
+  fromId String @db.Uuid
+  toId String @db.Uuid
+  reason String
+  evidenceIds String[]
+  mergedAt DateTime @default(now())
+  reversedAt DateTime?
+}

@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
       security-events: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -51,6 +52,26 @@ jobs:
         with:
           languages: javascript-typescript
       - uses: github/codeql-action/analyze@9f759ee644a3e7c15c1390abf49868036c00067b # v3
+  oss-sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: mkdir -p artifacts
+      - name: Complementary Semgrep Community scan
+        run: >-
+          docker run --rm --workdir /src
+          --mount "type=bind,source=$PWD,target=/src,readonly"
+          --mount "type=bind,source=$PWD/artifacts,target=/output"
+          semgrep/semgrep:1.180.0@sha256:529ee8a277ec8adc5b534d7c74eea0a47e9de21d62852b6ba7ac6ba9566845c3
+          semgrep scan --config p/javascript --config p/nodejs --oss-only
+          --metrics=off --disable-version-check --strict --error --jobs 2
+          --exclude '**/node_modules/**' --exclude '**/.next/**' --exclude '**/dist/**'
+          --json --output /output/semgrep.json apps packages scripts
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: semgrep-report
+          path: artifacts/semgrep.json
   secrets:
     runs-on: ubuntu-latest
     steps:
@@ -66,25 +87,32 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - run: docker build -f Dockerfile.web -t campuswahala-web:ci .
       - run: docker build -f Dockerfile.api -t campuswahala-api:ci .
+      - run: docker run --rm -v "$PWD/tests/web-container-smoke.mjs:/smoke.mjs:ro" --entrypoint node campuswahala-web:ci /smoke.mjs
       - run: docker run --rm -e APP_ENV=local -e PLAYER_STORE=memory -v "$PWD/tests/container-smoke.mjs:/smoke.mjs:ro" --entrypoint node campuswahala-api:ci /smoke.mjs
       - uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
         with:
           image-ref: campuswahala-web:ci
+          version: v0.75.0
           severity: HIGH,CRITICAL
           exit-code: "1"
-          ignore-unfixed: true
+          ignore-unfixed: false
       - uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
+        if: always()
         with:
           image-ref: campuswahala-api:ci
+          version: v0.75.0
           severity: HIGH,CRITICAL
           exit-code: "1"
-          ignore-unfixed: true
+          ignore-unfixed: false
       - uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1 # 0.35.0
+        if: always()
         with:
           image-ref: campuswahala-api:ci
+          version: v0.75.0
           format: cyclonedx
           output: sbom.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
         with:
           name: api-sbom
           path: sbom.json

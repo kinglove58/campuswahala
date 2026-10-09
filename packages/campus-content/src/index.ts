@@ -1,6 +1,7 @@
 import { registeredPacks } from "./registry";
 import { previewPackSchema, type CampusPack } from "./schema";
 export * from "./schema";
+export * from "./publication";
 export const campuses: CampusPack[] = registeredPacks.map((p) =>
   previewPackSchema.parse(p),
 );

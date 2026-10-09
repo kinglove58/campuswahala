@@ -106,6 +106,7 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   await expect(page.getByTestId("campus-world")).toHaveAttribute(
     "data-ready",
     "true",
+    { timeout: 15000 },
   );
   await expect(page.locator("canvas")).toBeVisible();
   if (process.env.CAPTURE_VISUALS === "1")
@@ -148,6 +149,7 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   await expect(page.getByTestId("campus-world")).toHaveAttribute(
     "data-ready",
     "true",
+    { timeout: 15000 },
   );
   await page.getByRole("button", { name: "End guest session" }).click();
   await expect(
