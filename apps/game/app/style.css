@@ -765,3 +765,256 @@ dd {
     font-size: 26px;
   }
 }
+
+/* CW Pocket and world HUD: warm campus illustration, no dashboard chrome. */
+.game-region {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.pocket-v2 {
+  background: #f4ecd8;
+  border-color: #243c32;
+  width: 380px;
+  border-width: 8px;
+  box-shadow:
+    0 28px 100px #122d2980,
+    inset 0 0 0 2px #ced1b3;
+}
+.pocket-v2 .phone-header {
+  padding-top: 10px;
+}
+.pocket-v2 .phone-header > p {
+  margin: 2px 0;
+  font-size: 12px;
+}
+.pocket-v2 .phone-header small {
+  opacity: 0.7;
+  margin-left: 8px;
+}
+.pocket-clock {
+  font-size: 58px;
+  line-height: 1.1;
+  font-weight: 650;
+  letter-spacing: -3px;
+  margin-top: 14px;
+  color: #214537;
+  font-variant-numeric: tabular-nums;
+}
+.pocket-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+}
+.pocket-welcome span {
+  font-size: 11px;
+  color: #586b52;
+}
+.pocket-v2 .phone-app-grid {
+  gap: 20px 8px;
+  margin: 24px 0;
+}
+.pocket-v2 .phone-app-grid button {
+  font-size: 10px;
+  min-height: 76px;
+}
+.pocket-v2 .phone-app-grid button span {
+  background: #d5dfb3;
+  border: 0;
+  border-radius: 18px;
+  color: #264937;
+  box-shadow: 0 3px 0 #bec99b;
+  width: 56px;
+  height: 56px;
+}
+.pocket-v2 .phone-app-grid button:nth-child(3n + 2) span {
+  background: #e4bc96;
+  box-shadow: 0 3px 0 #cfaa86;
+}
+.pocket-v2 .phone-app-grid button:nth-child(3n) span {
+  background: #b7d0cb;
+  box-shadow: 0 3px 0 #a2beb8;
+}
+.pocket-notification {
+  display: block;
+  background: #e6ddc6 !important;
+  color: #274633 !important;
+  text-align: left;
+  width: 100%;
+  font-size: 12px !important;
+  padding: 13px !important;
+}
+.pocket-notification small {
+  display: block;
+  font-size: 10px;
+  margin-top: 6px;
+  font-weight: 400;
+}
+.phone-top button {
+  min-width: 44px;
+  min-height: 44px;
+}
+.phone-content button:not(.phone-app-grid button) {
+  min-height: 44px;
+}
+.phone-content label {
+  display: block;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.phone-content input[type="range"] {
+  width: 100%;
+  accent-color: #466b4e;
+}
+.phone-content .phone-note {
+  margin-bottom: 12px;
+}
+.phone-content {
+  overscroll-behavior: contain;
+}
+.pocket-map {
+  width: 100%;
+  max-height: 290px;
+  border-radius: 12px;
+  background: #d8e1bf;
+}
+.destination-list {
+  display: grid;
+  gap: 8px;
+}
+.destination-list button,
+.transport-choice {
+  display: block;
+  background: #e1e5cc;
+  color: #254333;
+  text-align: left;
+  padding: 12px;
+  width: 100%;
+}
+.destination-list small,
+.transport-choice small {
+  display: block;
+  font-weight: 400;
+  font-size: 10px;
+  margin-top: 5px;
+}
+.waypoint-banner {
+  position: absolute;
+  top: 155px;
+  left: 30px;
+  border-radius: 12px;
+  background: #fbefd9;
+  padding: 8px 10px;
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 3px 12px #203a2420;
+}
+.waypoint-banner button {
+  font-size: 11px;
+  min-height: 44px;
+  padding: 6px 10px;
+}
+.venue-backdrop {
+  justify-content: center;
+  background: #153a3060;
+}
+.venue-dialog {
+  max-height: 92dvh;
+  overflow: auto;
+}
+.dialog-close {
+  min-height: 44px;
+}
+.mini-interior {
+  background: #e2c6a0;
+  border: 12px solid #82765c;
+  border-bottom-width: 22px;
+  border-radius: 8px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  color: #6a593d;
+  text-align: center;
+  font-size: 36px;
+}
+.mini-interior b {
+  font-size: 30px;
+}
+.avatar-editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px;
+}
+.avatar-editor label {
+  margin: 4px 0 !important;
+  font-size: 11px !important;
+}
+.avatar-editor select {
+  padding: 10px;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .pocket-v2 {
+    width: 100%;
+    max-width: 410px;
+    height: calc(100dvh - 12px);
+    border-radius: 30px;
+    border-width: 6px;
+  }
+  .pocket-clock {
+    font-size: 49px;
+  }
+  .phone-backdrop {
+    padding: 6px;
+  }
+  .phone-header {
+    padding: 8px 18px;
+  }
+  .phone-top {
+    padding: 8px 16px 0;
+  }
+  .phone-content {
+    padding: 0 18px 15px;
+  }
+  .world-caption {
+    max-width: calc(100% - 30px);
+  }
+  .world-caption h2 {
+    font-size: 17px;
+  }
+  .waypoint-banner {
+    left: 15px;
+    top: 125px;
+    max-width: calc(100% - 30px);
+  }
+  .world-bottom {
+    gap: 8px;
+  }
+  .world-bottom > button {
+    min-height: 48px;
+    max-width: 72%;
+    font-size: 11px;
+  }
+  .game-hud button {
+    font-size: 10px;
+    padding: 9px;
+    min-height: 44px;
+  }
+  .phone-footer {
+    padding: 10px 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

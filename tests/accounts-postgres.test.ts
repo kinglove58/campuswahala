@@ -1,3 +1,4 @@
+import { defaultAppearance } from "../packages/game-engine/src";
 import { describe, expect, it } from "vitest";
 import { randomUUID } from "node:crypto";
 import { AccountService } from "../apps/api/src/accounts";
@@ -204,6 +205,35 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
         expect((await a.convert(first.token, extraGuest)).character?.id).toBe(
           converted.character?.id,
         );
+        const worldInput = {
+          campusId: "futa",
+          worldVersion: 1,
+          spawnId: "spawn-venue-1",
+          appearance: defaultAppearance,
+        };
+        await a.saveWorldState(first.token, worldInput);
+        expect(await a.worldState(first.token)).toMatchObject({
+          spawnId: "spawn-venue-1",
+          campusId: "futa",
+        });
+        for (const bad of [
+          { ...worldInput, userId: userB },
+          { ...worldInput, spawnId: "missing" },
+          { ...worldInput, campusId: "unknown" },
+          { ...worldInput, x: 999999 },
+        ])
+          await expect(a.saveWorldState(first.token, bad)).rejects.toThrow(
+            "INVALID_WORLD_STATE",
+          );
+        await expect(a.saveWorldState(guest, worldInput)).rejects.toThrow();
+        await expect(b.worldState(second.token)).rejects.toThrow(
+          "CHARACTER_REQUIRED",
+        );
+        await db.playerWorldState.update({
+          where: { userId: userA },
+          data: { spawnId: "removed-spawn", worldVersion: 100 },
+        });
+        expect((await a.worldState(first.token)).spawnId).toBe("spawn-arrival");
         const rotated = await login(a, "unknown", first.token);
         await expect(a.self(first.token)).rejects.toThrow(
           "ACCOUNT_SESSION_EXPIRED",
@@ -212,7 +242,14 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
         await expect(a.self(rotated.token)).rejects.toThrow(
           "ACCOUNT_SESSION_EXPIRED",
         );
+        await expect(a.worldState(rotated.token)).rejects.toThrow();
+        await expect(
+          a.saveWorldState(rotated.token, worldInput),
+        ).rejects.toThrow();
         await cleanupAccounts(db);
+        expect(
+          await db.playerWorldState.count({ where: { userId: userA } }),
+        ).toBe(0);
         expect(await db.user.findUnique({ where: { id: userA } })).toBeNull();
         expect(
           await db.factFeedback.count({

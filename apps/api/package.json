@@ -22,7 +22,8 @@
     "@campuswahala/security": "workspace:*",
     "express": "5.2.1",
     "helmet": "8.1.0",
-    "express-rate-limit": "8.7.1"
+    "express-rate-limit": "8.7.1",
+    "@campuswahala/game-engine": "workspace:*"
   },
   "devDependencies": {
     "@types/express": "5.0.6"

@@ -81,6 +81,9 @@ importers:
       '@campuswahala/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@campuswahala/game-engine':
+        specifier: workspace:*
+        version: link:../../packages/game-engine
       '@campuswahala/observability':
         specifier: workspace:*
         version: link:../../packages/observability

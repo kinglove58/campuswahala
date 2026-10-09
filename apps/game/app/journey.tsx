@@ -1,22 +1,16 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import CampusExperience from "./campus-experience";
+import { defaultAppearance, type Appearance } from "@campuswahala/game-engine";
+import { AvatarEditor } from "./avatar-editor";
 import {
   campuses,
   getCampus,
   type CampusPack,
 } from "@campuswahala/campus-content";
 import type { GuestInput, GuestPlayer } from "@campuswahala/domain";
-import { AccountPanel, GuidePanel } from "./account-panel";
+
 type JourneyPlayer = Omit<GuestPlayer, "expiresAt"> & { expiresAt?: string };
-const CampusWorld = dynamic(() => import("./world"), {
-  ssr: false,
-  loading: () => (
-    <div className="world-loading" role="status">
-      Building your little world…
-    </div>
-  ),
-});
 function campusDefaults(pack: CampusPack) {
   const programme = pack.programmes[0]!;
   return {
@@ -31,15 +25,6 @@ const initial: GuestInput = {
   avatar: "lime",
   nickname: "Campus Explorer",
 };
-type PhoneApp =
-  | "home"
-  | "map"
-  | "schedule"
-  | "profile"
-  | "account"
-  | "guide"
-  | "inventory"
-  | "notifications";
 export default function GuestJourney() {
   const [input, setInput] = useState<GuestInput>(initial);
   const [step, setStep] = useState(0);
@@ -48,16 +33,9 @@ export default function GuestJourney() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [phone, setPhone] = useState(false);
-  const [phoneApp, setPhoneApp] = useState<PhoneApp>("home");
-  const [nearby, setNearby] = useState<CampusPack["locations"][number] | null>(
-    null,
-  );
-  const [interaction, setInteraction] = useState<
-    CampusPack["locations"][number] | null
-  >(null);
-  const phoneTrigger = useRef<HTMLButtonElement>(null);
-  const dialogRef = useRef<HTMLElement>(null);
+  const [appearance, setAppearance] = useState<Appearance>({
+    ...defaultAppearance,
+  });
   const campus = getCampus(player?.campusId ?? input.campusId)!;
   const programme = campus.programmes.find((p) => p.id === input.programmeId)!;
   useEffect(() => {
@@ -104,34 +82,6 @@ export default function GuestJourney() {
       .finally(() => setLoading(false));
     return () => controller.abort();
   }, []);
-  useEffect(() => {
-    if (!phone) return;
-    const dialog = dialogRef.current;
-    const first = dialog?.querySelector<HTMLElement>("button");
-    first?.focus();
-    function key(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setPhone(false);
-        phoneTrigger.current?.focus();
-      }
-      if (e.key === "Tab" && dialog) {
-        const nodes = Array.from(
-          dialog.querySelectorAll<HTMLElement>('button,a,[tabindex="0"]'),
-        );
-        const first = nodes[0],
-          last = nodes[nodes.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last?.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
-      }
-    }
-    window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
-  }, [phone, phoneApp]);
   async function start() {
     setBusy(true);
     setError("");
@@ -166,9 +116,6 @@ export default function GuestJourney() {
       if (!r.ok) throw new Error("Could not end the session. Please retry.");
       setPlayer(null);
       setStep(0);
-      setPhone(false);
-      setInteraction(null);
-      setNearby(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Please retry.");
     } finally {
@@ -218,7 +165,7 @@ export default function GuestJourney() {
               </span>
             </div>
             <small>
-              Phase 0 preview · Sample programmes and fictional maps
+              Campus world preview · Sample programmes and fictional maps
             </small>
           </aside>
           <section className="onboarding-card">
@@ -416,6 +363,9 @@ export default function GuestJourney() {
                 </div>
               </>
             )}
+            {step === 2 && (
+              <AvatarEditor value={appearance} onChange={setAppearance} />
+            )}
             {error && (
               <p role="alert" className="error">
                 {error}
@@ -425,332 +375,21 @@ export default function GuestJourney() {
         </main>
       </div>
     );
-  const playerProgramme = campus.programmes.find(
-    (p) => p.id === player.programmeId,
-  );
   return (
-    <main className="game-screen">
-      <header className="game-hud" aria-hidden={phone || !!interaction}>
-        <div>
-          <span className="brand">
-            Campus<span>Wahala</span> ✳
-          </span>
-          <span className="hud-divider" />
-          <strong>{campus.shortName}</strong>
-          <span className="tag">{player.level}L</span>
-        </div>
-        <button
-          className="secondary exit-button"
-          disabled={busy}
-          onClick={() =>
-            signedIn ? (setPhoneApp("account"), setPhone(true)) : void leave()
-          }
-        >
-          {signedIn ? "Account" : busy ? "Ending…" : "End guest session"}
-        </button>
-      </header>
-      <div className="world-wrap" aria-hidden={phone || !!interaction}>
-        <CampusWorld
-          pack={campus}
-          avatar={player.avatar}
-          paused={phone || !!interaction}
-          onNearby={setNearby}
-        />
-        <div className="world-caption">
-          <span className="eyebrow">
-            WELCOME, {player.nickname.toUpperCase()}
-          </span>
-          <h2>Make yourself at home.</h2>
-          <p>Tap a path to walk · Arrow keys / WASD on desktop</p>
-        </div>
-        <div className="world-status">
-          <span>☀ A fresh chapter</span>
-          <span>Virtual location only</span>
-        </div>
-        <div className="world-bottom">
-          <span className="fixture world-fixture">
-            Fictional map · Unverified fixture content
-          </span>
-          {nearby && !phone && !interaction && (
-            <button onClick={() => setInteraction(nearby)}>
-              Explore {nearby.label} ↗
-            </button>
-          )}
-          <button
-            className="phone-trigger"
-            ref={phoneTrigger}
-            onClick={() => {
-              setPhoneApp("home");
-              setPhone(true);
-            }}
-            aria-label="Open virtual phone"
-          >
-            ▣ <span>Phone</span>
-            <kbd>Pocket</kbd>
-          </button>
-        </div>
-      </div>
-      {error && (
-        <p className="game-error error" role="alert">
-          {error}
-        </p>
-      )}
-      {interaction && (
-        <section
-          className="venue-dialog"
-          onKeyDown={(event) => {
-            if (event.key === "Escape") setInteraction(null);
-            if (event.key === "Tab") {
-              event.preventDefault();
-              event.currentTarget.querySelector("button")?.focus();
-            }
-          }}
-          role="dialog"
-          aria-modal="true"
-          aria-label={interaction.label}
-        >
-          <span className="eyebrow">A LITTLE CAMPUS MOMENT</span>
-          <h2>{interaction.label}</h2>
-          <p>{interaction.description}</p>
-          <p className="fixture">
-            This is a fictional venue. No resources or rewards change.
-          </p>
-          <button autoFocus onClick={() => setInteraction(null)}>
-            Back to campus
-          </button>
-        </section>
-      )}
-      {phone && (
-        <div
-          className="phone-backdrop"
-          onClick={() => {
-            setPhone(false);
-            phoneTrigger.current?.focus();
-          }}
-        >
-          <section
-            className="phone"
-            ref={dialogRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label="CW Pocket virtual phone"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="phone-top">
-              <span>CW POCKET</span>
-              <button
-                onClick={() => {
-                  setPhone(false);
-                  phoneTrigger.current?.focus();
-                }}
-                aria-label="Close phone"
-              >
-                ×
-              </button>
-            </div>
-            <div className="phone-header">
-              <span className="tag">
-                {campus.shortName} · {signedIn ? "PRIVATE" : "GUEST"}
-              </span>
-              <h2>
-                {phoneApp === "home"
-                  ? "Your campus, in your pocket."
-                  : phoneApp.charAt(0).toUpperCase() + phoneApp.slice(1)}
-              </h2>
-              {phoneApp !== "home" && (
-                <button
-                  className="phone-back"
-                  onClick={() => setPhoneApp("home")}
-                >
-                  ← All apps
-                </button>
-              )}
-            </div>
-            <div className="phone-content">
-              {phoneApp === "account" && (
-                <AccountPanel
-                  signedIn={signedIn}
-                  onEnded={() => {
-                    try {
-                      sessionStorage.removeItem(`cw_world:${campus.id}`);
-                    } catch {
-                      /* Optional cosmetic cache. */
-                    }
-                    setSignedIn(false);
-                    setPlayer(null);
-                    setPhone(false);
-                  }}
-                />
-              )}
-              {phoneApp === "guide" && <GuidePanel campus={campus.id} />}
-              {phoneApp === "home" && (
-                <>
-                  <div className="phone-greeting">
-                    Hey, {player.nickname}.<br />
-                    <small>A new chapter looks good on you.</small>
-                  </div>
-                  <div className="phone-app-grid">
-                    {(
-                      [
-                        { id: "map", icon: "⌖", name: "Campus map" },
-                        { id: "schedule", icon: "▦", name: "Schedule" },
-                        { id: "profile", icon: "☺", name: "My chapter" },
-                        { id: "account", icon: "◉", name: "Account & privacy" },
-                        { id: "guide", icon: "⌕", name: "Guide & feedback" },
-                        { id: "inventory", icon: "▧", name: "Inventory" },
-                        { id: "notifications", icon: "♧", name: "Updates" },
-                      ] as const
-                    ).map((a) => (
-                      <button
-                        key={a.id}
-                        aria-label={a.name}
-                        onClick={() => setPhoneApp(a.id)}
-                      >
-                        <span aria-hidden="true">{a.icon}</span>
-                        {a.name}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="phone-note">
-                    <b>One step at a time.</b>
-                    <p>
-                      Explore the world first. Academics, hustles and
-                      friendships are coming in later chapters.
-                    </p>
-                  </div>
-                </>
-              )}
-              {phoneApp === "map" && (
-                <>
-                  <div className="phone-map" aria-label="Fictional venue map">
-                    {campus.locations.map((l) => (
-                      <span
-                        key={l.id}
-                        style={{
-                          left: `${(l.x / 960) * 100}%`,
-                          top: `${(l.y / 640) * 100}%`,
-                        }}
-                      >
-                        ●<small>{l.label}</small>
-                      </span>
-                    ))}
-                  </div>
-                  <p className="fixture">
-                    Stylized fixture geometry, not real navigation.
-                  </p>
-                  <ul className="phone-list">
-                    {campus.locations.map((l) => (
-                      <li key={l.id}>
-                        {l.label}
-                        <span>{l.kind}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-              {phoneApp === "schedule" && (
-                <>
-                  <p className="fixture">
-                    Example day only · Not a real timetable
-                  </p>
-                  <ul className="schedule">
-                    <li>
-                      <span>09:00</span>
-                      <div>
-                        <b>Discover campus</b>
-                        <small>Take a walk around the commons</small>
-                      </div>
-                    </li>
-                    <li>
-                      <span>11:00</span>
-                      <div>
-                        <b>Find the library</b>
-                        <small>Your quiet corner awaits</small>
-                      </div>
-                    </li>
-                    <li>
-                      <span>13:00</span>
-                      <div>
-                        <b>A little food break</b>
-                        <small>Explore the food corner</small>
-                      </div>
-                    </li>
-                  </ul>
-                  <div className="phone-note">
-                    Classes and academic progression are planned.
-                  </div>
-                </>
-              )}
-              {phoneApp === "profile" && (
-                <>
-                  <div
-                    className={`avatar-preview avatar-${player.avatar}`}
-                    aria-hidden="true"
-                  >
-                    <span>●</span>
-                    <b />
-                  </div>
-                  <h3>{player.nickname}</h3>
-                  <dl>
-                    <dt>Campus</dt>
-                    <dd>{campus.shortName}</dd>
-                    <dt>Programme</dt>
-                    <dd>{playerProgramme?.title}</dd>
-                    <dt>Level</dt>
-                    <dd>{player.level}L</dd>
-                    <dt>Personal duration</dt>
-                    <dd>{player.durationYears} years</dd>
-                    <dt>Session</dt>
-                    <dd>
-                      {signedIn ? (
-                        "Saved private character"
-                      ) : (
-                        <>
-                          Temporary guest · expires{" "}
-                          {new Date(player.expiresAt ?? "").toLocaleDateString(
-                            "en-GB",
-                            {
-                              timeZone: "Africa/Lagos",
-                            },
-                          )}
-                        </>
-                      )}
-                    </dd>
-                  </dl>
-                </>
-              )}
-              {phoneApp === "inventory" && (
-                <>
-                  <div className="inventory-item">
-                    <span>▣</span>
-                    <div>
-                      <h3>CW Pocket</h3>
-                      <p>Your virtual phone.</p>
-                    </div>
-                  </div>
-                  <p className="fixture">
-                    Illustrative starter item. Inventory ownership, battery and
-                    item trading are not implemented.
-                  </p>
-                </>
-              )}
-              {phoneApp === "notifications" && (
-                <div className="phone-note">
-                  <b>Welcome to {campus.shortName}!</b>
-                  <p>
-                    Your guest journey is ready. Tap around the world and find
-                    your favourite corner.
-                  </p>
-                  <small>Gameplay fixture · No real campus alerts</small>
-                </div>
-              )}
-            </div>
-            <div className="phone-footer">
-              YOUR CAMPUS. YOUR STORY. <span>✳</span>
-            </div>
-          </section>
-        </div>
-      )}
-    </main>
+    <CampusExperience
+      player={player}
+      campus={campus}
+      signedIn={signedIn}
+      initialAppearance={{
+        ...appearance,
+        top: player.avatar as Appearance["top"],
+      }}
+      onGuestExit={() => void leave()}
+      onEnded={() => {
+        setSignedIn(false);
+        setPlayer(null);
+        setStep(0);
+      }}
+    />
   );
 }

@@ -4,6 +4,7 @@ type Context = { params: Promise<{ action: string }> };
 async function route(request: NextRequest, context: Context) {
   const { action } = await context.params;
   const allowed: Record<string, string[]> = {
+    world: ["GET", "POST"],
     begin: ["POST"],
     callback: ["GET"],
     me: ["GET", "DELETE"],

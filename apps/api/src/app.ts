@@ -1,3 +1,8 @@
+import {
+  createCampusWorld,
+  isCampus,
+  compileWorldInformation,
+} from "@campuswahala/game-engine";
 import "reflect-metadata";
 import {
   ArgumentsHost,
@@ -7,6 +12,7 @@ import {
   ExceptionFilter,
   Get,
   Headers,
+  Param,
   HttpException,
   Inject,
   Module,
@@ -68,6 +74,56 @@ class ApiController {
   }
   @Get("v1/catalogue/published") published() {
     return this.accounts.publishedCatalogue();
+  }
+  @Get("v1/worlds/:campus/versions/:version") world(
+    @Param("campus") campus: string,
+    @Param("version") version: string,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    if (!isCampus(campus) || version !== "1")
+      throw new HttpException("WORLD_NOT_FOUND", 404);
+    const world = createCampusWorld(campus);
+    response.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    response.setHeader(
+      "ETag",
+      `"${campus}-${world.sourceRevision}-${world.version}"`,
+    );
+    return world;
+  }
+  @Get("v1/worlds/:campus/latest") latestWorld(
+    @Param("campus") campus: string,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    if (!isCampus(campus)) throw new HttpException("WORLD_NOT_FOUND", 404);
+    response.setHeader("Cache-Control", "public, max-age=60");
+    return {
+      campusId: campus,
+      version: 1,
+      path: `/v1/worlds/${campus}/versions/1`,
+    };
+  }
+  @Get("v1/worlds/:campus/information") async worldInformation(
+    @Param("campus") campus: string,
+  ) {
+    if (!isCampus(campus)) throw new HttpException("WORLD_NOT_FOUND", 404);
+    const published = await this.accounts.publishedCatalogue();
+    return {
+      venues: compileWorldInformation(
+        createCampusWorld(campus),
+        published.facts,
+      ),
+    };
+  }
+  @Get("v1/account/world") getWorldState(
+    @Headers("x-account-token") token: unknown,
+  ) {
+    return this.accounts.worldState(token);
+  }
+  @Post("v1/account/world") putWorldState(
+    @Headers("x-account-token") token: unknown,
+    @Body() body: unknown,
+  ) {
+    return this.accounts.saveWorldState(token, body);
   }
   @Post("v1/account/begin") begin(
     @Body() body: unknown,
@@ -373,6 +429,7 @@ export async function createApi(
         )
       : next(),
   );
+  app.use("/v1/worlds", limiter(120, "client"));
   app.use("/v1/campuses", limiter(120, "client"));
   app.use("/v1/catalogue", limiter(120, "client"));
   app.use("/v1/account", limiter(60, "client"));

@@ -1,3 +1,4 @@
+import { landmarkResearch, extractLandmarks } from "./landmarks";
 import { createHash } from "node:crypto";
 import { PrismaClient, Prisma } from "@campuswahala/database";
 import {
@@ -37,7 +38,7 @@ export function groundedConfidence(
 }
 /** Small evidence-preserving adapter. Other providers must satisfy the same strict candidate contract. */
 export class OfficialNameExtractor implements CampusFactExtractor {
-  readonly version = "official-name/3";
+  readonly version = "official-name-and-landmarks/4";
   async extract(page: {
     body: string;
     sourceUrl: string;
@@ -71,8 +72,10 @@ export class OfficialNameExtractor implements CampusFactExtractor {
       "i",
     );
     const match = pattern.exec(plain);
-    if (!match) return [];
+    const landmarks = extractLandmarks(page);
+    if (!match) return landmarks;
     return [
+      ...landmarks,
       {
         entityType: "university",
         key: "name",
@@ -103,6 +106,7 @@ export class IntelligenceMetrics {
   }
 }
 export const officialDiscovery = [
+  ...landmarkResearch.map(({ campus, url }) => ({ campus, url })),
   { campus: "futa", url: "https://www.futa.edu.ng/home" },
   { campus: "oau", url: "https://oauife.edu.ng/" },
   { campus: "unilag", url: "https://unilag.edu.ng/" },
