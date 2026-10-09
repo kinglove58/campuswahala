@@ -15,7 +15,8 @@
     "@campuswahala/campus-content": "workspace:*",
     "phaser": "3.90.0",
     "@campuswahala/domain": "workspace:*",
-    "@campuswahala/game-engine": "workspace:*"
+    "@campuswahala/game-engine": "workspace:*",
+    "@campuswahala/security": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "19.2.14",

@@ -7,6 +7,7 @@ const allowed = new Set([
   "status",
   "latencyMs",
   "store",
+  "deleted",
 ]);
 export function logRecord(fields: Record<string, unknown>): string {
   return JSON.stringify({

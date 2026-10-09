@@ -12,7 +12,7 @@ import {
   type GuestRecord,
   type PlayerRepository,
 } from "@campuswahala/domain";
-import { validProgramme } from "@campuswahala/campus-content";
+import { validAcademicPosition } from "@campuswahala/campus-content";
 import {
   hashGuestToken,
   issueGuestToken,
@@ -40,6 +40,24 @@ export class MemoryPlayerRepository implements PlayerRepository {
   async deleteByTokenHash(hash: string): Promise<void> {
     this.records.delete(hash);
   }
+  async deleteExpired(before: Date, batchSize: number): Promise<number> {
+    if (
+      !Number.isInteger(batchSize) ||
+      batchSize < 1 ||
+      batchSize > 1000 ||
+      !Number.isFinite(before.getTime())
+    )
+      throw new Error("INVALID_CLEANUP_BATCH");
+    let deleted = 0;
+    for (const [key, value] of this.records) {
+      if (deleted >= batchSize) break;
+      if (Date.parse(value.player.expiresAt) <= before.getTime()) {
+        this.records.delete(key);
+        deleted++;
+      }
+    }
+    return deleted;
+  }
   async ready(): Promise<boolean> {
     return true;
   }
@@ -58,7 +76,7 @@ export class PlayerService {
   ): Promise<{ player: GuestPlayer; token: string }> {
     const parsed = createGuestSchema.safeParse(input);
     if (!parsed.success) throw new BadRequestException("INVALID_PLAYER_INPUT");
-    if (!validProgramme(parsed.data.campusId, parsed.data.programmeId))
+    if (!validAcademicPosition(parsed.data))
       throw new BadRequestException("UNKNOWN_PROGRAMME");
     const token = issueGuestToken();
     const now = Date.now();

@@ -15,3 +15,19 @@
 | ASVS verification                         | independent assessment                 | Not Started                   |
 
 This register is not an ASVS conformance claim. Map applicable ASVS requirements to test evidence as each feature becomes executable.
+
+## Phase 0.5 evidence additions
+
+| Control                                         | Executable evidence                                                    | Limitation                                                   |
+| ----------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Service proof/body/route/session binding/replay | trust unit and Nest integration tests                                  | process-local replay; shared backend required before staging |
+| Independent BFF creation quotas                 | two signed API clients and actual BFF request contexts                 | cookie resets/NAT/IPv6 require edge controls and tuning      |
+| Nonlocal API authentication/no CORS             | staging-config unsigned denial and signed success                      | test memory adapter; no Azure isolation evidence             |
+| Explicit stage authority                        | nonstandard-stage schema and invalid-stage API/browser rejection       | normalized FKs/admission eligibility remain Phase 1          |
+| Entity-level source policy                      | cultural corroboration/official policy and fixture-only parsing        | authenticity/manual review importer absent                   |
+| Retention                                       | injected-clock bounded/idempotent tests; PostgreSQL concurrent batches | deployed worker cadence/backlog alerts absent                |
+| Immutable action refs                           | upstream-resolved SHAs, Dependabot retained                            | remote runs/account entitlement unverified                   |
+
+Concrete local validation results are recorded in implementation status. Documentation and substituted test adapters are not evidence of a deployed security control.
+
+Worker least-privilege configuration is executable: readWorkerConfig and domain tests prove it requires no session/ingress signing keys. Production DB grants/managed identities remain deployment gates.

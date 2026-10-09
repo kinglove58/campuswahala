@@ -8,9 +8,38 @@ import {
   validGuestToken,
 } from "../packages/auth/src";
 import { advancePosition } from "../packages/game-engine/src";
-import { readConfig } from "../packages/config/src";
+import { readConfig, readWorkerConfig } from "../packages/config/src";
 import { logRecord } from "../packages/observability/src";
 describe("guest invariants", () => {
+  it("keeps worker configuration independent of session and ingress signing secrets", () => {
+    expect(
+      readWorkerConfig({
+        APP_ENV: "production",
+        PLAYER_STORE: "postgres",
+        DATABASE_URL: "postgresql://disposable.invalid/test",
+      }),
+    ).toEqual({
+      APP_ENV: "production",
+      PLAYER_STORE: "postgres",
+      DATABASE_URL: "postgresql://disposable.invalid/test",
+    });
+    expect(() => readWorkerConfig({ APP_ENV: "production" })).toThrow(
+      "WORKER_REQUIRES_PERSISTENCE",
+    );
+    expect(() => readWorkerConfig({ PLAYER_STORE: "postgres" })).toThrow(
+      "WORKER_DATABASE_REQUIRED",
+    );
+    expect(
+      readConfig({
+        APP_ENV: "staging",
+        PLAYER_STORE: "postgres",
+        DATABASE_URL: "postgresql://unused",
+        GAME_ORIGIN: "https://game.example.test",
+        SESSION_SECRET: "s".repeat(32),
+        BFF_SERVICE_SECRET: "b".repeat(32),
+      }).NETWORK_HMAC_SECRET,
+    ).toBeUndefined();
+  });
   it("supports all campuses, all configured years and a personal duration override", () => {
     for (const c of campuses)
       for (const p of c.programmes)
@@ -38,7 +67,6 @@ describe("guest invariants", () => {
     { roles: ["admin"] },
     { level: 0 },
     { durationYears: 0 },
-    { level: 500, durationYears: 4 },
     { durationYears: 1e20 },
     { avatar: "<script>" },
     { nickname: "unsanitized text" },

@@ -13,3 +13,15 @@ WAF rollout: detection in staging → inspect false positives → documented nar
 Backup targets: initial RPO ≤15 minutes and RTO ≤4 hours, not achieved SLAs. Enable PostgreSQL PITR, Blob versioning and IaC/config backups. Restore runbook: isolate clean environment, select recovery timestamp, restore DB, verify schema/row checks and journal balance, reconnect test apps with new identity, reconcile provider events/outbox, measure time/loss, promote with review. Quarterly restore drill and after schema/storage changes. Avoid unrestricted production access from laptops; PIM/JIT privileged access.
 
 Reference: https://learn.microsoft.com/en-us/azure/container-apps/how-to-integrate-with-azure-front-door and https://learn.microsoft.com/en-us/azure/container-apps/networking . Review regional/SKU constraints at deployment.
+
+## Current versus release boundaries
+
+Exists in source: Log Analytics/ACA environment/Key Vault foundation, non-root containers, loopback database recipe, signed request contracts, local rate/replay controls, cleanup worker and CI configuration. Nothing has been provisioned by this pass. The ACA skeleton does not establish a private app origin or VNet topology; compilation proves syntax only.
+
+Absent: Front Door Premium/WAF, approved Private Link origins, private DNS/network, authenticated ingress bridge, internal API ACA app, private PostgreSQL, shared rate/replay backend, private Redis, Blob, Service Bus, managed-identity grants, worker scheduling/alerts and deployment pipeline. [Planned module contracts](../infra/modules/README.md) define dependencies without deployable placeholder claims.
+
+Before public staging: validate supported region/workload-profile SKU, Premium/private-link web origin and denied public origin access; internal-only API; ingress header stripping/canonicalization/signing; TLS and independently provisioned keys; shared atomic limits/replay storage with outage tests; private PostgreSQL/DNS (and Redis if needed); tested cleanup cadence/backlog alerts; approved image digests/scans; secured admin boundary and verified OIDC before account tests. Front Door owns coarse network/bot/rate/WAF/request-size controls; application owns client/session/account/route quotas and authorization.
+
+Front Door does not natively issue this app's custom HMAC envelope. A future private ingress bridge must verify the exclusive gateway path, sanitize headers and sign assertions. BFF refuses nonlocal guest traffic until this adapter supplies valid proof. Never substitute arbitrary forwarded headers.
+
+Before production: negative network/auth/rate tests, prevention-mode WAF tuning, key-rotation drill, account/MFA authorization, least-privilege identities, restore/incident drills, retention evidence, load/attack tests and independent review. PostgreSQL and Redis must never be publicly exposed to simplify development. RPO/RTO remain targets; no Azure resources or spending in this pass.

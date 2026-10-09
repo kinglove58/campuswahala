@@ -127,6 +127,9 @@ importers:
       '@campuswahala/game-engine':
         specifier: workspace:*
         version: link:../../packages/game-engine
+      '@campuswahala/security':
+        specifier: workspace:*
+        version: link:../../packages/security
       '@campuswahala/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -180,6 +183,12 @@ importers:
       '@campuswahala/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@campuswahala/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@campuswahala/domain':
+        specifier: workspace:*
+        version: link:../../packages/domain
       '@campuswahala/observability':
         specifier: workspace:*
         version: link:../../packages/observability

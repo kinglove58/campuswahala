@@ -20,7 +20,7 @@ function campusDefaults(pack: CampusPack) {
   return {
     campusId: pack.id,
     programmeId: programme.id,
-    level: programme.levels[0] ?? 100,
+    level: programme.levels[0]!,
     durationYears: programme.typicalDuration,
   };
 }
@@ -260,7 +260,7 @@ export default function GuestJourney() {
                         ...input,
                         programmeId: p.id,
                         durationYears: p.typicalDuration,
-                        level: 100,
+                        level: p.levels[0]!,
                       });
                     }}
                   >
@@ -280,10 +280,7 @@ export default function GuestJourney() {
                         setInput({ ...input, level: Number(e.target.value) })
                       }
                     >
-                      {Array.from(
-                        { length: input.durationYears },
-                        (_, i) => (i + 1) * 100,
-                      ).map((level) => (
+                      {programme.levels.map((level) => (
                         <option value={level} key={level}>
                           {level}L
                         </option>
@@ -299,7 +296,7 @@ export default function GuestJourney() {
                         setInput({
                           ...input,
                           durationYears: years,
-                          level: Math.min(input.level, years * 100),
+                          level: input.level,
                         });
                       }}
                     >

@@ -16,17 +16,30 @@ export const createGuestSchema = z
   .object({
     campusId: campusIdSchema,
     programmeId: z.string().min(1).max(60),
-    level: z.number().int().min(100).max(1200).multipleOf(100),
+    level: z.number().int().min(1).max(9999),
     durationYears: z.number().int().min(1).max(12),
     avatar: avatarSchema,
     nickname: nicknameSchema,
   })
-  .strict()
-  .refine((v) => v.level / 100 <= v.durationYears, {
-    message: "Level must fit your duration",
-    path: ["level"],
-  });
+  .strict();
 export type GuestInput = z.infer<typeof createGuestSchema>;
+// Phase 1 contract proposal; no academic progression behavior or persistence yet.
+export interface AcademicPosition {
+  programmeId: string;
+  structureId: string;
+  structureVersion: number;
+  stageId: string;
+  academicYearId: string;
+  semesterId: string;
+  entryMode: "standard" | "direct_entry" | "transfer";
+  enrollmentState: "active" | "repeating" | "interrupted" | "deferred";
+  attempt: number;
+}
+export interface AcademicYear {
+  id: string;
+  label: string;
+  semesterIds: string[];
+}
 export interface GuestPlayer extends GuestInput {
   id: string;
   createdAt: string;
@@ -40,6 +53,7 @@ export interface PlayerRepository {
   create(record: GuestRecord): Promise<void>;
   findByTokenHash(hash: string): Promise<GuestPlayer | null>;
   deleteByTokenHash(hash: string): Promise<void>;
+  deleteExpired(before: Date, batchSize: number): Promise<number>;
   ready(): Promise<boolean>;
   close(): Promise<void>;
 }

@@ -50,6 +50,20 @@ describe("API contracts and guest authorization", () => {
     });
     expect(self.status).toBe(200);
     expect((await self.json()).id).toBe(player.id);
+    const second = await (
+      await fetch(`${base}/v1/guests`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ ...validGuestFixture, avatar: "blue" }),
+      })
+    ).json();
+    const other = await (
+      await fetch(`${base}/v1/guests/me`, {
+        headers: { "X-Guest-Token": second.token },
+      })
+    ).json();
+    expect(other.id).toBe(second.player.id);
+    expect(other.id).not.toBe(player.id);
     await fetch(`${base}/v1/guests/me`, {
       method: "DELETE",
       headers: { ...headers, "X-Guest-Token": token },

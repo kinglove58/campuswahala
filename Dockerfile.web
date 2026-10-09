@@ -1,4 +1,5 @@
-FROM node:22-alpine AS build
+ARG NODE_IMAGE=node:22-alpine
+FROM ${NODE_IMAGE} AS build
 WORKDIR /repo
 RUN npm install --global pnpm@10.32.1
 COPY . .
@@ -9,7 +10,7 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL NEXT_PUBLIC_GAME_URL=$NEXT_PUBLIC
 RUN pnpm install --frozen-lockfile && pnpm exec turbo build --filter=@campuswahala/${APP}
 RUN mkdir -p /output && cp -r apps/${APP}/.next/standalone/. /output/ && mkdir -p /output/apps/${APP}/.next/static && cp -r apps/${APP}/.next/static/. /output/apps/${APP}/.next/static/
 
-FROM node:22-alpine AS runtime
+FROM ${NODE_IMAGE} AS runtime
 ARG APP=marketing
 ENV NODE_ENV=production APP_ENV=production HOSTNAME=0.0.0.0 PORT=3000 APP=$APP
 WORKDIR /app

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "oau",
   "name": "Obafemi Awolowo University",
   "shortName": "OAU",
@@ -11,19 +11,865 @@
       "id": "computing-demo",
       "title": "Computing \u00b7 sample programme",
       "typicalDuration": 4,
-      "levels": [100, 200, 300, 400]
+      "levels": [100, 200, 300, 400],
+      "metadata": {
+        "status": "fixture",
+        "category": "programme",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      },
+      "structure": {
+        "id": "computing-demo-v1",
+        "version": 1,
+        "metadata": {
+          "status": "fixture",
+          "category": "academic_structure",
+          "authorityClass": "generated_fixture",
+          "confidence": 0,
+          "aliases": [],
+          "evidence": [],
+          "retrievedAt": null,
+          "lastObservedAt": null
+        },
+        "stages": [
+          {
+            "id": "computing-demo-stage-100",
+            "code": 100,
+            "label": "100L",
+            "order": 0,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "computing-demo-stage-100-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "computing-demo-stage-100-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "computing-demo-stage-200",
+            "code": 200,
+            "label": "200L",
+            "order": 1,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "computing-demo-stage-200-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "computing-demo-stage-200-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "computing-demo-stage-300",
+            "code": 300,
+            "label": "300L",
+            "order": 2,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "computing-demo-stage-300-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "computing-demo-stage-300-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "computing-demo-stage-400",
+            "code": 400,
+            "label": "400L",
+            "order": 3,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "computing-demo-stage-400-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "computing-demo-stage-400-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          }
+        ]
+      }
     },
     {
       "id": "engineering-demo",
       "title": "Engineering \u00b7 sample programme",
       "typicalDuration": 5,
-      "levels": [100, 200, 300, 400, 500]
+      "levels": [100, 200, 300, 400, 500, 600],
+      "metadata": {
+        "status": "fixture",
+        "category": "programme",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      },
+      "structure": {
+        "id": "engineering-demo-v1",
+        "version": 1,
+        "metadata": {
+          "status": "fixture",
+          "category": "academic_structure",
+          "authorityClass": "generated_fixture",
+          "confidence": 0,
+          "aliases": [],
+          "evidence": [],
+          "retrievedAt": null,
+          "lastObservedAt": null
+        },
+        "stages": [
+          {
+            "id": "engineering-demo-stage-100",
+            "code": 100,
+            "label": "100L",
+            "order": 0,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "engineering-demo-stage-100-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "engineering-demo-stage-100-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "engineering-demo-stage-200",
+            "code": 200,
+            "label": "200L",
+            "order": 1,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "engineering-demo-stage-200-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "engineering-demo-stage-200-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "engineering-demo-stage-300",
+            "code": 300,
+            "label": "300L",
+            "order": 2,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "engineering-demo-stage-300-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "engineering-demo-stage-300-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "engineering-demo-stage-400",
+            "code": 400,
+            "label": "400L",
+            "order": 3,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "engineering-demo-stage-400-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "engineering-demo-stage-400-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "engineering-demo-stage-500",
+            "code": 500,
+            "label": "500L",
+            "order": 4,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "engineering-demo-stage-500-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "engineering-demo-stage-500-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "engineering-demo-stage-600",
+            "code": 600,
+            "label": "600L",
+            "order": 5,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "engineering-demo-stage-600-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "engineering-demo-stage-600-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          }
+        ]
+      }
     },
     {
       "id": "extended-demo",
       "title": "Extended programme \u00b7 sample",
       "typicalDuration": 6,
-      "levels": [100, 200, 300, 400, 500, 600]
+      "levels": [100, 200, 300, 400, 500, 600],
+      "metadata": {
+        "status": "fixture",
+        "category": "programme",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      },
+      "structure": {
+        "id": "extended-demo-v1",
+        "version": 1,
+        "metadata": {
+          "status": "fixture",
+          "category": "academic_structure",
+          "authorityClass": "generated_fixture",
+          "confidence": 0,
+          "aliases": [],
+          "evidence": [],
+          "retrievedAt": null,
+          "lastObservedAt": null
+        },
+        "stages": [
+          {
+            "id": "extended-demo-stage-100",
+            "code": 100,
+            "label": "100L",
+            "order": 0,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "extended-demo-stage-100-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "extended-demo-stage-100-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "extended-demo-stage-200",
+            "code": 200,
+            "label": "200L",
+            "order": 1,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "extended-demo-stage-200-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "extended-demo-stage-200-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "extended-demo-stage-300",
+            "code": 300,
+            "label": "300L",
+            "order": 2,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "extended-demo-stage-300-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "extended-demo-stage-300-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "extended-demo-stage-400",
+            "code": 400,
+            "label": "400L",
+            "order": 3,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "extended-demo-stage-400-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "extended-demo-stage-400-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "extended-demo-stage-500",
+            "code": 500,
+            "label": "500L",
+            "order": 4,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "extended-demo-stage-500-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "extended-demo-stage-500-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          },
+          {
+            "id": "extended-demo-stage-600",
+            "code": 600,
+            "label": "600L",
+            "order": 5,
+            "entryModes": ["standard", "direct_entry", "transfer"],
+            "activityTags": [],
+            "semesters": [
+              {
+                "id": "extended-demo-stage-600-first",
+                "label": "First semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              },
+              {
+                "id": "extended-demo-stage-600-second",
+                "label": "Second semester",
+                "metadata": {
+                  "status": "fixture",
+                  "category": "academic_semester",
+                  "authorityClass": "generated_fixture",
+                  "confidence": 0,
+                  "aliases": [],
+                  "evidence": [],
+                  "retrievedAt": null,
+                  "lastObservedAt": null
+                }
+              }
+            ],
+            "metadata": {
+              "status": "fixture",
+              "category": "academic_stage",
+              "authorityClass": "generated_fixture",
+              "confidence": 0,
+              "aliases": [],
+              "evidence": [],
+              "retrievedAt": null,
+              "lastObservedAt": null
+            }
+          }
+        ]
+      }
     }
   ],
   "locations": [
@@ -33,7 +879,17 @@
       "label": "Student commons",
       "x": 460,
       "y": 340,
-      "description": "Meet your campus. This is a fictional gathering space."
+      "description": "Meet your campus. This is a fictional gathering space.",
+      "metadata": {
+        "status": "fixture",
+        "category": "location",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      }
     },
     {
       "id": "library",
@@ -41,7 +897,17 @@
       "label": "Library",
       "x": 240,
       "y": 150,
-      "description": "A quiet place for the next chapter. Study activities arrive in a later phase."
+      "description": "A quiet place for the next chapter. Study activities arrive in a later phase.",
+      "metadata": {
+        "status": "fixture",
+        "category": "location",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      }
     },
     {
       "id": "lecture",
@@ -49,7 +915,17 @@
       "label": "Lecture hall",
       "x": 700,
       "y": 160,
-      "description": "Your academic journey starts here. Classes are not simulated yet."
+      "description": "Your academic journey starts here. Classes are not simulated yet.",
+      "metadata": {
+        "status": "fixture",
+        "category": "location",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      }
     },
     {
       "id": "food",
@@ -57,7 +933,17 @@
       "label": "Food corner",
       "x": 730,
       "y": 450,
-      "description": "Take a breather. Food and energy systems are planned."
+      "description": "Take a breather. Food and energy systems are planned.",
+      "metadata": {
+        "status": "fixture",
+        "category": "location",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      }
     },
     {
       "id": "hostel",
@@ -65,7 +951,17 @@
       "label": "Hostel",
       "x": 230,
       "y": 450,
-      "description": "Your home away from home. Room customization is planned."
+      "description": "Your home away from home. Room customization is planned.",
+      "metadata": {
+        "status": "fixture",
+        "category": "location",
+        "authorityClass": "generated_fixture",
+        "confidence": 0,
+        "aliases": [],
+        "evidence": [],
+        "retrievedAt": null,
+        "lastObservedAt": null
+      }
     }
   ],
   "routes": [],
@@ -76,16 +972,15 @@
   "quests": [],
   "businesses": [],
   "activityTemplates": [],
-  "provenance": [
-    {
-      "reference": "user supplied product brief",
-      "category": "university label",
-      "status": "brief_input"
-    },
-    {
-      "reference": "generated Phase 0 fixture",
-      "category": "all programme and world content",
-      "status": "unverified_fixture"
-    }
-  ]
+  "metadata": {
+    "status": "fixture",
+    "category": "university",
+    "authorityClass": "generated_fixture",
+    "confidence": 0,
+    "aliases": [],
+    "evidence": [],
+    "retrievedAt": null,
+    "lastObservedAt": null
+  },
+  "buildings": []
 }

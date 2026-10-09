@@ -22,5 +22,7 @@ if (existsSync(join(source, "public")))
   cpSync(join(source, "public"), join(runtime, "public"), { recursive: true });
 process.env.PORT = port;
 process.env.HOSTNAME = "127.0.0.1";
+// This helper explicitly runs loopback local production output. Deployed containers bypass it.
+process.env.APP_ENV ??= "local";
 process.env.NODE_ENV = "production";
 await import(pathToFileURL(join(runtime, "server.js")).href);

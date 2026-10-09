@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+export * from "./trust";
 export function requestId(): string {
   return randomUUID();
 }

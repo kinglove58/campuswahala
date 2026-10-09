@@ -42,6 +42,20 @@ export class PostgresPlayerRepository implements PlayerRepository {
   async deleteByTokenHash(hash: string): Promise<void> {
     await this.client.guestPlayer.deleteMany({ where: { tokenHash: hash } });
   }
+  async deleteExpired(before: Date, batchSize: number): Promise<number> {
+    if (
+      !Number.isInteger(batchSize) ||
+      batchSize < 1 ||
+      batchSize > 1000 ||
+      !Number.isFinite(before.getTime())
+    )
+      throw new Error("INVALID_CLEANUP_BATCH");
+    const rows = await this.client.$queryRaw<Array<{ id: string }>>`
+      WITH expired AS (SELECT "id" FROM "GuestPlayer" WHERE "expiresAt" <= ${before}
+        ORDER BY "expiresAt", "id" LIMIT ${batchSize} FOR UPDATE SKIP LOCKED)
+      DELETE FROM "GuestPlayer" USING expired WHERE "GuestPlayer"."id" = expired."id" RETURNING "GuestPlayer"."id"`;
+    return rows.length;
+  }
   async ready(): Promise<boolean> {
     try {
       await this.client.$queryRaw`SELECT 1`;

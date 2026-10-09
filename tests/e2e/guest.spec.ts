@@ -1,4 +1,66 @@
 import { test, expect } from "@playwright/test";
+import { validGuestFixture } from "../../packages/testing/src";
+test("BFF isolates creation buckets and discards browser trust-header spoofing", async ({
+  playwright,
+}) => {
+  const first = await playwright.request.newContext();
+  const second = await playwright.request.newContext();
+  const headers = {
+    Origin: "http://localhost:3001",
+    "X-CW-Context": "forged",
+    "X-CW-Client": "forged",
+    "X-Forwarded-For": "203.0.113.1",
+    "X-CW-Edge-Context": "forged",
+  };
+  try {
+    for (let i = 0; i < 10; i++)
+      expect(
+        (
+          await first.post("http://localhost:3001/api/guest", {
+            headers,
+            data: validGuestFixture,
+          })
+        ).status(),
+      ).toBe(200);
+    expect(
+      (
+        await first.post("http://localhost:3001/api/guest", {
+          headers,
+          data: validGuestFixture,
+        })
+      ).status(),
+    ).toBe(429);
+    expect(
+      (
+        await second.post("http://localhost:3001/api/guest", {
+          headers,
+          data: validGuestFixture,
+        })
+      ).status(),
+    ).toBe(200);
+    const cookies = (await first.storageState()).cookies;
+    expect(cookies.find((c) => c.name === "cw_client")?.httpOnly).toBe(true);
+    expect(
+      (
+        await second.post("http://localhost:3001/api/guest", {
+          headers,
+          data: { ...validGuestFixture, level: 700, durationYears: 12 },
+        })
+      ).status(),
+    ).toBe(400);
+    expect(
+      (
+        await second.post("http://localhost:3001/api/guest", {
+          headers,
+          data: { value: "x".repeat(9000) },
+        })
+      ).status(),
+    ).toBe(413);
+  } finally {
+    await first.dispose();
+    await second.dispose();
+  }
+});
 test("landing → guest onboarding → world → phone → resume → revoke", async ({
   page,
   context,
@@ -8,17 +70,18 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
     if (r.request().resourceType() === "script")
       scripts.push(r.text().catch(() => ""));
   });
-  await page.goto("http://localhost:3000");
+  await page.goto("http://localhost:3100");
   await expect(
     page.getByRole("heading", { name: /Small campus/ }),
   ).toBeVisible();
   expect((await Promise.all(scripts)).some((s) => s.includes("Phaser"))).toBe(
     false,
   );
-  await page.screenshot({
-    path: `artifacts/landing-${testInfo.project.name}.png`,
-    fullPage: true,
-  });
+  if (process.env.CAPTURE_VISUALS === "1")
+    await page.screenshot({
+      path: `artifacts/landing-${testInfo.project.name}.png`,
+      fullPage: true,
+    });
   await page.getByRole("link", { name: "Start your campus story" }).click();
   await page.getByRole("button", { name: /OAU Obafemi/ }).click();
   await page.getByRole("button", { name: "Continue to academics" }).click();
@@ -45,9 +108,10 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
     "true",
   );
   await expect(page.locator("canvas")).toBeVisible();
-  await page.screenshot({
-    path: `artifacts/world-${testInfo.project.name}.png`,
-  });
+  if (process.env.CAPTURE_VISUALS === "1")
+    await page.screenshot({
+      path: `artifacts/world-${testInfo.project.name}.png`,
+    });
   const cookie = (await context.cookies()).find((c) => c.name === "cw_guest");
   expect(cookie?.httpOnly).toBe(true);
   expect(cookie?.sameSite).toBe("Strict");
@@ -68,9 +132,10 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   await expect(
     page.getByRole("dialog", { name: "CW Pocket virtual phone" }),
   ).toBeVisible();
-  await page.screenshot({
-    path: `artifacts/phone-${testInfo.project.name}.png`,
-  });
+  if (process.env.CAPTURE_VISUALS === "1")
+    await page.screenshot({
+      path: `artifacts/phone-${testInfo.project.name}.png`,
+    });
   await page.getByRole("button", { name: "Campus map", exact: true }).click();
   await expect(
     page.getByText("Stylized fixture geometry, not real navigation."),

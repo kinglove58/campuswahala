@@ -32,3 +32,13 @@ Set `POSTGRES_PASSWORD` to a local password in your shell; `docker compose up -d
 Five applications and eleven shared packages follow the bounded contexts in [architecture](docs/architecture.md). [Implementation status](IMPLEMENTATION_STATUS.md) distinguishes implemented behavior from designs and future work. Start with [build plan](docs/build-plan.md), [security](docs/security.md) and [domain model](docs/domain-model.md).
 
 Campus names come from the supplied brief. Programme durations, layouts, locations, schedules and cultural content are explicitly unverified gameplay fixtures. This is not a campus navigation or official academic service.
+
+## Phase 0.5 hardening
+
+Apply `pnpm db:migrate` before using existing local PostgreSQL. The additive migration removes academic arithmetic and adds an ordered expiry index without rewriting guests. After build, `pnpm --filter @campuswahala/worker start` with the same exported database configuration cleans expired guests at startup/every 15 minutes, at most 5,000 per sweep. Local memory remains simple and ephemeral.
+
+Nonlocal API requires independent SESSION_SECRET and BFF_SERVICE_SECRET. Nonlocal game BFF requires independent BFF_SERVICE_SECRET, NETWORK_HMAC_SECRET and EDGE_SERVICE_SECRET, plus explicit GAME_ORIGIN/API_INTERNAL_URL and a signed trusted-ingress assertion. It refuses unsigned ingress until the future private bridge is implemented. Local loopback startup needs no real secrets. ADRs 005–007, [supply chain](docs/supply-chain.md) and [infrastructure](docs/infrastructure.md) describe rotation and staging gates. Phase 1 is not implemented by this pass.
+
+Playwright owns its API/game/marketing servers (marketing test port 3100) and refuses occupied test ports. Set CAPTURE_VISUALS=1 for optional landing/world/phone screenshots; functional security tests omit those captures by default.
+
+The retention worker validates only APP_ENV, PLAYER_STORE and DATABASE_URL. Do not provision session or ingress signing keys to its production identity; grant only the necessary guest SELECT/DELETE database permissions.

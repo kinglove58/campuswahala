@@ -1,4 +1,5 @@
-FROM node:22-bookworm-slim AS dependencies
+ARG NODE_IMAGE=node:22-bookworm-slim
+FROM ${NODE_IMAGE} AS dependencies
 WORKDIR /repo
 RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/* && npm install --global pnpm@10.32.1
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
@@ -27,7 +28,7 @@ RUN --mount=type=cache,id=cw-pnpm-api,target=/pnpm/store pnpm --filter @campuswa
 # pnpm deploy does not carry Prisma's generated .prisma sibling by itself.
 RUN node -e "const fs=require('node:fs'),p=require('node:path'); const src=p.dirname(require.resolve('@prisma/client/package.json',{paths:['/repo/packages/database']})); const db=fs.realpathSync('/output/node_modules/@campuswahala/database'); const dst=p.dirname(require.resolve('@prisma/client/package.json',{paths:[db]})); fs.cpSync(p.resolve(src,'../../.prisma/client'),p.resolve(dst,'../../.prisma/client'),{recursive:true});"
 
-FROM node:22-bookworm-slim AS runtime
+FROM ${NODE_IMAGE} AS runtime
 RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production APP_ENV=production API_PORT=4000
 WORKDIR /app

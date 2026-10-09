@@ -17,5 +17,6 @@ model GuestPlayer {
   createdAt DateTime @default(now())
   expiresAt DateTime
   @@index([expiresAt])
+  @@index([expiresAt, id], map: "GuestPlayer_expiry_id_idx")
   @@index([campusId, programmeId, level])
 }
