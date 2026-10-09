@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "futa",
+  "name": "Federal University of Technology Akure",
+  "shortName": "FUTA",
+  "town": "Akure",
+  "color": "#19583f",
+  "contentStatus": "unverified_fixture",
+  "programmes": [
+    {
+      "id": "computing-demo",
+      "title": "Computing \u00b7 sample programme",
+      "typicalDuration": 4,
+      "levels": [100, 200, 300, 400]
+    },
+    {
+      "id": "engineering-demo",
+      "title": "Engineering \u00b7 sample programme",
+      "typicalDuration": 5,
+      "levels": [100, 200, 300, 400, 500]
+    },
+    {
+      "id": "extended-demo",
+      "title": "Extended programme \u00b7 sample",
+      "typicalDuration": 6,
+      "levels": [100, 200, 300, 400, 500, 600]
+    }
+  ],
+  "locations": [
+    {
+      "id": "commons",
+      "kind": "social",
+      "label": "Student commons",
+      "x": 460,
+      "y": 340,
+      "description": "Meet your campus. This is a fictional gathering space."
+    },
+    {
+      "id": "library",
+      "kind": "study",
+      "label": "Library",
+      "x": 240,
+      "y": 150,
+      "description": "A quiet place for the next chapter. Study activities arrive in a later phase."
+    },
+    {
+      "id": "lecture",
+      "kind": "academic",
+      "label": "Lecture hall",
+      "x": 700,
+      "y": 160,
+      "description": "Your academic journey starts here. Classes are not simulated yet."
+    },
+    {
+      "id": "food",
+      "kind": "food",
+      "label": "Food corner",
+      "x": 730,
+      "y": 450,
+      "description": "Take a breather. Food and energy systems are planned."
+    },
+    {
+      "id": "hostel",
+      "kind": "housing",
+      "label": "Hostel",
+      "x": 230,
+      "y": 450,
+      "description": "Your home away from home. Room customization is planned."
+    }
+  ],
+  "routes": [],
+  "transport": [],
+  "hostels": [],
+  "slang": [],
+  "events": [],
+  "quests": [],
+  "businesses": [],
+  "activityTemplates": [],
+  "provenance": [
+    {
+      "reference": "user supplied product brief",
+      "category": "university label",
+      "status": "brief_input"
+    },
+    {
+      "reference": "generated Phase 0 fixture",
+      "category": "all programme and world content",
+      "status": "unverified_fixture"
+    }
+  ]
+}

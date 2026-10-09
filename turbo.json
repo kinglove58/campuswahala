@@ -1,0 +1,22 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "env": [
+        "APP_ENV",
+        "DATABASE_URL",
+        "PLAYER_STORE",
+        "API_PORT",
+        "GAME_ORIGIN",
+        "API_INTERNAL_URL",
+        "NEXT_PUBLIC_GAME_URL",
+        "NEXT_PUBLIC_SITE_URL",
+        "SESSION_SECRET"
+      ]
+    },
+    "typecheck": { "dependsOn": ["^build"], "outputs": [] },
+    "dev": { "dependsOn": ["^build"], "cache": false, "persistent": true }
+  }
+}

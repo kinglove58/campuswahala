@@ -1,0 +1,513 @@
+.nav {
+  max-width: 1280px;
+  margin: auto;
+  padding: 30px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand sup {
+  color: var(--clay);
+  margin-left: 5px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.hero {
+  max-width: 1280px;
+  margin: 30px auto 65px;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+.hero h1 {
+  margin: 25px 0;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--forest);
+}
+.hero-copy > p {
+  color: var(--muted);
+  font-size: 17px;
+}
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 30px 0;
+}
+.hero-actions .muted {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.hero-actions a {
+  padding: 19px 25px;
+}
+.campus-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.campus-pills > span {
+  font-size: 11px;
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+.campus-pills small {
+  font-size: 10px;
+  margin-left: 5px;
+}
+.hero-art {
+  height: 510px;
+  background: #e2e9cd;
+  border-radius: 130px 130px 28px 28px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #c8d4b3;
+  transform: rotate(2deg);
+}
+.art-label {
+  z-index: 2;
+  position: absolute;
+  top: 32px;
+  text-align: center;
+  width: 100%;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+.map-road {
+  position: absolute;
+  background: #ede2bd;
+  border: 2px dashed #c8b98e;
+}
+.road-a {
+  width: 600px;
+  height: 48px;
+  left: -60px;
+  top: 270px;
+  transform: rotate(-20deg);
+}
+.road-b {
+  width: 50px;
+  height: 600px;
+  top: -40px;
+  left: 220px;
+  transform: rotate(18deg);
+}
+.map-building {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5eace;
+  border: 2px solid #bca97f;
+  border-bottom-width: 12px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 10px 12px 0 #162b2410;
+  transform: rotate(-2deg);
+}
+.map-building span {
+  font-size: 40px;
+  color: #6e816d;
+  line-height: 1.3;
+}
+.b-library {
+  top: 120px;
+  left: 42px;
+  width: 122px;
+  height: 90px;
+}
+.b-hall {
+  top: 145px;
+  right: 35px;
+  width: 135px;
+  height: 105px;
+  background: #ecd1b7;
+  border-color: #bf8d66;
+}
+.b-home {
+  bottom: 95px;
+  left: 35px;
+  width: 128px;
+  height: 100px;
+  background: #d5dfd4;
+  border-color: #8b9d87;
+}
+.b-food {
+  bottom: 55px;
+  right: 38px;
+  width: 115px;
+  height: 83px;
+}
+.tree {
+  position: absolute;
+  font-size: 56px;
+  color: #65866a;
+  text-shadow: 4px 5px #162b2420;
+}
+.t1 {
+  top: 70px;
+  left: 120px;
+}
+.t2 {
+  top: 55px;
+  right: 100px;
+}
+.t3 {
+  top: 230px;
+  left: 25px;
+}
+.t4 {
+  top: 290px;
+  right: 15px;
+}
+.t5 {
+  bottom: 65px;
+  left: 175px;
+}
+.t6 {
+  top: 180px;
+  left: 200px;
+}
+.t7 {
+  bottom: 135px;
+  right: 160px;
+}
+.mini-person {
+  position: absolute;
+  left: 49%;
+  top: 54%;
+  font-size: 26px;
+  color: #6b4438;
+  display: grid;
+  justify-items: center;
+  filter: drop-shadow(4px 5px 1px #162b2430);
+}
+.mini-person b {
+  background: var(--clay);
+  width: 23px;
+  height: 27px;
+  border-radius: 9px 9px 4px 4px;
+}
+.speech {
+  position: absolute;
+  top: 235px;
+  left: 140px;
+  background: white;
+  border: 1px solid var(--line);
+  padding: 12px;
+  border-radius: 13px;
+  font-size: 11px;
+  transform: rotate(-5deg);
+}
+.map-stamp {
+  position: absolute;
+  bottom: 30px;
+  left: 22px;
+  border: 2px solid #19583f60;
+  border-radius: 50%;
+  width: 62px;
+  height: 62px;
+  text-align: center;
+  padding: 8px;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--forest);
+  transform: rotate(-14deg);
+}
+.map-stamp small {
+  font-size: 7px;
+  display: block;
+}
+.art-caption {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+.ticker {
+  background: var(--forest);
+  color: var(--lime);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 20px;
+}
+.ticker span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.life-section,
+.campus-section {
+  max-width: 1280px;
+  margin: 90px auto;
+  padding: 0 48px;
+}
+.life-section {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 45px;
+}
+.life-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.life-cards article {
+  padding: 25px 18px;
+  border-left: 1px solid var(--line);
+}
+.life-cards article > span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--forest);
+}
+.life-cards h3 {
+  margin: 26px 0 12px;
+  font-size: 21px;
+}
+.life-cards p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-heading > a {
+  font-size: 13px;
+  font-weight: 700;
+}
+.campus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.campus-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #faf8f0;
+  transition: transform 0.2s;
+}
+.campus-card:hover {
+  transform: translateY(-5px);
+}
+.campus-art {
+  height: 180px;
+  background: #dfe9c9;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+.campus-oau {
+  background: #edddc4;
+}
+.campus-unilag {
+  background: #dae3e9;
+}
+.campus-art > span {
+  font-size: 11px;
+}
+.campus-art b {
+  position: absolute;
+  left: 22px;
+  top: 50px;
+  font-size: 50px;
+  letter-spacing: -2px;
+}
+.campus-art div {
+  position: absolute;
+  right: -5px;
+  bottom: -15px;
+  font-size: 70px;
+  color: #162b2430;
+}
+.campus-card-copy {
+  padding: 22px;
+}
+.campus-card h3 {
+  display: flex;
+  justify-content: space-between;
+}
+.campus-card p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.campus-card small {
+  font-size: 10px;
+}
+.last-call {
+  background: var(--lime);
+  margin: 70px 48px;
+  border-radius: 26px;
+  text-align: center;
+  padding: 55px 20px;
+}
+.last-call h2 {
+  margin: 18px 0 25px;
+}
+.last-call p {
+  font-size: 11px;
+  margin: 18px 0 0;
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding: 30px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+.public-page {
+  max-width: 1100px;
+  margin: 50px auto 100px;
+  padding: 0 30px;
+}
+.public-page > p {
+  max-width: 650px;
+}
+.public-page h1 {
+  font-size: 60px;
+}
+.public-page .button {
+  margin-top: 20px;
+}
+@media (max-width: 900px) {
+  .nav {
+    padding: 22px;
+  }
+  .nav nav > a:not(.button) {
+    display: none;
+  }
+  .hero {
+    padding: 0 24px;
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .hero h1 {
+    font-size: 62px;
+  }
+  .hero-art {
+    height: 450px;
+    max-width: 520px;
+    width: 100%;
+    margin: auto;
+  }
+  .hero-copy > p {
+    font-size: 15px;
+  }
+  .life-section {
+    display: block;
+  }
+  .life-section,
+  .campus-section {
+    padding: 0 24px;
+    margin: 55px auto;
+  }
+  .life-cards {
+    margin-top: 30px;
+  }
+  .campus-grid {
+    gap: 12px;
+  }
+  .campus-art b {
+    font-size: 34px;
+  }
+  .last-call {
+    margin: 40px 24px;
+  }
+  footer {
+    padding: 25px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 550px) {
+  .nav .brand {
+    font-size: 19px;
+  }
+  .nav .button {
+    font-size: 11px;
+    padding: 12px;
+  }
+  .hero h1 {
+    font-size: 52px;
+    letter-spacing: -2px;
+  }
+  .hero-art {
+    height: 410px;
+  }
+  .speech {
+    left: 95px;
+    top: 215px;
+  }
+  .hero-actions {
+    gap: 12px;
+  }
+  .hero-actions .button {
+    font-size: 13px;
+    padding: 17px;
+  }
+  .campus-pills small {
+    width: 100%;
+    margin: 5px 0;
+  }
+  .life-cards,
+  .campus-grid {
+    grid-template-columns: 1fr;
+  }
+  .life-cards article {
+    padding: 18px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .life-cards h3 {
+    margin: 14px 0;
+  }
+  .section-heading {
+    align-items: start;
+    gap: 10px;
+  }
+  .section-heading > a {
+    white-space: nowrap;
+    font-size: 10px;
+  }
+  .campus-art {
+    height: 145px;
+  }
+  .campus-art b {
+    font-size: 48px;
+  }
+  .desktop {
+    display: none;
+  }
+  .public-page h1 {
+    font-size: 44px;
+  }
+}
