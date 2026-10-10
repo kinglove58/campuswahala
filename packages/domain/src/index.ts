@@ -97,3 +97,5 @@ export interface PlayerRepository {
 
 
 export * from "./academics";
+
+export * from "./life";

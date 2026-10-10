@@ -37,6 +37,9 @@ model User {
   academicSimulation AcademicSimulation?
   academicTerms AcademicTerm[]
   academicReceipts AcademicCommandReceipt[]
+  lifeSimulation LifeSimulation?
+  lifeReceipts LifeCommandReceipt[]
+  wahalaOccurrences WahalaOccurrence[]
 }
 model LoginAttempt {
   stateHash String @id @db.Char(64)
@@ -111,6 +114,7 @@ model PlayerCharacter {
   structure ProgrammeStructure @relation(fields: [structureId], references: [id])
   stage ProgrammeStage @relation(fields: [stageId], references: [id])
   semester AcademicSemesterTemplate? @relation(fields: [semesterId], references: [id])
+  lifeSimulation LifeSimulation?
 }
 model GuestConversion {
   id String @id @default(uuid()) @db.Uuid
@@ -509,5 +513,38 @@ model AcademicCommandReceipt {
   createdAt DateTime @default(now())
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@id([userId, commandId])
+  @@index([userId, termId])
+}
+
+model LifeSimulation {
+  userId String @id @db.Uuid
+  characterId String @unique @db.Uuid
+  snapshot Json
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  character PlayerCharacter @relation(fields: [characterId], references: [id], onDelete: Cascade)
+}
+model LifeCommandReceipt {
+  userId String @db.Uuid
+  commandId String @db.Uuid
+  requestHash String @db.Char(64)
+  type String
+  termId String @db.Uuid
+  academicMinute Int
+  revision Int
+  result Json
+  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@id([userId, commandId])
+  @@index([userId, termId])
+}
+model WahalaOccurrence {
+  id String @id @db.Uuid
+  userId String @db.Uuid
+  termId String @db.Uuid
+  status String
+  snapshot Json
+  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@index([userId, termId])
 }

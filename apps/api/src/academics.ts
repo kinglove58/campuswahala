@@ -10,6 +10,7 @@ import { createCampusWorld, isCampus } from "@campuswahala/game-engine";
 import {
   academicCommandSchema,
   AcademicError,
+  LifeError,
   createTerm,
   simulationCourses,
   applyAcademicCommand,
@@ -23,6 +24,7 @@ import {
   type CourseTemplate,
 } from "@campuswahala/domain";
 import { AccountService } from "./accounts";
+import { syncAcademicLife } from "./life";
 
 const json = (value: object): Prisma.InputJsonValue =>
   JSON.parse(JSON.stringify(value));
@@ -50,7 +52,7 @@ export class AcademicService {
     return this.accounts.db;
   }
   /** Same User lock order as deletion/conversion. Revalidate session inside lock. */
-  private async locked<T>(
+  async locked<T>(
     token: unknown,
     action: (tx: Prisma.TransactionClient, userId: string) => Promise<T>,
   ) {
@@ -75,7 +77,7 @@ export class AcademicService {
       { maxWait: 10000, timeout: 15000 },
     );
   }
-  private async readView(
+  async readView(
     tx: Prisma.TransactionClient,
     userId: string,
   ): Promise<AcademicView> {
@@ -182,6 +184,7 @@ export class AcademicService {
           orderBy: { sequence: "desc" },
         });
         let term: AcademicTerm;
+        const fromMinute = latest ? snapshot(latest.snapshot).minute : 0;
         if (command.type === "START_TERM") {
           if (latest?.status === "active")
             throw new ConflictException("ACTIVE_TERM_EXISTS");
@@ -336,6 +339,14 @@ export class AcademicService {
             data: { status: term.status, snapshot: json(term) },
           });
         }
+        await syncAcademicLife(
+          tx,
+          userId,
+          character.id,
+          term,
+          command.type,
+          command.type === "START_TERM" ? term.minute : fromMinute,
+        );
         // Bounded compact receipts retain exact acknowledgement, never evict a key
         // and execute it again. Capacity rejects safely; deletion cascades all data.
         if (
@@ -372,7 +383,7 @@ export class AcademicService {
         return { receipt, state: await this.readView(tx, userId) };
       });
     } catch (error) {
-      if (error instanceof AcademicError)
+      if (error instanceof AcademicError || error instanceof LifeError)
         throw new ConflictException(error.message);
       throw error;
     }

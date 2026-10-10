@@ -17,6 +17,8 @@ import { AccountPanel, GuidePanel } from "./account-panel";
 import { AcademicTutorial } from "./academic-tutorial";
 import { AcademicPanel } from "./academic-panel";
 import { useAcademics } from "./use-academics";
+import { useLife } from "./use-life";
+import { LifePanel } from "./life-panel";
 import { academicClock } from "@campuswahala/domain";
 import { AvatarEditor } from "./avatar-editor";
 import { CampusSound } from "./sound";
@@ -30,6 +32,7 @@ const CampusWorld = dynamic(() => import("./world"), {
   ),
 });
 type App =
+  | "life"
   | "home"
   | "map"
   | "portal"
@@ -50,6 +53,7 @@ type VenueInformation = {
 };
 type Player = Omit<GuestPlayer, "expiresAt"> & { expiresAt?: string };
 const apps: Array<{ id: App; icon: string; name: string }> = [
+  { id: "life", icon: "☀", name: "Campus life" },
   { id: "map", icon: "⌖", name: "Campus map" },
   { id: "portal", icon: "▥", name: "Portal" },
   { id: "schedule", icon: "▦", name: "Schedule" },
@@ -89,6 +93,11 @@ export default function CampusExperience({
   initialAppearance: Appearance;
 }) {
   const academics = useAcademics(signedIn);
+  const life = useLife(signedIn);
+  const academicRevision = academics.state?.revision;
+  useEffect(() => {
+    void life.refresh();
+  }, [academicRevision, life.refresh]);
   const [manifest, setManifest] = useState<WorldManifest | null>(null),
     [safe, setSafe] = useState<SafeLocation | null>(null),
     [error, setError] = useState(""),
@@ -576,13 +585,36 @@ export default function CampusExperience({
               <AcademicPanel
                 state={academics.state}
                 mode="venue"
-                busy={academics.busy}
+                busy={academics.busy || life.busy || life.retry}
                 online={online}
                 error={academics.error}
                 retry={academics.retry}
-                onCommand={(c) => void academics.command(c)}
+                onCommand={(c) => {
+                  if (!life.busy && !life.retry) void academics.command(c);
+                }}
                 onRefresh={() => void academics.refresh()}
                 venueId={venue.id}
+              />
+            )}
+            {signedIn && venue && (
+              <LifePanel
+                view={life.state}
+                homeName={
+                  academics.state?.term?.venues.find(
+                    (v) => v.id === life.state?.state?.homeVenueId,
+                  )?.name
+                }
+                busy={life.busy || academics.busy || academics.retry}
+                online={online}
+                error={life.error}
+                retry={life.retry}
+                venueId={venue.id}
+                authoritativeVenueId={academics.state?.term?.presenceVenueId}
+                onRefresh={() => void life.refresh()}
+                onCommand={(c) => {
+                  if (!academics.busy && !academics.retry)
+                    void life.command(c).then(() => academics.refresh());
+                }}
               />
             )}
             {npc && (
@@ -724,6 +756,32 @@ export default function CampusExperience({
                   </button>
                 </>
               )}
+              {app === "life" &&
+                (signedIn ? (
+                  <LifePanel
+                    view={life.state}
+                    homeName={
+                      academics.state?.term?.venues.find(
+                        (v) => v.id === life.state?.state?.homeVenueId,
+                      )?.name
+                    }
+                    busy={life.busy || academics.busy || academics.retry}
+                    online={online}
+                    error={life.error}
+                    retry={life.retry}
+                    onRefresh={() => void life.refresh()}
+                    onCommand={(c) => {
+                      if (!academics.busy && !academics.retry)
+                        void life.command(c).then(() => academics.refresh());
+                    }}
+                  />
+                ) : (
+                  <p>
+                    Save your journey and start a simulation semester to begin
+                    durable campus life. Guest exploration has no lasting life
+                    stats.
+                  </p>
+                ))}
               {app === "map" && (
                 <>
                   <svg
@@ -861,6 +919,11 @@ export default function CampusExperience({
                   </div>
                 </>
               )}
+              {app === "updates" && life.state?.pending && (
+                <button onClick={() => setApp("life")}>
+                  A little campus Wahala: {life.state.pending.template.title}
+                </button>
+              )}
               {app === "guide" && <GuidePanel campus={manifest.campusId} />}
               {app === "account" && (
                 <AccountPanel
@@ -876,11 +939,13 @@ export default function CampusExperience({
                   <AcademicPanel
                     state={academics.state}
                     mode={app}
-                    busy={academics.busy}
+                    busy={academics.busy || life.busy || life.retry}
                     online={online}
                     error={academics.error}
                     retry={academics.retry}
-                    onCommand={(c) => void academics.command(c)}
+                    onCommand={(c) => {
+                      if (!life.busy && !life.retry) void academics.command(c);
+                    }}
                     onRefresh={() => void academics.refresh()}
                   />
                   {academics.retry && (

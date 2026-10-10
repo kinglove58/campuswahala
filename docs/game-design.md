@@ -9,3 +9,6 @@ Player metrics (future): health, energy, mood, academic performance, social/camp
 Wahala templates contain id/version, eligibility DSL, weight, cooldown, choices, server effects and consequence references. Evaluate campus/programme/level/semester/money/energy/health/timetable/location/hostel/time/relations/items/history/reputation/weather/global events. Inject deterministic RNG and clock for tests; no client-selected reward. Avoid manipulative streak penalties. Transport costs/time/energy come from pack definitions, not university conditionals in code.
 
 Housing/room decoration, hustles, quests, campus wars, graduation shirt and alumni replay are later slices. Real recruitment, commerce, gifts and virtual simulation must remain visibly distinct. No real GPS is required; physical location is future opt-in only.
+
+
+Phase 4 implements only energy, satiety, mood and fictional wellbeing on the authoritative academic timeline. The future metric/context lists above are roadmap concepts, not current eligibility inputs. No money, real weather authority, sensitive identity traits, health diagnoses or social/viral systems are used. See ADR 014.
