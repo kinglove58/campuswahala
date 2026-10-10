@@ -155,7 +155,7 @@ test("save guest → browser-bound sign-in → durable same world → private ac
       headers: { Origin: "http://localhost:3001" },
       data: {
         ...validGuestFixture,
-        nickname: "Temporary Explorer",
+        nickname: "Future Legend",
       },
     },
   );

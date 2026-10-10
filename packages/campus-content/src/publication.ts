@@ -39,6 +39,11 @@ export const factCategory = z.enum([
   "critical",
   "event",
 ]);
+/** Critical subject properties retain their subject identity but use the strict critical publication category. */
+export const isCriticalProperty = (key: string) =>
+  /(?:emergency|security[_ .-]?contact|health[_ .-]?contact|medical[_ .-]?contact|(?:official[_ .-]?)?fees?|deadline)/i.test(
+    key.replace(/([a-z])([A-Z])/g, "$1_$2"),
+  );
 export const candidateSchema = z
   .object({
     entityType: z.enum([
@@ -76,7 +81,16 @@ export const candidateSchema = z
         : candidate.entityType === "structure"
           ? "academic_structure"
           : candidate.entityType;
-    if (candidate.category !== expected)
+    if (
+      isCriticalProperty(candidate.propertyKey) &&
+      candidate.category !== "critical"
+    )
+      context.addIssue({
+        code: "custom",
+        path: ["category"],
+        message: "CRITICAL_PROPERTY_REQUIRES_CRITICAL_POLICY",
+      });
+    if (candidate.category !== expected && candidate.category !== "critical")
       context.addIssue({
         code: "custom",
         path: ["category"],
