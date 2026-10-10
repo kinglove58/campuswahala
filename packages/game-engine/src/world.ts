@@ -167,7 +167,7 @@ export type WorldManifest = {
   }>;
 };
 export const isCampus = (v: unknown): v is CampusId =>
-  ["futa", "oau", "unilag"].includes(String(v));
+  typeof v === "string" && ["futa", "oau", "unilag"].includes(v);
 export const contains = (r: Rect, p: Point, margin = 0) =>
   Number.isFinite(p.x) &&
   Number.isFinite(p.y) &&

@@ -222,6 +222,7 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
           { ...worldInput, userId: userB },
           { ...worldInput, spawnId: "missing" },
           { ...worldInput, campusId: "unknown" },
+          { ...worldInput, campusId: ["futa"] },
           { ...worldInput, x: 999999 },
         ])
           await expect(a.saveWorldState(first.token, bad)).rejects.toThrow(

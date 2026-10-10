@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   createCampusWorld,
+  isCampus,
   validateWorld,
   parseWorldState,
   defaultAppearance,
@@ -132,6 +133,8 @@ describe("world integrity and authority boundaries", () => {
       expect(() => validateWorld(w)).toThrow();
     });
   it("accepts safe IDs only, rejects ownership/coordinates/unknown world/appearance", () => {
+    expect(isCampus(["futa"])).toBe(false);
+    expect(isCampus({ campus: "futa" })).toBe(false);
     const w = createCampusWorld("futa"),
       valid = {
         campusId: "futa",
