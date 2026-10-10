@@ -63,7 +63,7 @@ Apply the fifth migration, `202610090005_world_state`, after the four Phase 1 mi
 
 `pnpm build` compiles and validates manifests. Run `pnpm check:world-budgets` after build. World names remain fictional until live, published, non-stale catalogue facts match configured identity bindings. Geometry is **compressed campus geography**, never real GPS navigation. The isolated research report records actual robots/size/timeout failures and eligible UNILAG library publication; it is not imported as production seed data.
 
-CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, updates and settings. Authenticated Computing/Engineering simulation players have a private Portal, timetable, courses, assignments, tests/exams, results and progression; guests retain demo content. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 is under review on its dedicated branch; documented production/content/device gates remain open.
+CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, updates and settings. Authenticated Computing/Engineering simulation players have a private Portal, timetable, courses, assignments, tests/exams, results and progression; guests retain demo content. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 is merged at `c37500c`; Phase 3.1 adds browser acceptance evidence on a focused branch. Documented production/content/device gates remain open.
 
 ## Phase 2.5 hardening
 
@@ -82,3 +82,5 @@ Use disposable/local PostgreSQL, apply migrations through 007, and configure the
 Academic travel changes server-owned presence and consumes game minutes. Map walking/shuttles remain cosmetic. At a study venue choose course study/assignment actions; submit before the game deadline. Use Schedule and Wait to next academic event, travel before its start, then attend/take the eligible action. End day deliberately misses crossed events. At semester end finalize results and view GPA/CGPA, carryovers and the progression decision. Definitions/history are snapshotted and private. Offline actions are disabled; explicitly retry an uncertain command with its original receipt key. No background mutation queue.
 
 [Phase 3 architecture and validation](docs/phase-3-review.md) · [ADR 013](docs/decisions/013-server-authoritative-academics.md).
+
+[Phase 3.1 browser acceptance review](docs/phase-3.1-review.md).

@@ -1,6 +1,6 @@
 # CampusWahala implementation status
 
-Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 merged at `30d0455`; Phase 3 academics is implemented for review; the implementation CI passed 145 tests and 28 desktop/mobile browser tests. Full content/device acceptance remains open. Phase 0.5 and Phase 1 security contracts are preserved. No production launch. See [Phase 3 review](docs/phase-3-review.md) for the new academic bounded context and exact-head validation.
+Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 merged at `30d0455`; Phase 3 academics merged at `c37500c`; merge CI passed. Phase 3.1 adds positive semester, carryover/retake and actual venue browser acceptance coverage for review. Full content/device acceptance remains open. Phase 0.5 and Phase 1 security contracts are preserved. No production launch. See [Phase 3 review](docs/phase-3-review.md) for the new academic bounded context and exact-head validation.
 
 | Deliverable                                                          | Status                                            | Scope / remaining boundary                                                                                                                                                                                               |
 | -------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -22,3 +22,5 @@ Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 merged at `30d0
 Phase 2.5 adds subject/property identity with migration preservation, scoped pagination beyond 100 facts, strict source/status constraints and official-only critical policy; safe owner-bound guest conflicts; concurrent deletion claims; controlled research; world v2 with preserved v1; per-zone original art and bounded ambient NPCs; public-only PWA cache; constrained-network tests and physical acceptance procedures. Phase 2.5 automated validation passed before merge; art/device review remains open, not a claim that all acceptance gates are closed.
 
 Phase 3 reuses programme/stage/semester identity and adds private versioned terms, clock/presence, typed idempotent commands, fixed-point results/CGPA/carryovers/progression, Pocket academic views and ephemeral guest tutorial. Automated acceptance is pending on the exact implementation head; this is not a production signoff.
+
+See [Phase 3.1 acceptance review](docs/phase-3.1-review.md) for focused browser-boundary evidence; no Phase 4 started.
