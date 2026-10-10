@@ -10,6 +10,9 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   await page
     .getByRole("combobox", { name: "Skin", exact: true })
     .selectOption("deep");
+  await page
+    .getByRole("combobox", { name: "Top", exact: true })
+    .selectOption("clay");
   await page.getByRole("button", { name: "Start my chapter" }).click();
   await expect(page.getByTestId("campus-world")).toHaveAttribute(
     "data-ready",
@@ -30,6 +33,14 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   await expect(
     page.getByRole("button", { name: "Close phone", exact: true }),
   ).toBeFocused();
+  await page.getByRole("button", { name: "My chapter", exact: true }).click();
+  await expect(
+    page.getByRole("combobox", { name: "Skin", exact: true }),
+  ).toHaveValue("deep");
+  await expect(
+    page.getByRole("combobox", { name: "Top", exact: true }),
+  ).toHaveValue("clay");
+  await page.getByRole("button", { name: "All apps" }).click();
   if (process.env.CAPTURE_VISUALS === "1") {
     await page.screenshot({
       path: `artifacts/pocket-${test.info().project.name}.png`,

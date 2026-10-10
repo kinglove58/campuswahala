@@ -383,13 +383,23 @@ export default function GuestJourney() {
                         aria-label={`${color} avatar`}
                         aria-pressed={input.avatar === color}
                         key={color}
-                        onClick={() => setInput({ ...input, avatar: color })}
+                        onClick={() => {
+                          setInput({ ...input, avatar: color });
+                          setAppearance({ ...appearance, top: color });
+                        }}
                       >
                         {input.avatar === color ? "✓" : ""}
                       </button>
                     ))}
                   </div>
                 </fieldset>
+                <AvatarEditor
+                  value={appearance}
+                  onChange={(look) => {
+                    setAppearance(look);
+                    setInput({ ...input, avatar: look.top });
+                  }}
+                />
                 <p className="fixture">
                   Your temporary guest expires in 24 hours. Explore without
                   creating an account.
@@ -407,9 +417,6 @@ export default function GuestJourney() {
                   </button>
                 </div>
               </>
-            )}
-            {step === 2 && (
-              <AvatarEditor value={appearance} onChange={setAppearance} />
             )}
             {error && (
               <p role="alert" className="error">
