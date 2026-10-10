@@ -78,6 +78,7 @@ export default function CampusWorld({
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    engine.npcMotion = !reduced;
     void import("phaser")
       .then(({ default: Phaser }) => {
         if (disposed || !container.current) return;
@@ -517,6 +518,18 @@ export default function CampusWorld({
                 "data-asset-failures",
                 String(this.assetFailures),
               );
+              // Optional Chromium measurement: local diagnostic only, never transmitted.
+              const memory = (
+                performance as Performance & {
+                  memory?: { usedJSHeapSize: number; jsHeapSizeLimit: number };
+                }
+              ).memory;
+              if (memory?.jsHeapSizeLimit) {
+                container.current?.setAttribute(
+                  "data-memory-warning",
+                  String(memory.usedJSHeapSize / memory.jsHeapSizeLimit > 0.8),
+                );
+              }
               this.lastMetric = time;
             }
           }

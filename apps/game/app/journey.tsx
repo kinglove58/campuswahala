@@ -97,7 +97,16 @@ export default function GuestJourney() {
             ? "Too many attempts. Take a moment, then try again."
             : "Could not enter campus. Check your connection and that the API is running.",
         );
-      setPlayer(await r.json());
+      const created = await r.json();
+      try {
+        sessionStorage.setItem(
+          `cw_appearance:${created.id}`,
+          JSON.stringify({ ...appearance, top: input.avatar }),
+        );
+      } catch {
+        /* Optional cosmetic guest cache. */
+      }
+      setPlayer(created);
     } catch (e) {
       setError(
         e instanceof Error

@@ -53,6 +53,12 @@ import {
   REPOSITORY,
 } from "./players";
 
+// Compile geometry once at boot; publication projection stays live and private-safe.
+const compiledWorlds = {
+  futa: createCampusWorld("futa"),
+  oau: createCampusWorld("oau"),
+  unilag: createCampusWorld("unilag"),
+};
 @Controller()
 class ApiController {
   constructor(
@@ -82,7 +88,7 @@ class ApiController {
   ) {
     if (!isCampus(campus) || version !== "1")
       throw new HttpException("WORLD_NOT_FOUND", 404);
-    const world = createCampusWorld(campus);
+    const world = compiledWorlds[campus];
     response.setHeader("Cache-Control", "public, max-age=31536000, immutable");
     response.setHeader(
       "ETag",
@@ -108,10 +114,7 @@ class ApiController {
     if (!isCampus(campus)) throw new HttpException("WORLD_NOT_FOUND", 404);
     const published = await this.accounts.publishedCatalogue();
     return {
-      venues: compileWorldInformation(
-        createCampusWorld(campus),
-        published.facts,
-      ),
+      venues: compileWorldInformation(compiledWorlds[campus], published.facts),
     };
   }
   @Get("v1/account/world") getWorldState(

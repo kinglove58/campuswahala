@@ -326,7 +326,9 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
         "A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.",
       type: type as Venue["type"],
       identity: { kind: "fictional", fixture: true },
-      presentation: i % 3 === 0 ? "interior" : i % 3 === 1 ? "panel" : "zone",
+      presentation: ["library", "lecture_hall", "hostel"].includes(type!)
+        ? "interior"
+        : "panel",
       safeSpawnId: spawnId,
       hours: [6, 22],
       futureActivities: [],

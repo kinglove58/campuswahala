@@ -18,6 +18,11 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   await page.getByRole("button", { name: "Open virtual phone" }).click();
   const phone = page.getByRole("dialog", { name: "CW Pocket virtual phone" });
   await expect(phone).toBeVisible();
+  if (process.env.CAPTURE_VISUALS === "1") {
+    await page.screenshot({
+      path: `artifacts/pocket-${test.info().project.name}.png`,
+    });
+  }
   const box = await phone.boundingBox();
   expect(box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
   expect(box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
@@ -43,6 +48,11 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   await expect(
     page.getByText("Rain on campus. Find your favourite shelter."),
   ).toBeVisible();
+  if (process.env.CAPTURE_VISUALS === "1") {
+    await page.screenshot({
+      path: `artifacts/futa-rain-${test.info().project.name}.png`,
+    });
+  }
   await page.getByRole("button", { name: "Open virtual phone" }).click();
   await page.getByRole("button", { name: "Account & privacy" }).click();
   await expect(

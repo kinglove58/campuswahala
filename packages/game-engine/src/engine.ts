@@ -103,6 +103,7 @@ export class WorldEngine {
   elapsedMs = 0;
   paused = false;
   phoneOpen = false;
+  npcMotion = true;
   zoneId = "";
   nearby: Interaction | null = null;
   private period = "";
@@ -203,17 +204,36 @@ export class WorldEngine {
       this.zoneId = zone.id;
       this.bus.emit("PLAYER_ENTERED_ZONE", { zoneId: zone.id });
     }
+    const location = (i: Interaction) => {
+      const npc = this.manifest.npcSpawns.find((n) => n.id === i.npcId);
+      return npc && this.npcMotion ? npcPosition(npc, this.elapsedMs) : i;
+    };
     const nearby =
       this.manifest.interactionPoints
+        .filter((i) => {
+          const npc = this.manifest.npcSpawns.find((n) => n.id === i.npcId);
+          return (
+            !npc ||
+            (time.hour >= npc.activeHours[0] && time.hour < npc.activeHours[1])
+          );
+        })
         .filter(
           (i) =>
-            Math.hypot(i.x - this.position.x, i.y - this.position.y) <=
-            i.radius,
+            Math.hypot(
+              location(i).x - this.position.x,
+              location(i).y - this.position.y,
+            ) <= i.radius,
         )
         .sort(
           (a, b) =>
-            Math.hypot(a.x - this.position.x, a.y - this.position.y) -
-            Math.hypot(b.x - this.position.x, b.y - this.position.y),
+            Math.hypot(
+              location(a).x - this.position.x,
+              location(a).y - this.position.y,
+            ) -
+            Math.hypot(
+              location(b).x - this.position.x,
+              location(b).y - this.position.y,
+            ),
         )[0] ?? null;
     if (nearby?.id !== this.nearby?.id && nearby?.venueId)
       this.bus.emit("PLAYER_APPROACHED_VENUE", { venueId: nearby.venueId });

@@ -12,6 +12,20 @@ import {
   campusTime,
 } from "../packages/game-engine/src";
 describe("world integrity and authority boundaries", () => {
+  it("NPC prompts follow visible patrols and disappear outside configured hours", () => {
+    const world = createCampusWorld("futa"),
+      engine = new WorldEngine(world);
+    const npc = world.npcSpawns[0]!;
+    const talk = world.interactionPoints.find((i) => i.npcId === npc.id)!;
+    talk.radius = 20;
+    engine.elapsedMs = 4000;
+    engine.position = { x: npc.x + 60, y: npc.y };
+    engine.tick(0);
+    expect(engine.nearby?.npcId).toBe(npc.id);
+    engine.elapsedMs = (22 * 60 - 7 * 60) * 1500;
+    engine.tick(0);
+    expect(engine.nearby?.npcId).not.toBe(npc.id);
+  });
   for (const id of ["futa", "oau", "unilag"] as const)
     it(`${id} validates and meets manifest budget`, () => {
       const w = createCampusWorld(id);
