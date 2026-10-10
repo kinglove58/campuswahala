@@ -1,6 +1,6 @@
 # CampusWahala implementation status
 
-Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 merged at `30d0455`; Phase 3 academics is under validation. Full content/device acceptance remains open. Phase 0.5 and Phase 1 security contracts are preserved. No production launch. See [Phase 3 review](docs/phase-3-review.md) for the new academic bounded context and exact-head validation.
+Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 merged at `30d0455`; Phase 3 academics is implemented for review; the implementation CI passed 145 tests and 28 desktop/mobile browser tests. Full content/device acceptance remains open. Phase 0.5 and Phase 1 security contracts are preserved. No production launch. See [Phase 3 review](docs/phase-3-review.md) for the new academic bounded context and exact-head validation.
 
 | Deliverable                                                          | Status                                            | Scope / remaining boundary                                                                                                                                                                                               |
 | -------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
