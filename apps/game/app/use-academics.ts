@@ -42,7 +42,6 @@ export function useAcademics(enabled: boolean) {
     } finally {
       if (readController.current === controller) {
         readController.current = null;
-        readAgain.current = false;
         if (readAgain.current) {
           readAgain.current = false;
           void refresh();
