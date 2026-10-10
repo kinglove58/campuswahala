@@ -1,6 +1,6 @@
 # CampusWahala
 
-The playable digital world of African university life. Phase 1 identity, private character and Campus Intelligence foundations, with the original guest exploration world. Not a production launch.
+The playable digital world of African university life. Phase 2 shared virtual-campus engine with private character and Campus Intelligence foundations. FUTA, OAU and UNILAG use validated manifests, following cameras and the CW Pocket phone. This is a review candidate, not a production launch.
 
 ## Run locally
 
@@ -49,8 +49,16 @@ Apply all four versioned migrations before starting PostgreSQL mode. Migration 0
 
 `AUTH_PROVIDER=local` enables a clearly labelled shared demo identity only in APP_ENV=local. In the phone open Account & privacy -> Continue to sign in. The guest cookie survives login, then an owner-bound transaction saves the same character. An existing account character wins unchanged. Accounts are private, under-18/unknown privacy is strict, and deletion revokes immediately then removes account data through the worker. Authentically configured Entra uses code/PKCE/state/nonce/signature checks and server-held tokens; .env.example lists configuration names. No Google button, tenant, credentials or Azure deployment is created.
 
-Set `INTELLIGENCE_ENABLED=true` on the database-configured worker to begin permitted official-source research. It discovers FUTA/OAU/UNILAG public URLs, checks robots and safe DNS-pinned fetching, and initially extracts only observed university names. No slang, navigation or academic content is fabricated. Policy automatically publishes eligible evidence, holds contradictions and expires stale data. The Guide & feedback phone app and marketing `/guide/<campus>` read only published, unexpired facts. Fixture pages are noindex and removed from the sitemap; thin guides remain noindex. All existing fixture warnings remain.
+Set `INTELLIGENCE_ENABLED=true` on the database-configured worker to begin permitted official-source research. It discovers FUTA/OAU/UNILAG public URLs, checks robots and safe DNS-pinned fetching, and extracts observed university names and a small exact-text official-landmark registry. No slang, navigation or academic content is fabricated. Policy automatically publishes eligible evidence, holds contradictions and expires stale data. The Guide & feedback phone app and marketing `/guide/<campus>` read only published, unexpired facts. Fixture pages are noindex and removed from the sitemap; thin guides remain noindex. All existing fixture warnings remain.
 
-Read [Phase 1 review](docs/phase-1-review.md), [identity](docs/identity.md), [intelligence](docs/campus-intelligence.md), [publication policy](docs/publication-policy.md), [privacy/age](docs/privacy.md) and [actual CI triage](docs/ci-triage-phase-1.md). Local tests do not establish production readiness. Shared rate/replay/pacing, private ingress/egress/database roles, configured Entra/MFA, monitored cleanup and clean scans remain public-release gates. Phase 2 has not been started.
+Read [Phase 1 review](docs/phase-1-review.md), [identity](docs/identity.md), [intelligence](docs/campus-intelligence.md), [publication policy](docs/publication-policy.md), [privacy/age](docs/privacy.md) and [actual CI triage](docs/ci-triage-phase-1.md). Local tests do not establish production readiness. Shared rate/replay/pacing, private ingress/egress/database roles, configured Entra/MFA, monitored cleanup and clean scans remain public-release gates. Read [Phase 2 review](docs/phase-2-review.md), [world engine](docs/world-engine.md) and [ADR 010](docs/decisions/010-versioned-virtual-world.md) for the current review candidate and remaining gates.
 
 Local Phase 1 validation passed 82 tests and 10 desktop/mobile browser cases. Both final runtime images use Alpine, passed non-root smoke and returned zero HIGH/CRITICAL Trivy 0.75.0 findings including unfixed findings; the API native Prisma engine was also tested against PostgreSQL. Complementary strict Semgrep Community scan passed. Remote CodeQL still requires corrected permission/repository code-scanning setup and a new remote run; see the review for exact limits and evidence.
+
+## Phase 2 local world
+
+Apply the fifth migration, `202610090005_world_state`, after the four Phase 1 migrations. Account world state stores validated safe spawn IDs and enumerated appearance; guests remain ephemeral. `/play?campus=futa`, `/play?campus=oau` and `/play?campus=unilag` select a world. Marketing never loads Phaser.
+
+`pnpm build` compiles and validates manifests. Run `pnpm check:world-budgets` after build. World names remain fictional until live, published, non-stale catalogue facts match configured identity bindings. Geometry is **compressed campus geography**, never real GPS navigation. The isolated research report records actual robots/size/timeout failures and eligible UNILAG library publication; it is not imported as production seed data.
+
+CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, demo schedule, updates, settings and an academic Portal foundation. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 has not started; stop for Phase 2 review and the documented content/device validation gaps.
