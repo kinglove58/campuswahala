@@ -693,7 +693,12 @@ export function selectWahala(
       if (h.status === "pending" && h.termId === term.id) h.status = "expired";
   expireWahala(history, term.minute);
   const current = history.filter((h) => h.termId === term.id);
-  const last = current.at(-1);
+  // Transaction creation timestamps may precede lock acquisition; game minutes
+  // remain authoritative even when history arrives in a different order.
+  const lastTriggered = current.reduce(
+    (minute, h) => Math.max(minute, h.triggeredMinute),
+    -Infinity,
+  );
   if (
     term.status !== "active" ||
     term.minute >= term.endMinute ||
@@ -703,7 +708,7 @@ export function selectWahala(
       (h) =>
         Math.floor(h.triggeredMinute / 1440) === Math.floor(term.minute / 1440),
     ).length >= p.maximumPerDay ||
-    (last && term.minute - last.triggeredMinute < p.globalCooldown)
+    (current.length > 0 && term.minute - lastTriggered < p.globalCooldown)
   )
     return null;
   const eligible = wahalaTemplates.filter(

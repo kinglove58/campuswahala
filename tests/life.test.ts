@@ -220,6 +220,13 @@ describe("single-timeline private CampusWahala life", () => {
     two.id = randomUUID();
     two.triggeredMinute = t.minute;
     expect(selectWahala(s, t, [h, two], randomUUID(), () => 0)).toBeNull();
+    // A transaction may have begun before an earlier command acquired the lock.
+    // Recent game time, not DB creation order, must still enforce cooldown.
+    t.minute = 2 * 1440 + 30;
+    s.lastProcessedMinute = t.minute;
+    two.triggeredMinute = t.minute - 20;
+    two.template = wahalaTemplates.find((x) => x.id === "cw-campus-gist")!;
+    expect(selectWahala(s, t, [two, h], randomUUID(), () => 0)).toBeNull();
     expect(
       wahalaTemplates.some((x) =>
         JSON.stringify(x.eligibility).includes("weather"),
