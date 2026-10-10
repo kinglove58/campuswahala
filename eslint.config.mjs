@@ -12,7 +12,12 @@ export default ts.config(
       "**/test-results/**",
     ],
   },
-  { files: ["apps/game/public/sw.js"], languageOptions: { globals: { self: "readonly", caches: "readonly", URL: "readonly" } } },
+  {
+    files: ["apps/game/public/sw.js"],
+    languageOptions: {
+      globals: { self: "readonly", caches: "readonly", URL: "readonly" },
+    },
+  },
   js.configs.recommended,
   ...ts.configs.recommended,
   {
@@ -29,4 +34,3 @@ export default ts.config(
     },
   },
 );
-

@@ -10,8 +10,10 @@ export const metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body><OfflineFoundation />{children}</body>
+      <body>
+        <OfflineFoundation />
+        {children}
+      </body>
     </html>
   );
 }
-

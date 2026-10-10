@@ -8,7 +8,8 @@ for (const campus of ["futa", "oau", "unilag"]) {
   const w = createCampusWorld(campus),
     size = Buffer.byteLength(JSON.stringify(w));
   const compressed = gzipSync(JSON.stringify(w)).length;
-  if (compressed > 100 * 1024) throw new Error("Compressed manifest budget exceeded");
+  if (compressed > 100 * 1024)
+    throw new Error("Compressed manifest budget exceeded");
   let artGzip = 0;
   if (size > 160000) throw new Error("Manifest budget exceeded");
   for (const a of w.assetBundles) {
@@ -23,7 +24,9 @@ for (const campus of ["futa", "oau", "unilag"]) {
       throw new Error("Asset integrity mismatch");
   }
   if (artGzip > 400 * 1024) throw new Error("Art budget exceeded");
-  console.log(`${campus}: manifest ${size} raw / ${compressed} gzip bytes; all zone art ${artGzip} gzip bytes (conservative initial upper bound)`);
+  console.log(
+    `${campus}: manifest ${size} raw / ${compressed} gzip bytes; all zone art ${artGzip} gzip bytes (conservative initial upper bound)`,
+  );
 }
 async function jsFiles(dir) {
   let files = [];
@@ -49,6 +52,10 @@ console.log(
 const gameFiles = await jsFiles("apps/game/.next/static");
 let gameGzip = 0;
 for (const file of gameFiles) gameGzip += gzipSync(await readFile(file)).length;
-console.log(`All game static JavaScript: ${gameGzip} gzip bytes; conservative upper bound including lazy chunks. This is not measured browser transfer.`);
-if (gameGzip > 650 * 1024) throw new Error("Game JavaScript upper-bound budget exceeded");
-if (gameGzip + 100 * 1024 + 400 * 1024 > 1.5 * 1024 * 1024) throw new Error("First campus budget envelope exceeded");
+console.log(
+  `All game static JavaScript: ${gameGzip} gzip bytes; conservative upper bound including lazy chunks. This is not measured browser transfer.`,
+);
+if (gameGzip > 650 * 1024)
+  throw new Error("Game JavaScript upper-bound budget exceeded");
+if (gameGzip + 100 * 1024 + 400 * 1024 > 1.5 * 1024 * 1024)
+  throw new Error("First campus budget envelope exceeded");

@@ -1020,9 +1020,33 @@ dd {
 }
 
 /* CW Pocket: warm fictional device, consistent app tiles and tactile controls. */
-.pocket-apps button { border: 1px solid #52684b33; box-shadow: 0 2px 0 #31483018; }
-.pocket-apps button:focus-visible { outline: 3px solid #9d592f; outline-offset: 3px; }
-.pocket-notification { border-left: 4px solid #ae6e44; }
-.destination-list button { border: 1px solid #bdb49a; border-radius: 14px; background: #fff7e8; margin-bottom: 8px; }
-.pocket-map { border: 2px solid #667f55; border-radius: 18px; box-shadow: inset 0 2px 8px #283d2420; }
-.mini-interior { background-color: #e2cfad; background-image: repeating-linear-gradient(90deg, transparent 0 39px, #8b70461a 40px 41px), repeating-linear-gradient(0deg, transparent 0 39px, #8b70461a 40px 41px); border: 8px solid #8b735a; box-shadow: inset 0 10px 0 #3d39261f; }
+.pocket-apps button {
+  border: 1px solid #52684b33;
+  box-shadow: 0 2px 0 #31483018;
+}
+.pocket-apps button:focus-visible {
+  outline: 3px solid #9d592f;
+  outline-offset: 3px;
+}
+.pocket-notification {
+  border-left: 4px solid #ae6e44;
+}
+.destination-list button {
+  border: 1px solid #bdb49a;
+  border-radius: 14px;
+  background: #fff7e8;
+  margin-bottom: 8px;
+}
+.pocket-map {
+  border: 2px solid #667f55;
+  border-radius: 18px;
+  box-shadow: inset 0 2px 8px #283d2420;
+}
+.mini-interior {
+  background-color: #e2cfad;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 39px, #8b70461a 40px 41px),
+    repeating-linear-gradient(0deg, transparent 0 39px, #8b70461a 40px 41px);
+  border: 8px solid #8b735a;
+  box-shadow: inset 0 10px 0 #3d39261f;
+}

@@ -113,3 +113,32 @@ test("all campuses supply cacheable validated manifests and unsafe deep links fa
   });
   expect(guest.ok()).toBe(true);
 });
+
+for (const campus of ["futa", "oau", "unilag"])
+  test(`${campus} illustrated world capture and immutable revision coexistence`, async ({
+    page,
+    context,
+  }) => {
+    test.setTimeout(60000);
+    await context.request.post("http://localhost:3001/api/guest", {
+      headers: { Origin: "http://localhost:3001" },
+      data: { ...validGuestFixture, campusId: campus },
+    });
+    await page.goto(`http://localhost:3001/play?campus=${campus}`);
+    await expect(page.getByTestId("campus-world")).toHaveAttribute(
+      "data-ready",
+      "true",
+      { timeout: 30000 },
+    );
+    for (const version of [1, 2]) {
+      const response = await context.request.get(
+        `http://localhost:3001/api/world/${campus}/versions/${version}`,
+      );
+      expect(response.ok()).toBe(true);
+      expect((await response.json()).version).toBe(version);
+    }
+    if (process.env.CAPTURE_VISUALS === "1")
+      await page.screenshot({
+        path: `artifacts/${campus}-world-${test.info().project.name}.png`,
+      });
+  });

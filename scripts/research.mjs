@@ -1,5 +1,5 @@
 import { setTimeout as delay } from "node:timers/promises";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { PrismaClient } from "../packages/database/dist/index.js";
 import { CampusIntelligencePipeline } from "../apps/worker/dist/intelligence.js";
 if (
@@ -13,8 +13,20 @@ const db = new PrismaClient({
 });
 try {
   const pipeline = new CampusIntelligencePipeline(db);
-  const campus = process.env.RESEARCH_CAMPUS;
-  if (!campus || !["futa", "oau", "unilag"].includes(campus)) throw new Error("CONTROLLED_CAMPUS_REQUIRED");
+  let campus = process.env.RESEARCH_CAMPUS;
+  if (!campus) {
+    const request = JSON.parse(
+      await readFile("docs/research/request.json", "utf8"),
+    );
+    if (
+      Object.keys(request).sort().join(",") !== "campus,sourceSet" ||
+      request.sourceSet !== "curated-public-2026-10-10"
+    )
+      throw new Error("CONTROLLED_SOURCE_SET_REQUIRED");
+    campus = request.campus;
+  }
+  if (!campus || !["futa", "oau", "unilag"].includes(campus))
+    throw new Error("CONTROLLED_CAMPUS_REQUIRED");
   await pipeline.discover(campus);
   const metrics = await pipeline.runDue(100, campus);
   // The normal pipeline schedules page retrieval one minute after robots checks.

@@ -44,7 +44,7 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
             value: page.body.split("|")[0]!,
             confidence: 0.95,
             locator: "fixture:visible",
-          excerpt: page.body.split("|")[0]!,
+            excerpt: page.body.split("|")[0]!,
           },
         ],
       };
@@ -232,4 +232,3 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
     });
   },
 );
-

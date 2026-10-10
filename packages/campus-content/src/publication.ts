@@ -1,7 +1,27 @@
 import { z } from "zod";
-export const sourceAuthority = z.enum(["official", "institutional", "reputable", "community", "generated_fixture"]);
-export const processingState = z.enum(["DISCOVERED", "FETCHED", "EXTRACTED", "NORMALIZED", "CORROBORATED", "POLICY_CHECKED", "PUBLISHED", "STALE", "REJECTED"]);
-export const sourcePolicyStatus = z.enum(["pending", "permitted_public", "rejected"]);
+export const sourceAuthority = z.enum([
+  "official",
+  "institutional",
+  "reputable",
+  "community",
+  "generated_fixture",
+]);
+export const processingState = z.enum([
+  "DISCOVERED",
+  "FETCHED",
+  "EXTRACTED",
+  "NORMALIZED",
+  "CORROBORATED",
+  "POLICY_CHECKED",
+  "PUBLISHED",
+  "STALE",
+  "REJECTED",
+]);
+export const sourcePolicyStatus = z.enum([
+  "pending",
+  "permitted_public",
+  "rejected",
+]);
 export const publicationResult = z.enum(["ALLOW", "HOLD", "REJECT", "STALE"]);
 export const factCategory = z.enum([
   "university",
@@ -143,9 +163,16 @@ export class PublicationPolicyService {
     });
     if (!factCategory.safeParse(input.category).success)
       return answer("REJECT", "UNSUPPORTED_CATEGORY");
-    if (input.evidence.some((e) => !sourceAuthority.safeParse(e.authority).success))
+    if (
+      input.evidence.some(
+        (e) => !sourceAuthority.safeParse(e.authority).success,
+      )
+    )
       return answer("REJECT", "UNKNOWN_SOURCE_AUTHORITY");
-    if (input.category === "critical" && !fresh.some((e) => e.authority === "official"))
+    if (
+      input.category === "critical" &&
+      !fresh.some((e) => e.authority === "official")
+    )
       return answer("HOLD", "OFFICIAL_SOURCE_REQUIRED");
     if (input.contradiction) return answer("HOLD", "UNRESOLVED_CONTRADICTION");
     if (
@@ -216,4 +243,3 @@ export function matchEntity(
         reason: matches.length ? "AMBIGUOUS_HOLD" : "NO_CONFIDENT_MATCH",
       };
 }
-

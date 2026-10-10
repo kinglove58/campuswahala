@@ -250,8 +250,15 @@ export class AccountService {
       const current = await tx.user.findUniqueOrThrow({
         where: { id: user.id },
       });
-      const session = await tx.userSession.findUnique({ where: { tokenHash: this.hash(String(token)) } });
-      if (current.status !== "active" || !session || session.revokedAt || session.expiresAt <= new Date())
+      const session = await tx.userSession.findUnique({
+        where: { tokenHash: this.hash(String(token)) },
+      });
+      if (
+        current.status !== "active" ||
+        !session ||
+        session.revokedAt ||
+        session.expiresAt <= new Date()
+      )
         throw new UnauthorizedException("ACCOUNT_UNAVAILABLE");
       const receipt = await tx.guestConversion.findUnique({
         where: { tokenHash: hash },
@@ -273,8 +280,14 @@ export class AccountService {
       if (existing) {
         // Owner-bound receipt reserves this guest without consuming it. Another
         // account cannot convert the same capability after a conflict.
-        await tx.guestConversion.create({ data: { tokenHash: hash, userId: user.id,
-          outcome: "existing_character_conflict", expiresAt: guest.expiresAt } });
+        await tx.guestConversion.create({
+          data: {
+            tokenHash: hash,
+            userId: user.id,
+            outcome: "existing_character_conflict",
+            expiresAt: guest.expiresAt,
+          },
+        });
         return true;
       }
       if (!existing) {
@@ -405,7 +418,9 @@ export class AccountService {
         currentVersionId: { not: null },
         ...(query.campus ? { campus: { slug: query.campus } } : {}),
         ...(query.subjectType ? { subjectType: query.subjectType } : {}),
-        ...(query.category ? { currentVersion: { category: query.category } } : {}),
+        ...(query.category
+          ? { currentVersion: { category: query.category } }
+          : {}),
         ...(query.after ? { id: { gt: query.after } } : {}),
         ...(canonicalIds ? { canonicalSubjectId: { in: canonicalIds } } : {}),
       },
@@ -431,7 +446,10 @@ export class AccountService {
       },
     });
     return {
-      nextCursor: rows.length > query.limit ? catalogueCursor(query, rows[query.limit - 1]!.id) : null,
+      nextCursor:
+        rows.length > query.limit
+          ? catalogueCursor(query, rows[query.limit - 1]!.id)
+          : null,
       facts: rows.slice(0, query.limit).map((row) => ({
         id: row.id,
         campus: row.campus.slug,

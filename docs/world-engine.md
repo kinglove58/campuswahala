@@ -1,3 +1,15 @@
+# Current Phase 2.5 additions
+
+Phase 2 was merged as `9427141`. Current world/schema v2 uses canonical subject UUID + published property bindings; the exact three Phase 2 v1 manifests remain served alongside v2. Names and geometry remain separate: verified identity never verifies a drawn coordinate. No published facts or source search output are seeded as production data.
+
+Actual per-zone SHA-versioned SVG bundles load for visible zones. NPC manifest budget is 32 total/6 per zone; render/update budget is 16 nearby active NPCs. Inactive/off-screen NPCs skip movement updates. Art is original vector/procedural work and replaceable independently of engine logic.
+
+Compressed ceilings: manifest 100 KiB, all campus art 400 KiB, individual zone 350 KiB, game JS 650 KiB gzip (conservative sum of all static JS, including lazy chunks), first-campus envelope 1.5 MiB. `check:world-budgets` reports real raw/gzip bytes and integrity; browser throttling reports actual encoded transfer separately. Neither establishes physical 30 FPS.
+
+Public-only PWA cache preserves hashed assets/immutable geometry, never latest pointers, guide facts, private responses or mutation queues. Open exploration/map works offline; reload uses an identity-free static fallback. See ADR 012. Human physical gate: [mobile-device-acceptance](mobile-device-acceptance.md). Research workflow is controlled dispatch/explicit owner opt-in, no longer tied to the obsolete Phase 2 branch.
+
+The following sections describe the original Phase 2 architecture; where v1/budget/research details differ, the current rules above and ADRs 011/012 apply.
+
 # Virtual Campus Engine
 
 ## Content pipeline

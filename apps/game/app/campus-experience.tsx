@@ -737,8 +737,38 @@ export default function CampusExperience({
                         fill="#a16d4d"
                       />
                     ))}
-                    {manifest.transportNodes.map((t) => <g key={t.id}><circle cx={t.x} cy={t.y} r="35" fill="#c99345" /><text x={t.x} y={t.y + 12} textAnchor="middle" fontSize="36" fill="#283b30">S</text></g>)}
-                    {manifest.venues.map((v) => { const b = manifest.buildings.find((b) => b.id === v.buildingId)!; return <text key={v.id} x={b.x + b.width / 2} y={b.y + b.height + 42} fontSize="30" textAnchor="middle" fill={freshInfo(v.id) ? "#225c42" : "#765e40"}>{freshInfo(v.id) ? "✓ " : "◇ "}{venueName(v.id)}</text>; })}
+                    {manifest.transportNodes.map((t) => (
+                      <g key={t.id}>
+                        <circle cx={t.x} cy={t.y} r="35" fill="#c99345" />
+                        <text
+                          x={t.x}
+                          y={t.y + 12}
+                          textAnchor="middle"
+                          fontSize="36"
+                          fill="#283b30"
+                        >
+                          S
+                        </text>
+                      </g>
+                    ))}
+                    {manifest.venues.map((v) => {
+                      const b = manifest.buildings.find(
+                        (b) => b.id === v.buildingId,
+                      )!;
+                      return (
+                        <text
+                          key={v.id}
+                          x={b.x + b.width / 2}
+                          y={b.y + b.height + 42}
+                          fontSize="30"
+                          textAnchor="middle"
+                          fill={freshInfo(v.id) ? "#225c42" : "#765e40"}
+                        >
+                          {freshInfo(v.id) ? "✓ " : "◇ "}
+                          {venueName(v.id)}
+                        </text>
+                      );
+                    })}
                     {destination &&
                       (() => {
                         const s = manifest.spawnPoints.find(
@@ -765,7 +795,9 @@ export default function CampusExperience({
                     />
                   </svg>
                   <p className="fixture">
-                    Virtual campus navigation · compressed geography. ✓ Verified identity · ◇ Fictional venue · S Shuttle. All positions are approximate.
+                    Virtual campus navigation · compressed geography. ✓ Verified
+                    identity · ◇ Fictional venue · S Shuttle. All positions are
+                    approximate.
                   </p>
                   <p>
                     You are in {zone?.name}.{" "}

@@ -7,14 +7,31 @@ export async function cleanupAccounts(db: PrismaClient, now = new Date()) {
       ORDER BY "requestedAt", "id" LIMIT 100 FOR UPDATE SKIP LOCKED`;
     let completed = 0;
     for (const request of requests) {
-      const locked = await tx.$queryRaw<Array<{ id: string }>>`SELECT "id" FROM "User" WHERE "id" = ${request.userId}::uuid FOR UPDATE SKIP LOCKED`;
+      const locked = await tx.$queryRaw<
+        Array<{ id: string }>
+      >`SELECT "id" FROM "User" WHERE "id" = ${request.userId}::uuid FOR UPDATE SKIP LOCKED`;
       if (!locked.length) continue;
       const user = await tx.user.findUnique({ where: { id: request.userId } });
       if (user?.status !== "deletion_pending") continue;
       await tx.factFeedback.deleteMany({ where: { userId: request.userId } });
-      const deleted = await tx.user.deleteMany({ where: { id: request.userId, status: "deletion_pending" } });
+      const reservations = await tx.guestConversion.findMany({
+        where: {
+          userId: request.userId,
+          outcome: "existing_character_conflict",
+        },
+        select: { tokenHash: true },
+      });
+      await tx.guestPlayer.deleteMany({
+        where: { tokenHash: { in: reservations.map((r) => r.tokenHash) } },
+      });
+      const deleted = await tx.user.deleteMany({
+        where: { id: request.userId, status: "deletion_pending" },
+      });
       if (deleted.count === 1) {
-        await tx.deletionRequest.update({ where: { id: request.id }, data: { completedAt: now } });
+        await tx.deletionRequest.update({
+          where: { id: request.id },
+          data: { completedAt: now },
+        });
         completed++;
       }
     }
@@ -33,4 +50,3 @@ export async function cleanupAccounts(db: PrismaClient, now = new Date()) {
   });
   return { deletedAccounts };
 }
-

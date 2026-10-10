@@ -4,7 +4,12 @@ export type Point = { x: number; y: number };
 export type Rect = Point & { width: number; height: number };
 export type Identity =
   | { kind: "fictional"; fixture: true }
-  | { kind: "approximate"; canonicalEntityId: string; displayProperty: string; category: string };
+  | {
+      kind: "approximate";
+      canonicalEntityId: string;
+      displayProperty: string;
+      category: string;
+    };
 export type Zone = Rect & {
   id: string;
   name: string;
@@ -143,8 +148,15 @@ export type WorldManifest = {
     Point & {
       id: string;
       zoneId: string;
-      type: "tree" | "palm" | "bench" | "lamp" | "notice" | "banner"
-    | "shuttle" | "water";
+      type:
+        | "tree"
+        | "palm"
+        | "bench"
+        | "lamp"
+        | "notice"
+        | "banner"
+        | "shuttle"
+        | "water";
       fixture: true;
       placementId?: string;
     }
@@ -286,8 +298,13 @@ export function validateWorld(w: WorldManifest): WorldManifest {
       throw new Error("UNKNOWN_SPAWN");
     if (
       v.identity.kind === "approximate" &&
-      ((!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(v.identity.canonicalEntityId) || !/^[a-z0-9._-]{1,120}$/.test(v.identity.displayProperty)) ||
-        !["building", "location", "hostel", "faculty"].includes(v.identity.category))
+      (!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(
+        v.identity.canonicalEntityId,
+      ) ||
+        !/^[a-z0-9._-]{1,120}$/.test(v.identity.displayProperty) ||
+        !["building", "location", "hostel", "faculty"].includes(
+          v.identity.category,
+        ))
     )
       throw new Error("BAD_SOURCE_ENTITY_LINK");
     if (
@@ -354,7 +371,11 @@ export function validateWorld(w: WorldManifest): WorldManifest {
       road.width > 150
     )
       throw new Error("INVALID_PATH");
-  if (w.npcSpawns.length > 32 || w.zones.some((z) => w.npcSpawns.filter((n) => n.zoneId === z.id).length > 6)) throw new Error("NPC_DENSITY_BUDGET");
+  if (
+    w.npcSpawns.length > 32 ||
+    w.zones.some((z) => w.npcSpawns.filter((n) => n.zoneId === z.id).length > 6)
+  )
+    throw new Error("NPC_DENSITY_BUDGET");
   for (const b of w.assetBundles)
     if (
       !/^\/world-assets\/[a-z0-9/-]+\.[a-f0-9]{12}\.svg$/.test(b.path) ||

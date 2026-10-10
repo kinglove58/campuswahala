@@ -40,12 +40,17 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
-          name: phase-2-visuals
+          name: phase-2.5-visuals
           path: artifacts/*.png
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: failure()
         with:
           name: browser-failures
+          path: test-results/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: browser-measurements
           path: test-results/
   sast:
     runs-on: ubuntu-latest
@@ -88,6 +93,14 @@ jobs:
       - uses: trufflesecurity/trufflehog@6c05c4a00b91aa542267d8e32a8254774799d68d # v3.93.8
         with:
           extra_args: --only-verified
+          version: 3.93.8
+      - name: Verify secrets across complete repository history
+        uses: trufflesecurity/trufflehog@6c05c4a00b91aa542267d8e32a8254774799d68d
+        with:
+          base: ""
+          head: ${{ github.sha }}
+          extra_args: --only-verified
+          version: 3.93.8
   containers:
     runs-on: ubuntu-latest
     steps:
@@ -123,4 +136,3 @@ jobs:
         with:
           name: api-sbom
           path: sbom.json
-

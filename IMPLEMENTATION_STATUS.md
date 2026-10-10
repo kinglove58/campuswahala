@@ -1,6 +1,6 @@
 # CampusWahala implementation status
 
-Updated: 10 October 2026. Phase 2 engine review candidate; full Phase 2 acceptance remains open. Phase 0.5 and Phase 1 security contracts are preserved. No production launch, merge or Phase 3 implementation.
+Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 authenticity/hardening is under validation. Full content/device acceptance remains open. Phase 0.5 and Phase 1 security contracts are preserved. No production launch or Phase 3 implementation.
 
 | Deliverable                                                          | Status                                            | Scope / remaining boundary                                                                                                                                                    |
 | -------------------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -18,3 +18,5 @@ Updated: 10 October 2026. Phase 2 engine review candidate; full Phase 2 acceptan
 | Phase 3 / rewards / money / ads / commerce / chat / multiplayer      | Not started                                       | Phase 2 review required; none activated                                                                                                                                       |
 
 [Phase 2 review](docs/phase-2-review.md) contains the exact file inventory and all fifteen requested report items. [World engine](docs/world-engine.md) documents manifests, authority, assets/cache/version rules and manual device checks. [ADR 010](docs/decisions/010-versioned-virtual-world.md) is proposed for review. Historical [Phase 1 review](docs/phase-1-review.md) and [CI triage](docs/ci-triage-phase-1.md) remain intact.
+
+Phase 2.5 adds subject/property identity with migration preservation, scoped pagination beyond 100 facts, strict source/status constraints and official-only critical policy; safe owner-bound guest conflicts; concurrent deletion claims; controlled research; world v2 with preserved v1; per-zone original art and bounded ambient NPCs; public-only PWA cache; constrained-network tests and physical acceptance procedures. These are implemented changes awaiting final remote validation/art/device review, not a claim that all acceptance gates are closed.

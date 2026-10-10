@@ -203,10 +203,18 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
             expiresAt: new Date(Date.now() + 86400000).toISOString(),
           },
         });
-        await expect(a.convert(first.token, extraGuest)).rejects.toThrow("EXISTING_CHARACTER_CONFLICT");
-        expect(await repo.findByTokenHash(hashGuestToken(extraGuest, key))).not.toBeNull();
-        await expect(a.convert(first.token, extraGuest)).rejects.toThrow("EXISTING_CHARACTER_CONFLICT");
-        await expect(b.convert(second.token, extraGuest)).rejects.toThrow("GUEST_ALREADY_CONSUMED");
+        await expect(a.convert(first.token, extraGuest)).rejects.toThrow(
+          "EXISTING_CHARACTER_CONFLICT",
+        );
+        expect(
+          await repo.findByTokenHash(hashGuestToken(extraGuest, key)),
+        ).not.toBeNull();
+        await expect(a.convert(first.token, extraGuest)).rejects.toThrow(
+          "EXISTING_CHARACTER_CONFLICT",
+        );
+        await expect(b.convert(second.token, extraGuest)).rejects.toThrow(
+          "GUEST_ALREADY_CONSUMED",
+        );
         const worldInput = {
           campusId: "futa",
           worldVersion: 2,
@@ -256,6 +264,9 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
           await db.playerWorldState.count({ where: { userId: userA } }),
         ).toBe(0);
         expect(await db.user.findUnique({ where: { id: userA } })).toBeNull();
+        expect(
+          await repo.findByTokenHash(hashGuestToken(extraGuest, key)),
+        ).toBeNull();
         expect(
           await db.factFeedback.count({
             where: { factId: { in: feedbackFactIds } },

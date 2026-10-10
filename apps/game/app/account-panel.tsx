@@ -171,13 +171,26 @@ export function GuidePanel({ campus }: { campus: string }) {
     if (!cursor || loadingMore) return;
     setLoadingMore(true);
     try {
-      const r = await fetch(`/api/guide?campus=${encodeURIComponent(campus)}&limit=100&cursor=${encodeURIComponent(cursor)}`);
+      const r = await fetch(
+        `/api/guide?campus=${encodeURIComponent(campus)}&limit=100&cursor=${encodeURIComponent(cursor)}`,
+      );
       if (!r.ok) throw Error();
       const data = await r.json();
-      setFacts((old) => [...old, ...(data.facts ?? []).filter((f: Fact) => f.campus === campus && new Date(f.staleAt).getTime() > Date.now() && !old.some((o) => o.id === f.id))]);
+      setFacts((old) => [
+        ...old,
+        ...(data.facts ?? []).filter(
+          (f: Fact) =>
+            f.campus === campus &&
+            new Date(f.staleAt).getTime() > Date.now() &&
+            !old.some((o) => o.id === f.id),
+        ),
+      ]);
       setCursor(data.nextCursor ?? null);
-    } catch { setMessage("More campus information could not be loaded. Please retry."); }
-    finally { setLoadingMore(false); }
+    } catch {
+      setMessage("More campus information could not be loaded. Please retry.");
+    } finally {
+      setLoadingMore(false);
+    }
   }
   async function feedback() {
     try {
@@ -223,7 +236,11 @@ export function GuidePanel({ campus }: { campus: string }) {
           ))}
         </article>
       ))}
-      {cursor && <button disabled={loadingMore} onClick={() => void more()}>{loadingMore ? "Opening more places…" : "More campus information"}</button>}
+      {cursor && (
+        <button disabled={loadingMore} onClick={() => void more()}>
+          {loadingMore ? "Opening more places…" : "More campus information"}
+        </button>
+      )}
       {facts.length > 0 && (
         <>
           <h3>Send feedback</h3>

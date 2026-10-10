@@ -90,7 +90,8 @@ class ApiController {
   ) {
     if (!isCampus(campus) || !["1", "2"].includes(version))
       throw new HttpException("WORLD_NOT_FOUND", 404);
-    const world = version === "1" ? legacyWorlds[campus] : compiledWorlds[campus];
+    const world =
+      version === "1" ? legacyWorlds[campus] : compiledWorlds[campus];
     response.setHeader("Cache-Control", "public, max-age=31536000, immutable");
     response.setHeader(
       "ETag",
@@ -114,8 +115,13 @@ class ApiController {
     @Param("campus") campus: string,
   ) {
     if (!isCampus(campus)) throw new HttpException("WORLD_NOT_FOUND", 404);
-    const ids = compiledWorlds[campus].venues.flatMap((v) => v.identity.kind === "approximate" ? [v.identity.canonicalEntityId] : []);
-    const published = await this.accounts.publishedCatalogue({ campus, limit: 100 }, ids);
+    const ids = compiledWorlds[campus].venues.flatMap((v) =>
+      v.identity.kind === "approximate" ? [v.identity.canonicalEntityId] : [],
+    );
+    const published = await this.accounts.publishedCatalogue(
+      { campus, limit: 100 },
+      ids,
+    );
     return {
       venues: compileWorldInformation(compiledWorlds[campus], published.facts),
     };

@@ -74,8 +74,18 @@ export default function CampusWorld({
     let disposed = false,
       game: PhaserType.Game | undefined;
     const npcIndex = new Map(manifest.npcSpawns.map((n) => [n.id, n]));
-    const zoneBuildings = new Map(manifest.zones.map((z) => [z.id, manifest.buildings.filter((b) => b.zoneId === z.id)]));
-    const zoneDecorations = new Map(manifest.zones.map((z) => [z.id, manifest.decorations.filter((d) => d.zoneId === z.id)]));
+    const zoneBuildings = new Map(
+      manifest.zones.map((z) => [
+        z.id,
+        manifest.buildings.filter((b) => b.zoneId === z.id),
+      ]),
+    );
+    const zoneDecorations = new Map(
+      manifest.zones.map((z) => [
+        z.id,
+        manifest.decorations.filter((d) => d.zoneId === z.id),
+      ]),
+    );
     const engine = new WorldEngine(manifest, spawnId),
       boot = performance.now();
     const reduced = window.matchMedia(
@@ -138,7 +148,13 @@ export default function CampusWorld({
                 // Compressed virtual crossings, never physical road directions.
                 const p = road.points[0]!;
                 roads.fillStyle(0xf1ecda, 0.85);
-                for (let j = 0; j < 6; j++) roads.fillRect(p.x + 100 + j * 13, p.y - road.width / 2 + 10, 7, road.width - 20);
+                for (let j = 0; j < 6; j++)
+                  roads.fillRect(
+                    p.x + 100 + j * 13,
+                    p.y - road.width / 2 + 10,
+                    7,
+                    road.width - 20,
+                  );
                 roads.lineStyle(2, 0xf7e9bf, 0.6);
                 roads.strokePoints(road.points);
               }
@@ -200,7 +216,9 @@ export default function CampusWorld({
           drawAvatar() {
             this.avatarKey = JSON.stringify(props.current.appearance);
             this.person.removeAll(true);
-            const ring = this.add.graphics(); ring.lineStyle(2, 0xffedb0, 0.9); ring.strokeEllipse(0, 20, 38, 14);
+            const ring = this.add.graphics();
+            ring.lineStyle(2, 0xffedb0, 0.9);
+            ring.strokeEllipse(0, 20, 38, 14);
             this.person.add([ring, this.avatar(props.current.appearance)]);
           }
           avatar(a: Appearance) {
@@ -257,7 +275,9 @@ export default function CampusWorld({
               g.lineStyle(1, 0xdac09a);
               g.strokeRect(-5, -4, 10, 7);
             }
-            g.fillStyle(0x221f1d); g.fillCircle(-3, -21, 1); g.fillCircle(3, -21, 1);
+            g.fillStyle(0x221f1d);
+            g.fillCircle(-3, -21, 1);
+            g.fillCircle(3, -21, 1);
             return g;
           }
           updateChunks() {
@@ -267,9 +287,7 @@ export default function CampusWorld({
                 chunk.destroy(true);
                 this.chunks.delete(id);
                 for (const [nid, n] of this.npcs)
-                  if (
-                    npcIndex.get(nid)?.zoneId === id
-                  ) {
+                  if (npcIndex.get(nid)?.zoneId === id) {
                     n.destroy(true);
                     this.npcs.delete(nid);
                   }
@@ -300,27 +318,48 @@ export default function CampusWorld({
                     end: performance.now(),
                   });
                 });
-                this.load.once("loaderror", () => {
+                const failed = (file: PhaserType.Loader.File) => {
+                  if (file.key !== bundle.id) return;
                   this.assetFailures++;
                   this.failedBundles.add(bundle.id);
                   this.loadingBundles.delete(bundle.id);
-                });
+                  this.load.off("loaderror", failed);
+                };
+                this.load.on("loaderror", failed);
+                this.load.once(`filecomplete-svg-${bundle.id}`, () =>
+                  this.load.off("loaderror", failed),
+                );
                 if (!this.load.isLoading()) this.load.start();
               }
               const g = this.add.graphics();
               chunk.add(g);
               // Ground variation is deterministic, cosmetic and drawn once per chunk.
               for (let j = 0; j < 48; j++) {
-                const x = zone.x + 32 + (j * 131 % (zone.width - 64));
-                const y = zone.y + 32 + (j * 197 % (zone.height - 64));
-                g.fillStyle(j % 2 ? 0xf3e6bc : manifest.palette.foliage, j % 2 ? 0.2 : 0.09);
-                g.fillEllipse(x, y, 25 + j % 13, 12);
+                const x = zone.x + 32 + ((j * 131) % (zone.width - 64));
+                const y = zone.y + 32 + ((j * 197) % (zone.height - 64));
+                g.fillStyle(
+                  j % 2 ? 0xf3e6bc : manifest.palette.foliage,
+                  j % 2 ? 0.2 : 0.09,
+                );
+                g.fillEllipse(x, y, 25 + (j % 13), 12);
               }
               if (manifest.campusId === "unilag" && zone.type === "social") {
                 g.fillStyle(manifest.palette.water, 0.8);
-                g.fillRoundedRect(zone.x + 12, zone.y + 12, zone.width - 24, 125, 30);
+                g.fillRoundedRect(
+                  zone.x + 12,
+                  zone.y + 12,
+                  zone.width - 24,
+                  125,
+                  30,
+                );
                 g.lineStyle(2, 0xd6eee3, 0.7);
-                for (let j = 0; j < 10; j++) g.lineBetween(zone.x + 60 + j * 90, zone.y + 65, zone.x + 100 + j * 90, zone.y + 65);
+                for (let j = 0; j < 10; j++)
+                  g.lineBetween(
+                    zone.x + 60 + j * 90,
+                    zone.y + 65,
+                    zone.x + 100 + j * 90,
+                    zone.y + 65,
+                  );
               }
               for (const b of zoneBuildings.get(zone.id) ?? []) {
                 // Long projected shadow and visible wall base give roofs height.
@@ -340,21 +379,36 @@ export default function CampusWorld({
                 );
                 if (manifest.campusId === "futa") {
                   g.fillStyle(0xb98060);
-                  g.fillTriangle(b.x - 8, b.y - 14, b.x + b.width / 2, b.y - 42, b.x + b.width + 8, b.y - 14);
+                  g.fillTriangle(
+                    b.x - 8,
+                    b.y - 14,
+                    b.x + b.width / 2,
+                    b.y - 42,
+                    b.x + b.width + 8,
+                    b.y - 14,
+                  );
                   g.lineStyle(1, 0x713f2d, 0.45);
-                  for (let j = 0; j < 8; j++) g.lineBetween(b.x + j * b.width / 8, b.y - 8, b.x + j * b.width / 8, b.y + 20);
+                  for (let j = 0; j < 8; j++)
+                    g.lineBetween(
+                      b.x + (j * b.width) / 8,
+                      b.y - 8,
+                      b.x + (j * b.width) / 8,
+                      b.y + 20,
+                    );
                 } else if (manifest.campusId === "oau") {
                   g.fillStyle(0xb5aa8d);
                   g.fillRect(b.x - 14, b.y - 26, b.width + 28, 16);
                   g.fillStyle(0xe9dfc2);
-                  for (let j = 0; j < 8; j++) g.fillRect(b.x + j * b.width / 8, b.y - 32, 8, 32);
+                  for (let j = 0; j < 8; j++)
+                    g.fillRect(b.x + (j * b.width) / 8, b.y - 32, 8, 32);
                   g.fillStyle(0x725f4a, 0.25);
                   g.fillRect(b.x - 8, b.y + 16, b.width + 16, 8);
                 } else {
                   g.fillStyle(0x39666f);
                   g.fillRoundedRect(b.x - 6, b.y - 25, b.width + 12, 15, 4);
                   g.fillStyle(0xf4efd9);
-                  for (let j = 0; j < 5; j++) g.fillRect(b.x + 15 + j * 40, b.y + 18, 6, b.height - 28);
+                  for (let j = 0; j < 5; j++)
+                    g.fillRect(b.x + 15 + j * 40, b.y + 18, 6, b.height - 28);
                 }
                 if (b.silhouette === "hall") {
                   g.fillStyle(0xf5ecd6);
@@ -368,9 +422,16 @@ export default function CampusWorld({
                     g.fillRect(b.x + 15 + i * 42, b.y + 76, 22, 16);
                 }
                 g.lineStyle(2, 0xc6bea8);
-                for (let j = 0; j < 4; j++) g.strokeRect(b.x + 15 + j * 42, b.y + 43, 22, 20);
+                for (let j = 0; j < 4; j++)
+                  g.strokeRect(b.x + 15 + j * 42, b.y + 43, 22, 20);
                 g.fillStyle(0x31513c);
-                g.fillRoundedRect(b.x + b.width / 2 - 32, b.y + b.height - 50, 64, 15, 3);
+                g.fillRoundedRect(
+                  b.x + b.width / 2 - 32,
+                  b.y + b.height - 50,
+                  64,
+                  15,
+                  3,
+                );
                 g.fillStyle(0xf0e0bb);
                 g.fillRect(b.x + b.width / 2 - 15, b.y + b.height + 3, 30, 6);
                 g.fillRect(b.x + b.width / 2 - 22, b.y + b.height + 10, 44, 6);
@@ -435,14 +496,22 @@ export default function CampusWorld({
                   }
                 }
                 if (d.type === "bench") {
-                  g.fillStyle(0x2e4134, 0.15); g.fillEllipse(d.x + 4, d.y + 9, 48, 14);
-                  g.fillStyle(0x8d6845); g.fillRoundedRect(d.x - 24, d.y - 5, 48, 7, 2); g.fillRoundedRect(d.x - 24, d.y - 16, 48, 6, 2);
-                  g.fillStyle(0x3c493e); g.fillRect(d.x - 18, d.y + 1, 4, 10); g.fillRect(d.x + 14, d.y + 1, 4, 10);
+                  g.fillStyle(0x2e4134, 0.15);
+                  g.fillEllipse(d.x + 4, d.y + 9, 48, 14);
+                  g.fillStyle(0x8d6845);
+                  g.fillRoundedRect(d.x - 24, d.y - 5, 48, 7, 2);
+                  g.fillRoundedRect(d.x - 24, d.y - 16, 48, 6, 2);
+                  g.fillStyle(0x3c493e);
+                  g.fillRect(d.x - 18, d.y + 1, 4, 10);
+                  g.fillRect(d.x + 14, d.y + 1, 4, 10);
                 }
                 if (d.type === "banner") {
-                  g.fillStyle(0x536149); g.fillRect(d.x - 2, d.y - 46, 4, 50);
-                  g.fillStyle(0xc87651); g.fillRoundedRect(d.x + 2, d.y - 46, 31, 37, 2);
-                  g.lineStyle(3, 0xf4d9a5); g.lineBetween(d.x + 9, d.y - 34, d.x + 25, d.y - 34);
+                  g.fillStyle(0x536149);
+                  g.fillRect(d.x - 2, d.y - 46, 4, 50);
+                  g.fillStyle(0xc87651);
+                  g.fillRoundedRect(d.x + 2, d.y - 46, 31, 37, 2);
+                  g.lineStyle(3, 0xf4d9a5);
+                  g.lineBetween(d.x + 9, d.y - 34, d.x + 25, d.y - 34);
                 }
                 if (d.type === "lamp") {
                   g.fillStyle(0x5b6050);
@@ -506,8 +575,13 @@ export default function CampusWorld({
             for (const [id, npc] of this.npcs) {
               const n = npcIndex.get(id)!;
               const view = this.cameras.main.worldView;
-              const nearby = Math.abs(npc.x - engine.position.x) < view.width && Math.abs(npc.y - engine.position.y) < view.height;
-              const active = nearby && clock.hour >= n.activeHours[0] && clock.hour < n.activeHours[1];
+              const nearby =
+                Math.abs(npc.x - engine.position.x) < view.width &&
+                Math.abs(npc.y - engine.position.y) < view.height;
+              const active =
+                nearby &&
+                clock.hour >= n.activeHours[0] &&
+                clock.hour < n.activeHours[1];
               npc.setVisible(active);
               if (active && !p.paused && !reduced) {
                 const pos = npcPosition(n, engine.elapsedMs);

@@ -136,7 +136,9 @@ export class CampusIntelligencePipeline {
     private readonly clock: () => Date = () => new Date(),
   ) {}
   async discover(campusSlug?: string) {
-    for (const item of officialDiscovery.filter((i) => !campusSlug || i.campus === campusSlug)) {
+    for (const item of officialDiscovery.filter(
+      (i) => !campusSlug || i.campus === campusSlug,
+    )) {
       const campus = await this.db.campus.findUnique({
         where: { slug: item.campus },
       });
@@ -279,7 +281,9 @@ export class CampusIntelligencePipeline {
       this.metrics.increment("fetch_count");
       if (response.status === 200 && observation.evidence.length === 0) {
         const candidates = await this.extractor.extract({
-          body: sourceAdapter(response.headers["content-type"]).decode(response.body),
+          body: sourceAdapter(response.headers["content-type"]).decode(
+            response.body,
+          ),
           sourceUrl: source.url,
           expectedUniversityName: source.campus.university.name,
         });
@@ -299,28 +303,44 @@ export class CampusIntelligencePipeline {
           await this.db.$transaction(async (tx) => {
             const propertyKey = candidate.propertyKey;
             const candidateSubjectKey = candidate.subjectKey;
-            const subjects = await tx.campusSubject.findMany({ where: {
-              campusId: source.campusId, subjectType: candidate.entityType,
-            } });
+            const subjects = await tx.campusSubject.findMany({
+              where: {
+                campusId: source.campusId,
+                subjectType: candidate.entityType,
+              },
+            });
             // Exact aliases only. Ambiguous names stay separate candidates.
-            const canonicalSubjectId = subjects.find((s) => s.originKey === candidateSubjectKey)?.id ?? (propertyKey === "name"
-              ? matchEntity(value, subjects).id : null);
-            const identity = canonicalSubjectId ? {
-              campusId_subjectType_canonicalSubjectId_propertyKey: {
-                campusId: source.campusId, subjectType: candidate.entityType, canonicalSubjectId, propertyKey,
-              },
-            } : {
-              campusId_subjectType_candidateSubjectKey_propertyKey: {
-                campusId: source.campusId, subjectType: candidate.entityType, candidateSubjectKey, propertyKey,
-              },
-            };
+            const canonicalSubjectId =
+              subjects.find((s) => s.originKey === candidateSubjectKey)?.id ??
+              (propertyKey === "name" ? matchEntity(value, subjects).id : null);
+            const identity = canonicalSubjectId
+              ? {
+                  campusId_subjectType_canonicalSubjectId_propertyKey: {
+                    campusId: source.campusId,
+                    subjectType: candidate.entityType,
+                    canonicalSubjectId,
+                    propertyKey,
+                  },
+                }
+              : {
+                  campusId_subjectType_candidateSubjectKey_propertyKey: {
+                    campusId: source.campusId,
+                    subjectType: candidate.entityType,
+                    candidateSubjectKey,
+                    propertyKey,
+                  },
+                };
             const fact = await tx.campusFact.upsert({
               where: identity,
               update: {},
               create: {
-                campusId: source.campusId, subjectType: candidate.entityType,
-                propertyKey, canonicalSubjectId,
-                candidateSubjectKey: canonicalSubjectId ? null : candidateSubjectKey,
+                campusId: source.campusId,
+                subjectType: candidate.entityType,
+                propertyKey,
+                canonicalSubjectId,
+                candidateSubjectKey: canonicalSubjectId
+                  ? null
+                  : candidateSubjectKey,
               },
             });
             const evidence = await tx.evidence.create({
@@ -489,7 +509,9 @@ export class CampusIntelligencePipeline {
             const e = link.evidence,
               source = e.observation.source;
             const authorityAllowed = officialOnly
-              ? (category === "critical" ? source.authorityClass === "official" : ["official", "institutional"].includes(source.authorityClass))
+              ? category === "critical"
+                ? source.authorityClass === "official"
+                : ["official", "institutional"].includes(source.authorityClass)
               : category === "cultural"
                 ? [
                     "official",
@@ -516,7 +538,9 @@ export class CampusIntelligencePipeline {
       for (const version of fact.versions) {
         const category = factCategory.parse(version.category);
         const evidence: PolicyEvidence[] = version.evidence.map((link) => ({
-          authority: sourceAuthority.parse(link.evidence.observation.source.authorityClass),
+          authority: sourceAuthority.parse(
+            link.evidence.observation.source.authorityClass,
+          ),
           independentGroup: link.evidence.observation.source.independentGroup,
           contentHash: link.evidence.observation.contentHash,
           confidence: link.evidence.confidence,
@@ -582,13 +606,37 @@ export class CampusIntelligencePipeline {
               staleAt: decision.staleAt,
             },
           });
-          if (!fact.canonicalSubjectId && fact.propertyKey === "name" && fact.candidateSubjectKey && evidence.some((e) => e.authority === "official")) {
-            const idHash = createHash("sha256").update(`${fact.campusId}:${fact.subjectType}:${fact.candidateSubjectKey}`).digest("hex");
-            const subjectId = `${idHash.slice(0,8)}-${idHash.slice(8,12)}-4${idHash.slice(13,16)}-a${idHash.slice(17,20)}-${idHash.slice(20,32)}`;
-            await tx.campusSubject.upsert({ where: { id: subjectId }, update: {}, create: {
-              id: subjectId, campusId: fact.campusId, subjectType: fact.subjectType, name: String(version.value), aliases: [], originKey: fact.candidateSubjectKey,
-            } });
-            await tx.campusFact.update({ where: { id: fact.id }, data: { canonicalSubjectId: subjectId, candidateSubjectKey: null } });
+          if (
+            !fact.canonicalSubjectId &&
+            fact.propertyKey === "name" &&
+            fact.candidateSubjectKey &&
+            evidence.some((e) => e.authority === "official")
+          ) {
+            const idHash = createHash("sha256")
+              .update(
+                `${fact.campusId}:${fact.subjectType}:${fact.candidateSubjectKey}`,
+              )
+              .digest("hex");
+            const subjectId = `${idHash.slice(0, 8)}-${idHash.slice(8, 12)}-4${idHash.slice(13, 16)}-a${idHash.slice(17, 20)}-${idHash.slice(20, 32)}`;
+            await tx.campusSubject.upsert({
+              where: { id: subjectId },
+              update: {},
+              create: {
+                id: subjectId,
+                campusId: fact.campusId,
+                subjectType: fact.subjectType,
+                name: String(version.value),
+                aliases: [],
+                originKey: fact.candidateSubjectKey,
+              },
+            });
+            await tx.campusFact.update({
+              where: { id: fact.id },
+              data: {
+                canonicalSubjectId: subjectId,
+                candidateSubjectKey: null,
+              },
+            });
           }
           // Whole fixture packs are never promoted by this one fact.
           if (

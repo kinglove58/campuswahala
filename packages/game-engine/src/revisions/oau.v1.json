@@ -1,1 +1,1190 @@
-{"schemaVersion":1,"campusId":"oau","version":1,"sourceRevision":"geometry-2026-10-10.1","geography":"compressed campus geography","bounds":{"x":0,"y":0,"width":2560,"height":2048},"defaultSpawnId":"spawn-arrival","palette":{"ground":14541508,"roof":10257765,"wall":15853516,"foliage":7046227,"water":9153448},"zones":[{"id":"zone-0","name":"Arrival avenue","type":"transport","x":0,"y":0,"width":1280,"height":1024,"bundle":"oau-environment"},{"id":"zone-1","name":"Learning terraces","type":"academic","x":1280,"y":0,"width":1280,"height":1024,"bundle":"oau-environment"},{"id":"zone-2","name":"Meeting gardens","type":"social","x":0,"y":1024,"width":1280,"height":1024,"bundle":"oau-environment"},{"id":"zone-3","name":"Residence court","type":"hostel","x":1280,"y":1024,"width":1280,"height":1024,"bundle":"oau-environment"}],"roads":[{"id":"road-0","width":72,"points":[{"x":20,"y":512},{"x":1260,"y":512}]},{"id":"road-1","width":72,"points":[{"x":1300,"y":512},{"x":2540,"y":512}]},{"id":"road-2","width":72,"points":[{"x":20,"y":1536},{"x":1260,"y":1536}]},{"id":"road-3","width":72,"points":[{"x":1300,"y":1536},{"x":2540,"y":1536}]},{"id":"crossroad-0","width":72,"points":[{"x":24,"y":512},{"x":2536,"y":512}]},{"id":"crossroad-1","width":72,"points":[{"x":24,"y":1536},{"x":2536,"y":1536}]}],"paths":[{"id":"path-0","width":42,"points":[{"x":640,"y":20},{"x":640,"y":1004}]},{"id":"path-1","width":42,"points":[{"x":1920,"y":20},{"x":1920,"y":1004}]},{"id":"path-2","width":42,"points":[{"x":640,"y":1044},{"x":640,"y":2028}]},{"id":"path-3","width":42,"points":[{"x":1920,"y":1044},{"x":1920,"y":2028}]},{"id":"spine-0","width":48,"points":[{"x":640,"y":24},{"x":640,"y":2024}]},{"id":"spine-1","width":48,"points":[{"x":1920,"y":24},{"x":1920,"y":2024}]},{"id":"entrance-path-0","width":32,"points":[{"x":470,"y":422},{"x":470,"y":512}]},{"id":"entrance-path-1","width":32,"points":[{"x":1750,"y":422},{"x":1750,"y":512}]},{"id":"entrance-path-2","width":32,"points":[{"x":470,"y":1446},{"x":470,"y":1536}]},{"id":"entrance-path-3","width":32,"points":[{"x":1750,"y":1446},{"x":1750,"y":1536}]},{"id":"entrance-path-4","width":32,"points":[{"x":840,"y":422},{"x":840,"y":512}]}],"buildings":[{"id":"building-0","zoneId":"zone-0","x":380,"y":267,"width":180,"height":125,"silhouette":"hall","entrance":{"x":470,"y":422}},{"id":"building-1","zoneId":"zone-1","x":1660,"y":267,"width":180,"height":125,"silhouette":"hall","entrance":{"x":1750,"y":422}},{"id":"building-2","zoneId":"zone-2","x":380,"y":1291,"width":180,"height":125,"silhouette":"hall","entrance":{"x":470,"y":1446}},{"id":"building-3","zoneId":"zone-3","x":1660,"y":1291,"width":180,"height":125,"silhouette":"market","entrance":{"x":1750,"y":1446}},{"id":"building-4","zoneId":"zone-0","x":750,"y":267,"width":180,"height":125,"silhouette":"hall","entrance":{"x":840,"y":422}}],"venues":[{"id":"venue-0","zoneId":"zone-0","buildingId":"building-0","name":"Arrival pavilion","description":"A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.","type":"social","identity":{"kind":"fictional","fixture":true},"presentation":"panel","safeSpawnId":"spawn-venue-0","hours":[6,22],"futureActivities":[]},{"id":"venue-1","zoneId":"zone-1","buildingId":"building-1","name":"Study terrace","description":"A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.","type":"library","identity":{"kind":"approximate","factKey":"library.name","category":"building"},"presentation":"interior","safeSpawnId":"spawn-venue-1","hours":[6,22],"futureActivities":[]},{"id":"venue-2","zoneId":"zone-2","buildingId":"building-2","name":"Lecture hall","description":"A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.","type":"lecture_hall","identity":{"kind":"fictional","fixture":true},"presentation":"interior","safeSpawnId":"spawn-venue-2","hours":[6,22],"futureActivities":[]},{"id":"venue-3","zoneId":"zone-3","buildingId":"building-3","name":"Garden café","description":"A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.","type":"food","identity":{"kind":"fictional","fixture":true},"presentation":"panel","safeSpawnId":"spawn-venue-3","hours":[6,22],"futureActivities":[]},{"id":"venue-4","zoneId":"zone-0","buildingId":"building-4","name":"Common room","description":"A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.","type":"hostel","identity":{"kind":"fictional","fixture":true},"presentation":"interior","safeSpawnId":"spawn-venue-4","hours":[6,22],"futureActivities":[]}],"spawnPoints":[{"id":"spawn-arrival","zoneId":"zone-0","x":640,"y":602},{"id":"spawn-zone-1","zoneId":"zone-1","x":1920,"y":602},{"id":"spawn-zone-2","zoneId":"zone-2","x":640,"y":1626},{"id":"spawn-zone-3","zoneId":"zone-3","x":1920,"y":1626},{"id":"spawn-venue-0","zoneId":"zone-0","x":470,"y":422},{"id":"spawn-venue-1","zoneId":"zone-1","x":1750,"y":422},{"id":"spawn-venue-2","zoneId":"zone-2","x":470,"y":1446},{"id":"spawn-venue-3","zoneId":"zone-3","x":1750,"y":1446},{"id":"spawn-venue-4","zoneId":"zone-0","x":840,"y":422}],"transportNodes":[{"id":"transport-0","zoneId":"zone-0","name":"Arrival avenue shuttle","type":"shuttle","x":750,"y":577,"destinations":[{"spawnId":"spawn-zone-1","virtualMinutes":4},{"spawnId":"spawn-zone-2","virtualMinutes":5},{"spawnId":"spawn-zone-3","virtualMinutes":6}]},{"id":"transport-1","zoneId":"zone-1","name":"Learning terraces shuttle","type":"shuttle","x":2030,"y":577,"destinations":[{"spawnId":"spawn-arrival","virtualMinutes":3},{"spawnId":"spawn-zone-2","virtualMinutes":5},{"spawnId":"spawn-zone-3","virtualMinutes":6}]},{"id":"transport-2","zoneId":"zone-2","name":"Meeting gardens shuttle","type":"shuttle","x":750,"y":1601,"destinations":[{"spawnId":"spawn-arrival","virtualMinutes":3},{"spawnId":"spawn-zone-1","virtualMinutes":4},{"spawnId":"spawn-zone-3","virtualMinutes":6}]},{"id":"transport-3","zoneId":"zone-3","name":"Residence court shuttle","type":"shuttle","x":2030,"y":1601,"destinations":[{"spawnId":"spawn-arrival","virtualMinutes":3},{"spawnId":"spawn-zone-1","virtualMinutes":4},{"spawnId":"spawn-zone-2","virtualMinutes":5}]}],"interactionPoints":[{"id":"shuttle-interaction-0","zoneId":"zone-0","x":750,"y":577,"label":"Take shuttle","command":"TRAVEL","transportId":"transport-0","radius":100},{"id":"notice-0","zoneId":"zone-0","x":540,"y":587,"label":"Check notice board","command":"VIEW_NOTICE","radius":65},{"id":"talk-0","zoneId":"zone-0","x":460,"y":512,"label":"Talk to student","command":"TALK_TO_NPC","npcId":"npc-0","radius":100},{"id":"shuttle-interaction-1","zoneId":"zone-1","x":2030,"y":577,"label":"Take shuttle","command":"TRAVEL","transportId":"transport-1","radius":100},{"id":"notice-1","zoneId":"zone-1","x":1820,"y":587,"label":"Check notice board","command":"VIEW_NOTICE","radius":65},{"id":"talk-1","zoneId":"zone-1","x":1740,"y":512,"label":"Talk to vendor","command":"TALK_TO_NPC","npcId":"npc-1","radius":100},{"id":"shuttle-interaction-2","zoneId":"zone-2","x":750,"y":1601,"label":"Take shuttle","command":"TRAVEL","transportId":"transport-2","radius":100},{"id":"notice-2","zoneId":"zone-2","x":540,"y":1611,"label":"Check notice board","command":"VIEW_NOTICE","radius":65},{"id":"talk-2","zoneId":"zone-2","x":460,"y":1536,"label":"Talk to security","command":"TALK_TO_NPC","npcId":"npc-2","radius":100},{"id":"shuttle-interaction-3","zoneId":"zone-3","x":2030,"y":1601,"label":"Take shuttle","command":"TRAVEL","transportId":"transport-3","radius":100},{"id":"notice-3","zoneId":"zone-3","x":1820,"y":1611,"label":"Check notice board","command":"VIEW_NOTICE","radius":65},{"id":"talk-3","zoneId":"zone-3","x":1740,"y":1536,"label":"Talk to shuttle operator","command":"TALK_TO_NPC","npcId":"npc-3","radius":100},{"id":"enter-0","zoneId":"zone-0","x":470,"y":422,"label":"Enter Arrival pavilion","command":"ENTER_VENUE","venueId":"venue-0","radius":78},{"id":"enter-1","zoneId":"zone-1","x":1750,"y":422,"label":"Enter Study terrace","command":"ENTER_VENUE","venueId":"venue-1","radius":78},{"id":"enter-2","zoneId":"zone-2","x":470,"y":1446,"label":"Enter Lecture hall","command":"ENTER_VENUE","venueId":"venue-2","radius":78},{"id":"enter-3","zoneId":"zone-3","x":1750,"y":1446,"label":"Enter Garden café","command":"ENTER_VENUE","venueId":"venue-3","radius":78},{"id":"enter-4","zoneId":"zone-0","x":840,"y":422,"label":"Enter Common room","command":"ENTER_VENUE","venueId":"venue-4","radius":78}],"decorations":[{"id":"shuttle-prop-0","zoneId":"zone-0","x":790,"y":567,"type":"shuttle","fixture":true},{"id":"board-0","zoneId":"zone-0","x":540,"y":587,"type":"notice","fixture":true},{"id":"tree-0-0","zoneId":"zone-0","x":70,"y":60,"type":"tree","fixture":true},{"id":"tree-0-1","zoneId":"zone-0","x":243,"y":289,"type":"tree","fixture":true},{"id":"tree-0-4","zoneId":"zone-0","x":762,"y":72,"type":"tree","fixture":true},{"id":"tree-0-7","zoneId":"zone-0","x":141,"y":759,"type":"tree","fixture":true},{"id":"tree-0-8","zoneId":"zone-0","x":314,"y":84,"type":"tree","fixture":true},{"id":"tree-0-11","zoneId":"zone-0","x":833,"y":771,"type":"tree","fixture":true},{"id":"tree-0-12","zoneId":"zone-0","x":1006,"y":96,"type":"tree","fixture":true},{"id":"tree-0-13","zoneId":"zone-0","x":1179,"y":325,"type":"tree","fixture":true},{"id":"tree-0-15","zoneId":"zone-0","x":385,"y":783,"type":"tree","fixture":true},{"id":"lamp-0-0","zoneId":"zone-0","x":100,"y":457,"type":"lamp","fixture":true},{"id":"lamp-0-1","zoneId":"zone-0","x":460,"y":457,"type":"lamp","fixture":true},{"id":"lamp-0-2","zoneId":"zone-0","x":820,"y":457,"type":"lamp","fixture":true},{"id":"lamp-0-3","zoneId":"zone-0","x":1180,"y":457,"type":"lamp","fixture":true},{"id":"shuttle-prop-1","zoneId":"zone-1","x":2070,"y":567,"type":"shuttle","fixture":true},{"id":"board-1","zoneId":"zone-1","x":1820,"y":587,"type":"notice","fixture":true},{"id":"tree-1-0","zoneId":"zone-1","x":1350,"y":60,"type":"tree","fixture":true},{"id":"tree-1-1","zoneId":"zone-1","x":1523,"y":289,"type":"tree","fixture":true},{"id":"tree-1-4","zoneId":"zone-1","x":2042,"y":72,"type":"tree","fixture":true},{"id":"tree-1-5","zoneId":"zone-1","x":2215,"y":301,"type":"tree","fixture":true},{"id":"tree-1-7","zoneId":"zone-1","x":1421,"y":759,"type":"tree","fixture":true},{"id":"tree-1-8","zoneId":"zone-1","x":1594,"y":84,"type":"tree","fixture":true},{"id":"tree-1-11","zoneId":"zone-1","x":2113,"y":771,"type":"tree","fixture":true},{"id":"tree-1-12","zoneId":"zone-1","x":2286,"y":96,"type":"tree","fixture":true},{"id":"tree-1-13","zoneId":"zone-1","x":2459,"y":325,"type":"tree","fixture":true},{"id":"tree-1-15","zoneId":"zone-1","x":1665,"y":783,"type":"tree","fixture":true},{"id":"tree-1-17","zoneId":"zone-1","x":2011,"y":337,"type":"tree","fixture":true},{"id":"lamp-1-0","zoneId":"zone-1","x":1380,"y":457,"type":"lamp","fixture":true},{"id":"lamp-1-1","zoneId":"zone-1","x":1740,"y":457,"type":"lamp","fixture":true},{"id":"lamp-1-2","zoneId":"zone-1","x":2100,"y":457,"type":"lamp","fixture":true},{"id":"lamp-1-3","zoneId":"zone-1","x":2460,"y":457,"type":"lamp","fixture":true},{"id":"shuttle-prop-2","zoneId":"zone-2","x":790,"y":1591,"type":"shuttle","fixture":true},{"id":"board-2","zoneId":"zone-2","x":540,"y":1611,"type":"notice","fixture":true},{"id":"tree-2-0","zoneId":"zone-2","x":70,"y":1084,"type":"tree","fixture":true},{"id":"tree-2-1","zoneId":"zone-2","x":243,"y":1313,"type":"tree","fixture":true},{"id":"tree-2-4","zoneId":"zone-2","x":762,"y":1096,"type":"tree","fixture":true},{"id":"tree-2-5","zoneId":"zone-2","x":935,"y":1325,"type":"tree","fixture":true},{"id":"tree-2-7","zoneId":"zone-2","x":141,"y":1783,"type":"tree","fixture":true},{"id":"tree-2-8","zoneId":"zone-2","x":314,"y":1108,"type":"tree","fixture":true},{"id":"tree-2-11","zoneId":"zone-2","x":833,"y":1795,"type":"tree","fixture":true},{"id":"tree-2-12","zoneId":"zone-2","x":1006,"y":1120,"type":"tree","fixture":true},{"id":"tree-2-13","zoneId":"zone-2","x":1179,"y":1349,"type":"tree","fixture":true},{"id":"tree-2-15","zoneId":"zone-2","x":385,"y":1807,"type":"tree","fixture":true},{"id":"tree-2-17","zoneId":"zone-2","x":731,"y":1361,"type":"tree","fixture":true},{"id":"lamp-2-0","zoneId":"zone-2","x":100,"y":1481,"type":"lamp","fixture":true},{"id":"lamp-2-1","zoneId":"zone-2","x":460,"y":1481,"type":"lamp","fixture":true},{"id":"lamp-2-2","zoneId":"zone-2","x":820,"y":1481,"type":"lamp","fixture":true},{"id":"lamp-2-3","zoneId":"zone-2","x":1180,"y":1481,"type":"lamp","fixture":true},{"id":"shuttle-prop-3","zoneId":"zone-3","x":2070,"y":1591,"type":"shuttle","fixture":true},{"id":"board-3","zoneId":"zone-3","x":1820,"y":1611,"type":"notice","fixture":true},{"id":"tree-3-0","zoneId":"zone-3","x":1350,"y":1084,"type":"tree","fixture":true},{"id":"tree-3-1","zoneId":"zone-3","x":1523,"y":1313,"type":"tree","fixture":true},{"id":"tree-3-4","zoneId":"zone-3","x":2042,"y":1096,"type":"tree","fixture":true},{"id":"tree-3-5","zoneId":"zone-3","x":2215,"y":1325,"type":"tree","fixture":true},{"id":"tree-3-7","zoneId":"zone-3","x":1421,"y":1783,"type":"tree","fixture":true},{"id":"tree-3-8","zoneId":"zone-3","x":1594,"y":1108,"type":"tree","fixture":true},{"id":"tree-3-11","zoneId":"zone-3","x":2113,"y":1795,"type":"tree","fixture":true},{"id":"tree-3-12","zoneId":"zone-3","x":2286,"y":1120,"type":"tree","fixture":true},{"id":"tree-3-13","zoneId":"zone-3","x":2459,"y":1349,"type":"tree","fixture":true},{"id":"tree-3-15","zoneId":"zone-3","x":1665,"y":1807,"type":"tree","fixture":true},{"id":"tree-3-17","zoneId":"zone-3","x":2011,"y":1361,"type":"tree","fixture":true},{"id":"lamp-3-0","zoneId":"zone-3","x":1380,"y":1481,"type":"lamp","fixture":true},{"id":"lamp-3-1","zoneId":"zone-3","x":1740,"y":1481,"type":"lamp","fixture":true},{"id":"lamp-3-2","zoneId":"zone-3","x":2100,"y":1481,"type":"lamp","fixture":true},{"id":"lamp-3-3","zoneId":"zone-3","x":2460,"y":1481,"type":"lamp","fixture":true}],"npcSpawns":[{"id":"npc-0","zoneId":"zone-0","x":460,"y":512,"role":"student","appearance":{"skin":"brown","hair":"crop","hairColour":"black","top":"blue","bottom":"trousers","shoes":"dark","accessory":"backpack"},"pattern":"patrol","route":[{"x":580,"y":512}],"dialogue":["Welcome to Arrival avenue. I’m a fictional student.","Open your Pocket map to choose a virtual destination. Small steps, plenty stories."],"activeHours":[6,22],"fictional":true},{"id":"npc-1","zoneId":"zone-1","x":1740,"y":512,"role":"vendor","appearance":{"skin":"brown","hair":"crop","hairColour":"black","top":"clay","bottom":"trousers","shoes":"dark","accessory":"backpack"},"pattern":"stationary","route":[{"x":1860,"y":512}],"dialogue":["Welcome to Learning terraces. I’m a fictional vendor.","Open your Pocket map to choose a virtual destination. Small steps, plenty stories."],"activeHours":[6,22],"fictional":true},{"id":"npc-2","zoneId":"zone-2","x":460,"y":1536,"role":"security","appearance":{"skin":"brown","hair":"crop","hairColour":"black","top":"blue","bottom":"trousers","shoes":"dark","accessory":"backpack"},"pattern":"patrol","route":[{"x":580,"y":1536}],"dialogue":["Welcome to Meeting gardens. I’m a fictional security.","Open your Pocket map to choose a virtual destination. Small steps, plenty stories."],"activeHours":[6,22],"fictional":true},{"id":"npc-3","zoneId":"zone-3","x":1740,"y":1536,"role":"shuttle_operator","appearance":{"skin":"brown","hair":"crop","hairColour":"black","top":"clay","bottom":"trousers","shoes":"dark","accessory":"backpack"},"pattern":"stationary","route":[{"x":1860,"y":1536}],"dialogue":["Welcome to Residence court. I’m a fictional shuttle operator.","Open your Pocket map to choose a virtual destination. Small steps, plenty stories."],"activeHours":[6,22],"fictional":true}],"assetBundles":[{"id":"oau-environment","path":"/world-assets/environment/oau.87836f8f0a08.svg","bytes":368,"hash":"87836f8f0a08cdf312ae1f3af7d49dd8d332e100a2ea0a572f1dfdf650665da3"}]}
+{
+  "schemaVersion": 1,
+  "campusId": "oau",
+  "version": 1,
+  "sourceRevision": "geometry-2026-10-10.1",
+  "geography": "compressed campus geography",
+  "bounds": { "x": 0, "y": 0, "width": 2560, "height": 2048 },
+  "defaultSpawnId": "spawn-arrival",
+  "palette": {
+    "ground": 14541508,
+    "roof": 10257765,
+    "wall": 15853516,
+    "foliage": 7046227,
+    "water": 9153448
+  },
+  "zones": [
+    {
+      "id": "zone-0",
+      "name": "Arrival avenue",
+      "type": "transport",
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 1024,
+      "bundle": "oau-environment"
+    },
+    {
+      "id": "zone-1",
+      "name": "Learning terraces",
+      "type": "academic",
+      "x": 1280,
+      "y": 0,
+      "width": 1280,
+      "height": 1024,
+      "bundle": "oau-environment"
+    },
+    {
+      "id": "zone-2",
+      "name": "Meeting gardens",
+      "type": "social",
+      "x": 0,
+      "y": 1024,
+      "width": 1280,
+      "height": 1024,
+      "bundle": "oau-environment"
+    },
+    {
+      "id": "zone-3",
+      "name": "Residence court",
+      "type": "hostel",
+      "x": 1280,
+      "y": 1024,
+      "width": 1280,
+      "height": 1024,
+      "bundle": "oau-environment"
+    }
+  ],
+  "roads": [
+    {
+      "id": "road-0",
+      "width": 72,
+      "points": [
+        { "x": 20, "y": 512 },
+        { "x": 1260, "y": 512 }
+      ]
+    },
+    {
+      "id": "road-1",
+      "width": 72,
+      "points": [
+        { "x": 1300, "y": 512 },
+        { "x": 2540, "y": 512 }
+      ]
+    },
+    {
+      "id": "road-2",
+      "width": 72,
+      "points": [
+        { "x": 20, "y": 1536 },
+        { "x": 1260, "y": 1536 }
+      ]
+    },
+    {
+      "id": "road-3",
+      "width": 72,
+      "points": [
+        { "x": 1300, "y": 1536 },
+        { "x": 2540, "y": 1536 }
+      ]
+    },
+    {
+      "id": "crossroad-0",
+      "width": 72,
+      "points": [
+        { "x": 24, "y": 512 },
+        { "x": 2536, "y": 512 }
+      ]
+    },
+    {
+      "id": "crossroad-1",
+      "width": 72,
+      "points": [
+        { "x": 24, "y": 1536 },
+        { "x": 2536, "y": 1536 }
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "path-0",
+      "width": 42,
+      "points": [
+        { "x": 640, "y": 20 },
+        { "x": 640, "y": 1004 }
+      ]
+    },
+    {
+      "id": "path-1",
+      "width": 42,
+      "points": [
+        { "x": 1920, "y": 20 },
+        { "x": 1920, "y": 1004 }
+      ]
+    },
+    {
+      "id": "path-2",
+      "width": 42,
+      "points": [
+        { "x": 640, "y": 1044 },
+        { "x": 640, "y": 2028 }
+      ]
+    },
+    {
+      "id": "path-3",
+      "width": 42,
+      "points": [
+        { "x": 1920, "y": 1044 },
+        { "x": 1920, "y": 2028 }
+      ]
+    },
+    {
+      "id": "spine-0",
+      "width": 48,
+      "points": [
+        { "x": 640, "y": 24 },
+        { "x": 640, "y": 2024 }
+      ]
+    },
+    {
+      "id": "spine-1",
+      "width": 48,
+      "points": [
+        { "x": 1920, "y": 24 },
+        { "x": 1920, "y": 2024 }
+      ]
+    },
+    {
+      "id": "entrance-path-0",
+      "width": 32,
+      "points": [
+        { "x": 470, "y": 422 },
+        { "x": 470, "y": 512 }
+      ]
+    },
+    {
+      "id": "entrance-path-1",
+      "width": 32,
+      "points": [
+        { "x": 1750, "y": 422 },
+        { "x": 1750, "y": 512 }
+      ]
+    },
+    {
+      "id": "entrance-path-2",
+      "width": 32,
+      "points": [
+        { "x": 470, "y": 1446 },
+        { "x": 470, "y": 1536 }
+      ]
+    },
+    {
+      "id": "entrance-path-3",
+      "width": 32,
+      "points": [
+        { "x": 1750, "y": 1446 },
+        { "x": 1750, "y": 1536 }
+      ]
+    },
+    {
+      "id": "entrance-path-4",
+      "width": 32,
+      "points": [
+        { "x": 840, "y": 422 },
+        { "x": 840, "y": 512 }
+      ]
+    }
+  ],
+  "buildings": [
+    {
+      "id": "building-0",
+      "zoneId": "zone-0",
+      "x": 380,
+      "y": 267,
+      "width": 180,
+      "height": 125,
+      "silhouette": "hall",
+      "entrance": { "x": 470, "y": 422 }
+    },
+    {
+      "id": "building-1",
+      "zoneId": "zone-1",
+      "x": 1660,
+      "y": 267,
+      "width": 180,
+      "height": 125,
+      "silhouette": "hall",
+      "entrance": { "x": 1750, "y": 422 }
+    },
+    {
+      "id": "building-2",
+      "zoneId": "zone-2",
+      "x": 380,
+      "y": 1291,
+      "width": 180,
+      "height": 125,
+      "silhouette": "hall",
+      "entrance": { "x": 470, "y": 1446 }
+    },
+    {
+      "id": "building-3",
+      "zoneId": "zone-3",
+      "x": 1660,
+      "y": 1291,
+      "width": 180,
+      "height": 125,
+      "silhouette": "market",
+      "entrance": { "x": 1750, "y": 1446 }
+    },
+    {
+      "id": "building-4",
+      "zoneId": "zone-0",
+      "x": 750,
+      "y": 267,
+      "width": 180,
+      "height": 125,
+      "silhouette": "hall",
+      "entrance": { "x": 840, "y": 422 }
+    }
+  ],
+  "venues": [
+    {
+      "id": "venue-0",
+      "zoneId": "zone-0",
+      "buildingId": "building-0",
+      "name": "Arrival pavilion",
+      "description": "A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.",
+      "type": "social",
+      "identity": { "kind": "fictional", "fixture": true },
+      "presentation": "panel",
+      "safeSpawnId": "spawn-venue-0",
+      "hours": [6, 22],
+      "futureActivities": []
+    },
+    {
+      "id": "venue-1",
+      "zoneId": "zone-1",
+      "buildingId": "building-1",
+      "name": "Study terrace",
+      "description": "A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.",
+      "type": "library",
+      "identity": {
+        "kind": "approximate",
+        "factKey": "library.name",
+        "category": "building"
+      },
+      "presentation": "interior",
+      "safeSpawnId": "spawn-venue-1",
+      "hours": [6, 22],
+      "futureActivities": []
+    },
+    {
+      "id": "venue-2",
+      "zoneId": "zone-2",
+      "buildingId": "building-2",
+      "name": "Lecture hall",
+      "description": "A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.",
+      "type": "lecture_hall",
+      "identity": { "kind": "fictional", "fixture": true },
+      "presentation": "interior",
+      "safeSpawnId": "spawn-venue-2",
+      "hours": [6, 22],
+      "futureActivities": []
+    },
+    {
+      "id": "venue-3",
+      "zoneId": "zone-3",
+      "buildingId": "building-3",
+      "name": "Garden café",
+      "description": "A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.",
+      "type": "food",
+      "identity": { "kind": "fictional", "fixture": true },
+      "presentation": "panel",
+      "safeSpawnId": "spawn-venue-3",
+      "hours": [6, 22],
+      "futureActivities": []
+    },
+    {
+      "id": "venue-4",
+      "zoneId": "zone-0",
+      "buildingId": "building-4",
+      "name": "Common room",
+      "description": "A fictional campus space for exploring, meeting a character and taking a quiet moment. No official service or real opening hours are implied.",
+      "type": "hostel",
+      "identity": { "kind": "fictional", "fixture": true },
+      "presentation": "interior",
+      "safeSpawnId": "spawn-venue-4",
+      "hours": [6, 22],
+      "futureActivities": []
+    }
+  ],
+  "spawnPoints": [
+    { "id": "spawn-arrival", "zoneId": "zone-0", "x": 640, "y": 602 },
+    { "id": "spawn-zone-1", "zoneId": "zone-1", "x": 1920, "y": 602 },
+    { "id": "spawn-zone-2", "zoneId": "zone-2", "x": 640, "y": 1626 },
+    { "id": "spawn-zone-3", "zoneId": "zone-3", "x": 1920, "y": 1626 },
+    { "id": "spawn-venue-0", "zoneId": "zone-0", "x": 470, "y": 422 },
+    { "id": "spawn-venue-1", "zoneId": "zone-1", "x": 1750, "y": 422 },
+    { "id": "spawn-venue-2", "zoneId": "zone-2", "x": 470, "y": 1446 },
+    { "id": "spawn-venue-3", "zoneId": "zone-3", "x": 1750, "y": 1446 },
+    { "id": "spawn-venue-4", "zoneId": "zone-0", "x": 840, "y": 422 }
+  ],
+  "transportNodes": [
+    {
+      "id": "transport-0",
+      "zoneId": "zone-0",
+      "name": "Arrival avenue shuttle",
+      "type": "shuttle",
+      "x": 750,
+      "y": 577,
+      "destinations": [
+        { "spawnId": "spawn-zone-1", "virtualMinutes": 4 },
+        { "spawnId": "spawn-zone-2", "virtualMinutes": 5 },
+        { "spawnId": "spawn-zone-3", "virtualMinutes": 6 }
+      ]
+    },
+    {
+      "id": "transport-1",
+      "zoneId": "zone-1",
+      "name": "Learning terraces shuttle",
+      "type": "shuttle",
+      "x": 2030,
+      "y": 577,
+      "destinations": [
+        { "spawnId": "spawn-arrival", "virtualMinutes": 3 },
+        { "spawnId": "spawn-zone-2", "virtualMinutes": 5 },
+        { "spawnId": "spawn-zone-3", "virtualMinutes": 6 }
+      ]
+    },
+    {
+      "id": "transport-2",
+      "zoneId": "zone-2",
+      "name": "Meeting gardens shuttle",
+      "type": "shuttle",
+      "x": 750,
+      "y": 1601,
+      "destinations": [
+        { "spawnId": "spawn-arrival", "virtualMinutes": 3 },
+        { "spawnId": "spawn-zone-1", "virtualMinutes": 4 },
+        { "spawnId": "spawn-zone-3", "virtualMinutes": 6 }
+      ]
+    },
+    {
+      "id": "transport-3",
+      "zoneId": "zone-3",
+      "name": "Residence court shuttle",
+      "type": "shuttle",
+      "x": 2030,
+      "y": 1601,
+      "destinations": [
+        { "spawnId": "spawn-arrival", "virtualMinutes": 3 },
+        { "spawnId": "spawn-zone-1", "virtualMinutes": 4 },
+        { "spawnId": "spawn-zone-2", "virtualMinutes": 5 }
+      ]
+    }
+  ],
+  "interactionPoints": [
+    {
+      "id": "shuttle-interaction-0",
+      "zoneId": "zone-0",
+      "x": 750,
+      "y": 577,
+      "label": "Take shuttle",
+      "command": "TRAVEL",
+      "transportId": "transport-0",
+      "radius": 100
+    },
+    {
+      "id": "notice-0",
+      "zoneId": "zone-0",
+      "x": 540,
+      "y": 587,
+      "label": "Check notice board",
+      "command": "VIEW_NOTICE",
+      "radius": 65
+    },
+    {
+      "id": "talk-0",
+      "zoneId": "zone-0",
+      "x": 460,
+      "y": 512,
+      "label": "Talk to student",
+      "command": "TALK_TO_NPC",
+      "npcId": "npc-0",
+      "radius": 100
+    },
+    {
+      "id": "shuttle-interaction-1",
+      "zoneId": "zone-1",
+      "x": 2030,
+      "y": 577,
+      "label": "Take shuttle",
+      "command": "TRAVEL",
+      "transportId": "transport-1",
+      "radius": 100
+    },
+    {
+      "id": "notice-1",
+      "zoneId": "zone-1",
+      "x": 1820,
+      "y": 587,
+      "label": "Check notice board",
+      "command": "VIEW_NOTICE",
+      "radius": 65
+    },
+    {
+      "id": "talk-1",
+      "zoneId": "zone-1",
+      "x": 1740,
+      "y": 512,
+      "label": "Talk to vendor",
+      "command": "TALK_TO_NPC",
+      "npcId": "npc-1",
+      "radius": 100
+    },
+    {
+      "id": "shuttle-interaction-2",
+      "zoneId": "zone-2",
+      "x": 750,
+      "y": 1601,
+      "label": "Take shuttle",
+      "command": "TRAVEL",
+      "transportId": "transport-2",
+      "radius": 100
+    },
+    {
+      "id": "notice-2",
+      "zoneId": "zone-2",
+      "x": 540,
+      "y": 1611,
+      "label": "Check notice board",
+      "command": "VIEW_NOTICE",
+      "radius": 65
+    },
+    {
+      "id": "talk-2",
+      "zoneId": "zone-2",
+      "x": 460,
+      "y": 1536,
+      "label": "Talk to security",
+      "command": "TALK_TO_NPC",
+      "npcId": "npc-2",
+      "radius": 100
+    },
+    {
+      "id": "shuttle-interaction-3",
+      "zoneId": "zone-3",
+      "x": 2030,
+      "y": 1601,
+      "label": "Take shuttle",
+      "command": "TRAVEL",
+      "transportId": "transport-3",
+      "radius": 100
+    },
+    {
+      "id": "notice-3",
+      "zoneId": "zone-3",
+      "x": 1820,
+      "y": 1611,
+      "label": "Check notice board",
+      "command": "VIEW_NOTICE",
+      "radius": 65
+    },
+    {
+      "id": "talk-3",
+      "zoneId": "zone-3",
+      "x": 1740,
+      "y": 1536,
+      "label": "Talk to shuttle operator",
+      "command": "TALK_TO_NPC",
+      "npcId": "npc-3",
+      "radius": 100
+    },
+    {
+      "id": "enter-0",
+      "zoneId": "zone-0",
+      "x": 470,
+      "y": 422,
+      "label": "Enter Arrival pavilion",
+      "command": "ENTER_VENUE",
+      "venueId": "venue-0",
+      "radius": 78
+    },
+    {
+      "id": "enter-1",
+      "zoneId": "zone-1",
+      "x": 1750,
+      "y": 422,
+      "label": "Enter Study terrace",
+      "command": "ENTER_VENUE",
+      "venueId": "venue-1",
+      "radius": 78
+    },
+    {
+      "id": "enter-2",
+      "zoneId": "zone-2",
+      "x": 470,
+      "y": 1446,
+      "label": "Enter Lecture hall",
+      "command": "ENTER_VENUE",
+      "venueId": "venue-2",
+      "radius": 78
+    },
+    {
+      "id": "enter-3",
+      "zoneId": "zone-3",
+      "x": 1750,
+      "y": 1446,
+      "label": "Enter Garden café",
+      "command": "ENTER_VENUE",
+      "venueId": "venue-3",
+      "radius": 78
+    },
+    {
+      "id": "enter-4",
+      "zoneId": "zone-0",
+      "x": 840,
+      "y": 422,
+      "label": "Enter Common room",
+      "command": "ENTER_VENUE",
+      "venueId": "venue-4",
+      "radius": 78
+    }
+  ],
+  "decorations": [
+    {
+      "id": "shuttle-prop-0",
+      "zoneId": "zone-0",
+      "x": 790,
+      "y": 567,
+      "type": "shuttle",
+      "fixture": true
+    },
+    {
+      "id": "board-0",
+      "zoneId": "zone-0",
+      "x": 540,
+      "y": 587,
+      "type": "notice",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-0",
+      "zoneId": "zone-0",
+      "x": 70,
+      "y": 60,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-1",
+      "zoneId": "zone-0",
+      "x": 243,
+      "y": 289,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-4",
+      "zoneId": "zone-0",
+      "x": 762,
+      "y": 72,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-7",
+      "zoneId": "zone-0",
+      "x": 141,
+      "y": 759,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-8",
+      "zoneId": "zone-0",
+      "x": 314,
+      "y": 84,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-11",
+      "zoneId": "zone-0",
+      "x": 833,
+      "y": 771,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-12",
+      "zoneId": "zone-0",
+      "x": 1006,
+      "y": 96,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-13",
+      "zoneId": "zone-0",
+      "x": 1179,
+      "y": 325,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-0-15",
+      "zoneId": "zone-0",
+      "x": 385,
+      "y": 783,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "lamp-0-0",
+      "zoneId": "zone-0",
+      "x": 100,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-0-1",
+      "zoneId": "zone-0",
+      "x": 460,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-0-2",
+      "zoneId": "zone-0",
+      "x": 820,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-0-3",
+      "zoneId": "zone-0",
+      "x": 1180,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "shuttle-prop-1",
+      "zoneId": "zone-1",
+      "x": 2070,
+      "y": 567,
+      "type": "shuttle",
+      "fixture": true
+    },
+    {
+      "id": "board-1",
+      "zoneId": "zone-1",
+      "x": 1820,
+      "y": 587,
+      "type": "notice",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-0",
+      "zoneId": "zone-1",
+      "x": 1350,
+      "y": 60,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-1",
+      "zoneId": "zone-1",
+      "x": 1523,
+      "y": 289,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-4",
+      "zoneId": "zone-1",
+      "x": 2042,
+      "y": 72,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-5",
+      "zoneId": "zone-1",
+      "x": 2215,
+      "y": 301,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-7",
+      "zoneId": "zone-1",
+      "x": 1421,
+      "y": 759,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-8",
+      "zoneId": "zone-1",
+      "x": 1594,
+      "y": 84,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-11",
+      "zoneId": "zone-1",
+      "x": 2113,
+      "y": 771,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-12",
+      "zoneId": "zone-1",
+      "x": 2286,
+      "y": 96,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-13",
+      "zoneId": "zone-1",
+      "x": 2459,
+      "y": 325,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-15",
+      "zoneId": "zone-1",
+      "x": 1665,
+      "y": 783,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-1-17",
+      "zoneId": "zone-1",
+      "x": 2011,
+      "y": 337,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "lamp-1-0",
+      "zoneId": "zone-1",
+      "x": 1380,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-1-1",
+      "zoneId": "zone-1",
+      "x": 1740,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-1-2",
+      "zoneId": "zone-1",
+      "x": 2100,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-1-3",
+      "zoneId": "zone-1",
+      "x": 2460,
+      "y": 457,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "shuttle-prop-2",
+      "zoneId": "zone-2",
+      "x": 790,
+      "y": 1591,
+      "type": "shuttle",
+      "fixture": true
+    },
+    {
+      "id": "board-2",
+      "zoneId": "zone-2",
+      "x": 540,
+      "y": 1611,
+      "type": "notice",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-0",
+      "zoneId": "zone-2",
+      "x": 70,
+      "y": 1084,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-1",
+      "zoneId": "zone-2",
+      "x": 243,
+      "y": 1313,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-4",
+      "zoneId": "zone-2",
+      "x": 762,
+      "y": 1096,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-5",
+      "zoneId": "zone-2",
+      "x": 935,
+      "y": 1325,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-7",
+      "zoneId": "zone-2",
+      "x": 141,
+      "y": 1783,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-8",
+      "zoneId": "zone-2",
+      "x": 314,
+      "y": 1108,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-11",
+      "zoneId": "zone-2",
+      "x": 833,
+      "y": 1795,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-12",
+      "zoneId": "zone-2",
+      "x": 1006,
+      "y": 1120,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-13",
+      "zoneId": "zone-2",
+      "x": 1179,
+      "y": 1349,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-15",
+      "zoneId": "zone-2",
+      "x": 385,
+      "y": 1807,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-2-17",
+      "zoneId": "zone-2",
+      "x": 731,
+      "y": 1361,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "lamp-2-0",
+      "zoneId": "zone-2",
+      "x": 100,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-2-1",
+      "zoneId": "zone-2",
+      "x": 460,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-2-2",
+      "zoneId": "zone-2",
+      "x": 820,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-2-3",
+      "zoneId": "zone-2",
+      "x": 1180,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "shuttle-prop-3",
+      "zoneId": "zone-3",
+      "x": 2070,
+      "y": 1591,
+      "type": "shuttle",
+      "fixture": true
+    },
+    {
+      "id": "board-3",
+      "zoneId": "zone-3",
+      "x": 1820,
+      "y": 1611,
+      "type": "notice",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-0",
+      "zoneId": "zone-3",
+      "x": 1350,
+      "y": 1084,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-1",
+      "zoneId": "zone-3",
+      "x": 1523,
+      "y": 1313,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-4",
+      "zoneId": "zone-3",
+      "x": 2042,
+      "y": 1096,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-5",
+      "zoneId": "zone-3",
+      "x": 2215,
+      "y": 1325,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-7",
+      "zoneId": "zone-3",
+      "x": 1421,
+      "y": 1783,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-8",
+      "zoneId": "zone-3",
+      "x": 1594,
+      "y": 1108,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-11",
+      "zoneId": "zone-3",
+      "x": 2113,
+      "y": 1795,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-12",
+      "zoneId": "zone-3",
+      "x": 2286,
+      "y": 1120,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-13",
+      "zoneId": "zone-3",
+      "x": 2459,
+      "y": 1349,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-15",
+      "zoneId": "zone-3",
+      "x": 1665,
+      "y": 1807,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "tree-3-17",
+      "zoneId": "zone-3",
+      "x": 2011,
+      "y": 1361,
+      "type": "tree",
+      "fixture": true
+    },
+    {
+      "id": "lamp-3-0",
+      "zoneId": "zone-3",
+      "x": 1380,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-3-1",
+      "zoneId": "zone-3",
+      "x": 1740,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-3-2",
+      "zoneId": "zone-3",
+      "x": 2100,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    },
+    {
+      "id": "lamp-3-3",
+      "zoneId": "zone-3",
+      "x": 2460,
+      "y": 1481,
+      "type": "lamp",
+      "fixture": true
+    }
+  ],
+  "npcSpawns": [
+    {
+      "id": "npc-0",
+      "zoneId": "zone-0",
+      "x": 460,
+      "y": 512,
+      "role": "student",
+      "appearance": {
+        "skin": "brown",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "backpack"
+      },
+      "pattern": "patrol",
+      "route": [{ "x": 580, "y": 512 }],
+      "dialogue": [
+        "Welcome to Arrival avenue. I’m a fictional student.",
+        "Open your Pocket map to choose a virtual destination. Small steps, plenty stories."
+      ],
+      "activeHours": [6, 22],
+      "fictional": true
+    },
+    {
+      "id": "npc-1",
+      "zoneId": "zone-1",
+      "x": 1740,
+      "y": 512,
+      "role": "vendor",
+      "appearance": {
+        "skin": "brown",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "backpack"
+      },
+      "pattern": "stationary",
+      "route": [{ "x": 1860, "y": 512 }],
+      "dialogue": [
+        "Welcome to Learning terraces. I’m a fictional vendor.",
+        "Open your Pocket map to choose a virtual destination. Small steps, plenty stories."
+      ],
+      "activeHours": [6, 22],
+      "fictional": true
+    },
+    {
+      "id": "npc-2",
+      "zoneId": "zone-2",
+      "x": 460,
+      "y": 1536,
+      "role": "security",
+      "appearance": {
+        "skin": "brown",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "backpack"
+      },
+      "pattern": "patrol",
+      "route": [{ "x": 580, "y": 1536 }],
+      "dialogue": [
+        "Welcome to Meeting gardens. I’m a fictional security.",
+        "Open your Pocket map to choose a virtual destination. Small steps, plenty stories."
+      ],
+      "activeHours": [6, 22],
+      "fictional": true
+    },
+    {
+      "id": "npc-3",
+      "zoneId": "zone-3",
+      "x": 1740,
+      "y": 1536,
+      "role": "shuttle_operator",
+      "appearance": {
+        "skin": "brown",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "backpack"
+      },
+      "pattern": "stationary",
+      "route": [{ "x": 1860, "y": 1536 }],
+      "dialogue": [
+        "Welcome to Residence court. I’m a fictional shuttle operator.",
+        "Open your Pocket map to choose a virtual destination. Small steps, plenty stories."
+      ],
+      "activeHours": [6, 22],
+      "fictional": true
+    }
+  ],
+  "assetBundles": [
+    {
+      "id": "oau-environment",
+      "path": "/world-assets/environment/oau.87836f8f0a08.svg",
+      "bytes": 368,
+      "hash": "87836f8f0a08cdf312ae1f3af7d49dd8d332e100a2ea0a572f1dfdf650665da3"
+    }
+  ]
+}
