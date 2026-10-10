@@ -43,7 +43,7 @@ export function groundedConfidence(
 }
 /** Small evidence-preserving adapter. Other providers must satisfy the same strict candidate contract. */
 export class OfficialNameExtractor implements CampusFactExtractor {
-  readonly version = "subject-name-and-landmarks/5";
+  readonly version = "subject-name-and-landmarks/6";
   async extract(page: {
     body: string;
     sourceUrl: string;
@@ -280,10 +280,11 @@ export class CampusIntelligencePipeline {
       });
       this.metrics.increment("fetch_count");
       if (response.status === 200 && observation.evidence.length === 0) {
+        const decoded = sourceAdapter(response.headers["content-type"]).decode(
+          response.body,
+        );
         const candidates = await this.extractor.extract({
-          body: sourceAdapter(response.headers["content-type"]).decode(
-            response.body,
-          ),
+          body: decoded,
           sourceUrl: source.url,
           expectedUniversityName: source.campus.university.name,
         });
@@ -348,7 +349,7 @@ export class CampusIntelligencePipeline {
                 observationId: observation.id,
                 locator: candidate.locator,
                 excerpt: candidate.excerpt,
-                confidence: groundedConfidence(candidate, response.body),
+                confidence: groundedConfidence(candidate, decoded),
                 generated: source.authorityClass === "generated_fixture",
               },
             });
