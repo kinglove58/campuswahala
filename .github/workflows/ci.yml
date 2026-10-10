@@ -19,7 +19,7 @@ jobs:
       TEST_DATABASE_URL: postgresql://campuswahala:ci-only-ephemeral-password@localhost:5432/campuswahala
       CAPTURE_VISUALS: "1"
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
@@ -59,7 +59,7 @@ jobs:
       actions: read
       security-events: write
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: github/codeql-action/init@9f759ee644a3e7c15c1390abf49868036c00067b # v3
         with:
           languages: javascript-typescript
@@ -67,7 +67,7 @@ jobs:
   oss-sast:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - run: mkdir -p artifacts
       - name: Complementary Semgrep Community scan
         run: >-
@@ -87,7 +87,7 @@ jobs:
   secrets:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
       - uses: trufflesecurity/trufflehog@6c05c4a00b91aa542267d8e32a8254774799d68d # v3.93.8
@@ -104,7 +104,7 @@ jobs:
   containers:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - run: docker build -f Dockerfile.web -t campuswahala-web:ci .
       - run: docker build -f Dockerfile.api -t campuswahala-api:ci .
       - run: docker run --rm -v "$PWD/tests/web-container-smoke.mjs:/smoke.mjs:ro" --entrypoint node campuswahala-web:ci /smoke.mjs
