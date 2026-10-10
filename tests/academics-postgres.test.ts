@@ -77,8 +77,10 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
         let view = await academic.read(token);
         expect(view.history).toHaveLength(0);
         const start = { commandId: randomUUID(), type: "START_TERM" };
-        const first = await academic.command(token, start),
-          retried = await academic.command(token, start);
+        const [first, retried] = await Promise.all([
+          academic.command(token, start),
+          academic.command(token, start),
+        ]);
         expect(retried.receipt).toEqual(first.receipt);
         view = first.state;
         expect(view.term?.stageId).toBe(stage.id);

@@ -55,3 +55,5 @@ Historical first implementation CI `b2a2027` / run [38049261372](https://github.
 - `tests/e2e/world.spec.ts`
 - `tests/migration-upgrade.test.ts`
 - `tests/pwa.test.ts`
+
+Historical browser checkpoint `cbb086d` / run [38049523173](https://github.com/kinglove58/campuswahala/actions/runs/38049523173): all 142 unit/database/migration tests passed; 24 browser tests passed and four failed. Two assertions retained obsolete Phase 2 Portal copy; two new tests created a 200-stage fixture while expecting CW-CMP-101. The obsolete copy assertions and explicit 100-stage academic test setup were corrected. These failures are retained as history, not counted as acceptance.

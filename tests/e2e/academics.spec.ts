@@ -10,7 +10,7 @@ test("guest tutorial is explicitly ephemeral and does not write academic state",
 }) => {
   await context.request.post("http://localhost:3001/api/guest", {
     headers: { Origin: "http://localhost:3001" },
-    data: validGuestFixture,
+    data: { ...validGuestFixture, level: 100 },
   });
   await page.goto("http://localhost:3001");
   await expect(page.getByTestId("campus-world")).toHaveAttribute(
@@ -63,7 +63,7 @@ test("private academic semester, phone schedule, offline refusal, retry receipt,
   await db.$disconnect();
   await context.request.post("http://localhost:3001/api/guest", {
     headers: { Origin: "http://localhost:3001" },
-    data: validGuestFixture,
+    data: { ...validGuestFixture, level: 100 },
   });
   await page.goto("http://localhost:3001");
   await expect(page.getByTestId("campus-world")).toHaveAttribute(

@@ -128,8 +128,9 @@ export function AcademicPanel({
       {!term ? (
         <>
           <p>
-            Your accelerated four-week semester is ready. Courses and policies
-            are snapshotted when you begin.
+            {state.allowedActions.some((c) => c.type === "START_TERM")
+              ? "Your accelerated four-week semester is ready. Courses and policies are snapshotted when you begin."
+              : "Academic simulation is not configured for this academic position yet."}
           </p>
           {buttons(state.allowedActions)}
         </>
