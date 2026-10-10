@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { randomUUID } from "node:crypto";
 import { lifeTerm } from "./life-fixture";
+import { createCampusWorld, WorldEngine } from "../packages/game-engine/src";
 import {
   advanceLifeState,
   applyLifeCommand,
@@ -17,6 +18,23 @@ import {
 } from "../packages/domain/src/life";
 import { applyAcademicCommand } from "../packages/domain/src/academics";
 describe("single-timeline private CampusWahala life", () => {
+  it("resumes the cosmetic avatar only at known spawns without changing academic authority", () => {
+    const t = lifeTerm(),
+      s = createLife(t),
+      w = createCampusWorld("futa"),
+      engine = new WorldEngine(w),
+      minute = t.minute,
+      presence = t.presenceVenueId;
+    const home = w.venues.find((v) => v.id === s.homeVenueId)!;
+    expect(engine.resumeAtSpawn(home.safeSpawnId)).toBe(true);
+    expect(engine.position).toEqual({
+      x: w.spawnPoints.find((p) => p.id === home.safeSpawnId)!.x,
+      y: w.spawnPoints.find((p) => p.id === home.safeSpawnId)!.y,
+    });
+    expect(engine.resumeAtSpawn("untrusted-spawn")).toBe(false);
+    expect(t.minute).toBe(minute);
+    expect(t.presenceVenueId).toBe(presence);
+  });
   it("has ten strict, versioned fictional situations and a neutral exit for each", () => {
     expect(wahalaTemplates).toHaveLength(10);
     expect(new Set(wahalaTemplates.map((t) => t.id)).size).toBe(10);
@@ -78,6 +96,15 @@ describe("single-timeline private CampusWahala life", () => {
     expect(one).toEqual(result);
     expect(() => advanceLifeState(one, 601, 620)).toThrow(
       "INVALID_LIFE_INTERVAL",
+    );
+  });
+  it("processes the canonical term endpoint including its initial 07:00 offset", () => {
+    const t = lifeTerm(),
+      s = createLife(t);
+    advanceLifeState(s, t.minute, t.endMinute);
+    expect(s.lastProcessedMinute).toBe(t.endMinute);
+    expect(Object.values(s.metrics).every((v) => v >= 0 && v <= 10000)).toBe(
+      true,
     );
   });
   it("real-world waiting and reads never decay; life persists over term attachment", () => {

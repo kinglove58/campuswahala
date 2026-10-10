@@ -41,7 +41,7 @@ export async function lifeHistory(
 ) {
   const rows = await tx.wahalaOccurrence.findMany({
     where: { userId },
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
     take: 60,
   });
   return rows.reverse().map((r) => {
@@ -57,9 +57,21 @@ async function saveHistory(
   userId: string,
   history: WahalaOccurrence[],
 ) {
-  for (const h of history) {
-    const old = await tx.wahalaOccurrence.findUnique({ where: { id: h.id } });
-    if (!old)
+  if (!history.length) return;
+  const stored = await tx.wahalaOccurrence.findMany({
+    where: { userId, id: { in: history.map((h) => h.id) } },
+    select: { id: true, status: true },
+  });
+  const byId = new Map(stored.map((h) => [h.id, h]));
+  // Clear old pending rows before inserting a replacement; bounded bulk lookup.
+  for (const h of history)
+    if (byId.get(h.id)?.status === "pending" && h.status !== "pending")
+      await tx.wahalaOccurrence.update({
+        where: { id: h.id },
+        data: { status: h.status, snapshot: json(h) },
+      });
+  for (const h of history)
+    if (!byId.has(h.id))
       await tx.wahalaOccurrence.create({
         data: {
           id: h.id,
@@ -69,12 +81,6 @@ async function saveHistory(
           snapshot: json(h),
         },
       });
-    else if (old.status === "pending" && h.status !== "pending")
-      await tx.wahalaOccurrence.update({
-        where: { id: h.id },
-        data: { status: h.status, snapshot: json(h) },
-      });
-  }
 }
 /** Called inside the academic User lock/transaction; never opens a second transaction. */
 export async function syncAcademicLife(

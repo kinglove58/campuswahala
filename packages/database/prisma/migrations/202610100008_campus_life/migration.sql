@@ -10,7 +10,7 @@ CREATE TABLE "LifeSimulation" (
    jsonb_typeof("snapshot"->'metrics'->'mood') = 'number' AND
    jsonb_typeof("snapshot"->'metrics'->'wellbeing') = 'number' AND
    ("snapshot"->>'schemaVersion')::int = 1 AND
-   ("snapshot"->>'lastProcessedMinute')::int BETWEEN 0 AND 40320 AND
+   ("snapshot"->>'lastProcessedMinute')::int BETWEEN 0 AND 40740 AND
    ("snapshot"->>'revision')::int >= 0 AND
    ("snapshot"->'metrics'->>'energy')::numeric BETWEEN 0 AND 10000 AND
    ("snapshot"->'metrics'->>'satiety')::numeric BETWEEN 0 AND 10000 AND
@@ -25,7 +25,7 @@ CREATE TABLE "LifeSimulation" (
 CREATE TABLE "LifeCommandReceipt" (
  "userId" UUID NOT NULL REFERENCES "User"("id") ON DELETE CASCADE,
  "commandId" UUID NOT NULL,"requestHash" CHAR(64) NOT NULL,"type" TEXT NOT NULL,
- "termId" UUID NOT NULL,"academicMinute" INTEGER NOT NULL CHECK ("academicMinute" BETWEEN 0 AND 40320),
+ "termId" UUID NOT NULL,"academicMinute" INTEGER NOT NULL CHECK ("academicMinute" BETWEEN 0 AND 40740),
  "revision" INTEGER NOT NULL CHECK ("revision" >= 0),"result" JSONB NOT NULL CHECK (octet_length("result"::text)<=2048),
  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
  PRIMARY KEY ("userId","commandId"),

@@ -94,6 +94,8 @@ export default function CampusExperience({
 }) {
   const academics = useAcademics(signedIn);
   const life = useLife(signedIn);
+  const [worldGeneration, setWorldGeneration] = useState(0);
+  const lastLifeSpawn = useRef("");
   const academicRevision = academics.state?.revision;
   useEffect(() => {
     void life.refresh();
@@ -277,6 +279,7 @@ export default function CampusExperience({
       .map((i) => [i.venueId, i.name]),
   );
   const onReady = useCallback((h: WorldHandle) => {
+    setWorldGeneration((n) => n + 1);
     handle.current = h;
   }, []);
   const academicMinute = academics.state?.term?.minute;
@@ -372,6 +375,38 @@ export default function CampusExperience({
       );
     }
   };
+  useEffect(() => {
+    const state = life.state?.state,
+      term = academics.state?.term,
+      ack = life.acknowledgement;
+    if (
+      !state ||
+      !term ||
+      !manifest ||
+      !handle.current ||
+      term.id !== state.termId
+    )
+      return;
+    const key =
+      ack?.type === "SLEEP" && ack.termId === term.id
+        ? ack.commandId
+        : term.status === "active" && term.minute === 420
+          ? `wake-${term.id}`
+          : null;
+    if (!key || lastLifeSpawn.current === key) return;
+    const home = manifest.venues.find((v) => v.id === state.homeVenueId);
+    if (!home || !handle.current.engine.resumeAtSpawn(home.safeSpawnId)) return;
+    lastLifeSpawn.current = key;
+    // Cosmetic safe-return only; server travel and life commands retain authority.
+    void persist(home.safeSpawnId);
+    // Persist uses current appearance; routine positioning is keyed to server acknowledgement.
+  }, [
+    life.acknowledgement,
+    life.state?.state?.termId,
+    academics.state?.term?.id,
+    worldGeneration,
+    manifest,
+  ]);
   const closePhone = () => {
     setPhone(false);
     phoneTrigger.current?.focus();
@@ -735,6 +770,27 @@ export default function CampusExperience({
                     <b>Hey, {player.nickname}.</b>
                     <span>Small steps. Plenty stories.</span>
                   </div>
+                  {life.state?.state && (
+                    <p className="life-summary">
+                      Energy{" "}
+                      {(life.state.state.metrics.energy / 100).toFixed(0)}% ·
+                      Satiety{" "}
+                      {(life.state.state.metrics.satiety / 100).toFixed(0)}%
+                      <br />
+                      Mood {(life.state.state.metrics.mood / 100).toFixed(0)}% ·
+                      Wellbeing{" "}
+                      {(life.state.state.metrics.wellbeing / 100).toFixed(0)}%
+                    </p>
+                  )}
+                  {life.state?.pending && (
+                    <button
+                      className="pocket-notification"
+                      onClick={() => setApp("life")}
+                    >
+                      View campus situation ·{" "}
+                      {life.state.pending.template.title}
+                    </button>
+                  )}
                   <div className="phone-app-grid">
                     {apps.map((a) => (
                       <button

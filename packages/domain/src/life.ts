@@ -352,7 +352,7 @@ const lifeStateSchema = z
         wellbeing: remainder,
       })
       .strict(),
-    lastProcessedMinute: z.number().int().min(0).max(40320),
+    lastProcessedMinute: z.number().int().min(0).max(40740),
     revision: z.number().int().min(0),
     flags: z.array(flag).max(32),
   })
@@ -419,7 +419,7 @@ export function advanceLifeState(
       Number.isInteger(to) &&
       from >= 0 &&
       to >= from &&
-      to <= 40320 &&
+      to <= 40740 &&
       from <= state.lastProcessedMinute,
     "INVALID_LIFE_INTERVAL",
   );

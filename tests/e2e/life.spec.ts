@@ -164,6 +164,10 @@ test("campus daily routine uses real venue authority, life choices, shared acade
     await expect(
       page.getByText(lv.pending.template.title, { exact: true }),
     ).toBeVisible();
+    if (process.env.CAPTURE_VISUALS === "1")
+      await page.screenshot({
+        path: `artifacts/campus-wahala-${test.info().project.name}.png`,
+      });
     await page
       .getByRole("button", { name: "Leave it for now · 0 min", exact: true })
       .click();

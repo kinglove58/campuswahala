@@ -6,6 +6,11 @@ export function useLife(enabled: boolean) {
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [retry, setRetry] = useState(false);
+  const [acknowledgement, setAcknowledgement] = useState<{
+    commandId: string;
+    type: string;
+    termId: string;
+  } | null>(null);
   // Only a pending in-memory command, retried explicitly with the same key.
   // Never localStorage, service-worker storage or a background mutation queue.
   const pending = useRef<LifeCommand | null>(null),
@@ -42,6 +47,7 @@ export function useLife(enabled: boolean) {
     generation.current++;
     if (!enabled) {
       setState(null);
+      setAcknowledgement(null);
       setError("");
       pending.current = null;
       setRetry(false);
@@ -100,6 +106,7 @@ export function useLife(enabled: boolean) {
         }
         pending.current = null;
         setRetry(false);
+        setAcknowledgement(data.receipt);
         setState((old) =>
           !old ||
           (data.state.state?.revision ?? 0) >= (old.state?.revision ?? 0)
@@ -120,5 +127,5 @@ export function useLife(enabled: boolean) {
     },
     [enabled, refresh],
   );
-  return { state, busy, error, retry, refresh, command };
+  return { state, busy, error, retry, refresh, command, acknowledgement };
 }
