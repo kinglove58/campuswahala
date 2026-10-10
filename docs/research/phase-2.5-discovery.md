@@ -18,3 +18,15 @@ UNILAG: Explore Campus lists Afe Babalola Hall, Medical Centre, Sport Centre, La
 - https://unilag.edu.ng/explore-campus/
 
 Do not infer faith, sex or eligibility from residence/venue identity. Food locations and gates without permitted evidence remain fictional. PDF, video and geodata adapters require a separately reviewed bounded decoder/license policy; HTML, public JSON and permitted text are the executable adapters in this revision.
+
+## Executed isolated evidence
+
+Owner opt-in research ran against disposable PostgreSQL with the normal SSRF/robots/rate/size/publication controls. No production import occurred.
+
+| Campus | Run                                                                                | Result                                                                                                                                                                                                                                       |
+| ------ | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FUTA   | [38037980562](https://github.com/kinglove58/campuswahala/actions/runs/38037980562) | Zero published facts. Robots/access checks rejected nine targets; the remaining target was domain-rate limited. This does not prove the sites universally prohibit research; it records this controlled attempt.                             |
+| OAU    | [38038490074](https://github.com/kinglove58/campuswahala/actions/runs/38038490074) | University and Hezekiah Oluwasanmi Library identities published through the permitted bounded official public API. Residence targets await a later normal backoff window; large HTML and timed-out sources stay rejected/held.               |
+| UNILAG | [38038491546](https://github.com/kinglove58/campuswahala/actions/runs/38038491546) | Eight current facts: university, library, Afe Babalola Hall, Medical Centre, Sport Centre, UNILAG Chapel, UNILAG Mosque, Lagoon Front. Nine allow decisions include corroboration of the same university identity, not nine unique entities. |
+
+The page-list API adapter extracts only bounded rendered title/content from at most 20 objects. Registry requests use per_page=1 and limited fields, with the existing overall fetch byte ceiling. Each API URL independently passes robots and safe fetch; no HTML size/robots limit is increased. Four research ticks respect normal domain pacing/backoff. Retain URL/hash/time/excerpts/structured facts only; raw retrieval text remains ephemeral. Medical identity is not an emergency-contact claim. No coordinates, hours, membership or religious preference are inferred.

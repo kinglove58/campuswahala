@@ -162,10 +162,24 @@ const configurations = {
         category: "building",
       },
       {
-        type: "admin",
-        canonicalEntityId: "9f32b58d-8002-4982-af73-10fb0c3532c3",
+        type: "clinic",
+        canonicalEntityId: "a6f6a77d-56ee-4486-ab0e-fddc3101bbe5",
         displayProperty: "name",
-        category: "building",
+        category: "location",
+      },
+      {
+        type: "religious",
+        venueName: "Quiet courtyard",
+        canonicalEntityId: "a0e4eee0-ea67-4eab-acac-3195adafb8d2",
+        displayProperty: "name",
+        category: "location",
+      },
+      {
+        type: "religious",
+        venueName: "Reflection garden",
+        canonicalEntityId: "3f3d2353-3b25-4f99-a219-0c4ffd15636c",
+        displayProperty: "name",
+        category: "location",
       },
     ],
     venues: [
@@ -174,8 +188,9 @@ const configurations = {
       ["Shuttle shelter", "transport"],
       ["Residence lounge", "hostel"],
       ["Food courtyard", "food"],
-      ["Civic room", "admin"],
+      ["Care court", "clinic"],
       ["Quiet courtyard", "religious"],
+      ["Reflection garden", "religious"],
     ],
   },
 };
@@ -411,9 +426,9 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
       silhouette:
         type === "food"
           ? "market"
-          : campusId === "oau"
+          : c.artDirection.roofStyle === "brutalist"
             ? "hall"
-            : campusId === "unilag"
+            : c.artDirection.roofStyle === "canopy"
               ? "tower"
               : "bungalow",
       entrance,
@@ -463,7 +478,11 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
       ),
   );
   for (const binding of c.bindings) {
-    const venue = w.venues.find((v) => v.type === binding.type);
+    const venue = w.venues.find(
+      (v) =>
+        v.type === binding.type &&
+        (!("venueName" in binding) || v.name === binding.venueName),
+    );
     if (venue)
       venue.identity = {
         kind: "approximate",
