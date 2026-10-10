@@ -34,6 +34,9 @@ model User {
   conversions GuestConversion[]
   deletion DeletionRequest?
   feedback FactFeedback[]
+  academicSimulation AcademicSimulation?
+  academicTerms AcademicTerm[]
+  academicReceipts AcademicCommandReceipt[]
 }
 model LoginAttempt {
   stateHash String @id @db.Char(64)
@@ -99,6 +102,7 @@ model PlayerCharacter {
   avatar String @db.VarChar(20)
   durationYears Int
   preferences Json @default("{}")
+  academicSimulation AcademicSimulation?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -202,6 +206,7 @@ model ProgrammeStage {
   order Int
   entryModes String[]
   activityTags String[]
+  semesters AcademicSemesterTemplate[]
   status String @default("candidate")
   structure ProgrammeStructure @relation(fields: [structureId], references: [id])
   characters PlayerCharacter[]
@@ -209,6 +214,8 @@ model ProgrammeStage {
   @@unique([structureId, order])
 }
 model AcademicSemesterTemplate {
+  stageId String? @db.Uuid
+  stage ProgrammeStage? @relation(fields: [stageId], references: [id])
   id String @id @default(uuid()) @db.Uuid
   structureId String @db.Uuid
   slug String
@@ -467,4 +474,40 @@ model PlayerWorldState {
   appearance Json
   updatedAt DateTime @updatedAt
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Private aggregate root; no campus fact/public profile relationship.
+model AcademicSimulation {
+  userId String @id @db.Uuid
+  characterId String @unique @db.Uuid
+  revision Int @default(0)
+  carryovers Json @default("[]")
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  character PlayerCharacter @relation(fields: [characterId], references: [id], onDelete: Cascade)
+}
+model AcademicTerm {
+  id String @id @db.Uuid
+  userId String @db.Uuid
+  sequence Int
+  status String
+  snapshot Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, sequence])
+}
+model AcademicCommandReceipt {
+  userId String @db.Uuid
+  commandId String @db.Uuid
+  requestHash String @db.Char(64)
+  type String
+  termId String @db.Uuid
+  academicMinute Int
+  revision Int
+  result Json
+  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@id([userId, commandId])
+  @@index([userId, termId])
 }

@@ -94,3 +94,6 @@ export interface PlayerRepository {
   ready(): Promise<boolean>;
   close(): Promise<void>;
 }
+
+
+export * from "./academics";

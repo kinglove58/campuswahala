@@ -1,3 +1,5 @@
+Phase 2.5 merged at `30d045545380348335d6a3a6de321fd0e4bb3e41`. Phase 3 academic simulation is being validated on `codex/phase-3-academics`; see [Phase 3 review](docs/phase-3-review.md). Existing production/content/device gates remain open.
+
 # CampusWahala
 
 The playable digital world of African university life. Phase 2 shared virtual-campus engine with private character and Campus Intelligence foundations. FUTA, OAU and UNILAG use validated manifests, following cameras and the CW Pocket phone. Phase 2 is merged; Phase 2.5 authenticity/hardening is in review development. This is not a production launch.

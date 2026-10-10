@@ -14,6 +14,10 @@ import {
 import type { GuestPlayer } from "@campuswahala/domain";
 import type { CampusPack } from "@campuswahala/campus-content";
 import { AccountPanel, GuidePanel } from "./account-panel";
+import { AcademicTutorial } from "./academic-tutorial";
+import { AcademicPanel } from "./academic-panel";
+import { useAcademics } from "./use-academics";
+import { academicClock } from "@campuswahala/domain";
 import { AvatarEditor } from "./avatar-editor";
 import { CampusSound } from "./sound";
 import type { WorldHandle, WorldSnapshot } from "./world";
@@ -84,6 +88,7 @@ export default function CampusExperience({
   onGuestExit: () => void;
   initialAppearance: Appearance;
 }) {
+  const academics = useAcademics(signedIn);
   const [manifest, setManifest] = useState<WorldManifest | null>(null),
     [safe, setSafe] = useState<SafeLocation | null>(null),
     [error, setError] = useState(""),
@@ -265,7 +270,16 @@ export default function CampusExperience({
   const onReady = useCallback((h: WorldHandle) => {
     handle.current = h;
   }, []);
-  const onSnapshot = useCallback((s: WorldSnapshot) => setSnapshot(s), []);
+  const academicMinute = academics.state?.term?.minute;
+  const onSnapshot = useCallback(
+    (s: WorldSnapshot) =>
+      setSnapshot(
+        academicMinute !== undefined
+          ? { ...s, ...academicClock(academicMinute) }
+          : s,
+      ),
+    [academicMinute],
+  );
   const modalOpen = phone || !!interaction;
   const restoreFocus = useRef<HTMLElement | null>(null);
   useEffect(() => {
@@ -296,7 +310,7 @@ export default function CampusExperience({
       if (e.key === "Tab" && modal) {
         const nodes = Array.from(
           modal.querySelectorAll<HTMLElement>(
-            'button:not(:disabled),a[href],input,select,textarea,[tabindex="0"]',
+            'button:not(:disabled),a[href],input,select,textarea,summary,[tabindex="0"]',
           ),
         ).filter((n) => n.getClientRects().length);
         const first = nodes[0],
@@ -402,6 +416,7 @@ export default function CampusExperience({
             paused={modalOpen}
             waypoint={waypoint}
             weather={weather}
+            academicMinute={academics.state?.term?.minute ?? null}
             onSnapshot={onSnapshot}
             onReady={onReady}
           />
@@ -556,6 +571,19 @@ export default function CampusExperience({
                   </button>
                 )}
               </>
+            )}
+            {signedIn && venue && (
+              <AcademicPanel
+                state={academics.state}
+                mode="venue"
+                busy={academics.busy}
+                online={online}
+                error={academics.error}
+                retry={academics.retry}
+                onCommand={(c) => void academics.command(c)}
+                onRefresh={() => void academics.refresh()}
+                venueId={venue.id}
+              />
             )}
             {npc && (
               <>
@@ -837,7 +865,29 @@ export default function CampusExperience({
                   }}
                 />
               )}
-              {app === "portal" && (
+              {signedIn && (app === "portal" || app === "schedule") && (
+                <>
+                  <AcademicPanel
+                    state={academics.state}
+                    mode={app}
+                    busy={academics.busy}
+                    online={online}
+                    error={academics.error}
+                    retry={academics.retry}
+                    onCommand={(c) => void academics.command(c)}
+                    onRefresh={() => void academics.refresh()}
+                  />
+                  {academics.retry && (
+                    <button
+                      disabled={!online || academics.busy}
+                      onClick={() => void academics.command(null)}
+                    >
+                      Retry pending academic command
+                    </button>
+                  )}
+                </>
+              )}
+              {app === "portal" && !signedIn && (
                 <>
                   <h3>Your student chapter</h3>
                   <dl>
@@ -859,10 +909,11 @@ export default function CampusExperience({
                   <p className="fixture">
                     Academic choices remain labelled fixtures.
                   </p>
-                  <p>Academic simulation coming next.</p>
+                  <p>Save your journey to begin your persistent semester.</p>
+                  <AcademicTutorial world={manifest} />
                 </>
               )}
-              {app === "schedule" && (
+              {app === "schedule" && !signedIn && (
                 <>
                   <p className="fixture">
                     Example day only · Not a real timetable
@@ -883,7 +934,8 @@ export default function CampusExperience({
                     ))}
                   </ul>
                   <p>
-                    Lectures, assignments, events and exams: future systems.
+                    Save your journey for private simulation courses, lectures
+                    and results.
                   </p>
                 </>
               )}
@@ -919,6 +971,13 @@ export default function CampusExperience({
               )}
               {app === "updates" && (
                 <>
+                  {signedIn &&
+                    academics.state?.notifications.map((n) => (
+                      <article className="phone-note" key={n.id}>
+                        <b>{n.message}</b>
+                        <small>Private simulation notification</small>
+                      </article>
+                    ))}
                   <article className="phone-note">
                     <b>Welcome to {manifest.campusId.toUpperCase()}</b>
                     <p>
