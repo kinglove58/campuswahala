@@ -180,7 +180,7 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
         ]);
         expect(
           results.reduce((n, r) => n + r.deletedAccounts, 0),
-        ).toBeGreaterThanOrEqual(8);
+        ).toBe(8);
         expect(await db.user.count({ where: { id: { in: ids } } })).toBe(0);
         expect(
           await db.deletionRequest.count({
