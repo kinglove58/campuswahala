@@ -1,5 +1,6 @@
 import { test, expect, type APIResponse } from "@playwright/test";
 import { randomUUID } from "node:crypto";
+import { writeFile } from "node:fs/promises";
 import { PrismaClient } from "../../packages/database/src";
 import { validGuestFixture } from "../../packages/testing/src";
 import type { AcademicView, LifeView } from "../../packages/domain/src";
@@ -255,9 +256,10 @@ test("non-neutral food queue choice advances shared time once and survives retry
     await page.screenshot({
       path: `artifacts/wahala-resolved-today-${test.info().project.name}.png`,
     });
-  await test.info().attach("wahala-consequence-evidence", {
-    contentType: "application/json",
-    body: JSON.stringify(
+  const evidence = test.info().outputPath("wahala-consequence.json");
+  await writeFile(
+    evidence,
+    JSON.stringify(
       {
         template: occurrence.template.id,
         choice: choice.id,
@@ -275,5 +277,9 @@ test("non-neutral food queue choice advances shared time once and survives retry
       null,
       2,
     ),
+  );
+  await test.info().attach("wahala-consequence-evidence", {
+    contentType: "application/json",
+    path: evidence,
   });
 });
