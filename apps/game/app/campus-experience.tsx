@@ -63,6 +63,8 @@ const initialSnapshot: WorldSnapshot = {
   nearbyId: null,
   clock: "07:00",
   day: "Monday",
+  week: 1,
+  hour: 7,
   period: "morning",
   weather: "clear",
   battery: 100,
@@ -237,9 +239,18 @@ export default function CampusExperience({
   }, []);
   const onSnapshot = useCallback((s: WorldSnapshot) => setSnapshot(s), []);
   const modalOpen = phone || !!interaction;
+  const restoreFocus = useRef<HTMLElement | null>(null);
   useEffect(() => {
     if (gameRegion.current) gameRegion.current.inert = modalOpen;
-  }, [modalOpen]);
+    if (modalOpen)
+      restoreFocus.current = phone
+        ? phoneTrigger.current
+        : interactionTrigger.current;
+    else {
+      restoreFocus.current?.focus();
+      restoreFocus.current = null;
+    }
+  }, [modalOpen, phone]);
   useEffect(() => {
     if (!modalOpen) return;
     const modal = dialog.current;
@@ -380,7 +391,9 @@ export default function CampusExperience({
             </p>
           </div>
           <div className="world-status">
-            <span>{snapshot.period} · Week 1 · Game time</span>
+            <span>
+              {snapshot.period} · Week {snapshot.week} · Game time
+            </span>
             <span>
               {online
                 ? "Virtual navigation"
@@ -484,7 +497,9 @@ export default function CampusExperience({
                 <p>{venue.description}</p>
                 <p>
                   Game venue:{" "}
-                  {snapshot.period === "night"
+                  {venue.hours &&
+                  (snapshot.hour < venue.hours[0] ||
+                    snapshot.hour >= venue.hours[1])
                     ? "quiet hours"
                     : "open for exploration"}
                 </p>
@@ -606,7 +621,8 @@ export default function CampusExperience({
                 <>
                   <div className="pocket-clock">{snapshot.clock}</div>
                   <p>
-                    {snapshot.day} · Week 1 <small>Game time</small>
+                    {snapshot.day} · Week {snapshot.week}{" "}
+                    <small>Game time</small>
                   </p>
                 </>
               ) : (

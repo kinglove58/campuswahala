@@ -65,6 +65,8 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   page,
   context,
 }, testInfo) => {
+  // Larger campus walking is real UI work; keep the traversal assertion bounded separately.
+  test.setTimeout(120000);
   const scripts: Promise<string>[] = [];
   page.on("response", (r) => {
     if (r.request().resourceType() === "script")

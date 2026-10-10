@@ -70,7 +70,7 @@ export function extractLandmarks(page: {
   sourceUrl: string;
 }): FactCandidate[] {
   const plain = page.body
-    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(new RegExp("<!--[\\s\\S]*?-->", "g"), " ")
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")

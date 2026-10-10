@@ -15,6 +15,8 @@ export type WorldSnapshot = {
   nearbyId: string | null;
   clock: string;
   day: string;
+  week: number;
+  hour: number;
   period: string;
   weather: Weather;
   battery: number;
@@ -146,8 +148,9 @@ export default function CampusWorld({
             camera.roundPixels = true;
             this.keys = this.input.keyboard!.addKeys(
               "W,A,S,D,UP,DOWN,LEFT,RIGHT",
+              false,
             ) as Record<string, PhaserType.Input.Keyboard.Key>;
-            this.input.keyboard!.addCapture(["UP", "DOWN", "LEFT", "RIGHT"]);
+
             this.input.on("pointerdown", (p: PhaserType.Input.Pointer) => {
               if (!props.current.paused)
                 engine.moveTo(camera.getWorldPoint(p.x, p.y));
@@ -495,6 +498,8 @@ export default function CampusWorld({
                 nearbyId: engine.nearby?.id ?? null,
                 clock: clock.label,
                 day: clock.day,
+                week: clock.week,
+                hour: clock.hour,
                 period: clock.period,
                 weather,
                 battery: Math.round(engine.battery.value),
