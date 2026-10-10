@@ -338,10 +338,14 @@ export function aggregateResults(
     courses,
     attemptedUnits,
     qualityPoints,
-    gpaScaled: Math.floor(qualityPoints / attemptedUnits),
+    gpaScaled: Math.floor(
+      (qualityPoints * 2 + attemptedUnits) / (attemptedUnits * 2),
+    ),
     cumulativeUnits,
     cumulativeQualityPoints,
-    cgpaScaled: Math.floor(cumulativeQualityPoints / cumulativeUnits),
+    cgpaScaled: Math.floor(
+      (cumulativeQualityPoints * 2 + cumulativeUnits) / (cumulativeUnits * 2),
+    ),
   };
 }
 export function simulationCourses(
@@ -458,7 +462,7 @@ export function createTerm(
       mastery: 0,
       lectures: [0, 1, 2].map((week) => ({
         id: `lecture-${i}-${week}`,
-        start: (week * 7 + Math.floor(i / 2)) * 1440 + (9 + (i % 2) * 2) * 60,
+        start: (week * 7 + Math.floor(i / 3)) * 1440 + (9 + (i % 3) * 2) * 60,
         duration: 60,
         venueId: hall!.id,
         status: "scheduled",
@@ -471,14 +475,14 @@ export function createTerm(
         score: null,
       },
       test: {
-        start: (17 + Math.floor(i / 3)) * 1440 + (9 + (i % 3) * 2) * 60,
+        start: (18 + Math.floor(i / 6)) * 1440 + 9 * 60 + (i % 6) * 60,
         duration: 60,
         venueId: hall!.id,
         status: "scheduled",
         score: null,
       },
       exam: {
-        start: (21 + Math.floor(i / 3)) * 1440 + (9 + (i % 3) * 2) * 60,
+        start: (21 + Math.floor(i / 6)) * 1440 + 9 * 60 + (i % 6) * 90,
         duration: 90,
         venueId: hall!.id,
         status: "scheduled",

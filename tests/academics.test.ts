@@ -321,4 +321,58 @@ describe("versioned CampusWahala academic domain", () => {
       another.courses[0]!.lectures[0]!.start;
     expect(() => validateTimetable(another)).toThrow("TIMETABLE_OVERLAP");
   });
+  it.each(["computing", "engineering"] as const)(
+    "plays %s from study/coursework through scheduled assessments to a passing final result",
+    (track) => {
+      const term = fixtureTerm(track);
+      for (const c of term.courses) {
+        for (let n = 0; n < 8; n++)
+          run(term, { type: "STUDY", courseId: c.id, minutes: 120 });
+        for (let n = 0; n < Math.ceil(c.requiredEffort / 60); n++)
+          run(term, {
+            type: "WORK_ON_ASSIGNMENT",
+            courseId: c.id,
+            minutes: 60,
+          });
+        run(term, { type: "SUBMIT_ASSIGNMENT", courseId: c.id });
+      }
+      run(term, {
+        type: "TRAVEL_TO_VENUE",
+        venueId: term.courses[0]!.test.venueId,
+      });
+      for (let n = 0; n < 120 && term.minute < term.endMinute; n++) {
+        const action = allowedActions(term).find((c) =>
+          ["TAKE_TEST", "TAKE_EXAM", "ATTEND_LECTURE"].includes(c.type),
+        );
+        if (action) applyAcademicCommand(term, action);
+        else run(term, { type: "WAIT_TO_NEXT_EVENT" });
+      }
+      const result = completeResults(term, []);
+      expect(
+        term.courses.every(
+          (c) =>
+            c.assignment.status === "submitted" &&
+            c.test.status === "taken" &&
+            c.exam.status === "taken",
+        ),
+      ).toBe(true);
+      expect(result.courses.every((c) => c.passed)).toBe(true);
+      expect(result.attemptedUnits).toBe(14);
+      expect(result.gpaScaled).toBeGreaterThanOrEqual(3000);
+    },
+  );
+  it("allocates nonoverlapping lecture/test/exam slots for every supported carryover load", () => {
+    const fixture = fixtureTerm();
+    for (let count = 5; count <= 12; count++) {
+      const templates = [
+        ...simulationCourses("computing", 0, 0),
+        ...simulationCourses("computing", 0, 1),
+      ].slice(0, count);
+      const { courses: _, ...base } = fixture;
+      void _;
+      const term = createTerm({ ...base, templates });
+      validateTimetable(term);
+      expect(term.courses).toHaveLength(count);
+    }
+  });
 });

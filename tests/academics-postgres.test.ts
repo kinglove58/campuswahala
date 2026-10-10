@@ -243,19 +243,62 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
             ).snapshot,
           ),
         ).toBe(finalSnapshot);
-        // Fail second term deliberately. Underlying attempted units, including the
-        // retake, produce CGPA; previous finalized grades stay immutable.
+        // Pass the carryover attempt and new offerings in the second semester.
+        for (const course of view.term!.courses) {
+          for (let i = 0; i < 8; i++)
+            await cmd({ type: "STUDY", courseId: course.id, minutes: 120 });
+          for (let i = 0; i < Math.ceil(course.requiredEffort / 60); i++)
+            await cmd({
+              type: "WORK_ON_ASSIGNMENT",
+              courseId: course.id,
+              minutes: 60,
+            });
+          await cmd({ type: "SUBMIT_ASSIGNMENT", courseId: course.id });
+        }
+        await cmd({
+          type: "TRAVEL_TO_VENUE",
+          venueId: view.term!.courses[0]!.test.venueId,
+        });
+        for (
+          let steps = 0;
+          steps < 120 && view.term!.minute < view.term!.endMinute;
+          steps++
+        ) {
+          const action = view.allowedActions.find(
+            (c) =>
+              c.type === "TAKE_TEST" ||
+              c.type === "TAKE_EXAM" ||
+              c.type === "ATTEND_LECTURE",
+          );
+          await cmd(action ?? { type: "WAIT_TO_NEXT_EVENT" });
+        }
+        await cmd({ type: "COMPLETE_TERM" });
+        expect(view.history).toHaveLength(2);
+        expect(view.carryovers).toHaveLength(0);
+        expect(
+          view.term!.result!.courses.find((c) => c.courseId === failedCourse)
+            ?.passed,
+        ).toBe(true);
+        expect(view.term!.progression!.outcome).toBe("progress");
+        expect(view.term!.progression!.nextStageId).toBe(
+          structure.stages[2]!.id,
+        );
+        expect(view.term!.result!.cgpaScaled).toBe(
+          Math.floor(
+            (view.history.reduce((n, h) => n + h.result.qualityPoints, 0) * 2 +
+              view.history.reduce((n, h) => n + h.result.attemptedUnits, 0)) /
+              (view.history.reduce((n, h) => n + h.result.attemptedUnits, 0) *
+                2),
+          ),
+        );
+        // A neglected third term yields a meaningful repeat decision. It never
+        // rewrites the passed carryover or either earlier result snapshot.
+        await cmd({ type: "START_TERM" });
         while (view.term!.minute < view.term!.endMinute)
           await cmd({ type: "END_DAY" });
         await cmd({ type: "COMPLETE_TERM" });
-        expect(view.history).toHaveLength(2);
+        expect(view.history).toHaveLength(3);
         expect(view.term!.progression!.outcome).toBe("repeat_stage");
-        expect(view.term!.result!.cgpaScaled).toBe(
-          Math.floor(
-            view.history.reduce((n, h) => n + h.result.qualityPoints, 0) /
-              view.history.reduce((n, h) => n + h.result.attemptedUnits, 0),
-          ),
-        );
         await accounts.requestDeletion(token);
         await expect(academic.read(token)).rejects.toThrow();
         await expect(
