@@ -4,7 +4,11 @@ test("360x800 constrained CPU/network, offline exploration, safe private writes 
   page,
   context,
 }, info) => {
-  test.setTimeout(150000);
+  const requested = Number(process.env.CW_SOAK_MS ?? "60000");
+  const soakMs = Number.isFinite(requested)
+    ? Math.min(300000, Math.max(15000, requested))
+    : 60000;
+  test.setTimeout(180000 + soakMs);
   await page.setViewportSize({ width: 360, height: 800 });
   const cdp = await context.newCDPSession(page);
   await cdp.send("Network.enable");
@@ -91,15 +95,18 @@ test("360x800 constrained CPU/network, offline exploration, safe private writes 
     "true",
     { timeout: 60000 },
   );
-  // A bounded 15-second CI soak samples real diagnostics. Longer physical sessions remain a human gate.
-  await page.waitForTimeout(15000);
-  const diagnostics = await page
-    .getByTestId("campus-world")
-    .evaluate((el) => ({
-      frameMs: el.getAttribute("data-average-frame-ms"),
-      heapWarning: el.getAttribute("data-memory-warning"),
-      failures: el.getAttribute("data-asset-failures"),
-    }));
+  // Bounded movement soak with actual renderer updates; physical 20-minute acceptance remains separate.
+  for (let elapsed = 0; elapsed < soakMs; elapsed += 10000) {
+    const key = elapsed % 20000 ? "ArrowLeft" : "ArrowRight";
+    await page.keyboard.down(key);
+    await page.waitForTimeout(Math.min(10000, soakMs - elapsed));
+    await page.keyboard.up(key);
+  }
+  const diagnostics = await page.getByTestId("campus-world").evaluate((el) => ({
+    frameMs: el.getAttribute("data-average-frame-ms"),
+    heapWarning: el.getAttribute("data-memory-warning"),
+    failures: el.getAttribute("data-asset-failures"),
+  }));
   await info.attach("constrained-network-measurement", {
     body: JSON.stringify({
       viewport: "360x800",
@@ -109,6 +116,7 @@ test("360x800 constrained CPU/network, offline exploration, safe private writes 
       bootMs: boot,
       transferredBytes: bytes,
       diagnostics,
+      soakMs,
       note: "Chromium emulation, not a physical device benchmark",
     }),
     contentType: "application/json",

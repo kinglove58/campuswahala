@@ -155,12 +155,11 @@ test("save guest → browser-bound sign-in → durable same world → private ac
       headers: { Origin: "http://localhost:3001" },
       data: {
         ...validGuestFixture,
-        campusId: "oau",
         nickname: "Temporary Explorer",
       },
     },
   );
-  expect(currentGuest.ok()).toBe(true);
+  expect(currentGuest.ok(), await currentGuest.text()).toBe(true);
   const conflict = await context.request.post(
     "http://localhost:3001/api/account/convert",
     { headers: { Origin: "http://localhost:3001" }, data: {} },

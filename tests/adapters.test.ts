@@ -21,3 +21,15 @@ it("decodes only bounded transport-supported public formats and holds unknown/bi
   for (const invalid of ["{bad", "[]", "null"])
     expect(() => sourceAdapter("application/json").decode(invalid)).toThrow();
 });
+
+it("bounds official public page lists and extracts rendered text without URL metadata", () => {
+  const api = sourceAdapter("application/json");
+  const page = {
+    title: { rendered: "Campus" },
+    content: { rendered: "<p>Moremi</p>" },
+    link: "https://example.test/FalsePlace",
+  };
+  expect(api.decode(JSON.stringify([page]))).toBe("Campus\n<p>Moremi</p>");
+  for (const invalid of [[{}], ["Place"], Array(21).fill(page)])
+    expect(() => api.decode(JSON.stringify(invalid))).toThrow();
+});
