@@ -25,6 +25,8 @@ describe("server publication policy", () => {
         entityType: "programme",
         category: "cultural",
         key: "name",
+        subjectKey: "programme-one",
+        propertyKey: "name",
         value: "Course",
         excerpt: "Course",
         locator: "p",
@@ -140,4 +142,12 @@ describe("server publication policy", () => {
       ]).id,
     ).toBeNull();
   });
+});
+
+
+it("fails closed on unknown runtime authority and requires true official critical evidence", () => {
+ const unknown = JSON.parse(JSON.stringify(evidence("bad"))); unknown.authority = "trusted_blog"; unknown.observedAt = now;
+ expect(policy.decide({ category: "cultural", evidence: [unknown, evidence("good")], contradiction: false, now }).result).toBe("REJECT");
+ for (const authority of ["institutional", "reputable", "community", "generated_fixture"] as const)
+  expect(policy.decide({ category: "critical", evidence: [evidence("a", authority), evidence("b", authority)], contradiction: false, now }).result).not.toBe("ALLOW");
 });

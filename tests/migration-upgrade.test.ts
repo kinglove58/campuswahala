@@ -74,6 +74,14 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
       migrate();
       copyMigration("202610090005_world_state");
       migrate();
+      const oldFactId = randomUUID(), oldVersionId = randomUUID();
+      const campus = await db.campus.findFirstOrThrow();
+      await db.$executeRaw`INSERT INTO "CampusFact" ("id", "campusId", "entityType", "key", "status", "staleAt") VALUES (${oldFactId}::uuid, ${campus.id}::uuid, 'building', 'library.name', 'published', now() + interval '30 days')`;
+      await db.$executeRaw`INSERT INTO "FactVersion" ("id", "factId", "version", "value", "category", "confidence", "extractedAt", "lastObservedAt", "valueHash", "contradiction") VALUES (${oldVersionId}::uuid, ${oldFactId}::uuid, 1, '"Legacy library"'::jsonb, 'building', 0.95, now(), now(), ${"a".repeat(64)}, false)`;
+      await db.$executeRaw`UPDATE "CampusFact" SET "currentVersionId" = ${oldVersionId}::uuid WHERE "id" = ${oldFactId}::uuid`;
+      copyMigration("202610100006_subject_identity");
+      migrate();
+      expect(await db.campusFact.findUnique({ where: { id: oldFactId } })).toMatchObject({ currentVersionId: oldVersionId, status: "published", subjectType: "building", propertyKey: "name", candidateSubjectKey: "legacy:library.name" });
       expect(await db.playerWorldState.count()).toBe(0);
       expect(await db.guestPlayer.findUnique({ where: { id } })).toMatchObject({
         level: 600,
@@ -81,7 +89,7 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
         avatar: "blue",
       });
       expect(await db.programmeStage.count()).toBeGreaterThan(0);
-      expect(await db.campusFact.count()).toBe(0);
+      expect(await db.campusFact.count()).toBe(1);
       expect(await db.user.count()).toBe(0);
     } finally {
       await db.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);

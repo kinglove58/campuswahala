@@ -124,39 +124,3 @@ jobs:
           name: api-sbom
           path: sbom.json
 
-  # Optional isolated research on the Phase 2 branch. Never touches a production database.
-  campus-research:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/phase-2-world-engine' && startsWith(github.event.head_commit.message, 'research:')
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    services:
-      postgres:
-        image: postgres:17.9-alpine
-        env:
-          POSTGRES_USER: campuswahala
-          POSTGRES_PASSWORD: research-only-ephemeral-password
-          POSTGRES_DB: campuswahala
-        ports: ["5432:5432"]
-        options: --health-cmd "pg_isready -U campuswahala" --health-interval 5s --health-timeout 5s --health-retries 10
-    env:
-      DATABASE_URL: postgresql://campuswahala:research-only-ephemeral-password@localhost:5432/campuswahala
-      APP_ENV: local
-      INTELLIGENCE_ENABLED: "true"
-      RESEARCH_SECOND_TICK: "true"
-      RESEARCH_REPORT: "true"
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm db:generate
-      - run: pnpm db:migrate
-      - run: pnpm research:local
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always()
-        with:
-          name: campus-research
-          path: artifacts/campus-research.json

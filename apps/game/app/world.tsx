@@ -73,6 +73,9 @@ export default function CampusWorld({
   useEffect(() => {
     let disposed = false,
       game: PhaserType.Game | undefined;
+    const npcIndex = new Map(manifest.npcSpawns.map((n) => [n.id, n]));
+    const zoneBuildings = new Map(manifest.zones.map((z) => [z.id, manifest.buildings.filter((b) => b.zoneId === z.id)]));
+    const zoneDecorations = new Map(manifest.zones.map((z) => [z.id, manifest.decorations.filter((d) => d.zoneId === z.id)]));
     const engine = new WorldEngine(manifest, spawnId),
       boot = performance.now();
     const reduced = window.matchMedia(
@@ -119,9 +122,11 @@ export default function CampusWorld({
               .setDepth(-100);
             const roads = this.add.graphics().setDepth(-90);
             for (const road of [...manifest.roads, ...manifest.paths]) {
+              roads.lineStyle(road.width + 12, 0xe7dbc1, 1);
+              roads.strokePoints(road.points);
               roads.lineStyle(
                 road.width,
-                road.id.includes("road") ? 0xbab3a0 : 0xe7d6ac,
+                road.id.includes("road") ? 0x7f8580 : 0xe7d6ac,
                 1,
               );
               roads.beginPath();
@@ -130,6 +135,10 @@ export default function CampusWorld({
               );
               roads.strokePath();
               if (road.id.includes("road")) {
+                // Compressed virtual crossings, never physical road directions.
+                const p = road.points[0]!;
+                roads.fillStyle(0xf1ecda, 0.85);
+                for (let j = 0; j < 6; j++) roads.fillRect(p.x + 100 + j * 13, p.y - road.width / 2 + 10, 7, road.width - 20);
                 roads.lineStyle(2, 0xf7e9bf, 0.6);
                 roads.strokePoints(road.points);
               }
@@ -191,7 +200,8 @@ export default function CampusWorld({
           drawAvatar() {
             this.avatarKey = JSON.stringify(props.current.appearance);
             this.person.removeAll(true);
-            this.person.add(this.avatar(props.current.appearance));
+            const ring = this.add.graphics(); ring.lineStyle(2, 0xffedb0, 0.9); ring.strokeEllipse(0, 20, 38, 14);
+            this.person.add([ring, this.avatar(props.current.appearance)]);
           }
           avatar(a: Appearance) {
             const g = this.add.graphics();
@@ -218,6 +228,8 @@ export default function CampusWorld({
               { lime: 0xc8d885, clay: 0xca7857, blue: 0x718fa9 }[a.top],
             );
             g.fillRoundedRect(-11, -12, 22, 19, 5);
+            g.lineStyle(2, 0x284333, 0.7);
+            g.strokeRoundedRect(-11, -12, 22, 19, 5);
             g.fillStyle(skin);
             g.fillCircle(0, -22, 9);
             g.fillRect(-14, -8, 4, 12);
@@ -245,6 +257,7 @@ export default function CampusWorld({
               g.lineStyle(1, 0xdac09a);
               g.strokeRect(-5, -4, 10, 7);
             }
+            g.fillStyle(0x221f1d); g.fillCircle(-3, -21, 1); g.fillCircle(3, -21, 1);
             return g;
           }
           updateChunks() {
@@ -255,7 +268,7 @@ export default function CampusWorld({
                 this.chunks.delete(id);
                 for (const [nid, n] of this.npcs)
                   if (
-                    manifest.npcSpawns.find((x) => x.id === nid)?.zoneId === id
+                    npcIndex.get(nid)?.zoneId === id
                   ) {
                     n.destroy(true);
                     this.npcs.delete(nid);
@@ -296,11 +309,25 @@ export default function CampusWorld({
               }
               const g = this.add.graphics();
               chunk.add(g);
-              for (const b of manifest.buildings.filter(
-                (b) => b.zoneId === zone.id,
-              )) {
-                g.fillStyle(0x20342c, 0.15);
+              // Ground variation is deterministic, cosmetic and drawn once per chunk.
+              for (let j = 0; j < 48; j++) {
+                const x = zone.x + 32 + (j * 131 % (zone.width - 64));
+                const y = zone.y + 32 + (j * 197 % (zone.height - 64));
+                g.fillStyle(j % 2 ? 0xf3e6bc : manifest.palette.foliage, j % 2 ? 0.2 : 0.09);
+                g.fillEllipse(x, y, 25 + j % 13, 12);
+              }
+              if (manifest.campusId === "unilag" && zone.type === "social") {
+                g.fillStyle(manifest.palette.water, 0.8);
+                g.fillRoundedRect(zone.x + 12, zone.y + 12, zone.width - 24, 125, 30);
+                g.lineStyle(2, 0xd6eee3, 0.7);
+                for (let j = 0; j < 10; j++) g.lineBetween(zone.x + 60 + j * 90, zone.y + 65, zone.x + 100 + j * 90, zone.y + 65);
+              }
+              for (const b of zoneBuildings.get(zone.id) ?? []) {
+                // Long projected shadow and visible wall base give roofs height.
+                g.fillStyle(0x20342c, 0.2);
                 g.fillRoundedRect(b.x + 12, b.y + 16, b.width, b.height, 5);
+                g.fillStyle(0x8e7b62);
+                g.fillRoundedRect(b.x + 4, b.y + 18, b.width, b.height, 5);
                 g.fillStyle(manifest.palette.wall);
                 g.fillRoundedRect(b.x, b.y, b.width, b.height, 5);
                 g.fillStyle(manifest.palette.roof);
@@ -311,6 +338,24 @@ export default function CampusWorld({
                   b.silhouette === "tower" ? 48 : 38,
                   4,
                 );
+                if (manifest.campusId === "futa") {
+                  g.fillStyle(0xb98060);
+                  g.fillTriangle(b.x - 8, b.y - 14, b.x + b.width / 2, b.y - 42, b.x + b.width + 8, b.y - 14);
+                  g.lineStyle(1, 0x713f2d, 0.45);
+                  for (let j = 0; j < 8; j++) g.lineBetween(b.x + j * b.width / 8, b.y - 8, b.x + j * b.width / 8, b.y + 20);
+                } else if (manifest.campusId === "oau") {
+                  g.fillStyle(0xb5aa8d);
+                  g.fillRect(b.x - 14, b.y - 26, b.width + 28, 16);
+                  g.fillStyle(0xe9dfc2);
+                  for (let j = 0; j < 8; j++) g.fillRect(b.x + j * b.width / 8, b.y - 32, 8, 32);
+                  g.fillStyle(0x725f4a, 0.25);
+                  g.fillRect(b.x - 8, b.y + 16, b.width + 16, 8);
+                } else {
+                  g.fillStyle(0x39666f);
+                  g.fillRoundedRect(b.x - 6, b.y - 25, b.width + 12, 15, 4);
+                  g.fillStyle(0xf4efd9);
+                  for (let j = 0; j < 5; j++) g.fillRect(b.x + 15 + j * 40, b.y + 18, 6, b.height - 28);
+                }
                 if (b.silhouette === "hall") {
                   g.fillStyle(0xf5ecd6);
                   for (let i = 0; i < 5; i++)
@@ -322,6 +367,13 @@ export default function CampusWorld({
                   if (b.silhouette === "tower")
                     g.fillRect(b.x + 15 + i * 42, b.y + 76, 22, 16);
                 }
+                g.lineStyle(2, 0xc6bea8);
+                for (let j = 0; j < 4; j++) g.strokeRect(b.x + 15 + j * 42, b.y + 43, 22, 20);
+                g.fillStyle(0x31513c);
+                g.fillRoundedRect(b.x + b.width / 2 - 32, b.y + b.height - 50, 64, 15, 3);
+                g.fillStyle(0xf0e0bb);
+                g.fillRect(b.x + b.width / 2 - 15, b.y + b.height + 3, 30, 6);
+                g.fillRect(b.x + b.width / 2 - 22, b.y + b.height + 10, 44, 6);
                 g.fillStyle(0x694e37);
                 g.fillRect(b.x + b.width / 2 - 12, b.y + b.height - 32, 24, 32);
                 if (b.silhouette === "market") {
@@ -351,9 +403,7 @@ export default function CampusWorld({
                 chunk.add(label);
                 this.labels.set(venue.id, label);
               }
-              for (const d of manifest.decorations.filter(
-                (d) => d.zoneId === zone.id,
-              )) {
+              for (const d of zoneDecorations.get(zone.id) ?? []) {
                 if (d.type === "tree" || d.type === "palm") {
                   if (this.textures.exists(bundle.id) && d.type === "tree") {
                     chunk.add(
@@ -384,6 +434,16 @@ export default function CampusWorld({
                     }
                   }
                 }
+                if (d.type === "bench") {
+                  g.fillStyle(0x2e4134, 0.15); g.fillEllipse(d.x + 4, d.y + 9, 48, 14);
+                  g.fillStyle(0x8d6845); g.fillRoundedRect(d.x - 24, d.y - 5, 48, 7, 2); g.fillRoundedRect(d.x - 24, d.y - 16, 48, 6, 2);
+                  g.fillStyle(0x3c493e); g.fillRect(d.x - 18, d.y + 1, 4, 10); g.fillRect(d.x + 14, d.y + 1, 4, 10);
+                }
+                if (d.type === "banner") {
+                  g.fillStyle(0x536149); g.fillRect(d.x - 2, d.y - 46, 4, 50);
+                  g.fillStyle(0xc87651); g.fillRoundedRect(d.x + 2, d.y - 46, 31, 37, 2);
+                  g.lineStyle(3, 0xf4d9a5); g.lineBetween(d.x + 9, d.y - 34, d.x + 25, d.y - 34);
+                }
                 if (d.type === "lamp") {
                   g.fillStyle(0x5b6050);
                   g.fillRect(d.x - 2, d.y - 44, 4, 46);
@@ -413,6 +473,7 @@ export default function CampusWorld({
               for (const n of manifest.npcSpawns.filter(
                 (n) => n.zoneId === zone.id,
               )) {
+                if (this.npcs.size >= 16) break;
                 const npc = this.add
                   .container(n.x, n.y, [this.avatar(n.appearance)])
                   .setDepth(4000);
@@ -443,11 +504,12 @@ export default function CampusWorld({
             const clock = engine.time,
               weather = p.weather === "auto" ? clock.weather : p.weather;
             for (const [id, npc] of this.npcs) {
-              const n = manifest.npcSpawns.find((n) => n.id === id)!;
-              npc.setVisible(
-                clock.hour >= n.activeHours[0] && clock.hour < n.activeHours[1],
-              );
-              if (!p.paused && !reduced) {
+              const n = npcIndex.get(id)!;
+              const view = this.cameras.main.worldView;
+              const nearby = Math.abs(npc.x - engine.position.x) < view.width && Math.abs(npc.y - engine.position.y) < view.height;
+              const active = nearby && clock.hour >= n.activeHours[0] && clock.hour < n.activeHours[1];
+              npc.setVisible(active);
+              if (active && !p.paused && !reduced) {
                 const pos = npcPosition(n, engine.elapsedMs);
                 npc.setPosition(pos.x, pos.y);
               }

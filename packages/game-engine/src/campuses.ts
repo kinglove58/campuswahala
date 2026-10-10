@@ -8,7 +8,7 @@ import {
   type Zone,
 } from "./world";
 // All layout points, names and routes below are generated_fixture geometry. No survey/GPS claims.
-// Fact-key bindings can change identity labels only after the published catalogue supplies matching evidence.
+// Canonical subject bindings can change identity labels only after the published catalogue supplies matching evidence.
 const configurations = {
   futa: {
     width: 3072,
@@ -36,9 +36,11 @@ const configurations = {
       "Recreation field",
     ],
     bindings: [
-      { type: "library", factKey: "library.name", category: "building" },
-      { type: "admin", factKey: "student-affairs.name", category: "location" },
-      { type: "clinic", factKey: "health-centre.name", category: "location" },
+      { type: "lecture_hall", canonicalEntityId: "aa512326-0bd0-41f7-ada9-8e1ec2e7a83e", displayProperty: "name", category: "faculty" },
+      { type: "hostel", canonicalEntityId: "860f48f1-ebca-44f1-ad8d-9512fa68f308", displayProperty: "name", category: "hostel" },
+      { type: "library", canonicalEntityId: "277acbd3-0f06-4b11-a1d8-5d3ee8be90a0", displayProperty: "name", category: "building" },
+      { type: "admin", canonicalEntityId: "3df4f187-5b09-4c75-a7b6-d59c755b7f04", displayProperty: "name", category: "location" },
+      { type: "clinic", canonicalEntityId: "78651993-f673-4578-a4b9-f25f907d06b5", displayProperty: "name", category: "location" },
     ],
     venues: [
       ["Welcome lodge", "social"],
@@ -69,7 +71,9 @@ const configurations = {
       "Residence court",
     ],
     bindings: [
-      { type: "library", factKey: "library.name", category: "building" },
+      { type: "hostel", canonicalEntityId: "19f48f7c-d3d1-4f02-a705-b8e3d0088d51", displayProperty: "name", category: "hostel" },
+      { type: "lecture_hall", canonicalEntityId: "678e4fc0-19f1-47d9-ac41-0e4a11a26568", displayProperty: "name", category: "building" },
+      { type: "library", canonicalEntityId: "7472c1e3-edee-4fdf-a8f7-f7ae997c382c", displayProperty: "name", category: "building" },
     ],
     venues: [
       ["Arrival pavilion", "social"],
@@ -96,8 +100,9 @@ const configurations = {
       "Waterfront-inspired gardens",
     ],
     bindings: [
-      { type: "library", factKey: "library.name", category: "building" },
-      { type: "admin", factKey: "senate.name", category: "building" },
+      { type: "lecture_hall", canonicalEntityId: "45ee2e4e-a860-4694-ac94-8e6112706a7b", displayProperty: "name", category: "building" },
+      { type: "library", canonicalEntityId: "9c21c49a-d0b8-458e-ab1b-27ae23592497", displayProperty: "name", category: "building" },
+      { type: "admin", canonicalEntityId: "9f32b58d-8002-4982-af73-10fb0c3532c3", displayProperty: "name", category: "building" },
     ],
     venues: [
       ["Study court", "library"],
@@ -106,12 +111,12 @@ const configurations = {
       ["Residence lounge", "hostel"],
       ["Food courtyard", "food"],
       ["Civic room", "admin"],
+      ["Quiet courtyard", "religious"],
     ],
   },
 };
 export function createCampusWorld(campusId: CampusId): WorldManifest {
-  const c = configurations[campusId],
-    asset = environmentAssets.find((a) => a.id === `${campusId}-environment`)!;
+  const c = configurations[campusId];
   const rows = Math.ceil(c.types.length / c.cols),
     zw = c.width / c.cols,
     zh = c.height / rows;
@@ -123,13 +128,13 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
     y: Math.floor(i / c.cols) * zh,
     width: zw,
     height: zh,
-    bundle: asset.id,
+    bundle: `${campusId}-zone-${i}`,
   }));
   const w: WorldManifest = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     campusId,
-    version: 1,
-    sourceRevision: "geometry-2026-10-10.1",
+    version: 2,
+    sourceRevision: "geometry-2026-10-10.25",
     geography: "compressed campus geography",
     bounds: { x: 0, y: 0, width: c.width, height: c.height },
     defaultSpawnId: "spawn-arrival",
@@ -150,7 +155,7 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
     interactionPoints: [],
     decorations: [],
     npcSpawns: [],
-    assetBundles: [{ ...asset }],
+    assetBundles: environmentAssets.filter((a) => a.id.startsWith(`${campusId}-zone-`)).map((a) => ({ ...a })),
   };
   zones.forEach((z, i) => {
     const cx = z.x + z.width / 2,
@@ -273,6 +278,12 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
       activeHours: [6, 22],
       fictional: true,
     });
+    for (let j = 1; j <= 2; j++) w.npcSpawns.push({
+      ...w.npcSpawns[w.npcSpawns.length - 1]!, id: `ambient-${i}-${j}`, role: "student",
+      x: cx + j * 44, y: cy + 14, pattern: j === 1 ? "wander" : "stationary",
+      route: [{ x: cx + j * 44, y: cy + 90 }],
+      appearance: { ...defaultAppearance, skin: j === 1 ? "deep" : "warm", hair: j === 1 ? "braids" : "afro", top: j === 1 ? "lime" : "clay", accessory: j === 1 ? "none" : "backpack" },
+    });
     w.interactionPoints.push({
       id: `talk-${i}`,
       zoneId: z.id,
@@ -378,7 +389,8 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
     if (venue)
       venue.identity = {
         kind: "approximate",
-        factKey: binding.factKey,
+        canonicalEntityId: binding.canonicalEntityId,
+        displayProperty: binding.displayProperty,
         category: binding.category,
       };
   }

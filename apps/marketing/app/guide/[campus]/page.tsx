@@ -7,7 +7,7 @@ export async function generateMetadata({
   params: Promise<{ campus: string }>;
 }) {
   const { campus } = await params;
-  const facts = (await publishedFacts()).filter((f) => f.campus === campus);
+  const facts = (await publishedFacts(campus)).filter((f) => f.campus === campus);
   return {
     title: `${campus.toUpperCase()} campus guide`,
     robots: { index: facts.length >= 3, follow: true },
@@ -20,7 +20,7 @@ export default async function Guide({
   params: Promise<{ campus: string }>;
 }) {
   const { campus } = await params;
-  const facts = (await publishedFacts()).filter((f) => f.campus === campus);
+  const facts = (await publishedFacts(campus)).filter((f) => f.campus === campus);
   if (!facts.length) notFound();
   return (
     <main className="public-page">
@@ -46,3 +46,4 @@ export default async function Guide({
     </main>
   );
 }
+

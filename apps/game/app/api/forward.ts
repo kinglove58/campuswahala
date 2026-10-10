@@ -115,8 +115,8 @@ export async function forward(
   const contextHeader = signContext(
     { client, network },
     method,
-    upstreamPath,
-    `${body ?? ""}\n${token ?? ""}${options && !options.publicWorld && options.path !== "/v1/catalogue/published" ? `\n${accountToken ?? ""}` : ""}`,
+    upstreamPath.split("?")[0]!,
+    `${body ?? ""}\n${token ?? ""}${options && !options.publicWorld && !options.path.startsWith("/v1/catalogue/published") ? `\n${accountToken ?? ""}` : ""}`,
     key,
   );
   const withClientCookie = (response: NextResponse) => {

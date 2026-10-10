@@ -141,6 +141,8 @@ export function AccountPanel({
 }
 export function GuidePanel({ campus }: { campus: string }) {
   const [facts, setFacts] = useState<Fact[]>([]);
+  const [cursor, setCursor] = useState<string | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [message, setMessage] = useState(
     "Loading published campus information…",
   );
@@ -148,7 +150,7 @@ export function GuidePanel({ campus }: { campus: string }) {
   const [kind, setKind] = useState("correct");
   const [correction, setCorrection] = useState("");
   useEffect(() => {
-    void fetch("/api/guide")
+    void fetch(`/api/guide?campus=${encodeURIComponent(campus)}&limit=100`)
       .then((r) => r.json())
       .then((data) => {
         const visible = (data.facts ?? []).filter(
@@ -156,6 +158,7 @@ export function GuidePanel({ campus }: { campus: string }) {
             f.campus === campus && new Date(f.staleAt).getTime() > Date.now(),
         );
         setFacts(visible);
+        setCursor(data.nextCursor ?? null);
         setMessage(
           visible.length
             ? ""
@@ -164,6 +167,18 @@ export function GuidePanel({ campus }: { campus: string }) {
       })
       .catch(() => setMessage("The guide is temporarily unavailable."));
   }, [campus]);
+  async function more() {
+    if (!cursor || loadingMore) return;
+    setLoadingMore(true);
+    try {
+      const r = await fetch(`/api/guide?campus=${encodeURIComponent(campus)}&limit=100&cursor=${encodeURIComponent(cursor)}`);
+      if (!r.ok) throw Error();
+      const data = await r.json();
+      setFacts((old) => [...old, ...(data.facts ?? []).filter((f: Fact) => f.campus === campus && new Date(f.staleAt).getTime() > Date.now() && !old.some((o) => o.id === f.id))]);
+      setCursor(data.nextCursor ?? null);
+    } catch { setMessage("More campus information could not be loaded. Please retry."); }
+    finally { setLoadingMore(false); }
+  }
   async function feedback() {
     try {
       const r = await fetch("/api/feedback", {
@@ -208,6 +223,7 @@ export function GuidePanel({ campus }: { campus: string }) {
           ))}
         </article>
       ))}
+      {cursor && <button disabled={loadingMore} onClick={() => void more()}>{loadingMore ? "Opening more places…" : "More campus information"}</button>}
       {facts.length > 0 && (
         <>
           <h3>Send feedback</h3>

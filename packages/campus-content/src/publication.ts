@@ -1,4 +1,8 @@
 import { z } from "zod";
+export const sourceAuthority = z.enum(["official", "institutional", "reputable", "community", "generated_fixture"]);
+export const processingState = z.enum(["DISCOVERED", "FETCHED", "EXTRACTED", "NORMALIZED", "CORROBORATED", "POLICY_CHECKED", "PUBLISHED", "STALE", "REJECTED"]);
+export const sourcePolicyStatus = z.enum(["pending", "permitted_public", "rejected"]);
+export const publicationResult = z.enum(["ALLOW", "HOLD", "REJECT", "STALE"]);
 export const factCategory = z.enum([
   "university",
   "faculty",
@@ -34,6 +38,8 @@ export const candidateSchema = z
       "event",
       "critical",
     ]),
+    subjectKey: z.string().min(1).max(160),
+    propertyKey: z.string().min(1).max(120),
     key: z.string().min(1).max(120),
     value: z.string().min(1).max(500),
     category: factCategory,
@@ -79,7 +85,7 @@ export interface PolicyInput {
   expiresAt?: Date;
 }
 export const policyDefaults = {
-  version: "2026-10-09.1",
+  version: "2026-10-10.2",
   confidence: 0.85,
   ttlDays: {
     university: 365,
@@ -109,6 +115,7 @@ export class PublicationPolicyService {
     const ttl = this.settings.ttlDays[input.category] * 86400000;
     const genuine = input.evidence.filter(
       (e) =>
+        sourceAuthority.safeParse(e.authority).success &&
         !e.generated &&
         e.authority !== "generated_fixture" &&
         e.independentGroup.trim() &&
@@ -136,6 +143,10 @@ export class PublicationPolicyService {
     });
     if (!factCategory.safeParse(input.category).success)
       return answer("REJECT", "UNSUPPORTED_CATEGORY");
+    if (input.evidence.some((e) => !sourceAuthority.safeParse(e.authority).success))
+      return answer("REJECT", "UNKNOWN_SOURCE_AUTHORITY");
+    if (input.category === "critical" && !fresh.some((e) => e.authority === "official"))
+      return answer("HOLD", "OFFICIAL_SOURCE_REQUIRED");
     if (input.contradiction) return answer("HOLD", "UNRESOLVED_CONTRADICTION");
     if (
       (input.expiresAt && input.expiresAt <= input.now) ||
@@ -205,3 +216,4 @@ export function matchEntity(
         reason: matches.length ? "AMBIGUOUS_HOLD" : "NO_CONFIDENT_MATCH",
       };
 }
+

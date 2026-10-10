@@ -82,7 +82,8 @@ describe("world integrity and authority boundaries", () => {
         w.venues[0]!.identity = {
           kind: "approximate",
           category: "candidate",
-          factKey: "javascript:bad",
+          canonicalEntityId: "javascript:bad",
+          displayProperty: "name",
         };
       },
     ],
@@ -164,14 +165,16 @@ describe("world integrity and authority boundaries", () => {
       now = Date.now();
     w.venues[0]!.identity = {
       kind: "approximate",
-      factKey: "library.name",
+      canonicalEntityId: "12345678-1234-4123-a123-123456789012",
+      displayProperty: "name",
       category: "building",
     };
     const fact = {
       id: "fact",
       campus: "futa",
       category: "building",
-      key: "library.name",
+      canonicalSubjectId: "12345678-1234-4123-a123-123456789012",
+      propertyKey: "name",
       value: "University Library",
       sources: ["https://example.edu/library"],
       lastObservedAt: new Date(now - 1000),

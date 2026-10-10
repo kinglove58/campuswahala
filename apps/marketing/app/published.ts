@@ -9,7 +9,7 @@ export interface PublishedFact {
   sources: string[];
 }
 /** Server-only fixed read; candidates, raw documents, identities and profiles never enter marketing. */
-export async function publishedFacts(): Promise<PublishedFact[]> {
+export async function publishedFacts(campus?: string): Promise<PublishedFact[]> {
   const local = process.env.APP_ENV === "local";
   const key =
     process.env.BFF_SERVICE_SECRET ?? (local ? localTrustKey : undefined);
@@ -24,7 +24,7 @@ export async function publishedFacts(): Promise<PublishedFact[]> {
   const path = "/v1/catalogue/published";
   try {
     const response = await fetch(
-      `${process.env.API_INTERNAL_URL ?? "http://127.0.0.1:4000"}${path}`,
+      `${process.env.API_INTERNAL_URL ?? "http://127.0.0.1:4000"}${path}?limit=100${campus && ["futa", "oau", "unilag"].includes(campus) ? `&campus=${campus}` : ""}`,
       {
         cache: "no-store",
         signal: AbortSignal.timeout(3000),
@@ -49,3 +49,4 @@ export async function publishedFacts(): Promise<PublishedFact[]> {
     return [];
   }
 }
+

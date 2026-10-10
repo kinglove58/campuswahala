@@ -1,20 +1,86 @@
 export const environmentAssets = [
   {
-    id: "futa-environment",
-    path: "/world-assets/environment/futa.ab343b0ae925.svg",
-    bytes: 368,
-    hash: "ab343b0ae9259c960b7a003b0ccfdb4d4a9aceb245ff9b17a1f5d5d0757b6232",
+    "id": "futa-zone-0",
+    "path": "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+    "bytes": 926,
+    "hash": "d6b2c39379845a731535843ef81c642f97006483974998bbb0bdeced1ff7870e"
   },
   {
-    id: "oau-environment",
-    path: "/world-assets/environment/oau.87836f8f0a08.svg",
-    bytes: 368,
-    hash: "87836f8f0a08cdf312ae1f3af7d49dd8d332e100a2ea0a572f1dfdf650665da3",
+    "id": "futa-zone-1",
+    "path": "/world-assets/zones/futa-zone-1.0f78d95709a6.svg",
+    "bytes": 926,
+    "hash": "0f78d95709a615a74f6d24d7c28840c2026a53dcf2f173782c578731f879aa33"
   },
   {
-    id: "unilag-environment",
-    path: "/world-assets/environment/unilag.187a3169935d.svg",
-    bytes: 368,
-    hash: "187a3169935d22cae03dbe9189120c373686a84145b7d9929f8cb4bcfcd9a900",
+    "id": "futa-zone-2",
+    "path": "/world-assets/zones/futa-zone-2.1248e30d2d65.svg",
+    "bytes": 926,
+    "hash": "1248e30d2d65397cf3a4b7f867f7196115700cfca46cfead796babe05d5a06c8"
   },
+  {
+    "id": "futa-zone-3",
+    "path": "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+    "bytes": 926,
+    "hash": "20ef9491527294f544f8faa8c888db57ea3b59f7372c266d0c105b03e7017e60"
+  },
+  {
+    "id": "futa-zone-4",
+    "path": "/world-assets/zones/futa-zone-4.4edd42894dc0.svg",
+    "bytes": 926,
+    "hash": "4edd42894dc0c90f1edde23e2b600e4128c5d7cfa6db8995b5015029c0d43c2a"
+  },
+  {
+    "id": "futa-zone-5",
+    "path": "/world-assets/zones/futa-zone-5.c8ae781f483f.svg",
+    "bytes": 926,
+    "hash": "c8ae781f483f51d6b223180d4216c648942743dc13b4d61bc7aeef2701559fa4"
+  },
+  {
+    "id": "oau-zone-0",
+    "path": "/world-assets/zones/oau-zone-0.9cde4d1d974c.svg",
+    "bytes": 926,
+    "hash": "9cde4d1d974c952a400b12cc61218bf44ca804a2c8c4df828b972d96de351f65"
+  },
+  {
+    "id": "oau-zone-1",
+    "path": "/world-assets/zones/oau-zone-1.ff9bb67b8f82.svg",
+    "bytes": 926,
+    "hash": "ff9bb67b8f82241ee05e93ff129426d74ad018b7a25beb215112c80b7c0c47e2"
+  },
+  {
+    "id": "oau-zone-2",
+    "path": "/world-assets/zones/oau-zone-2.d91570043d86.svg",
+    "bytes": 926,
+    "hash": "d91570043d86dde34f1e222ecf25e124293c60229b45d38bbb9b772f435988b9"
+  },
+  {
+    "id": "oau-zone-3",
+    "path": "/world-assets/zones/oau-zone-3.5593bc2dce46.svg",
+    "bytes": 926,
+    "hash": "5593bc2dce467d2bef3f6f9aa79f3a91537b16fddaf735a00ea7e988f8fc75ff"
+  },
+  {
+    "id": "unilag-zone-0",
+    "path": "/world-assets/zones/unilag-zone-0.3854fc50f8cc.svg",
+    "bytes": 829,
+    "hash": "3854fc50f8cc264b68197877e82213992010d671268160f850152a27d67b12b2"
+  },
+  {
+    "id": "unilag-zone-1",
+    "path": "/world-assets/zones/unilag-zone-1.f9f131d873e0.svg",
+    "bytes": 829,
+    "hash": "f9f131d873e000b524e16d3c64bd1aea023e4c01e57a2727a6a42190443026d7"
+  },
+  {
+    "id": "unilag-zone-2",
+    "path": "/world-assets/zones/unilag-zone-2.b470a2993fc1.svg",
+    "bytes": 829,
+    "hash": "b470a2993fc14a9014b5bda14c022e9377db4bbe128224dc6a204a68df3bb156"
+  },
+  {
+    "id": "unilag-zone-3",
+    "path": "/world-assets/zones/unilag-zone-3.b73343138e5b.svg",
+    "bytes": 829,
+    "hash": "b73343138e5bd30f005c0fb82b6da2d8d53f6cacbc48a25f2be0680ea83b7a09"
+  }
 ] as const;

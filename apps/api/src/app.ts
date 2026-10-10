@@ -1,3 +1,4 @@
+import { legacyWorlds } from "@campuswahala/game-engine/dist/revisions";
 import {
   createCampusWorld,
   isCampus,
@@ -13,6 +14,7 @@ import {
   Get,
   Headers,
   Param,
+  Query,
   HttpException,
   Inject,
   Module,
@@ -78,17 +80,17 @@ class ApiController {
   @Get("v1/campuses") catalogue() {
     return { campuses };
   }
-  @Get("v1/catalogue/published") published() {
-    return this.accounts.publishedCatalogue();
+  @Get("v1/catalogue/published") published(@Query() query: unknown) {
+    return this.accounts.publishedCatalogue(query);
   }
   @Get("v1/worlds/:campus/versions/:version") world(
     @Param("campus") campus: string,
     @Param("version") version: string,
     @Res({ passthrough: true }) response: Response,
   ) {
-    if (!isCampus(campus) || version !== "1")
+    if (!isCampus(campus) || !["1", "2"].includes(version))
       throw new HttpException("WORLD_NOT_FOUND", 404);
-    const world = compiledWorlds[campus];
+    const world = version === "1" ? legacyWorlds[campus] : compiledWorlds[campus];
     response.setHeader("Cache-Control", "public, max-age=31536000, immutable");
     response.setHeader(
       "ETag",
@@ -104,15 +106,16 @@ class ApiController {
     response.setHeader("Cache-Control", "public, max-age=60");
     return {
       campusId: campus,
-      version: 1,
-      path: `/v1/worlds/${campus}/versions/1`,
+      version: compiledWorlds[campus].version,
+      path: `/v1/worlds/${campus}/versions/${compiledWorlds[campus].version}`,
     };
   }
   @Get("v1/worlds/:campus/information") async worldInformation(
     @Param("campus") campus: string,
   ) {
     if (!isCampus(campus)) throw new HttpException("WORLD_NOT_FOUND", 404);
-    const published = await this.accounts.publishedCatalogue();
+    const ids = compiledWorlds[campus].venues.flatMap((v) => v.identity.kind === "approximate" ? [v.identity.canonicalEntityId] : []);
+    const published = await this.accounts.publishedCatalogue({ campus, limit: 100 }, ids);
     return {
       venues: compileWorldInformation(compiledWorlds[campus], published.facts),
     };

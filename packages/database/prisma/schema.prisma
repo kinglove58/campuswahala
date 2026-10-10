@@ -321,7 +321,7 @@ model CampusBusinessReference {
 model ContentSource {
   id String @id @default(uuid()) @db.Uuid
   campusId String @db.Uuid
-  url String @unique
+  url String
   domain String
   type String
   authorityClass String
@@ -341,6 +341,7 @@ model ContentSource {
   contentHash String?
   campus Campus @relation(fields: [campusId], references: [id])
   observations SourceObservation[]
+  @@unique([campusId, url])
   @@index([nextFetchAt, status])
 }
 model SourceObservation {
@@ -366,20 +367,34 @@ model Evidence {
   observation SourceObservation @relation(fields: [observationId], references: [id])
   versions FactVersionEvidence[]
 }
+model CampusSubject {
+  id String @id @default(uuid()) @db.Uuid
+  campusId String @db.Uuid
+  subjectType String
+  name String
+  aliases String[]
+  originKey String?
+  facts CampusFact[]
+  @@unique([campusId, subjectType, originKey])
+  @@unique([id, campusId, subjectType])
+}
 model CampusFact {
   id String @id @default(uuid()) @db.Uuid
   campusId String @db.Uuid
-  entityId String? @db.Uuid
-  entityType String
-  key String
+  subjectType String
+  canonicalSubjectId String? @db.Uuid
+  candidateSubjectKey String?
+  propertyKey String
   status String @default("candidate")
   currentVersionId String? @unique @db.Uuid
   staleAt DateTime?
   campus Campus @relation(fields: [campusId], references: [id])
+  subject CampusSubject? @relation(fields: [canonicalSubjectId, campusId, subjectType], references: [id, campusId, subjectType])
   versions FactVersion[] @relation("FactVersions")
   currentVersion FactVersion? @relation("CurrentVersion", fields: [currentVersionId], references: [id])
   feedback FactFeedback[]
-  @@unique([campusId, entityType, key])
+  @@unique([campusId, subjectType, canonicalSubjectId, propertyKey])
+  @@unique([campusId, subjectType, candidateSubjectKey, propertyKey])
   @@index([status, staleAt])
 }
 model FactVersion {

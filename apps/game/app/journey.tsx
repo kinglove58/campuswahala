@@ -29,6 +29,8 @@ export default function GuestJourney() {
   const [input, setInput] = useState<GuestInput>(initial);
   const [step, setStep] = useState(0);
   const [player, setPlayer] = useState<JourneyPlayer | null>(null);
+  const [conflict, setConflict] = useState<{ existing: JourneyPlayer; guest: JourneyPlayer } | null>(null);
+  const [guestMode, setGuestMode] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -50,17 +52,19 @@ export default function GuestJourney() {
       if (account.ok) {
         const data = await account.json();
         setSignedIn(true);
-        const previousGuest = !data.character
-          ? await fetch("/api/guest", { signal: controller.signal }).then(
+        const previousGuest = await fetch("/api/guest", { signal: controller.signal }).then(
               async (r) => (r.ok ? r.json() : null),
-            )
-          : null;
+            );
         const conversion = await fetch("/api/account/convert", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: "{}",
           signal: controller.signal,
         });
+        if (conversion.status === 409 && data.character && previousGuest) {
+          setConflict({ existing: data.character, guest: previousGuest });
+          return null;
+        }
         const converted = conversion.ok ? await conversion.json() : null;
         const saved = converted?.character ?? data.character;
         if (saved) {
@@ -128,6 +132,11 @@ export default function GuestJourney() {
           headers: { "Content-Type": "application/json" },
           body: "{}",
         });
+        if (converted.status === 409) {
+          const account = await fetch("/api/account/me").then((r) => r.json());
+          if (account.character) setConflict({ existing: account.character, guest: created });
+          return;
+        }
         if (!converted.ok)
           throw new Error("Your character could not be saved. Please retry.");
         const { character } = await converted.json();
@@ -174,6 +183,16 @@ export default function GuestJourney() {
         <h2>Finding your chapter…</h2>
       </main>
     );
+  if (conflict) return (
+    <main className="onboarding"><span className="brand">CampusWahala ✳</span>
+      <h1>We found an existing CampusWahala journey.</h1>
+      <p>Existing journey: {conflict.existing.nickname} · {conflict.existing.campusId.toUpperCase()}</p>
+      <p>Current guest: {conflict.guest.nickname} · {conflict.guest.campusId.toUpperCase()}</p>
+      <p>Your guest journey stays temporary and expires normally. It has not replaced your saved character.</p>
+      <button onClick={() => { setPlayer(conflict.existing); setGuestMode(false); setConflict(null); }}>Resume existing journey</button>
+      <button className="secondary" onClick={() => { setPlayer(conflict.guest); setGuestMode(true); setConflict(null); }}>Continue exploring current guest journey temporarily</button>
+    </main>
+  );
   if (!player)
     return (
       <div className="entry">
@@ -431,7 +450,7 @@ export default function GuestJourney() {
     <CampusExperience
       player={player}
       campus={campus}
-      signedIn={signedIn}
+      signedIn={signedIn && !guestMode}
       initialAppearance={{
         ...appearance,
         top: player.avatar as Appearance["top"],

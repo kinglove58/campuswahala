@@ -13,13 +13,16 @@ const db = new PrismaClient({
 });
 try {
   const pipeline = new CampusIntelligencePipeline(db);
-  await pipeline.discover();
-  const metrics = await pipeline.runDue(100);
+  const campus = process.env.RESEARCH_CAMPUS;
+  if (!campus || !["futa", "oau", "unilag"].includes(campus)) throw new Error("CONTROLLED_CAMPUS_REQUIRED");
+  await pipeline.discover(campus);
+  const metrics = await pipeline.runDue(100, campus);
   // The normal pipeline schedules page retrieval one minute after robots checks.
   // A second bounded tick is opt-in for isolated research; no pacing override.
   if (process.env.RESEARCH_SECOND_TICK === "true") {
-    await delay(61000);
-    Object.assign(metrics, await pipeline.runDue(100));
+    await delay(31000);
+    await delay(30000);
+    Object.assign(metrics, await pipeline.runDue(100, campus));
   }
   const sources = await db.contentSource.findMany({
     where: { discoveryMethod: "curated_official_registry" },
@@ -37,7 +40,10 @@ try {
     where: { status: "published", staleAt: { gt: new Date() } },
     select: {
       campus: { select: { slug: true } },
-      key: true,
+      subjectType: true,
+      canonicalSubjectId: true,
+      candidateSubjectKey: true,
+      propertyKey: true,
       status: true,
       staleAt: true,
       currentVersion: {
