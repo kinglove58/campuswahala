@@ -38,9 +38,13 @@ CW Pocket retains map/waypoint, guide/feedback with page loading, character/prof
 
 Offline scope: open exploration and map continue; a cold/offline private session cannot be restored from cache. Missing optional zone art uses procedural fallback until reload. Private writes are neither cached nor queued. Browser emulation is a reproducible diagnostic; a 60-second bounded movement soak is not the physical 20-minute gate.
 
+Latest fully completed checkpoint when this report was written: `9f4d088eb7abd93d5eb880d7529137bdc73f8853`, [run 38038933453](https://github.com/kinglove58/campuswahala/actions/runs/38038933453), all five jobs successful. Verify passed 114 unit/API/PostgreSQL/migration tests with zero skips and 24 desktop/mobile browser cases. Dependency audit reported no known vulnerabilities. Bicep, production builds, budget checks, web/API smoke, both HIGH/CRITICAL Trivy scans (including unfixed), API SBOM, Semgrep (74 rules/72 files, zero findings), full reachable-history verified-secret scan and CodeQL upload completed successfully. The final guide/property-boundary/accounting/report refinements use the same complete checks; final exact head/run/counts are maintained in PR #10, not inferred from this checkpoint.
+
 ## Constrained browser measurements
 
 Earlier diagnostic checkpoint `79a7383`, run `38038643785`, saved JSON in browser-measurements artifacts: at 360×800, 4× CPU slowdown, 180 ms latency and 500,000 bytes/s download, world-ready was 3,322 ms (desktop project) / 3,269 ms (mobile project). Recorded first-boot encoded network bytes were 194,280; session transfer 201,656. Manifest resource duration was 185.6 / 183.2 ms. After a 60-second movement soak, renderer cumulative frame interval was 66.2 / 55.8 ms; heap warning false and asset failures zero.
+
+The later successful `9f4d088` run recorded world-ready 4,620 / 4,472 ms, first-boot encoded bytes 194,561, session bytes 201,937 and manifest duration 185.0 / 184.7 ms. Cumulative frame intervals were 79.9 / 58.1 ms with no heap warning or asset failures. Variability between CI runs is reported honestly; neither is a device benchmark.
 
 Those frame intervals are below the intended 30-FPS experience under this emulation. They do not establish physical FPS or a device pass, and can include browser scheduling/loading pauses. The byte readings cover the page's CDP network events, exclude APIRequest fixture setup and are not a guaranteed empty-disk-cache device cold load. Budget output and network transfer are separate measurements. Review/device optimization remains open; no numbers are manipulated into a passing FPS claim.
 
@@ -54,7 +58,7 @@ Do not merge as a production-ready release. Stop for Phase 2.5 review; no Phase 
 
 ## Exact changed-file inventory
 
-Paths below are the branch diff against the inspected merged Phase 2 base. Generated Next route declarations are included; original v1 manifest snapshots are retained intentionally.
+The 87 paths below come from the GitHub PR file list against remote base 9427141. Original v1 manifest snapshots are retained intentionally.
 
 - `.github/workflows/ci.yml`
 - `.github/workflows/research.yml`
@@ -73,7 +77,6 @@ Paths below are the branch diff against the inspected merged Phase 2 base. Gener
 - `apps/game/app/offline.tsx`
 - `apps/game/app/style.css`
 - `apps/game/app/world.tsx`
-- `apps/game/next-env.d.ts`
 - `apps/game/next.config.ts`
 - `apps/game/public/manifest.webmanifest`
 - `apps/game/public/offline.html`
@@ -97,7 +100,6 @@ Paths below are the branch diff against the inspected merged Phase 2 base. Gener
 - `apps/marketing/app/published.ts`
 - `apps/marketing/app/sitemap.ts`
 - `apps/marketing/app/universities/[campus]/page.tsx`
-- `apps/marketing/next-env.d.ts`
 - `apps/worker/src/adapters.ts`
 - `apps/worker/src/deletion.ts`
 - `apps/worker/src/intelligence.ts`
