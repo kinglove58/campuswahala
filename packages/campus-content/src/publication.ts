@@ -41,7 +41,7 @@ export const factCategory = z.enum([
 ]);
 /** Critical subject properties retain their subject identity but use the strict critical publication category. */
 export const isCriticalProperty = (key: string) =>
-  /(?:emergency|security[_ .-]?contact|health[_ .-]?contact|medical[_ .-]?contact|(?:official[_ .-]?)?fees?|deadline)/i.test(
+  /(?:emergency|security[_ .-]?contact|health[_ .-]?contact|medical[_ .-]?contact|(?:^|[_ .-])(?:official[_ .-]?)?fees?(?:$|[_ .-])|deadline)/i.test(
     key.replace(/([a-z])([A-Z])/g, "$1_$2"),
   );
 export const candidateSchema = z

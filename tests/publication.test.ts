@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { candidateSchema } from "../packages/campus-content/src/publication";
+import {
+  candidateSchema,
+  isCriticalProperty,
+} from "../packages/campus-content/src/publication";
 import {
   PublicationPolicyService,
   matchEntity,
@@ -197,4 +200,8 @@ it("critical properties cannot downgrade authority by using a building subject",
       candidateSchema.safeParse({ ...candidate, category: "critical" }).success,
     ).toBe(true);
   }
+});
+
+it("ordinary food properties do not become fee claims", () => {
+  expect(isCriticalProperty("coffee.name")).toBe(false);
 });
