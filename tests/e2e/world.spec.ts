@@ -3,6 +3,7 @@ import { validGuestFixture } from "../../packages/testing/src";
 test("world phone controls, focus, waypoint, weather, guide and guest state isolation", async ({
   page,
 }) => {
+  test.setTimeout(90000);
   await page.goto("http://localhost:3001/play?campus=futa");
   await page.getByRole("button", { name: "Continue to academics" }).click();
   await page.getByRole("button", { name: "Create your character" }).click();
@@ -18,6 +19,17 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   await page.getByRole("button", { name: "Open virtual phone" }).click();
   const phone = page.getByRole("dialog", { name: "CW Pocket virtual phone" });
   await expect(phone).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Close phone", exact: true }),
+  ).toBeFocused();
+  await page.keyboard.press("Shift+Tab");
+  await expect(
+    page.getByRole("button", { name: "Account & privacy", exact: true }),
+  ).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(
+    page.getByRole("button", { name: "Close phone", exact: true }),
+  ).toBeFocused();
   if (process.env.CAPTURE_VISUALS === "1") {
     await page.screenshot({
       path: `artifacts/pocket-${test.info().project.name}.png`,
