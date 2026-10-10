@@ -171,3 +171,30 @@ it("fails closed on unknown runtime authority and requires true official critica
       }).result,
     ).not.toBe("ALLOW");
 });
+
+it("critical properties cannot downgrade authority by using a building subject", () => {
+  for (const propertyKey of [
+    "emergencyContact",
+    "security_contact",
+    "health-contact",
+    "official_fee",
+    "application_deadline",
+  ]) {
+    const candidate = {
+      entityType: "building",
+      subjectKey: "clinic-one",
+      propertyKey,
+      key: propertyKey,
+      value: "Public information",
+      excerpt: "Public information",
+      locator: "p",
+      confidence: 0.95,
+    };
+    expect(
+      candidateSchema.safeParse({ ...candidate, category: "building" }).success,
+    ).toBe(false);
+    expect(
+      candidateSchema.safeParse({ ...candidate, category: "critical" }).success,
+    ).toBe(true);
+  }
+});
