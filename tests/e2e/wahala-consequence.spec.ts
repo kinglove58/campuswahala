@@ -133,6 +133,11 @@ test("non-neutral food queue choice advances shared time once and survives retry
     await page.screenshot({
       path: `artifacts/wahala-pending-options-${test.info().project.name}.png`,
     });
+  await page.locator(".wahala-story").scrollIntoViewIfNeeded();
+  if (process.env.CAPTURE_VISUALS === "1")
+    await page.screenshot({
+      path: `artifacts/wahala-pending-situation-${test.info().project.name}.png`,
+    });
   await page
     .getByRole("button", { name: label, exact: true })
     .scrollIntoViewIfNeeded();
