@@ -180,15 +180,41 @@ async function assessments(
     if (page && !usedUi) {
       await portal(page, true);
       await page.locator("summary").filter({ hasText: course.code }).click();
-      await page
-        .getByRole("button", {
-          name:
-            kind === "test"
-              ? `Take ${course.code} test`
-              : `Write ${course.code} examination`,
-          exact: true,
-        })
-        .click();
+      const action = page.getByRole("button", {
+        name:
+          kind === "test"
+            ? `Take ${course.code} test`
+            : `Write ${course.code} examination`,
+        exact: true,
+      });
+      // A definite 429 has not executed the action. Retry the real UI only
+      // while that response is rate-limited; never retry an uncertain commit.
+      let accepted = false;
+      await expect
+        .poll(
+          async () => {
+            const [response] = await Promise.all([
+              page.waitForResponse(
+                (r) =>
+                  r.url().endsWith("/api/academic/commands") &&
+                  r.request().method() === "POST",
+              ),
+              action.click(),
+            ]);
+            expect((await response.allHeaders())["cache-control"]).toContain(
+              "no-store",
+            );
+            accepted = response.ok();
+            return response.status();
+          },
+          {
+            timeout: 75000,
+            intervals: [1000, 2000],
+            message: "Retry the UI assessment only after a definite 429",
+          },
+        )
+        .not.toBe(429);
+      expect(accepted).toBe(true);
       await expect(
         page.getByText(`${kind === "test" ? "Test" : "Exam"}: taken`, {
           exact: false,
