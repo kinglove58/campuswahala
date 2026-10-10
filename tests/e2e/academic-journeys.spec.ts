@@ -520,6 +520,14 @@ test("one genuine carryover retakes once, passes, clears and retains immutable f
       .filter({ hasText: `${failed.code} · ${failed.title}` }),
   ).toContainText("Carryover");
   await capture(page, "academic-carryover-enrolled");
+  await page.getByRole("button", { name: "← All apps", exact: true }).click();
+  await page.getByRole("button", { name: "Campus life", exact: true }).click();
+  await expect(page.getByTestId("life-carryovers")).toHaveText(
+    `Carryover: ${failed.code}`,
+  );
+  await capture(page, "campus-life-carryover-context");
+  await page.getByRole("button", { name: "← All apps", exact: true }).click();
+  await page.getByRole("button", { name: "Portal", exact: true }).click();
   for (const course of journey.state.term!.courses)
     await prepare(journey, course);
   await finish(journey, page);

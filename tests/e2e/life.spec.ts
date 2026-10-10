@@ -132,6 +132,9 @@ test("campus daily routine uses real venue authority, life choices, shared acade
       exact: true,
     }),
   ).toHaveCount(0);
+  await expect(venue.getByTestId("life-current-venue")).toHaveText(
+    `Current: ${av.term!.venues.find((v) => v.id === av.term!.presenceVenueId)!.name}`,
+  );
   expect((await life()).state!.metrics).toEqual(lv.state!.metrics);
   expect((await academics()).term!.presenceVenueId).not.toBe(food.id);
   const denied = await request(() =>

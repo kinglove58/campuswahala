@@ -1,7 +1,9 @@
 "use client";
-import type { LifeCommand, LifeView } from "@campuswahala/domain";
+import { campusLifeContext } from "./life-context";
+import type { AcademicView, LifeCommand, LifeView } from "@campuswahala/domain";
 export function LifePanel({
   view,
+  academic,
   busy,
   online,
   error,
@@ -13,6 +15,7 @@ export function LifePanel({
   homeName,
 }: {
   view: LifeView | null;
+  academic: AcademicView | null;
   busy: boolean;
   online: boolean;
   error: string;
@@ -24,6 +27,7 @@ export function LifePanel({
   homeName?: string;
 }) {
   const state = view?.state;
+  const today = campusLifeContext(academic, view);
   const label = (c: LifeCommand) => {
     if (c.type === "START_LIFE") return "Begin campus life";
     if (c.type === "RESOLVE_WAHALA") {
@@ -79,6 +83,24 @@ export function LifePanel({
                   ),
                 )}
               </div>
+              {today && (
+                <div
+                  className="life-today"
+                  aria-label="Today on your virtual campus"
+                >
+                  <p className="tag">Today · CampusWahala simulation</p>
+                  <p data-testid="life-current-venue">Current: {today.venue}</p>
+                  <p data-testid="life-next-event">Next: {today.next}</p>
+                  {today.carryovers.length > 0 && (
+                    <p data-testid="life-carryovers">
+                      Carryover: {today.carryovers.join(", ")}
+                    </p>
+                  )}
+                  <p className="life-suggestion" data-testid="life-suggestion">
+                    {today.suggestion}
+                  </p>
+                </div>
+              )}
               <p>
                 Virtual home: {homeName ?? "simulation residence"} · simulation
                 housing. Time passes only when you play; days away never drain

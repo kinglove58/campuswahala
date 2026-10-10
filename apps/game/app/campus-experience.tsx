@@ -633,6 +633,7 @@ export default function CampusExperience({
             {signedIn && venue && (
               <LifePanel
                 view={life.state}
+                academic={academics.state}
                 homeName={
                   academics.state?.term?.venues.find(
                     (v) => v.id === life.state?.state?.homeVenueId,
@@ -644,7 +645,10 @@ export default function CampusExperience({
                 retry={life.retry}
                 venueId={venue.id}
                 authoritativeVenueId={academics.state?.term?.presenceVenueId}
-                onRefresh={() => void life.refresh()}
+                onRefresh={() => {
+                  void life.refresh();
+                  void academics.refresh();
+                }}
                 onCommand={(c) => {
                   if (!academics.busy && !academics.retry)
                     void life.command(c).then(() => academics.refresh());
@@ -815,6 +819,7 @@ export default function CampusExperience({
                 (signedIn ? (
                   <LifePanel
                     view={life.state}
+                    academic={academics.state}
                     homeName={
                       academics.state?.term?.venues.find(
                         (v) => v.id === life.state?.state?.homeVenueId,
@@ -824,7 +829,10 @@ export default function CampusExperience({
                     online={online}
                     error={life.error}
                     retry={life.retry}
-                    onRefresh={() => void life.refresh()}
+                    onRefresh={() => {
+                      void life.refresh();
+                      void academics.refresh();
+                    }}
                     onCommand={(c) => {
                       if (!academics.busy && !academics.retry)
                         void life.command(c).then(() => academics.refresh());
