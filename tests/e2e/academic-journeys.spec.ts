@@ -272,6 +272,40 @@ async function capture(page: Page, name: string) {
       path: `artifacts/${name}-${test.info().project.name}.png`,
     });
 }
+async function resultCapture(page: Page, name: string) {
+  await capture(page, name);
+  // Scroll the actual Pocket content to show the result table, rather than
+  // changing layout or academic state for screenshots.
+  await page.locator(".phone-content").evaluate((el) => {
+    const heading = [...el.querySelectorAll("h3")].find(
+      (h) => h.textContent === "Private simulation results",
+    );
+    if (heading)
+      el.scrollTop +=
+        heading.getBoundingClientRect().top -
+        el.getBoundingClientRect().top -
+        12;
+  });
+  await capture(page, `${name}-table`);
+}
+async function evidence(journey: AcademicJourney, name: string) {
+  // Synthetic local-development test results only; no tokens/account identifiers.
+  await test.info().attach(name, {
+    contentType: "application/json",
+    body: JSON.stringify(
+      {
+        history: journey.state.history.map((h) => ({
+          result: h.result,
+          progression: h.progression.outcome,
+        })),
+        carryovers: journey.state.carryovers.map((c) => c.code),
+        currentResult: journey.state.term!.result,
+      },
+      null,
+      2,
+    ),
+  });
+}
 async function privacy(page: Page, context: BrowserContext) {
   const cached = await page.evaluate(async () => {
     const urls: string[] = [];
@@ -422,7 +456,8 @@ test("successful semester through CW Pocket and actual lecture venue; visual mov
   await expect(
     page.getByText("progress · Simulation term passed.", { exact: true }),
   ).toBeVisible();
-  await capture(page, "academic-success-results");
+  await resultCapture(page, "academic-success-results");
+  await evidence(journey, "successful-semester-evidence");
   await privacy(page, context);
 });
 
@@ -459,7 +494,7 @@ test("one genuine carryover retakes once, passes, clears and retains immutable f
       exact: true,
     }),
   ).toBeVisible();
-  await capture(page, "academic-carryover-results");
+  await resultCapture(page, "academic-carryover-results");
   const originalHistory = structuredClone(journey.state.history[0]!);
   await page
     .getByRole("button", {
@@ -528,5 +563,6 @@ test("one genuine carryover retakes once, passes, clears and retains immutable f
     ),
   ).toBeVisible();
   await capture(page, "academic-retake-passed");
+  await evidence(journey, "carryover-retake-evidence");
   await privacy(page, context);
 });
