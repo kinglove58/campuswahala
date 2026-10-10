@@ -51,7 +51,12 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   expect(box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
   await page.getByRole("button", { name: "Portal", exact: true }).click();
   await expect(
-    page.getByText("Academic simulation coming next."),
+    page.getByText("Save your journey to begin your persistent semester.", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Try academic tutorial" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "All apps" }).click();
   await page.getByRole("button", { name: "Guide & feedback" }).click();

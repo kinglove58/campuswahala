@@ -13,6 +13,7 @@ import {
   aggregateResults,
   applyAcademicCommand,
   completeResults,
+  decideProgression,
   processTime,
   assessmentScore,
   allowedActions,
@@ -374,5 +375,57 @@ describe("versioned CampusWahala academic domain", () => {
       validateTimetable(term);
       expect(term.courses).toHaveLength(count);
     }
+  });
+  it("progresses by explicit stage/semester order, preserves SIWES/project tags and holds at the configured end", () => {
+    const term = fixtureTerm();
+    processTime(term, term.endMinute);
+    completeResults(term, []);
+    term.result!.courses.forEach((c) => (c.passed = true));
+    const nextStageId = randomUUID(),
+      nextSemesterId = randomUUID(),
+      secondSemesterId = randomUUID();
+    const refs = {
+      stages: [
+        { id: term.stageId, order: 7, activityTags: [] },
+        {
+          id: nextStageId,
+          order: 42,
+          activityTags: ["siwes", "final-project"],
+        },
+      ],
+      semesters: [
+        { id: term.semesterId, stageId: term.stageId, order: 0 },
+        { id: secondSemesterId, stageId: term.stageId, order: 1 },
+        { id: nextSemesterId, stageId: nextStageId, order: 0 },
+      ],
+    };
+    expect(decideProgression(term, refs)).toMatchObject({
+      outcome: "progress",
+      nextStageId: term.stageId,
+      nextSemesterId: secondSemesterId,
+    });
+    term.semesterId = secondSemesterId;
+    expect(decideProgression(term, refs)).toMatchObject({
+      outcome: "progress",
+      nextStageId,
+      nextSemesterId,
+      activityTags: ["siwes", "final-project"],
+    });
+    term.stageId = nextStageId;
+    term.semesterId = nextSemesterId;
+    expect(decideProgression(term, refs).outcome).toBe("hold");
+    term.stageId = refs.stages[0]!.id;
+    term.semesterId = refs.semesters[0]!.id;
+    term.result!.courses[0]!.passed = false;
+    expect(decideProgression(term, refs).outcome).toBe(
+      "progress_with_carryovers",
+    );
+    term.result!.courses.forEach((c) => (c.passed = false));
+    expect(decideProgression(term, refs).outcome).toBe("repeat_stage");
+    term.progressionPolicy.repeatFailedUnitsBasisPoints = 10000;
+    term.result!.courses.at(-1)!.passed = true;
+    expect(decideProgression(term, refs).outcome).toBe(
+      "progress_with_carryovers",
+    );
   });
 });

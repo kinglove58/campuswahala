@@ -14,13 +14,13 @@ import {
   simulationCourses,
   applyAcademicCommand,
   completeResults,
+  decideProgression,
   allowedActions,
   academicNotifications,
   type AcademicTerm,
   type AcademicHistory,
   type AcademicView,
   type CourseTemplate,
-  type ProgressionDecision,
 } from "@campuswahala/domain";
 import { AccountService } from "./accounts";
 
@@ -278,11 +278,19 @@ export class AcademicService {
         } else {
           if (!latest) throw new ConflictException("START_TERM_REQUIRED");
           term = snapshot(latest.snapshot);
+          if (
+            character.programmeId !== term.programmeId ||
+            character.structureId !== term.structureId ||
+            character.structureVersion !== term.structureVersion ||
+            character.stageId !== term.stageId ||
+            character.semesterId !== term.semesterId
+          )
+            throw new ConflictException("ACADEMIC_POSITION_CONFLICT");
           if (command.termId !== term.id)
             throw new ConflictException("TERM_REVISION_CONFLICT");
           if (command.type === "COMPLETE_TERM") {
             const view = await this.readView(tx, userId);
-            const result = completeResults(term, view.history);
+            completeResults(term, view.history);
             const outstanding = term.courses
               .filter((c) => !c.result!.passed)
               .map(
@@ -297,58 +305,7 @@ export class AcademicService {
                   weights: c.weights,
                 }),
               );
-            const failedUnits = outstanding.reduce((n, c) => n + c.units, 0);
-            const semesters = character.structure.semesters.filter(
-              (s) => s.stageId === term.stageId,
-            );
-            const semester = semesters.find((s) => s.id === term.semesterId);
-            if (!semester)
-              throw new ConflictException("ACADEMIC_POSITION_UNAVAILABLE");
-            const nextSemester = semesters.find(
-              (s) => s.order > semester.order,
-            );
-            const nextStage = character.structure.stages.find(
-              (s) => s.order > character.stage.order,
-            );
-            const repeat =
-              failedUnits * 10000 >=
-              result.attemptedUnits *
-                term.progressionPolicy.repeatFailedUnitsBasisPoints;
-            const targetStage = repeat
-              ? character.stage
-              : nextSemester
-                ? character.stage
-                : nextStage;
-            const targetSemester = repeat
-              ? semesters[0]
-              : (nextSemester ??
-                character.structure.semesters.find(
-                  (s) => s.stageId === nextStage?.id,
-                ));
-            const decision: ProgressionDecision = {
-              outcome:
-                !targetStage || !targetSemester
-                  ? "hold"
-                  : repeat
-                    ? "repeat_stage"
-                    : outstanding.length
-                      ? "progress_with_carryovers"
-                      : "progress",
-              reason:
-                !targetStage || !targetSemester
-                  ? "Configured programme stages completed; future activity review required."
-                  : repeat
-                    ? "Failed-unit threshold reached under CampusWahala simulation rules."
-                    : outstanding.length
-                      ? "Continue with outstanding simulation courses."
-                      : "Simulation term passed.",
-              nextStageId: targetStage?.id ?? character.stageId,
-              nextSemesterId: targetSemester?.id ?? term.semesterId,
-              activityTags:
-                targetStage?.activityTags ?? character.stage.activityTags,
-              policyId: term.progressionPolicy.id,
-              policyVersion: term.progressionPolicy.version,
-            };
+            const decision = decideProgression(term, character.structure);
             term.progression = decision;
             await tx.academicSimulation.update({
               where: { userId },

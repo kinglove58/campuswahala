@@ -137,7 +137,8 @@ export function AcademicPanel({
           <p>
             <b>{term.label}</b>
             <br />
-            {time(term.minute)} · {term.status}
+            {term.campusId.toUpperCase()} simulation · {time(term.minute)} ·{" "}
+            {term.status}
             <br />
             Academic presence:{" "}
             {term.venues.find((v) => v.id === term.presenceVenueId)?.name}

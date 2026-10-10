@@ -894,3 +894,60 @@ export function academicNotifications(term: AcademicTerm | null) {
   }
   return out.slice(0, 24);
 }
+
+/** Canonical ordered programme references are supplied by the server catalogue. */
+export function decideProgression(
+  term: AcademicTerm,
+  catalogue: {
+    stages: Array<{ id: string; order: number; activityTags: string[] }>;
+    semesters: Array<{ id: string; stageId: string | null; order: number }>;
+  },
+): ProgressionDecision {
+  ensure(term.status === "completed" && term.result, "RESULT_REQUIRED");
+  const stage = catalogue.stages.find((s) => s.id === term.stageId),
+    semesters = catalogue.semesters
+      .filter((s) => s.stageId === term.stageId)
+      .sort((a, b) => a.order - b.order),
+    semester = semesters.find((s) => s.id === term.semesterId);
+  ensure(stage && semester, "ACADEMIC_POSITION_UNAVAILABLE");
+  const failed = term.result!.courses.filter((c) => !c.passed),
+    failedUnits = failed.reduce((n, c) => n + c.units, 0);
+  const nextSemester = semesters.find((s) => s.order > semester!.order),
+    nextStage = catalogue.stages
+      .filter((s) => s.order > stage!.order)
+      .sort((a, b) => a.order - b.order)[0];
+  const repeat =
+    failedUnits * 10000 >=
+    term.result!.attemptedUnits *
+      term.progressionPolicy.repeatFailedUnitsBasisPoints;
+  const targetStage = repeat ? stage : nextSemester ? stage : nextStage;
+  const targetSemester = repeat
+    ? semesters[0]
+    : (nextSemester ??
+      catalogue.semesters
+        .filter((s) => s.stageId === nextStage?.id)
+        .sort((a, b) => a.order - b.order)[0]);
+  return {
+    outcome:
+      !targetStage || !targetSemester
+        ? "hold"
+        : repeat
+          ? "repeat_stage"
+          : failed.length
+            ? "progress_with_carryovers"
+            : "progress",
+    reason:
+      !targetStage || !targetSemester
+        ? "Configured programme stages completed; future activity review required."
+        : repeat
+          ? "Failed-unit threshold reached under CampusWahala simulation rules."
+          : failed.length
+            ? "Continue with outstanding simulation courses."
+            : "Simulation term passed.",
+    nextStageId: targetStage?.id ?? term.stageId,
+    nextSemesterId: targetSemester?.id ?? term.semesterId,
+    activityTags: targetStage?.activityTags ?? stage!.activityTags,
+    policyId: term.progressionPolicy.id,
+    policyVersion: term.progressionPolicy.version,
+  };
+}
