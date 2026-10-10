@@ -114,6 +114,10 @@ export type WorldManifest = {
   geography: "compressed campus geography";
   bounds: Rect;
   defaultSpawnId: string;
+  artDirection: {
+    roofStyle: "pitched" | "brutalist" | "canopy";
+    waterfrontSocialZone: boolean;
+  };
   palette: {
     ground: number;
     roof: number;
@@ -222,6 +226,12 @@ export function validateWorld(w: WorldManifest): WorldManifest {
     w.geography !== "compressed campus geography"
   )
     throw new Error("INVALID_BOUNDS");
+  if (
+    !w.artDirection ||
+    !["pitched", "brutalist", "canopy"].includes(w.artDirection.roofStyle) ||
+    typeof w.artDirection.waterfrontSocialZone !== "boolean"
+  )
+    throw new Error("INVALID_ART_DIRECTION");
   const collections = [
     w.zones,
     w.roads,

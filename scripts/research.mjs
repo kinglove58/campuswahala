@@ -32,9 +32,12 @@ try {
   // The normal pipeline schedules page retrieval one minute after robots checks.
   // A second bounded tick is opt-in for isolated research; no pacing override.
   if (process.env.RESEARCH_SECOND_TICK === "true") {
-    await delay(31000);
-    await delay(30000);
-    Object.assign(metrics, await pipeline.runDue(100, campus));
+    // Four bounded ticks let normal domain-rate/backoff windows expire. Never override them.
+    for (let tick = 1; tick < 4; tick++) {
+      await delay(31000);
+      await delay(30000);
+      Object.assign(metrics, await pipeline.runDue(100, campus));
+    }
   }
   const sources = await db.contentSource.findMany({
     where: { discoveryMethod: "curated_official_registry" },

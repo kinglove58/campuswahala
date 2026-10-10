@@ -1,3 +1,4 @@
+import { writeFile } from "node:fs/promises";
 import { test, expect } from "@playwright/test";
 import { validGuestFixture } from "../../packages/testing/src";
 test("360x800 constrained CPU/network, offline exploration, safe private writes and reconnect", async ({
@@ -40,6 +41,14 @@ test("360x800 constrained CPU/network, offline exploration, safe private writes 
     { timeout: 90000 },
   );
   const boot = Date.now() - start;
+  const firstBootBytes = bytes;
+  const manifestTiming = await page.evaluate(() =>
+    performance
+      .getEntriesByType("resource")
+      .filter((entry) => entry.name.includes("/api/world/futa/latest"))
+      .map((entry) => ({ durationMs: entry.duration })),
+  );
+
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
   await expect(page.getByTestId("campus-world")).toHaveAttribute(
@@ -107,18 +116,23 @@ test("360x800 constrained CPU/network, offline exploration, safe private writes 
     heapWarning: el.getAttribute("data-memory-warning"),
     failures: el.getAttribute("data-asset-failures"),
   }));
+  const measurement = {
+    viewport: "360x800",
+    cpuSlowdown: 4,
+    latencyMs: 180,
+    downloadBytesPerSecond: 500000,
+    bootMs: boot,
+    firstBootBytes,
+    sessionTransferredBytes: bytes,
+    manifestTiming,
+    diagnostics,
+    soakMs,
+    note: "Chromium emulation, not a physical device benchmark; encoded network bytes cover this page, excluding APIRequest fixture setup.",
+  };
+  const measurementPath = info.outputPath("constrained-network.json");
+  await writeFile(measurementPath, JSON.stringify(measurement, null, 2));
   await info.attach("constrained-network-measurement", {
-    body: JSON.stringify({
-      viewport: "360x800",
-      cpuSlowdown: 4,
-      latencyMs: 180,
-      downloadBytesPerSecond: 500000,
-      bootMs: boot,
-      transferredBytes: bytes,
-      diagnostics,
-      soakMs,
-      note: "Chromium emulation, not a physical device benchmark",
-    }),
+    path: measurementPath,
     contentType: "application/json",
   });
 });

@@ -114,6 +114,26 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
             },
           }),
         ).rejects.toThrow();
+        for (const invalid of [
+          { policyStatus: "approved_by_browser" },
+          { robotsPolicy: "ignored" },
+          { status: "PUBLISH_NOW" },
+        ]) {
+          await expect(
+            db.contentSource.create({
+              data: {
+                campusId: campus.id,
+                url: `https://${tag}.example`,
+                domain: `${tag}.example`,
+                type: "public_html",
+                authorityClass: "official",
+                independentGroup: tag,
+                discoveryMethod: "test",
+                ...invalid,
+              },
+            }),
+          ).rejects.toThrow();
+        }
         await expect(
           db.campusFact.create({
             data: {
