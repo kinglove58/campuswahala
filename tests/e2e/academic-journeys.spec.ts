@@ -277,7 +277,7 @@ async function resultCapture(page: Page, name: string) {
   // Scroll the actual Pocket content to show the result table, rather than
   // changing layout or academic state for screenshots.
   await page.locator(".phone-content").evaluate((el) => {
-    const heading = [...el.querySelectorAll("h3")].find(
+    const heading = Array.from(el.querySelectorAll("h3")).find(
       (h) => h.textContent === "Private simulation results",
     );
     if (heading)
