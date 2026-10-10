@@ -30,6 +30,7 @@ model User {
   privacy UserPrivacySettings?
   sessions UserSession[]
   character PlayerCharacter?
+  worldState PlayerWorldState?
   conversions GuestConversion[]
   deletion DeletionRequest?
   feedback FactFeedback[]
@@ -439,4 +440,16 @@ model EntityMergeHistory {
   evidenceIds String[]
   mergedAt DateTime @default(now())
   reversedAt DateTime?
+}
+
+
+model PlayerWorldState {
+  userId String @id @db.Uuid
+  campusId String @db.VarChar(20)
+  worldVersion Int
+  spawnId String @db.VarChar(64)
+  zoneId String @db.VarChar(64)
+  appearance Json
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -25,7 +25,7 @@ function fail(code: string, status: number) {
 export async function forward(
   request: NextRequest,
   method: "GET" | "POST" | "DELETE",
-  options?: { path: string; callback?: boolean },
+  options?: { path: string; callback?: boolean; publicWorld?: boolean },
 ) {
   if (
     request.method !== "GET" &&
@@ -106,16 +106,17 @@ export async function forward(
       code: request.nextUrl.searchParams.get("code"),
     });
   const token = request.cookies.get(cookieName)?.value;
-  const accountToken = options
-    ? request.cookies.get("cw_session")?.value
-    : undefined;
+  const accountToken =
+    options && !options.publicWorld
+      ? request.cookies.get("cw_session")?.value
+      : undefined;
   const upstreamPath =
     options?.path ?? `/v1/guests${method === "POST" ? "" : "/me"}`;
   const contextHeader = signContext(
     { client, network },
     method,
     upstreamPath,
-    `${body ?? ""}\n${token ?? ""}${options && options.path !== "/v1/catalogue/published" ? `\n${accountToken ?? ""}` : ""}`,
+    `${body ?? ""}\n${token ?? ""}${options && !options.publicWorld && options.path !== "/v1/catalogue/published" ? `\n${accountToken ?? ""}` : ""}`,
     key,
   );
   const withClientCookie = (response: NextResponse) => {
@@ -155,6 +156,17 @@ export async function forward(
       return withClientCookie(
         fail(data.error?.code ?? "API_ERROR", upstream.status),
       );
+    if (options?.publicWorld) {
+      // No cookies or identity data on cacheable public geometry responses.
+      return NextResponse.json(data, {
+        headers: {
+          "Cache-Control": upstream.headers.get("Cache-Control") ?? "no-store",
+          ...(upstream.headers.get("ETag")
+            ? { ETag: upstream.headers.get("ETag")! }
+            : {}),
+        },
+      });
+    }
     if (options) {
       const response = options.callback
         ? NextResponse.redirect(new URL("/?saved=1", request.url), 303)

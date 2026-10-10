@@ -1,0 +1,68 @@
+{
+  "note": "Research discovery only. No published facts created. Pipeline must fetch, ground and publish.",
+  "results": [
+    {
+      "campus": "futa",
+      "url": "https://lib.futa.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.008Z",
+      "status": "getaddrinfo EAI_AGAIN lib.futa.edu.ng",
+      "hintKey": "library.name"
+    },
+    {
+      "campus": "futa",
+      "url": "https://healthcentre.futa.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.017Z",
+      "status": "getaddrinfo EAI_AGAIN healthcentre.futa.edu.ng",
+      "hintKey": "health-centre.name"
+    },
+    {
+      "campus": "futa",
+      "url": "https://soc.futa.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.018Z",
+      "status": "getaddrinfo EAI_AGAIN soc.futa.edu.ng",
+      "hintKey": "computing.name"
+    },
+    {
+      "campus": "futa",
+      "url": "https://sad.futa.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.018Z",
+      "status": "getaddrinfo EAI_AGAIN sad.futa.edu.ng",
+      "hintKey": "student-affairs.name"
+    },
+    {
+      "campus": "futa",
+      "url": "https://daa.futa.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.020Z",
+      "status": "getaddrinfo EAI_AGAIN daa.futa.edu.ng",
+      "hintKey": "academic-affairs.name"
+    },
+    {
+      "campus": "oau",
+      "url": "https://opac.oauife.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.023Z",
+      "status": "getaddrinfo EAI_AGAIN opac.oauife.edu.ng",
+      "hintKey": "library.name"
+    },
+    {
+      "campus": "oau",
+      "url": "https://oauife.edu.ng/other-arms-and-units/",
+      "observedAt": "2026-10-09T20:18:42.023Z",
+      "status": "getaddrinfo EAI_AGAIN oauife.edu.ng",
+      "hintKey": "library.name"
+    },
+    {
+      "campus": "unilag",
+      "url": "https://library.unilag.edu.ng/",
+      "observedAt": "2026-10-09T20:18:42.025Z",
+      "status": "getaddrinfo EAI_AGAIN library.unilag.edu.ng",
+      "hintKey": "library.name"
+    },
+    {
+      "campus": "unilag",
+      "url": "https://unilag.edu.ng/explore-campus/",
+      "observedAt": "2026-10-09T20:18:42.025Z",
+      "status": "getaddrinfo EAI_AGAIN unilag.edu.ng",
+      "hintKey": "senate.name"
+    }
+  ]
+}

@@ -1,4 +1,12 @@
 import {
+  createCampusWorld,
+  isCampus,
+  parseWorldState,
+  safeLocation,
+  defaultAppearance,
+  parseAppearance,
+} from "@campuswahala/game-engine";
+import {
   BadRequestException,
   UnauthorizedException,
   ServiceUnavailableException,
@@ -421,6 +429,76 @@ export class AccountService {
         ],
       })),
     };
+  }
+  async worldState(token: unknown) {
+    const user = await this.principal(token);
+    const db = this.database();
+    const character = await this.character(user.id);
+    if (!character || !isCampus(character.campusId))
+      throw new BadRequestException("CHARACTER_REQUIRED");
+    const row = await db.playerWorldState.findUnique({
+      where: { userId: user.id },
+    });
+    const campusId =
+      row && isCampus(row.campusId) ? row.campusId : character.campusId;
+    const world = createCampusWorld(campusId);
+    let appearance = {
+      ...defaultAppearance,
+      top: character.avatar as typeof defaultAppearance.top,
+    };
+    if (row) {
+      try {
+        appearance = parseAppearance(row.appearance);
+      } catch {
+        /* Safe cosmetic migration default. */
+      }
+    }
+    return {
+      ...safeLocation(world, row),
+      appearance,
+      appearanceSaved: Boolean(row),
+    };
+  }
+  async saveWorldState(token: unknown, input: unknown) {
+    const user = await this.principal(token);
+    const campusId =
+      input && typeof input === "object" && "campusId" in input
+        ? input.campusId
+        : null;
+    if (!isCampus(campusId))
+      throw new BadRequestException("INVALID_WORLD_STATE");
+    let state;
+    try {
+      state = parseWorldState(input, createCampusWorld(campusId));
+    } catch {
+      throw new BadRequestException("INVALID_WORLD_STATE");
+    }
+    return this.database().$transaction(async (tx) => {
+      // Serialize with deletion and guest conversion. Browser cannot choose owner or coordinates.
+      await tx.$queryRaw`SELECT "id" FROM "User" WHERE "id" = ${user.id}::uuid FOR UPDATE`;
+      const active = await tx.user.findUnique({ where: { id: user.id } });
+      const session = await tx.userSession.findUnique({
+        where: { tokenHash: this.hash(String(token)) },
+      });
+      if (
+        active?.status !== "active" ||
+        !session ||
+        session.revokedAt ||
+        session.expiresAt <= new Date()
+      )
+        throw new UnauthorizedException("ACCOUNT_UNAVAILABLE");
+      if (
+        !(await tx.playerCharacter.findUnique({ where: { userId: user.id } }))
+      )
+        throw new BadRequestException("CHARACTER_REQUIRED");
+      const data = { ...state, appearance: { ...state.appearance } };
+      await tx.playerWorldState.upsert({
+        where: { userId: user.id },
+        create: { userId: user.id, ...data },
+        update: data,
+      });
+      return state;
+    });
   }
   async close() {
     await this.db?.$disconnect();

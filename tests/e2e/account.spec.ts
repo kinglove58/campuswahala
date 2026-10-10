@@ -9,6 +9,7 @@ test("save guest → browser-bound sign-in → durable same world → private ac
   context,
   playwright,
 }) => {
+  test.setTimeout(120000);
   const response = await context.request.post(
     "http://localhost:3001/api/guest",
     {
@@ -80,7 +81,52 @@ test("save guest → browser-bound sign-in → durable same world → private ac
   } finally {
     await other.dispose();
   }
+  await page.getByRole("button", { name: "Open virtual phone" }).click();
+  await page.getByRole("button", { name: "My chapter", exact: true }).click();
+  await page
+    .getByRole("combobox", { name: "Skin", exact: true })
+    .selectOption("deep");
+  await page
+    .getByRole("button", { name: "Save appearance", exact: true })
+    .click();
+  await expect(page.getByText("Safe return point saved.")).toBeVisible();
+  const worldResponse = await context.request.get(
+    "http://localhost:3001/api/account/world",
+  );
+  expect(worldResponse.headers()["cache-control"]).toContain("no-store");
+  const worldState = await worldResponse.json();
+  expect(worldState.appearance.skin).toBe("deep");
+  const safeReturn = await context.request.post(
+    "http://localhost:3001/api/account/world",
+    {
+      headers: { Origin: "http://localhost:3001" },
+      data: {
+        campusId: worldState.campusId,
+        worldVersion: worldState.worldVersion,
+        spawnId: "spawn-venue-1",
+        appearance: worldState.appearance,
+      },
+    },
+  );
+  expect(safeReturn.ok()).toBe(true);
   await page.reload();
+  await expect(page.getByTestId("campus-world")).toHaveAttribute(
+    "data-ready",
+    "true",
+  );
+  expect(
+    (
+      await (
+        await context.request.get("http://localhost:3001/api/account/world")
+      ).json()
+    ).spawnId,
+  ).toBe("spawn-venue-1");
+  await page.getByRole("button", { name: "Open virtual phone" }).click();
+  await page.getByRole("button", { name: "My chapter", exact: true }).click();
+  await expect(
+    page.getByRole("combobox", { name: "Skin", exact: true }),
+  ).toHaveValue("deep");
+  await page.keyboard.press("Escape");
   await expect(
     page.getByRole("button", { name: "Account", exact: true }),
   ).toBeVisible();

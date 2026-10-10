@@ -72,6 +72,9 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
       migrate();
       copyMigration("202610090004_fact_expiry_and_position_guards");
       migrate();
+      copyMigration("202610090005_world_state");
+      migrate();
+      expect(await db.playerWorldState.count()).toBe(0);
       expect(await db.guestPlayer.findUnique({ where: { id } })).toMatchObject({
         level: 600,
         durationYears: 6,
@@ -87,3 +90,4 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
   },
   120000,
 );
+

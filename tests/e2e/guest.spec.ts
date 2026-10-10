@@ -65,6 +65,8 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   page,
   context,
 }, testInfo) => {
+  // Larger campus walking is real UI work; keep the traversal assertion bounded separately.
+  test.setTimeout(120000);
   const scripts: Promise<string>[] = [];
   page.on("response", (r) => {
     if (r.request().resourceType() === "script")
@@ -116,19 +118,24 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   const cookie = (await context.cookies()).find((c) => c.name === "cw_guest");
   expect(cookie?.httpOnly).toBe(true);
   expect(cookie?.sameSite).toBe("Strict");
-  const canvasBox = await page.locator("canvas").boundingBox();
-  if (!canvasBox) throw new Error("Campus canvas has no layout");
-  await page.locator("canvas").click({
-    position: {
-      x: (canvasBox.width * 700) / 960,
-      y: (canvasBox.height * 240) / 640,
-    },
-  });
-  await page.getByRole("button", { name: "Explore Lecture hall" }).click();
+  await page.getByRole("button", { name: "Open virtual phone" }).click();
+  await page.getByRole("button", { name: "Campus map", exact: true }).click();
+  await page
+    .getByRole("button", { name: /Lecture hall.*Set waypoint/ })
+    .click();
+  await expect(
+    page.getByRole("status").filter({ hasText: "Lecture hall" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Walk there", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Enter Lecture hall", exact: true })
+    .click({ timeout: 45000 });
   await expect(
     page.getByRole("dialog", { name: "Lecture hall", exact: true }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Back to campus" }).click();
+  await page
+    .getByRole("button", { name: "Back to campus", exact: true })
+    .click();
   await page.getByRole("button", { name: "Open virtual phone" }).click();
   await expect(
     page.getByRole("dialog", { name: "CW Pocket virtual phone" }),
@@ -139,7 +146,7 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
     });
   await page.getByRole("button", { name: "Campus map", exact: true }).click();
   await expect(
-    page.getByText("Stylized fixture geometry, not real navigation."),
+    page.getByText(/Stylized fixture geometry, not real navigation/),
   ).toBeVisible();
   await page.getByRole("button", { name: "All apps" }).click();
   await page.getByRole("button", { name: "My chapter" }).click();

@@ -1,302 +1,604 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { CampusPack } from "@campuswahala/campus-content";
 import {
-  advancePosition,
-  clampPosition,
-  WORLD,
+  WorldEngine,
+  npcPosition,
+  type WorldManifest,
+  type Appearance,
+  type Weather,
 } from "@campuswahala/game-engine";
+import type PhaserType from "phaser";
+export type WorldSnapshot = {
+  x: number;
+  y: number;
+  zoneId: string;
+  nearbyId: string | null;
+  clock: string;
+  day: string;
+  week: number;
+  hour: number;
+  period: string;
+  weather: Weather;
+  battery: number;
+};
+export type WorldHandle = {
+  engine: WorldEngine;
+  zoom: (value: number) => void;
+};
 export default function CampusWorld({
-  pack,
-  avatar,
+  manifest,
+  venueNames,
+  appearance,
+  spawnId,
   paused,
-  onNearby,
+  waypoint,
+  weather,
+  onSnapshot,
+  onReady,
 }: {
-  pack: CampusPack;
-  avatar: string;
+  manifest: WorldManifest;
+  venueNames: Record<string, string>;
+  appearance: Appearance;
+  spawnId: string;
   paused: boolean;
-  onNearby: (location: CampusPack["locations"][number] | null) => void;
+  waypoint: string | null;
+  weather: Weather | "auto";
+  onSnapshot: (s: WorldSnapshot) => void;
+  onReady: (h: WorldHandle) => void;
 }) {
-  const container = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(paused);
-  const nearbyCallback = useRef(onNearby);
-  const [failed, setFailed] = useState(false);
-  const [ready, setReady] = useState(false);
+  const container = useRef<HTMLDivElement>(null),
+    props = useRef({
+      venueNames,
+      appearance,
+      paused,
+      waypoint,
+      weather,
+      onSnapshot,
+      onReady,
+    });
   useEffect(() => {
-    pausedRef.current = paused;
-  }, [paused]);
+    props.current = {
+      venueNames,
+      appearance,
+      paused,
+      waypoint,
+      weather,
+      onSnapshot,
+      onReady,
+    };
+  }, [venueNames, appearance, paused, waypoint, weather, onSnapshot, onReady]);
+  const [status, setStatus] = useState<"opening" | "ready" | "failed">(
+    "opening",
+  );
   useEffect(() => {
-    nearbyCallback.current = onNearby;
-  }, [onNearby]);
-  useEffect(() => {
-    let disposed = false;
-    let game: import("phaser").Game | undefined;
+    let disposed = false,
+      game: PhaserType.Game | undefined;
+    const engine = new WorldEngine(manifest, spawnId),
+      boot = performance.now();
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    engine.npcMotion = !reduced;
     void import("phaser")
       .then(({ default: Phaser }) => {
         if (disposed || !container.current) return;
         class CampusScene extends Phaser.Scene {
-          private person!: Phaser.GameObjects.Container;
-          private keys!: Record<string, Phaser.Input.Keyboard.Key>;
-          private target = { x: 480, y: 360 };
-          private nearest = "";
-          private lastSaved = 0;
+          person!: PhaserType.GameObjects.Container;
+          avatarKey = "";
+          keys!: Record<string, PhaserType.Input.Keyboard.Key>;
+          chunks = new Map<string, PhaserType.GameObjects.Container>();
+          loadingBundles = new Set<string>();
+          loadedBundles = new Set<string>();
+          failedBundles = new Set<string>();
+          npcs = new Map<string, PhaserType.GameObjects.Container>();
+          overlay!: PhaserType.GameObjects.Graphics;
+          rain!: PhaserType.GameObjects.Graphics;
+          navigation!: PhaserType.GameObjects.Graphics;
+          labels = new Map<string, PhaserType.GameObjects.Text>();
+          lastSnapshot = 0;
+          lastChunk = 0;
+          frames = 0;
+          frameTotal = 0;
+          lastMetric = 0;
+          assetFailures = 0;
           create() {
-            const g = this.add.graphics();
-            g.fillStyle(0xdce7c7);
-            g.fillRect(0, 0, WORLD.width, WORLD.height);
-            // Deterministic decorative grass, no real geographic claims.
-            for (let i = 0; i < 140; i++) {
-              g.fillStyle(i % 2 ? 0xcddbb6 : 0xe4edcf, 0.8);
-              g.fillCircle((i * 137) % 960, (i * 73) % 640, 2);
-            }
-            g.fillStyle(0xe9dfbf);
-            g.fillRoundedRect(30, 285, 900, 74, 18);
-            g.fillRoundedRect(440, 35, 75, 565, 18);
-            g.fillRoundedRect(150, 105, 65, 440, 15);
-            g.fillRoundedRect(750, 95, 55, 450, 15);
-            g.lineStyle(2, 0xd1c396, 0.8);
-            for (let x = 40; x < 930; x += 35)
-              g.lineBetween(x, 320, x + 15, 320);
-            g.fillStyle(0xb0c894);
-            g.fillEllipse(490, 375, 125, 65);
-            g.fillStyle(0xf4ebcf);
-            g.fillEllipse(480, 361, 97, 42);
-            for (let i = 0; i < 24; i++) {
-              const x = ((i * 193 + 30) % 920) + 20,
-                y = ((i * 89 + 40) % 570) + 30;
-              if (
-                Math.abs(x - 480) < 85 ||
-                Math.abs(y - 320) < 75 ||
-                pack.locations.some((l) => Math.hypot(l.x - x, l.y - y) < 105)
-              )
-                continue;
-              g.fillStyle(0x152b24, 0.12);
-              g.fillEllipse(x + 8, y + 19, 48, 19);
-              g.fillStyle(0x8b7151);
-              g.fillRect(x - 3, y, 6, 22);
-              g.fillStyle(i % 2 ? 0x729969 : 0x5f8960);
-              g.fillCircle(x, y - 8, 22);
-              g.fillStyle(0x86a874);
-              g.fillCircle(x - 8, y - 14, 12);
-            }
-            pack.locations.forEach((l, index) => {
-              if (l.id === "commons") {
-                this.add
-                  .text(l.x, l.y - 75, l.label, {
-                    fontFamily: "Arial",
-                    fontSize: "14px",
-                    color: "#324932",
-                    backgroundColor: "#f5f1e5",
-                    padding: { x: 9, y: 6 },
-                  })
-                  .setOrigin(0.5);
-                return;
-              }
-              const width = 155,
-                height = 90;
-              g.fillStyle(0x162b24, 0.13);
-              g.fillRoundedRect(
-                l.x - width / 2 + 12,
-                l.y - height / 2 + 19,
-                width,
-                height,
-                9,
-              );
-              g.fillStyle([0xf5eacd, 0xefd6bb, 0xe9d9bd, 0xd4dfd1][index % 4]!);
-              g.fillRoundedRect(
-                l.x - width / 2,
-                l.y - height / 2,
-                width,
-                height,
-                7,
-              );
-              g.fillStyle([0x8a9c80, 0xbd8864, 0xbda17c, 0x899b84][index % 4]!);
-              g.fillRoundedRect(
-                l.x - width / 2 - 6,
-                l.y - height / 2 - 8,
-                width + 12,
-                25,
-                5,
-              );
-              g.fillStyle(0x7c8e80);
-              for (let j = 0; j < 3; j++)
-                g.fillRect(l.x - 54 + j * 40, l.y - 7, 20, 19);
-              g.fillStyle(0x735d45);
-              g.fillRect(l.x - 9, l.y + 21, 18, 24);
-              this.add
-                .text(l.x, l.y + 65, l.label, {
-                  fontFamily: "Arial",
-                  fontSize: "14px",
-                  color: "#324932",
-                  backgroundColor: "#f5f1e5",
-                  padding: { x: 9, y: 6 },
-                })
-                .setOrigin(0.5);
-            });
-            [
-              [350, 290],
-              [580, 350],
-              [580, 180],
-              [370, 475],
-            ].forEach(([x, y], i) => {
-              const npc = this.add.graphics();
-              npc.fillStyle(0x6b4437);
-              npc.fillCircle(0, -10, 6);
-              npc.fillStyle([0xcc8a61, 0x8092ad, 0xb5a26b, 0x688c73][i]!);
-              npc.fillRoundedRect(-7, -3, 14, 18, 4);
-              npc.setPosition(x!, y!);
-            });
-            const shadow = this.add.ellipse(0, 18, 27, 9, 0x162b24, 0.25);
-            const body = this.add
+            this.cameras.main.setBounds(
+              0,
+              0,
+              manifest.bounds.width,
+              manifest.bounds.height,
+            );
+            this.add
               .rectangle(
-                0,
-                3,
-                20,
-                25,
-                avatar === "lime"
-                  ? 0xd8ee89
-                  : avatar === "clay"
-                    ? 0xcb714f
-                    : 0x7295c0,
+                manifest.bounds.width / 2,
+                manifest.bounds.height / 2,
+                manifest.bounds.width,
+                manifest.bounds.height,
+                manifest.palette.ground,
               )
-              .setStrokeStyle(2, 0x324932);
-            const head = this.add
-              .circle(0, -16, 10, 0x744f3b)
-              .setStrokeStyle(2, 0x3c3526);
-            const hair = this.add.arc(0, -20, 10, 180, 360, false, 0x242b23);
-            this.person = this.add
-              .container(480, 360, [shadow, body, head, hair])
-              .setDepth(10);
-            try {
-              const saved = JSON.parse(
-                sessionStorage.getItem(`cw_world:${pack.id}`) ?? "null",
+              .setDepth(-100);
+            const roads = this.add.graphics().setDepth(-90);
+            for (const road of [...manifest.roads, ...manifest.paths]) {
+              roads.lineStyle(
+                road.width,
+                road.id.includes("road") ? 0xbab3a0 : 0xe7d6ac,
+                1,
               );
-              if (
-                saved &&
-                Number.isFinite(saved.x) &&
-                Number.isFinite(saved.y)
-              ) {
-                const point = clampPosition(saved);
-                this.person.setPosition(point.x, point.y);
-                this.target = point;
+              roads.beginPath();
+              road.points.forEach((p, i) =>
+                i ? roads.lineTo(p.x, p.y) : roads.moveTo(p.x, p.y),
+              );
+              roads.strokePath();
+              if (road.id.includes("road")) {
+                roads.lineStyle(2, 0xf7e9bf, 0.6);
+                roads.strokePoints(road.points);
               }
-            } catch {
-              /* Optional cosmetic position; no authority or credentials. */
             }
+            this.person = this.add
+              .container(engine.position.x, engine.position.y)
+              .setDepth(5000);
+            this.drawAvatar();
+            const camera = this.cameras.main;
+            const applyZoom = (value: number) =>
+              camera.setZoom(
+                Math.max(
+                  this.scale.width / manifest.bounds.width,
+                  this.scale.height / manifest.bounds.height,
+                  0.75,
+                  Math.min(1.6, value),
+                ),
+              );
+            applyZoom(window.innerWidth < 600 ? 0.88 : 1.05);
+            const resize = () => applyZoom(camera.zoom);
+            this.scale.on("resize", resize);
+            this.events.once("shutdown", () =>
+              this.scale.off("resize", resize),
+            );
+            camera.startFollow(
+              this.person,
+              true,
+              reduced ? 1 : 0.1,
+              reduced ? 1 : 0.1,
+            );
+            camera.roundPixels = true;
             this.keys = this.input.keyboard!.addKeys(
               "W,A,S,D,UP,DOWN,LEFT,RIGHT",
-            ) as Record<string, Phaser.Input.Keyboard.Key>;
-            this.input.on(
-              "pointerdown",
-              (pointer: import("phaser").Input.Pointer) => {
-                if (!pausedRef.current)
-                  this.target = clampPosition({
-                    x: pointer.worldX,
-                    y: pointer.worldY,
-                  });
-              },
-            );
-            setReady(true);
+              false,
+            ) as Record<string, PhaserType.Input.Keyboard.Key>;
+
+            this.input.on("pointerdown", (p: PhaserType.Input.Pointer) => {
+              if (!props.current.paused)
+                engine.moveTo(camera.getWorldPoint(p.x, p.y));
+            });
+            this.overlay = this.add
+              .graphics()
+              .setScrollFactor(0)
+              .setDepth(9000);
+            this.rain = this.add.graphics().setScrollFactor(0).setDepth(9001);
+            this.navigation = this.add.graphics().setDepth(5500);
+            this.events.once("shutdown", () => engine.dispose());
+            this.updateChunks();
+            setStatus("ready");
+            performance.measure("cw.world_boot_ms", {
+              start: boot,
+              end: performance.now(),
+            });
+            props.current.onReady({
+              engine,
+              zoom: applyZoom,
+            });
           }
-          update(_time: number, delta: number) {
-            if (!this.person || pausedRef.current) return;
-            const down = (key: string) => this.keys[key]?.isDown ?? false;
-            const dx =
-              Number(down("D") || down("RIGHT")) -
-              Number(down("A") || down("LEFT"));
-            const dy =
-              Number(down("S") || down("DOWN")) -
-              Number(down("W") || down("UP"));
-            const speed = Math.min(delta, 40) * 0.19;
-            if (dx || dy)
-              this.target = clampPosition({
-                x: this.person.x + dx * speed,
-                y: this.person.y + dy * speed,
-              });
-            const next = advancePosition(this.person, this.target, speed);
-            this.person.setPosition(next.x, next.y);
-            // Keep avatars outside building footprints; labels and entrances remain reachable.
-            for (const l of pack.locations) {
+          drawAvatar() {
+            this.avatarKey = JSON.stringify(props.current.appearance);
+            this.person.removeAll(true);
+            this.person.add(this.avatar(props.current.appearance));
+          }
+          avatar(a: Appearance) {
+            const g = this.add.graphics();
+            const skin = {
+              deep: 0x4c3026,
+              brown: 0x805137,
+              warm: 0xb57a52,
+              light: 0xd7a67e,
+            }[a.skin];
+            g.fillStyle(0x1c2d24, 0.2);
+            g.fillEllipse(0, 18, 29, 10);
+            g.fillStyle(a.shoes === "white" ? 0xf5eddc : 0x27322d);
+            g.fillRoundedRect(-10, 12, 8, 8, 2);
+            g.fillRoundedRect(2, 12, 8, 8, 2);
+            g.fillStyle(0x334951);
+            if (a.bottom === "skirt") {
+              g.fillTriangle(-8, 1, 8, 1, 14, 14);
+              g.fillTriangle(-8, 1, 14, 14, -14, 14);
+            } else {
+              g.fillRect(-8, 0, 7, 15);
+              g.fillRect(1, 0, 7, 15);
+            }
+            g.fillStyle(
+              { lime: 0xc8d885, clay: 0xca7857, blue: 0x718fa9 }[a.top],
+            );
+            g.fillRoundedRect(-11, -12, 22, 19, 5);
+            g.fillStyle(skin);
+            g.fillCircle(0, -22, 9);
+            g.fillRect(-14, -8, 4, 12);
+            g.fillRect(10, -8, 4, 12);
+            g.fillStyle(a.hairColour === "black" ? 0x262521 : 0x694731);
+            g.fillEllipse(
+              0,
+              -28,
+              a.hair === "afro" ? 26 : 19,
+              a.hair === "afro" ? 21 : 9,
+            );
+            if (a.hair === "braids") {
+              g.fillRoundedRect(-12, -27, 5, 23, 2);
+              g.fillRoundedRect(7, -27, 5, 23, 2);
+            }
+            if (a.hair === "covered") {
+              g.fillStyle(0xa7614b);
+              g.fillEllipse(0, -25, 25, 26);
+              g.fillStyle(skin);
+              g.fillCircle(1, -21, 7);
+            }
+            if (a.accessory === "backpack") {
+              g.fillStyle(0x927251);
+              g.fillRoundedRect(-7, -10, 14, 16, 3);
+              g.lineStyle(1, 0xdac09a);
+              g.strokeRect(-5, -4, 10, 7);
+            }
+            return g;
+          }
+          updateChunks() {
+            const visible = engine.visibleZones(this.cameras.main.worldView);
+            for (const [id, chunk] of this.chunks)
+              if (!visible.some((z) => z.id === id)) {
+                chunk.destroy(true);
+                this.chunks.delete(id);
+                for (const [nid, n] of this.npcs)
+                  if (
+                    manifest.npcSpawns.find((x) => x.id === nid)?.zoneId === id
+                  ) {
+                    n.destroy(true);
+                    this.npcs.delete(nid);
+                  }
+              }
+            for (const zone of visible) {
+              if (this.chunks.has(zone.id)) continue;
+              const chunk = this.add.container(0, 0).setDepth(1);
+              this.chunks.set(zone.id, chunk);
+              const bundle = manifest.assetBundles.find(
+                (b) => b.id === zone.bundle,
+              )!;
               if (
-                l.id !== "commons" &&
-                Math.abs(this.person.x - l.x) < 85 &&
-                Math.abs(this.person.y - l.y) < 55
+                !this.loadedBundles.has(bundle.id) &&
+                !this.loadingBundles.has(bundle.id) &&
+                !this.failedBundles.has(bundle.id)
               ) {
-                const side = this.person.y >= l.y ? 1 : -1;
-                this.person.y = l.y + side * 56;
-                this.target = { x: this.person.x, y: this.person.y };
+                this.loadingBundles.add(bundle.id);
+                const start = performance.now();
+                this.load.svg(bundle.id, bundle.path, {
+                  width: 64,
+                  height: 80,
+                });
+                this.load.once(`filecomplete-svg-${bundle.id}`, () => {
+                  this.loadingBundles.delete(bundle.id);
+                  this.loadedBundles.add(bundle.id);
+                  performance.measure("cw.asset_load_ms", {
+                    start,
+                    end: performance.now(),
+                  });
+                });
+                this.load.once("loaderror", () => {
+                  this.assetFailures++;
+                  this.failedBundles.add(bundle.id);
+                  this.loadingBundles.delete(bundle.id);
+                });
+                if (!this.load.isLoading()) this.load.start();
               }
-            }
-            const close =
-              pack.locations.find(
-                (l) =>
-                  Math.hypot(l.x - this.person.x, l.y - this.person.y) < 115,
-              ) ?? null;
-            if (Date.now() - this.lastSaved > 500) {
-              try {
-                sessionStorage.setItem(
-                  `cw_world:${pack.id}`,
-                  JSON.stringify({ x: this.person.x, y: this.person.y }),
+              const g = this.add.graphics();
+              chunk.add(g);
+              for (const b of manifest.buildings.filter(
+                (b) => b.zoneId === zone.id,
+              )) {
+                g.fillStyle(0x20342c, 0.15);
+                g.fillRoundedRect(b.x + 12, b.y + 16, b.width, b.height, 5);
+                g.fillStyle(manifest.palette.wall);
+                g.fillRoundedRect(b.x, b.y, b.width, b.height, 5);
+                g.fillStyle(manifest.palette.roof);
+                g.fillRoundedRect(
+                  b.x - 8,
+                  b.y - 14,
+                  b.width + 16,
+                  b.silhouette === "tower" ? 48 : 38,
+                  4,
                 );
-              } catch {
-                /* Storage may be unavailable. */
+                if (b.silhouette === "hall") {
+                  g.fillStyle(0xf5ecd6);
+                  for (let i = 0; i < 5; i++)
+                    g.fillRect(b.x + 12 + i * 35, b.y + 34, 8, 85);
+                }
+                g.fillStyle(0x52747c);
+                for (let i = 0; i < 4; i++) {
+                  g.fillRect(b.x + 15 + i * 42, b.y + 43, 22, 20);
+                  if (b.silhouette === "tower")
+                    g.fillRect(b.x + 15 + i * 42, b.y + 76, 22, 16);
+                }
+                g.fillStyle(0x694e37);
+                g.fillRect(b.x + b.width / 2 - 12, b.y + b.height - 32, 24, 32);
+                if (b.silhouette === "market") {
+                  g.fillStyle(0xd8a858);
+                  g.fillRect(b.x - 6, b.y + 55, b.width + 12, 24);
+                  g.fillStyle(0xf8e8bb);
+                  for (let i = 0; i < 7; i++)
+                    g.fillRect(b.x + i * 28, b.y + 55, 14, 24);
+                }
+                const venue = manifest.venues.find(
+                  (v) => v.buildingId === b.id,
+                )!;
+                const label = this.add
+                  .text(
+                    b.x + b.width / 2,
+                    b.y + b.height + 48,
+                    props.current.venueNames[venue.id] ?? venue.name,
+                    {
+                      fontFamily: "Arial",
+                      fontSize: "14px",
+                      color: "#263a2e",
+                      backgroundColor: "#f7edda",
+                      padding: { x: 8, y: 5 },
+                    },
+                  )
+                  .setOrigin(0.5);
+                chunk.add(label);
+                this.labels.set(venue.id, label);
               }
-              this.lastSaved = Date.now();
+              for (const d of manifest.decorations.filter(
+                (d) => d.zoneId === zone.id,
+              )) {
+                if (d.type === "tree" || d.type === "palm") {
+                  if (this.textures.exists(bundle.id) && d.type === "tree") {
+                    chunk.add(
+                      this.add.image(d.x, d.y, bundle.id).setOrigin(0.5, 1),
+                    );
+                  } else {
+                    g.fillStyle(0x24372b, 0.13);
+                    g.fillEllipse(d.x + 7, d.y + 2, 50, 16);
+                    g.fillStyle(0x94704b);
+                    g.fillRect(d.x - 3, d.y - 22, 6, 25);
+                    g.fillStyle(manifest.palette.foliage);
+                    if (d.type === "palm") {
+                      for (let j = 0; j < 6; j++) {
+                        const a = (j * Math.PI) / 3;
+                        g.fillTriangle(
+                          d.x,
+                          d.y - 35,
+                          d.x + Math.cos(a) * 37,
+                          d.y - 35 + Math.sin(a) * 23,
+                          d.x + Math.cos(a + 0.5) * 18,
+                          d.y - 35 + Math.sin(a + 0.5) * 15,
+                        );
+                      }
+                    } else {
+                      g.fillCircle(d.x, d.y - 35, 26);
+                      g.fillStyle(0xa8b97a, 0.5);
+                      g.fillCircle(d.x - 9, d.y - 44, 14);
+                    }
+                  }
+                }
+                if (d.type === "lamp") {
+                  g.fillStyle(0x5b6050);
+                  g.fillRect(d.x - 2, d.y - 44, 4, 46);
+                  g.fillStyle(0xf4d88b);
+                  g.fillCircle(d.x, d.y - 45, 7);
+                }
+                if (d.type === "notice") {
+                  g.fillStyle(0x72563e);
+                  g.fillRect(d.x - 22, d.y - 26, 44, 32);
+                  g.fillRect(d.x - 18, d.y + 6, 4, 18);
+                  g.fillRect(d.x + 14, d.y + 6, 4, 18);
+                  g.fillStyle(0xf2dfb9);
+                  g.fillRect(d.x - 17, d.y - 21, 34, 22);
+                  g.lineStyle(2, 0xb57550);
+                  g.lineBetween(d.x - 11, d.y - 14, d.x + 10, d.y - 14);
+                }
+                if (d.type === "shuttle") {
+                  g.fillStyle(0xdfb34e);
+                  g.fillRoundedRect(d.x - 32, d.y - 15, 64, 31, 7);
+                  g.fillStyle(0x456169);
+                  g.fillRoundedRect(d.x - 23, d.y - 12, 44, 11, 3);
+                  g.fillStyle(0x303932);
+                  g.fillCircle(d.x - 18, d.y + 16, 6);
+                  g.fillCircle(d.x + 18, d.y + 16, 6);
+                }
+              }
+              for (const n of manifest.npcSpawns.filter(
+                (n) => n.zoneId === zone.id,
+              )) {
+                const npc = this.add
+                  .container(n.x, n.y, [this.avatar(n.appearance)])
+                  .setDepth(4000);
+                this.npcs.set(n.id, npc);
+              }
             }
-            if ((close?.id ?? "") !== this.nearest) {
-              this.nearest = close?.id ?? "";
-              nearbyCallback.current(close);
+          }
+          update(time: number, delta: number) {
+            if (!this.person) return;
+            const p = props.current;
+            if (engine.phoneOpen !== p.paused) engine.setPhone(p.paused);
+            const down = (key: string) => (this.keys[key]?.isDown ? 1 : 0);
+            engine.tick(delta, {
+              x:
+                Math.max(down("D"), down("RIGHT")) -
+                Math.max(down("A"), down("LEFT")),
+              y:
+                Math.max(down("S"), down("DOWN")) -
+                Math.max(down("W"), down("UP")),
+            });
+            this.person.setPosition(engine.position.x, engine.position.y);
+            if (JSON.stringify(p.appearance) !== this.avatarKey)
+              this.drawAvatar();
+            if (time - this.lastChunk > 250) {
+              this.updateChunks();
+              this.lastChunk = time;
+            }
+            const clock = engine.time,
+              weather = p.weather === "auto" ? clock.weather : p.weather;
+            for (const [id, npc] of this.npcs) {
+              const n = manifest.npcSpawns.find((n) => n.id === id)!;
+              npc.setVisible(
+                clock.hour >= n.activeHours[0] && clock.hour < n.activeHours[1],
+              );
+              if (!p.paused && !reduced) {
+                const pos = npcPosition(n, engine.elapsedMs);
+                npc.setPosition(pos.x, pos.y);
+              }
+            }
+            this.overlay.clear();
+            const alpha =
+              { morning: 0.03, afternoon: 0, evening: 0.18, night: 0.42 }[
+                clock.period
+              ] ?? 0;
+            this.overlay.fillStyle(
+              clock.period === "evening" ? 0x6e392e : 0x15283e,
+              alpha,
+            );
+            this.overlay.fillRect(0, 0, this.scale.width, this.scale.height);
+            this.rain.clear();
+            if (weather === "rain") {
+              this.rain.fillStyle(0x263a4e, 0.12);
+              this.rain.fillRect(0, 0, this.scale.width, this.scale.height);
+              this.rain.lineStyle(1, 0xd3e0dc, 0.55);
+              for (let i = 0; i < 55; i++) {
+                const x = (i * 97 + time * 0.045) % this.scale.width,
+                  y =
+                    (i * 137 + (reduced ? 0 : time * 0.35)) % this.scale.height;
+                this.rain.lineBetween(x, y, x - 4, y + 12);
+              }
+            }
+            this.navigation.clear();
+            if (p.waypoint) {
+              const v = manifest.venues.find((v) => v.id === p.waypoint),
+                s = manifest.spawnPoints.find((s) => s.id === v?.safeSpawnId);
+              if (s) {
+                this.navigation.lineStyle(3, 0x9c542e, 0.8);
+                this.navigation.strokeCircle(s.x, s.y, 27);
+                const angle = Math.atan2(
+                    s.y - engine.position.y,
+                    s.x - engine.position.x,
+                  ),
+                  x = engine.position.x + Math.cos(angle) * 52,
+                  y = engine.position.y + Math.sin(angle) * 52;
+                this.navigation.fillStyle(0x9c542e);
+                this.navigation.fillTriangle(
+                  x + Math.cos(angle) * 12,
+                  y + Math.sin(angle) * 12,
+                  x + Math.cos(angle + 2.3) * 9,
+                  y + Math.sin(angle + 2.3) * 9,
+                  x + Math.cos(angle - 2.3) * 9,
+                  y + Math.sin(angle - 2.3) * 9,
+                );
+              }
+            }
+            if (time - this.lastSnapshot > 300) {
+              for (const [id, label] of this.labels) {
+                if (label.active)
+                  label.setText(
+                    p.venueNames[id] ??
+                      manifest.venues.find((v) => v.id === id)!.name,
+                  );
+              }
+              p.onSnapshot({
+                ...engine.position,
+                zoneId: engine.zoneId,
+                nearbyId: engine.nearby?.id ?? null,
+                clock: clock.label,
+                day: clock.day,
+                week: clock.week,
+                hour: clock.hour,
+                period: clock.period,
+                weather,
+                battery: Math.round(engine.battery.value),
+              });
+              this.lastSnapshot = time;
+            }
+            this.frames++;
+            this.frameTotal += delta;
+            if (time - this.lastMetric > 10000) {
+              container.current?.setAttribute(
+                "data-average-frame-ms",
+                (this.frameTotal / this.frames).toFixed(1),
+              );
+              container.current?.setAttribute(
+                "data-asset-failures",
+                String(this.assetFailures),
+              );
+              // Optional Chromium measurement: local diagnostic only, never transmitted.
+              const memory = (
+                performance as Performance & {
+                  memory?: { usedJSHeapSize: number; jsHeapSizeLimit: number };
+                }
+              ).memory;
+              if (memory?.jsHeapSizeLimit) {
+                container.current?.setAttribute(
+                  "data-memory-warning",
+                  String(memory.usedJSHeapSize / memory.jsHeapSizeLimit > 0.8),
+                );
+              }
+              this.lastMetric = time;
             }
           }
         }
         game = new Phaser.Game({
           type: Phaser.AUTO,
           parent: container.current,
-          width: WORLD.width,
-          height: WORLD.height,
-          backgroundColor: "#dce7c7",
+          width: container.current.clientWidth,
+          height: container.current.clientHeight,
           scene: CampusScene,
-          scale: {
-            mode: Phaser.Scale.FIT,
-            autoCenter: Phaser.Scale.CENTER_BOTH,
-          },
-          render: { antialias: true },
+          backgroundColor: "#d4dfb6",
+          scale: { mode: Phaser.Scale.RESIZE },
+          render: { antialias: true, pixelArt: false },
           fps: { target: 30 },
           audio: { noAudio: true },
           callbacks: {
             postBoot: (g) => {
               g.canvas.setAttribute(
                 "aria-label",
-                "Fictional campus world. Tap to walk or use arrow keys.",
+                "Virtual campus. Use arrow keys or WASD to walk; tap a destination.",
               );
               g.canvas.setAttribute("role", "img");
             },
           },
         });
       })
-      .catch(() => setFailed(true));
+      .catch(() => {
+        if (!disposed) setStatus("failed");
+      });
     return () => {
       disposed = true;
       game?.destroy(true);
+      engine.dispose();
     };
-  }, [pack, avatar]);
-  if (failed)
-    return (
-      <div role="alert" className="world-loading">
-        The world could not load. Refresh to try again.
-      </div>
-    );
+  }, [manifest, spawnId]);
   return (
     <div
       className="phaser-container"
       ref={container}
       data-testid="campus-world"
-      data-ready={ready}
+      data-ready={status === "ready"}
     >
-      {!ready && (
-        <span className="world-loading" role="status">
-          Opening the campus gates…
-        </span>
+      {status !== "ready" && (
+        <div
+          className="world-loading"
+          role={status === "failed" ? "alert" : "status"}
+        >
+          {status === "failed" ? (
+            <>
+              Campus gates are temporarily closed.
+              <button onClick={() => window.location.reload()}>Retry</button>
+            </>
+          ) : (
+            `Opening ${manifest.campusId.toUpperCase()}…`
+          )}
+        </div>
       )}
     </div>
   );
