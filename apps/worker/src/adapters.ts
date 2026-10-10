@@ -24,9 +24,31 @@ const json: SourceAdapter = {
   kind: "json",
   decode: (body) => {
     const value: unknown = JSON.parse(body);
-    if (!value || typeof value !== "object" || Array.isArray(value))
+    if (!value || typeof value !== "object")
       throw new Error("JSON_OBJECT_REQUIRED");
-    return body;
+    if (!Array.isArray(value)) return body;
+    // Bounded public page-list responses (e.g. official WordPress APIs).
+    // Decode rendered text only; IDs/links are not evidence of a place name.
+    if (value.length < 1 || value.length > 20)
+      throw new Error("JSON_PAGE_LIMIT");
+    return value
+      .map((page: unknown) => {
+        if (!page || typeof page !== "object" || Array.isArray(page))
+          throw new Error("JSON_PAGE_REQUIRED");
+        const record = page as Record<string, unknown>;
+        const rendered = [record.title, record.content].map((field) => {
+          if (
+            !field ||
+            typeof field !== "object" ||
+            Array.isArray(field) ||
+            typeof (field as Record<string, unknown>).rendered !== "string"
+          )
+            throw new Error("JSON_RENDERED_TEXT_REQUIRED");
+          return (field as { rendered: string }).rendered;
+        });
+        return rendered.join("\n");
+      })
+      .join("\n");
   },
 };
 export function sourceAdapter(contentType: string | undefined): SourceAdapter {

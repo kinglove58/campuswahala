@@ -1,6 +1,6 @@
 import type { FactCandidate } from "@campuswahala/campus-content";
 /** Discovery hints, never published facts. Exact source pages must pass normal robots, safe-fetch, grounding and publication. */
-export const landmarkResearch = [
+const htmlLandmarkResearch = [
   {
     campus: "futa",
     url: "https://futa.edu.ng/news/877-experts-highlight-the-importance-of-artificial-intelligence-at-futa-s-more-than-certificate-summit",
@@ -219,6 +219,22 @@ export const landmarkResearch = [
     category: "location",
   },
 ] as const;
+const publicPageApis: Record<string, string> = {
+  "https://oauife.edu.ng/student-affairs/":
+    "https://oauife.edu.ng/wp-json/wp/v2/pages?slug=student-affairs&per_page=1&_fields=title,content,link",
+  "https://oauife.edu.ng/other-arms-and-units/":
+    "https://oauife.edu.ng/wp-json/wp/v2/pages?slug=other-arms-and-units&per_page=1&_fields=title,content,link",
+  "https://unilag.edu.ng/explore-campus/":
+    "https://unilag.edu.ng/wp-json/wp/v2/pages?slug=explore-campus&per_page=1&_fields=title,content,link",
+};
+export const landmarkResearch = [
+  ...htmlLandmarkResearch,
+  ...htmlLandmarkResearch.flatMap((hint) =>
+    publicPageApis[hint.url]
+      ? [{ ...hint, url: publicPageApis[hint.url]! }]
+      : [],
+  ),
+];
 export function extractLandmarks(page: {
   body: string;
   sourceUrl: string;
