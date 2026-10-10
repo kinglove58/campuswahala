@@ -100,6 +100,19 @@ export function LifePanel({
               activities here.
             </p>
           )}
+          {view.pending && (
+            <article className="wahala-story" role="status">
+              <p className="tag">
+                A little campus Wahala · fictional situation
+              </p>
+              <h3>{view.pending.template.title}</h3>
+              <p>{view.pending.template.situation}</p>
+              <p>
+                Choices below consume the stated game time. You may keep
+                playing; this situation expires.
+              </p>
+            </article>
+          )}
           <div className="life-actions">
             {view.allowedActions
               .filter(() => !venueId || venueId === authoritativeVenueId)
@@ -113,19 +126,6 @@ export function LifePanel({
                 </button>
               ))}
           </div>
-          {view.pending && (
-            <article className="wahala-story" role="status">
-              <p className="tag">
-                A little campus Wahala · fictional situation
-              </p>
-              <h3>{view.pending.template.title}</h3>
-              <p>{view.pending.template.situation}</p>
-              <p>
-                Choices above consume the stated game time. You may keep
-                playing; this situation expires.
-              </p>
-            </article>
-          )}
           {view.recent.some((h) => h.status !== "pending") && (
             <details>
               <summary>Recent campus stories</summary>

@@ -19,6 +19,7 @@ import { AcademicPanel } from "./academic-panel";
 import { useAcademics } from "./use-academics";
 import { useLife } from "./use-life";
 import { LifePanel } from "./life-panel";
+import { readPrivate } from "./read-private";
 import { academicClock } from "@campuswahala/domain";
 import { AvatarEditor } from "./avatar-editor";
 import { CampusSound } from "./sound";
@@ -143,9 +144,7 @@ export default function CampusExperience({
         | (SafeLocation & { appearance: Appearance; appearanceSaved: boolean })
         | null = null;
       if (signedIn) {
-        const r = await fetch("/api/account/world", {
-          signal: controller.signal,
-        });
+        const r = await readPrivate("/api/account/world", controller.signal);
         if (!r.ok)
           throw new Error(
             "Your saved campus could not be loaded. Please retry.",

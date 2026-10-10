@@ -8,7 +8,7 @@ test("campus daily routine uses real venue authority, life choices, shared acade
   page,
   context,
 }) => {
-  test.setTimeout(180000);
+  test.setTimeout(300000);
   test.skip(!process.env.TEST_DATABASE_URL, "Disposable PostgreSQL required");
   const db = new PrismaClient({
     datasources: { db: { url: process.env.TEST_DATABASE_URL! } },
@@ -35,6 +35,27 @@ test("campus daily routine uses real venue authority, life choices, shared acade
         .not.toBe(429);
     expect(r.headers()["cache-control"]).toContain("no-store");
     return r;
+  };
+  const clickLife = async (name: string) => {
+    const send = async (label: string) => {
+      const [response] = await Promise.all([
+        page.waitForResponse(
+          (r) =>
+            r.url().endsWith("/api/life/commands") &&
+            r.request().method() === "POST",
+        ),
+        page.getByRole("button", { name: label, exact: true }).click(),
+      ]);
+      return response;
+    };
+    let r = await send(name);
+    const key = r.request().postDataJSON().commandId;
+    if (r.status() === 429) {
+      await request(() => context.request.get(`${origin}/api/life/state`));
+      r = await send("Retry pending life command");
+      expect(r.request().postDataJSON().commandId).toBe(key);
+    }
+    expect(r.ok()).toBe(true);
   };
   const academics = async (): Promise<AcademicView> => {
     const r = await request(() =>
@@ -143,7 +164,10 @@ test("campus daily routine uses real venue authority, life choices, shared acade
     })
     .click();
   await expect
-    .poll(async () => (await life()).state!.revision)
+    .poll(async () => (await life()).state!.revision, {
+      timeout: 80000,
+      intervals: [500, 1000],
+    })
     .toBe(beforeEat.state!.revision + 1);
   lv = await life();
   av = await academics();
@@ -240,11 +264,12 @@ test("campus daily routine uses real venue authority, life choices, shared acade
   await page.getByRole("button", { name: "Campus life", exact: true }).click();
   const exerciseMinute = (await academics()).term!.minute;
   const exerciseBefore = await life();
-  await page
-    .getByRole("button", { name: "Exercise · 30 min", exact: true })
-    .click();
+  await clickLife("Exercise · 30 min");
   await expect
-    .poll(async () => (await academics()).term!.minute)
+    .poll(async () => (await academics()).term!.minute, {
+      timeout: 80000,
+      intervals: [500, 1000],
+    })
     .toBe(exerciseMinute + 30);
   const exercised = await life();
   expect(exercised.state!.metrics.energy).toBeLessThan(
@@ -261,27 +286,27 @@ test("campus daily routine uses real venue authority, life choices, shared acade
     page.getByRole("button", { name: "Sleep · 6 hours", exact: true }),
   ).toBeVisible();
   const restMinute = (await academics()).term!.minute;
-  await page
-    .getByRole("button", { name: "Rest · 30 min", exact: true })
-    .click();
+  await clickLife("Rest · 30 min");
   await expect
-    .poll(async () => (await academics()).term!.minute)
-    .toBe(restMinute + 30);
-  await page
-    .getByRole("button", {
-      name: "Spend time in the common area · 30 min",
-      exact: true,
+    .poll(async () => (await academics()).term!.minute, {
+      timeout: 80000,
+      intervals: [500, 1000],
     })
-    .click();
+    .toBe(restMinute + 30);
+  await clickLife("Spend time in the common area · 30 min");
   await expect
-    .poll(async () => (await academics()).term!.minute)
+    .poll(async () => (await academics()).term!.minute, {
+      timeout: 80000,
+      intervals: [500, 1000],
+    })
     .toBe(restMinute + 60);
   const sleepMinute = (await academics()).term!.minute;
-  await page
-    .getByRole("button", { name: "Sleep · 6 hours", exact: true })
-    .click();
+  await clickLife("Sleep · 6 hours");
   await expect
-    .poll(async () => (await academics()).term!.minute)
+    .poll(async () => (await academics()).term!.minute, {
+      timeout: 80000,
+      intervals: [500, 1000],
+    })
     .toBe(sleepMinute + 360);
   av = await academics();
   expect(

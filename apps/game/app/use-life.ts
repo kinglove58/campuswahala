@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { readPrivate } from "./read-private";
 import type { LifeCommand, LifeView } from "@campuswahala/domain";
 export function useLife(enabled: boolean) {
   const [state, setState] = useState<LifeView | null>(null),
@@ -16,11 +17,19 @@ export function useLife(enabled: boolean) {
   const pending = useRef<LifeCommand | null>(null),
     running = useRef(false);
   const generation = useRef(0);
+  const readController = useRef<AbortController | null>(null);
+  const readAgain = useRef(false);
   const refresh = useCallback(async () => {
     const current = generation.current;
     if (!enabled) return;
+    if (readController.current) {
+      readAgain.current = true;
+      return;
+    }
+    const controller = new AbortController();
+    readController.current = controller;
     try {
-      const r = await fetch("/api/life/state", { cache: "no-store" });
+      const r = await readPrivate("/api/life/state", controller.signal);
       if (!r.ok)
         throw new Error(
           "Campus life connection unavailable. Reconnect and retry.",
@@ -41,6 +50,15 @@ export function useLife(enabled: boolean) {
             ? e.message
             : "Campus life connection unavailable.",
         );
+    } finally {
+      if (readController.current === controller) {
+        readController.current = null;
+        readAgain.current = false;
+        if (readAgain.current) {
+          readAgain.current = false;
+          void refresh();
+        }
+      }
     }
   }, [enabled]);
   useEffect(() => {
@@ -57,10 +75,11 @@ export function useLife(enabled: boolean) {
     const focus = () => void refresh();
     window.addEventListener("focus", focus);
     window.addEventListener("online", focus);
-    const timer = setInterval(focus, 30000);
     return () => {
       generation.current++;
-      clearInterval(timer);
+      readController.current?.abort();
+      readController.current = null;
+      readAgain.current = false;
       window.removeEventListener("focus", focus);
       window.removeEventListener("online", focus);
     };
@@ -94,6 +113,13 @@ export function useLife(enabled: boolean) {
         const data = await r.json();
         if (generation.current !== current) return;
         if (!r.ok) {
+          if (r.status === 429) {
+            setRetry(true);
+            setError(
+              "Campus is busy. Wait a moment, then explicitly retry your pending action.",
+            );
+            return;
+          }
           if (r.status >= 500)
             throw new Error("Response uncertain. Retry the same life command.");
           pending.current = null;
