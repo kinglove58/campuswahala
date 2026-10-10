@@ -94,6 +94,9 @@ export function LifePanel({
               routine. Guest exploration has no durable life stats.
             </p>
           )}
+          <button disabled={busy || !online} onClick={onRefresh}>
+            Refresh campus life
+          </button>
           {venueId && (
             <p>
               Map movement is cosmetic. Confirm server travel before life

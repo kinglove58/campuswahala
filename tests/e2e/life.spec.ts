@@ -259,9 +259,9 @@ test("campus daily routine uses real venue authority, life choices, shared acade
     (v) => v.type === "sports",
   )!;
   await academic({ type: "TRAVEL_TO_VENUE", venueId: sports.id });
-  await page.reload();
-  await page.getByRole("button", { name: "Open virtual phone" }).click();
-  await page.getByRole("button", { name: "Campus life", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Refresh campus life", exact: true })
+    .click();
   const exerciseMinute = (await academics()).term!.minute;
   const exerciseBefore = await life();
   await clickLife("Exercise · 30 min");
@@ -279,9 +279,9 @@ test("campus daily routine uses real venue authority, life choices, shared acade
     exerciseBefore.state!.metrics.wellbeing,
   );
   await academic({ type: "TRAVEL_TO_VENUE", venueId: lv.state!.homeVenueId });
-  await page.reload();
-  await page.getByRole("button", { name: "Open virtual phone" }).click();
-  await page.getByRole("button", { name: "Campus life", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Refresh campus life", exact: true })
+    .click();
   await expect(
     page.getByRole("button", { name: "Sleep · 6 hours", exact: true }),
   ).toBeVisible();
