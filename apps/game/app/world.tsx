@@ -343,7 +343,10 @@ export default function CampusWorld({
                 );
                 g.fillEllipse(x, y, 25 + (j % 13), 12);
               }
-              if (manifest.campusId === "unilag" && zone.type === "social") {
+              if (
+                manifest.artDirection.waterfrontSocialZone &&
+                zone.type === "social"
+              ) {
                 g.fillStyle(manifest.palette.water, 0.8);
                 g.fillRoundedRect(
                   zone.x + 12,
@@ -377,7 +380,7 @@ export default function CampusWorld({
                   b.silhouette === "tower" ? 48 : 38,
                   4,
                 );
-                if (manifest.campusId === "futa") {
+                if (manifest.artDirection.roofStyle === "pitched") {
                   g.fillStyle(0xb98060);
                   g.fillTriangle(
                     b.x - 8,
@@ -395,7 +398,7 @@ export default function CampusWorld({
                       b.x + (j * b.width) / 8,
                       b.y + 20,
                     );
-                } else if (manifest.campusId === "oau") {
+                } else if (manifest.artDirection.roofStyle === "brutalist") {
                   g.fillStyle(0xb5aa8d);
                   g.fillRect(b.x - 14, b.y - 26, b.width + 28, 16);
                   g.fillStyle(0xe9dfc2);

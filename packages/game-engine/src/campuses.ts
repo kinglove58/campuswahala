@@ -14,6 +14,10 @@ const configurations = {
     width: 3072,
     height: 2304,
     cols: 3,
+    artDirection: {
+      roofStyle: "pitched",
+      waterfrontSocialZone: false,
+    } as const,
     roof: 0x9f6247,
     ground: 0xd4dfb6,
     wall: 0xf2dec0,
@@ -83,6 +87,10 @@ const configurations = {
     width: 2560,
     height: 2048,
     cols: 2,
+    artDirection: {
+      roofStyle: "brutalist",
+      waterfrontSocialZone: false,
+    } as const,
     roof: 0x9c8565,
     ground: 0xdde2c4,
     wall: 0xf1e7cc,
@@ -124,6 +132,7 @@ const configurations = {
     ],
   },
   unilag: {
+    artDirection: { roofStyle: "canopy", waterfrontSocialZone: true } as const,
     width: 2304,
     height: 2560,
     cols: 2,
@@ -193,6 +202,7 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
     geography: "compressed campus geography",
     bounds: { x: 0, y: 0, width: c.width, height: c.height },
     defaultSpawnId: "spawn-arrival",
+    artDirection: c.artDirection,
     palette: {
       ground: c.ground,
       roof: c.roof,
