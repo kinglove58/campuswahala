@@ -50,6 +50,11 @@ export default function GuestJourney() {
       if (account.ok) {
         const data = await account.json();
         setSignedIn(true);
+        const previousGuest = !data.character
+          ? await fetch("/api/guest", { signal: controller.signal }).then(
+              async (r) => (r.ok ? r.json() : null),
+            )
+          : null;
         const conversion = await fetch("/api/account/convert", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -59,6 +64,17 @@ export default function GuestJourney() {
         const converted = conversion.ok ? await conversion.json() : null;
         const saved = converted?.character ?? data.character;
         if (saved) {
+          if (!data.character && previousGuest) {
+            try {
+              const cached = sessionStorage.getItem(
+                `cw_appearance:${previousGuest.id}`,
+              );
+              if (cached)
+                sessionStorage.setItem(`cw_appearance:${saved.id}`, cached);
+            } catch {
+              /* Optional cosmetic cache. */
+            }
+          }
           setPlayer(saved);
           return null;
         }
@@ -106,7 +122,27 @@ export default function GuestJourney() {
       } catch {
         /* Optional cosmetic guest cache. */
       }
-      setPlayer(created);
+      if (signedIn) {
+        const converted = await fetch("/api/account/convert", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: "{}",
+        });
+        if (!converted.ok)
+          throw new Error("Your character could not be saved. Please retry.");
+        const { character } = await converted.json();
+        if (!character)
+          throw new Error("Your character could not be saved. Please retry.");
+        try {
+          sessionStorage.setItem(
+            `cw_appearance:${character.id}`,
+            JSON.stringify({ ...appearance, top: input.avatar }),
+          );
+        } catch {
+          /* Optional cosmetic cache. */
+        }
+        setPlayer(character);
+      } else setPlayer(created);
     } catch (e) {
       setError(
         e instanceof Error

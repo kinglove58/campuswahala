@@ -123,7 +123,9 @@ export default function CampusExperience({
     const controller = new AbortController();
     let cancelled = false;
     void (async () => {
-      let saved: (SafeLocation & { appearance: Appearance }) | null = null;
+      let saved:
+        | (SafeLocation & { appearance: Appearance; appearanceSaved: boolean })
+        | null = null;
       if (signedIn) {
         const r = await fetch("/api/account/world", {
           signal: controller.signal,
@@ -164,15 +166,41 @@ export default function CampusExperience({
         zoneId: spawn.zoneId,
       });
       lastSpawn.current = spawn.id;
-      if (saved) setAppearance(parseAppearance(saved.appearance));
-      else {
+      let look = saved ? parseAppearance(saved.appearance) : initialAppearance;
+      if (!saved?.appearanceSaved) {
         try {
           const cached = sessionStorage.getItem(`cw_appearance:${player.id}`);
-          if (cached) setAppearance(parseAppearance(JSON.parse(cached)));
+          if (cached) look = parseAppearance(JSON.parse(cached));
         } catch {
           /* Optional cosmetic cache only. */
         }
       }
+      setAppearance(look);
+      if (signedIn && !saved?.appearanceSaved) {
+        try {
+          const response = await fetch("/api/account/world", {
+            method: "POST",
+            signal: controller.signal,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              campusId: world.campusId,
+              worldVersion: world.version,
+              spawnId: spawn.id,
+              appearance: look,
+            }),
+          });
+          if (!response.ok)
+            setSaveMessage(
+              "Your look could not be saved. Use Profile to retry.",
+            );
+        } catch {
+          if (!cancelled)
+            setSaveMessage(
+              "Your look could not be saved. Use Profile to retry.",
+            );
+        }
+      }
+      if (cancelled) return;
       const destination = new URLSearchParams(window.location.search).get(
         "destination",
       );

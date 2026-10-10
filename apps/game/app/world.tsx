@@ -139,7 +139,21 @@ export default function CampusWorld({
               .setDepth(5000);
             this.drawAvatar();
             const camera = this.cameras.main;
-            camera.setZoom(window.innerWidth < 600 ? 0.88 : 1.05);
+            const applyZoom = (value: number) =>
+              camera.setZoom(
+                Math.max(
+                  this.scale.width / manifest.bounds.width,
+                  this.scale.height / manifest.bounds.height,
+                  0.75,
+                  Math.min(1.6, value),
+                ),
+              );
+            applyZoom(window.innerWidth < 600 ? 0.88 : 1.05);
+            const resize = () => applyZoom(camera.zoom);
+            this.scale.on("resize", resize);
+            this.events.once("shutdown", () =>
+              this.scale.off("resize", resize),
+            );
             camera.startFollow(
               this.person,
               true,
@@ -171,8 +185,7 @@ export default function CampusWorld({
             });
             props.current.onReady({
               engine,
-              zoom: (value) =>
-                camera.setZoom(Math.max(0.75, Math.min(1.6, value))),
+              zoom: applyZoom,
             });
           }
           drawAvatar() {

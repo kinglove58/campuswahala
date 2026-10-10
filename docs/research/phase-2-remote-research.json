@@ -1,0 +1,226 @@
+{
+  "observedAt": "2026-10-10T06:34:55.801Z",
+  "note": "Isolated research. Only published, non-stale facts shown. No deployment or production database writes.",
+  "metrics": {
+    "source_count": 14,
+    "feedback_count": 0,
+    "stale_count": 0,
+    "fetch_failure_count": 18,
+    "fetch_count": 3,
+    "extraction_count": 3,
+    "candidate_count": 4,
+    "allow_count": 4,
+    "auto_published_count": 4
+  },
+  "sources": [
+    {
+      "url": "https://lib.futa.edu.ng/",
+      "status": "REJECTED",
+      "robotsPolicy": "denied",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:29.470Z",
+      "contentHash": null,
+      "lastErrorCode": "ROBOTS_REJECTED"
+    },
+    {
+      "url": "https://healthcentre.futa.edu.ng/",
+      "status": "REJECTED",
+      "robotsPolicy": "denied",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:29.518Z",
+      "contentHash": null,
+      "lastErrorCode": "ROBOTS_REJECTED"
+    },
+    {
+      "url": "https://soc.futa.edu.ng/",
+      "status": "REJECTED",
+      "robotsPolicy": "denied",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:29.561Z",
+      "contentHash": null,
+      "lastErrorCode": "ROBOTS_REJECTED"
+    },
+    {
+      "url": "https://sad.futa.edu.ng/",
+      "status": "REJECTED",
+      "robotsPolicy": "denied",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:29.604Z",
+      "contentHash": null,
+      "lastErrorCode": "ROBOTS_REJECTED"
+    },
+    {
+      "url": "https://daa.futa.edu.ng/",
+      "status": "REJECTED",
+      "robotsPolicy": "denied",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:29.651Z",
+      "contentHash": null,
+      "lastErrorCode": "ROBOTS_REJECTED"
+    },
+    {
+      "url": "https://opac.oauife.edu.ng/",
+      "status": "DISCOVERED",
+      "robotsPolicy": "pending",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:39.657Z",
+      "contentHash": null,
+      "lastErrorCode": "FETCH_TIMEOUT"
+    },
+    {
+      "url": "https://oauife.edu.ng/other-arms-and-units/",
+      "status": "DISCOVERED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:35:40.983Z",
+      "contentHash": null,
+      "lastErrorCode": "BODY_TOO_LARGE"
+    },
+    {
+      "url": "https://library.unilag.edu.ng/",
+      "status": "PUBLISHED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": "2026-10-10T06:34:43.037Z",
+      "nextFetchAt": "2026-10-11T06:34:43.037Z",
+      "contentHash": "05df11319d837ff330142c6aee093ae2bd30002e269b0a696b6a83d8346e794b",
+      "lastErrorCode": null
+    },
+    {
+      "url": "https://unilag.edu.ng/explore-campus/",
+      "status": "DISCOVERED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:35:46.578Z",
+      "contentHash": null,
+      "lastErrorCode": "BODY_TOO_LARGE"
+    },
+    {
+      "url": "https://www.futa.edu.ng/home",
+      "status": "REJECTED",
+      "robotsPolicy": "denied",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:36:46.620Z",
+      "contentHash": null,
+      "lastErrorCode": "ROBOTS_REJECTED"
+    },
+    {
+      "url": "https://oauife.edu.ng/",
+      "status": "DISCOVERED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:35:46.973Z",
+      "contentHash": null,
+      "lastErrorCode": "BODY_TOO_LARGE"
+    },
+    {
+      "url": "https://unilag.edu.ng/",
+      "status": "DISCOVERED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": null,
+      "nextFetchAt": "2026-10-10T06:35:49.812Z",
+      "contentHash": null,
+      "lastErrorCode": "BODY_TOO_LARGE"
+    },
+    {
+      "url": "https://oauife.edu.ng/wp-json/?_fields=name,url,description",
+      "status": "PUBLISHED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": "2026-10-10T06:34:53.445Z",
+      "nextFetchAt": "2026-10-11T06:34:53.445Z",
+      "contentHash": "de5c293ee311e455b257388bb94583eae449b77c3c927e2ba40118ae3f12a4b5",
+      "lastErrorCode": null
+    },
+    {
+      "url": "https://unilag.edu.ng/wp-json/?_fields=name,url,description",
+      "status": "PUBLISHED",
+      "robotsPolicy": "allowed",
+      "lastFetchedAt": "2026-10-10T06:34:55.764Z",
+      "nextFetchAt": "2026-10-11T06:34:55.764Z",
+      "contentHash": "1d769ac22fc895f7f0897ee9165d49a7cabac42e5b6d3b31df3e9f1bb9a4edc4",
+      "lastErrorCode": null
+    }
+  ],
+  "facts": [
+    {
+      "campus": {
+        "slug": "unilag"
+      },
+      "key": "library.name",
+      "status": "published",
+      "staleAt": "2027-04-08T06:34:43.037Z",
+      "currentVersion": {
+        "value": "UNIVERSITY OF LAGOS LIBRARY",
+        "lastObservedAt": "2026-10-10T06:34:43.037Z",
+        "category": "building",
+        "evidence": [
+          {
+            "evidence": {
+              "observation": {
+                "source": {
+                  "url": "https://library.unilag.edu.ng/"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "campus": {
+        "slug": "oau"
+      },
+      "key": "name",
+      "status": "published",
+      "staleAt": "2027-10-10T06:34:53.445Z",
+      "currentVersion": {
+        "value": "Obafemi Awolowo University",
+        "lastObservedAt": "2026-10-10T06:34:53.445Z",
+        "category": "university",
+        "evidence": [
+          {
+            "evidence": {
+              "observation": {
+                "source": {
+                  "url": "https://oauife.edu.ng/wp-json/?_fields=name,url,description"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "campus": {
+        "slug": "unilag"
+      },
+      "key": "name",
+      "status": "published",
+      "staleAt": "2027-10-10T06:34:55.764Z",
+      "currentVersion": {
+        "value": "UNIVERSITY OF LAGOS",
+        "lastObservedAt": "2026-10-10T06:34:55.764Z",
+        "category": "university",
+        "evidence": [
+          {
+            "evidence": {
+              "observation": {
+                "source": {
+                  "url": "https://library.unilag.edu.ng/"
+                }
+              }
+            }
+          },
+          {
+            "evidence": {
+              "observation": {
+                "source": {
+                  "url": "https://unilag.edu.ng/wp-json/?_fields=name,url,description"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

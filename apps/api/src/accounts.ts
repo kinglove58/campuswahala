@@ -453,7 +453,11 @@ export class AccountService {
         /* Safe cosmetic migration default. */
       }
     }
-    return { ...safeLocation(world, row), appearance };
+    return {
+      ...safeLocation(world, row),
+      appearance,
+      appearanceSaved: Boolean(row),
+    };
   }
   async saveWorldState(token: unknown, input: unknown) {
     const user = await this.principal(token);

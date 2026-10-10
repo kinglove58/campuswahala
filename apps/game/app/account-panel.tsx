@@ -7,6 +7,7 @@ type Fact = {
   key: string;
   value: string;
   lastObservedAt: string;
+  staleAt: string;
   sources: string[];
 };
 export function AccountPanel({
@@ -151,7 +152,8 @@ export function GuidePanel({ campus }: { campus: string }) {
       .then((r) => r.json())
       .then((data) => {
         const visible = (data.facts ?? []).filter(
-          (f: Fact) => f.campus === campus,
+          (f: Fact) =>
+            f.campus === campus && new Date(f.staleAt).getTime() > Date.now(),
         );
         setFacts(visible);
         setMessage(
@@ -185,9 +187,14 @@ export function GuidePanel({ campus }: { campus: string }) {
   return (
     <section>
       <h3>Campus guide</h3>
+      <p className="fixture">
+        Verified campus information · Game geometry is an approximate
+        representation.
+      </p>
       {facts.map((f) => (
         <article key={f.id}>
-          <b>{f.key}</b>
+          <b>{f.key.replaceAll(".", " · ").replaceAll("-", " ")}</b>
+          <small>{f.category.replaceAll("_", " ")}</small>
           <p>{f.value}</p>
           <small>
             Last observed {new Date(f.lastObservedAt).toLocaleDateString()}

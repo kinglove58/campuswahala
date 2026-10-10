@@ -203,6 +203,12 @@ export function validateWorld(w: WorldManifest): WorldManifest {
     w.bounds.height > 12000
   )
     throw new Error("INVALID_BOUNDS");
+  if (
+    w.bounds.x !== 0 ||
+    w.bounds.y !== 0 ||
+    w.geography !== "compressed campus geography"
+  )
+    throw new Error("INVALID_BOUNDS");
   const collections = [
     w.zones,
     w.roads,
@@ -250,9 +256,23 @@ export function validateWorld(w: WorldManifest): WorldManifest {
   ])
     if (blocked(w, s) || !contains(w.zones.find((z) => z.id === s.zoneId)!, s))
       throw new Error("UNSAFE_POINT");
-  for (const z of w.zones)
+  for (const z of w.zones) {
+    if (
+      ![
+        "academic",
+        "hostel",
+        "admin",
+        "social",
+        "sports",
+        "commercial",
+        "religious",
+        "transport",
+      ].includes(z.type)
+    )
+      throw new Error("INVALID_ZONE_TYPE");
     if (!w.assetBundles.some((b) => b.id === z.bundle))
       throw new Error("UNKNOWN_BUNDLE");
+  }
   for (const b of w.buildings)
     if (!contains(w.bounds, b.entrance) || blocked(w, b.entrance))
       throw new Error("INVALID_ENTRANCE");
@@ -276,6 +296,17 @@ export function validateWorld(w: WorldManifest): WorldManifest {
       throw new Error("BAD_SOURCE_ENTITY_LINK");
   }
   for (const i of w.interactionPoints) {
+    if (
+      ![
+        "ENTER_VENUE",
+        "TALK_TO_NPC",
+        "OPEN_SERVICE",
+        "VIEW_NOTICE",
+        "TRAVEL",
+        "REST",
+      ].includes(i.command)
+    )
+      throw new Error("INVALID_COMMAND_TARGET");
     if (i.venueId && !w.venues.some((v) => v.id === i.venueId))
       throw new Error("UNKNOWN_VENUE");
     if (i.npcId && !w.npcSpawns.some((n) => n.id === i.npcId))
@@ -301,13 +332,23 @@ export function validateWorld(w: WorldManifest): WorldManifest {
         throw new Error("INVALID_TRANSPORT_DESTINATION");
   for (const n of w.npcSpawns) {
     parseAppearance(n.appearance);
-    if (!n.fictional || n.route.some((p) => blocked(w, p)))
+    if (
+      !n.fictional ||
+      !["idle", "wander", "patrol", "stationary"].includes(n.pattern) ||
+      n.activeHours.length !== 2 ||
+      !n.activeHours.every(Number.isFinite) ||
+      n.activeHours[0] < 0 ||
+      n.activeHours[1] > 24 ||
+      n.activeHours[0] >= n.activeHours[1] ||
+      n.route.some((p) => blocked(w, p))
+    )
       throw new Error("INVALID_NPC");
   }
   for (const road of [...w.roads, ...w.paths])
     if (
       road.points.length < 2 ||
       road.points.some((p) => !contains(w.bounds, p)) ||
+      !Number.isFinite(road.width) ||
       road.width < 1 ||
       road.width > 150
     )
@@ -317,6 +358,7 @@ export function validateWorld(w: WorldManifest): WorldManifest {
       !/^\/world-assets\/[a-z0-9/-]+\.[a-f0-9]{12}\.svg$/.test(b.path) ||
       !/^[a-f0-9]{64}$/.test(b.hash) ||
       !Number.isSafeInteger(b.bytes) ||
+      b.bytes < 1 ||
       b.bytes > 65536
     )
       throw new Error("INVALID_ASSET");

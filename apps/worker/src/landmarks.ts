@@ -3,6 +3,20 @@ import type { FactCandidate } from "@campuswahala/campus-content";
 export const landmarkResearch = [
   {
     campus: "futa",
+    url: "https://futa.edu.ng/news/877-experts-highlight-the-importance-of-artificial-intelligence-at-futa-s-more-than-certificate-summit",
+    key: "library.name",
+    name: "Albert Ilemobade Library",
+    category: "building",
+  },
+  {
+    campus: "oau",
+    url: "https://ir.oauife.edu.ng/communities/0b9e6d71-3012-43da-9f13-82f0ad855b10",
+    key: "library.name",
+    name: "Hezekiah Oluwasanmi Library",
+    category: "building",
+  },
+  {
+    campus: "futa",
     url: "https://lib.futa.edu.ng/",
     key: "library.name",
     name: "Albert Ilemobade Library",

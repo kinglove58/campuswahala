@@ -101,6 +101,24 @@ describe("world integrity and authority boundaries", () => {
       },
     ],
     [
+      "unknown interaction command",
+      (w) => {
+        Object.assign(w.interactionPoints[0]!, { command: "EXECUTE_SCRIPT" });
+      },
+    ],
+    [
+      "invalid NPC hours",
+      (w) => {
+        w.npcSpawns[0]!.activeHours = [23, 6];
+      },
+    ],
+    [
+      "non-finite road width",
+      (w) => {
+        w.roads[0]!.width = NaN;
+      },
+    ],
+    [
       "remote asset",
       (w) => {
         w.assetBundles[0]!.path = "https://evil.test/image.svg";

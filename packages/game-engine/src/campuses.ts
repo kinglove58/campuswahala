@@ -35,6 +35,11 @@ const configurations = {
       "The commons",
       "Recreation field",
     ],
+    bindings: [
+      { type: "library", factKey: "library.name", category: "building" },
+      { type: "admin", factKey: "student-affairs.name", category: "location" },
+      { type: "clinic", factKey: "health-centre.name", category: "location" },
+    ],
     venues: [
       ["Welcome lodge", "social"],
       ["Study house", "library"],
@@ -44,7 +49,7 @@ const configurations = {
       ["Food corner", "food"],
       ["Courtyard club", "social"],
       ["Sports pavilion", "sports"],
-      ["Quiet room", "social"],
+      ["Care lodge", "clinic"],
     ],
   },
   oau: {
@@ -62,6 +67,9 @@ const configurations = {
       "Learning terraces",
       "Meeting gardens",
       "Residence court",
+    ],
+    bindings: [
+      { type: "library", factKey: "library.name", category: "building" },
     ],
     venues: [
       ["Arrival pavilion", "social"],
@@ -87,12 +95,17 @@ const configurations = {
       "Residence lane",
       "Waterfront-inspired gardens",
     ],
+    bindings: [
+      { type: "library", factKey: "library.name", category: "building" },
+      { type: "admin", factKey: "senate.name", category: "building" },
+    ],
     venues: [
       ["Study court", "library"],
       ["Lecture hall", "lecture_hall"],
       ["Shuttle shelter", "transport"],
       ["Residence lounge", "hostel"],
       ["Food courtyard", "food"],
+      ["Civic room", "admin"],
     ],
   },
 };
@@ -116,7 +129,7 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
     schemaVersion: 1,
     campusId,
     version: 1,
-    sourceRevision: "geometry-2026-10-09.1",
+    sourceRevision: "geometry-2026-10-10.1",
     geography: "compressed campus geography",
     bounds: { x: 0, y: 0, width: c.width, height: c.height },
     defaultSpawnId: "spawn-arrival",
@@ -360,12 +373,14 @@ export function createCampusWorld(campusId: CampusId): WorldManifest {
           d.y < b.y + b.height + 80,
       ),
   );
-  const library = w.venues.find((v) => v.type === "library");
-  if (library)
-    library.identity = {
-      kind: "approximate",
-      factKey: "library.name",
-      category: "building",
-    };
+  for (const binding of c.bindings) {
+    const venue = w.venues.find((v) => v.type === binding.type);
+    if (venue)
+      venue.identity = {
+        kind: "approximate",
+        factKey: binding.factKey,
+        category: binding.category,
+      };
+  }
   return validateWorld(w);
 }

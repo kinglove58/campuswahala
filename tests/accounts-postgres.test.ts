@@ -211,10 +211,12 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
           spawnId: "spawn-venue-1",
           appearance: defaultAppearance,
         };
+        expect((await a.worldState(first.token)).appearanceSaved).toBe(false);
         await a.saveWorldState(first.token, worldInput);
         expect(await a.worldState(first.token)).toMatchObject({
           spawnId: "spawn-venue-1",
           campusId: "futa",
+          appearanceSaved: true,
         });
         for (const bad of [
           { ...worldInput, userId: userB },
