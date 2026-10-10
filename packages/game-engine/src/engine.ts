@@ -94,6 +94,7 @@ export class PocketBattery {
 }
 /** Runtime is independent of React and rendering. Cosmetic time/NPC/movement never award resources. */
 export class WorldEngine {
+  academicMinute: number | null = null;
   readonly bus = new WorldEventBus();
   readonly battery = new PocketBattery();
   position: Point;
@@ -120,7 +121,11 @@ export class WorldEngine {
     this.zoneId = s.zoneId;
   }
   get time() {
-    return campusTime(this.elapsedMs);
+    return campusTime(
+      this.academicMinute === null
+        ? this.elapsedMs
+        : Math.max(0, this.academicMinute - 420) * 1500,
+    );
   }
   setPhone(open: boolean) {
     this.phoneOpen = open;

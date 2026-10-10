@@ -33,6 +33,7 @@ export default function CampusWorld({
   paused,
   waypoint,
   weather,
+  academicMinute,
   onSnapshot,
   onReady,
 }: {
@@ -43,6 +44,7 @@ export default function CampusWorld({
   paused: boolean;
   waypoint: string | null;
   weather: Weather | "auto";
+  academicMinute: number | null;
   onSnapshot: (s: WorldSnapshot) => void;
   onReady: (h: WorldHandle) => void;
 }) {
@@ -53,6 +55,7 @@ export default function CampusWorld({
       paused,
       waypoint,
       weather,
+      academicMinute,
       onSnapshot,
       onReady,
     });
@@ -63,10 +66,20 @@ export default function CampusWorld({
       paused,
       waypoint,
       weather,
+      academicMinute,
       onSnapshot,
       onReady,
     };
-  }, [venueNames, appearance, paused, waypoint, weather, onSnapshot, onReady]);
+  }, [
+    venueNames,
+    appearance,
+    paused,
+    waypoint,
+    weather,
+    academicMinute,
+    onSnapshot,
+    onReady,
+  ]);
   const [status, setStatus] = useState<"opening" | "ready" | "failed">(
     "opening",
   );
@@ -573,6 +586,7 @@ export default function CampusWorld({
               this.updateChunks();
               this.lastChunk = time;
             }
+            engine.academicMinute = p.academicMinute;
             const clock = engine.time,
               weather = p.weather === "auto" ? clock.weather : p.weather;
             for (const [id, npc] of this.npcs) {

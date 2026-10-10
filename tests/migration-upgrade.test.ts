@@ -91,6 +91,47 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
         propertyKey: "name",
         candidateSubjectKey: "legacy:library.name",
       });
+      const preservedUser = await db.user.create({ data: {} });
+      const stage = await db.programmeStage.findFirstOrThrow({
+        include: {
+          structure: {
+            include: {
+              programme: {
+                include: { department: { include: { faculty: true } } },
+              },
+            },
+          },
+        },
+      });
+      const preservedCharacter = await db.playerCharacter.create({
+        data: {
+          userId: preservedUser.id,
+          campusId: stage.structure.programme.department.faculty.campusId,
+          programmeId: stage.structure.programmeId,
+          structureId: stage.structureId,
+          structureVersion: stage.structure.version,
+          stageId: stage.id,
+          nickname: "Campus Explorer",
+          avatar: "lime",
+          durationYears: 4,
+        },
+      });
+      copyMigration("202610100007_academic_simulation");
+      migrate();
+      expect(
+        await db.user.findUnique({ where: { id: preservedUser.id } }),
+      ).not.toBeNull();
+      expect(
+        await db.playerCharacter.findUnique({
+          where: { id: preservedCharacter.id },
+        }),
+      ).toMatchObject({ stageId: stage.id });
+      expect(await db.academicSimulation.count()).toBe(0);
+      expect(await db.academicTerm.count()).toBe(0);
+      expect(await db.academicCommandReceipt.count()).toBe(0);
+      expect(
+        await db.academicSemesterTemplate.count({ where: { stageId: null } }),
+      ).toBe(0);
       expect(await db.playerWorldState.count()).toBe(0);
       expect(await db.guestPlayer.findUnique({ where: { id } })).toMatchObject({
         level: 600,
@@ -99,7 +140,7 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
       });
       expect(await db.programmeStage.count()).toBeGreaterThan(0);
       expect(await db.campusFact.count()).toBe(1);
-      expect(await db.user.count()).toBe(0);
+      expect(await db.user.count()).toBe(1);
     } finally {
       await db.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
       await db.$disconnect();
