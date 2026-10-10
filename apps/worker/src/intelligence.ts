@@ -1,8 +1,13 @@
+import { sourceAdapter } from "./adapters";
 import { landmarkResearch, extractLandmarks } from "./landmarks";
 import { createHash } from "node:crypto";
 import { PrismaClient, Prisma } from "@campuswahala/database";
 import {
   candidateSchema,
+  sourceAuthority,
+  processingState,
+  sourcePolicyStatus,
+  matchEntity,
   factCategory,
   normalizedName,
   PublicationPolicyService,
@@ -38,7 +43,7 @@ export function groundedConfidence(
 }
 /** Small evidence-preserving adapter. Other providers must satisfy the same strict candidate contract. */
 export class OfficialNameExtractor implements CampusFactExtractor {
-  readonly version = "official-name-and-landmarks/4";
+  readonly version = "subject-name-and-landmarks/6";
   async extract(page: {
     body: string;
     sourceUrl: string;
@@ -79,6 +84,8 @@ export class OfficialNameExtractor implements CampusFactExtractor {
       {
         entityType: "university",
         key: "name",
+        subjectKey: "university",
+        propertyKey: "name",
         value: match[0],
         category: "university",
         confidence: 0.96,
@@ -128,15 +135,17 @@ export class CampusIntelligencePipeline {
     private readonly policy = new PublicationPolicyService(),
     private readonly clock: () => Date = () => new Date(),
   ) {}
-  async discover() {
-    for (const item of officialDiscovery) {
+  async discover(campusSlug?: string) {
+    for (const item of officialDiscovery.filter(
+      (i) => !campusSlug || i.campus === campusSlug,
+    )) {
       const campus = await this.db.campus.findUnique({
         where: { slug: item.campus },
       });
       if (!campus) continue;
       const domain = new URL(item.url).hostname;
       await this.db.contentSource.upsert({
-        where: { url: item.url },
+        where: { campusId_url: { campusId: campus.id, url: item.url } },
         update: {},
         create: {
           campusId: campus.id,
@@ -178,12 +187,13 @@ export class CampusIntelligencePipeline {
       });
     this.metrics.increment("stale_count", rows.length);
   }
-  async runDue(limit = 10) {
+  async runDue(limit = 10, campusSlug?: string) {
     this.metrics.counts.feedback_count = await this.db.factFeedback.count();
     await this.staleSweep();
     const sources = await this.db.contentSource.findMany({
       where: {
         policyStatus: "permitted_public",
+        ...(campusSlug ? { campus: { slug: campusSlug } } : {}),
         nextFetchAt: { lte: this.clock() },
       },
       orderBy: { nextFetchAt: "asc" },
@@ -197,6 +207,8 @@ export class CampusIntelligencePipeline {
       where: { id: sourceId },
       include: { campus: { include: { university: true } } },
     });
+    sourceAuthority.parse(source.authorityClass);
+    sourcePolicyStatus.parse(source.policyStatus);
     if (source.policyStatus !== "permitted_public")
       throw new Error("SOURCE_POLICY_REJECTED");
     try {
@@ -268,8 +280,11 @@ export class CampusIntelligencePipeline {
       });
       this.metrics.increment("fetch_count");
       if (response.status === 200 && observation.evidence.length === 0) {
+        const decoded = sourceAdapter(response.headers["content-type"]).decode(
+          response.body,
+        );
         const candidates = await this.extractor.extract({
-          body: response.body,
+          body: decoded,
           sourceUrl: source.url,
           expectedUniversityName: source.campus.university.name,
         });
@@ -287,27 +302,46 @@ export class CampusIntelligencePipeline {
             .digest("hex");
           await this.transition(observation.id, "NORMALIZED");
           await this.db.$transaction(async (tx) => {
-            // Exact known university relationship is safe. All other extraction stays a candidate.
-            const entityId =
-              candidate.entityType === "university" &&
-              normalizedName(value) ===
-                normalizedName(source.campus.university.name)
-                ? source.campus.universityId
-                : null;
-            const fact = await tx.campusFact.upsert({
+            const propertyKey = candidate.propertyKey;
+            const candidateSubjectKey = candidate.subjectKey;
+            const subjects = await tx.campusSubject.findMany({
               where: {
-                campusId_entityType_key: {
-                  campusId: source.campusId,
-                  entityType: candidate.entityType,
-                  key: candidate.key,
-                },
+                campusId: source.campusId,
+                subjectType: candidate.entityType,
               },
+            });
+            // Exact aliases only. Ambiguous names stay separate candidates.
+            const canonicalSubjectId =
+              subjects.find((s) => s.originKey === candidateSubjectKey)?.id ??
+              (propertyKey === "name" ? matchEntity(value, subjects).id : null);
+            const identity = canonicalSubjectId
+              ? {
+                  campusId_subjectType_canonicalSubjectId_propertyKey: {
+                    campusId: source.campusId,
+                    subjectType: candidate.entityType,
+                    canonicalSubjectId,
+                    propertyKey,
+                  },
+                }
+              : {
+                  campusId_subjectType_candidateSubjectKey_propertyKey: {
+                    campusId: source.campusId,
+                    subjectType: candidate.entityType,
+                    candidateSubjectKey,
+                    propertyKey,
+                  },
+                };
+            const fact = await tx.campusFact.upsert({
+              where: identity,
               update: {},
               create: {
                 campusId: source.campusId,
-                entityType: candidate.entityType,
-                key: candidate.key,
-                entityId,
+                subjectType: candidate.entityType,
+                propertyKey,
+                canonicalSubjectId,
+                candidateSubjectKey: canonicalSubjectId
+                  ? null
+                  : candidateSubjectKey,
               },
             });
             const evidence = await tx.evidence.create({
@@ -315,7 +349,7 @@ export class CampusIntelligencePipeline {
                 observationId: observation.id,
                 locator: candidate.locator,
                 excerpt: candidate.excerpt,
-                confidence: groundedConfidence(candidate, response.body),
+                confidence: groundedConfidence(candidate, decoded),
                 generated: source.authorityClass === "generated_fixture",
               },
             });
@@ -427,6 +461,7 @@ export class CampusIntelligencePipeline {
     }
   }
   async transition(id: string, state: string) {
+    processingState.parse(state);
     const row = await this.db.sourceObservation.findUniqueOrThrow({
       where: { id },
     });
@@ -475,7 +510,9 @@ export class CampusIntelligencePipeline {
             const e = link.evidence,
               source = e.observation.source;
             const authorityAllowed = officialOnly
-              ? ["official", "institutional"].includes(source.authorityClass)
+              ? category === "critical"
+                ? source.authorityClass === "official"
+                : ["official", "institutional"].includes(source.authorityClass)
               : category === "cultural"
                 ? [
                     "official",
@@ -502,8 +539,9 @@ export class CampusIntelligencePipeline {
       for (const version of fact.versions) {
         const category = factCategory.parse(version.category);
         const evidence: PolicyEvidence[] = version.evidence.map((link) => ({
-          authority: link.evidence.observation.source
-            .authorityClass as PolicyEvidence["authority"],
+          authority: sourceAuthority.parse(
+            link.evidence.observation.source.authorityClass,
+          ),
           independentGroup: link.evidence.observation.source.independentGroup,
           contentHash: link.evidence.observation.contentHash,
           confidence: link.evidence.confidence,
@@ -569,14 +607,46 @@ export class CampusIntelligencePipeline {
               staleAt: decision.staleAt,
             },
           });
+          if (
+            !fact.canonicalSubjectId &&
+            fact.propertyKey === "name" &&
+            fact.candidateSubjectKey &&
+            evidence.some((e) => e.authority === "official")
+          ) {
+            const idHash = createHash("sha256")
+              .update(
+                `${fact.campusId}:${fact.subjectType}:${fact.candidateSubjectKey}`,
+              )
+              .digest("hex");
+            const subjectId = `${idHash.slice(0, 8)}-${idHash.slice(8, 12)}-4${idHash.slice(13, 16)}-a${idHash.slice(17, 20)}-${idHash.slice(20, 32)}`;
+            await tx.campusSubject.upsert({
+              where: { id: subjectId },
+              update: {},
+              create: {
+                id: subjectId,
+                campusId: fact.campusId,
+                subjectType: fact.subjectType,
+                name: String(version.value),
+                aliases: [],
+                originKey: fact.candidateSubjectKey,
+              },
+            });
+            await tx.campusFact.update({
+              where: { id: fact.id },
+              data: {
+                canonicalSubjectId: subjectId,
+                candidateSubjectKey: null,
+              },
+            });
+          }
           // Whole fixture packs are never promoted by this one fact.
           if (
-            fact.entityType === "university" &&
-            fact.entityId &&
-            fact.key === "name"
+            fact.subjectType === "university" &&
+            fact.canonicalSubjectId &&
+            fact.propertyKey === "name"
           )
             await tx.university.update({
-              where: { id: fact.entityId },
+              where: { id: fact.canonicalSubjectId },
               data: { name: String(version.value), status: "published" },
             });
         }

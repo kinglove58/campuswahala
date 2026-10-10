@@ -27,7 +27,7 @@ it("world endpoints are allowlisted, cache geometry only and reject guest durabl
       body: JSON.stringify({
         campusId: "futa",
         spawnId: "spawn-arrival",
-        worldVersion: 1,
+        worldVersion: 2,
       }),
     });
     expect(state.status).toBe(401);

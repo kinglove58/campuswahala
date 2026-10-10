@@ -4,7 +4,12 @@ export type Point = { x: number; y: number };
 export type Rect = Point & { width: number; height: number };
 export type Identity =
   | { kind: "fictional"; fixture: true }
-  | { kind: "approximate"; factKey: string; category: string };
+  | {
+      kind: "approximate";
+      canonicalEntityId: string;
+      displayProperty: string;
+      category: string;
+    };
 export type Zone = Rect & {
   id: string;
   name: string;
@@ -102,13 +107,17 @@ export function parseAppearance(input: unknown): Appearance {
   return { ...data } as Appearance;
 }
 export type WorldManifest = {
-  schemaVersion: 1;
+  schemaVersion: 2;
   campusId: CampusId;
   version: number;
   sourceRevision: string;
   geography: "compressed campus geography";
   bounds: Rect;
   defaultSpawnId: string;
+  artDirection: {
+    roofStyle: "pitched" | "brutalist" | "canopy";
+    waterfrontSocialZone: boolean;
+  };
   palette: {
     ground: number;
     roof: number;
@@ -143,7 +152,15 @@ export type WorldManifest = {
     Point & {
       id: string;
       zoneId: string;
-      type: "tree" | "palm" | "bench" | "lamp" | "notice" | "shuttle" | "water";
+      type:
+        | "tree"
+        | "palm"
+        | "bench"
+        | "lamp"
+        | "notice"
+        | "banner"
+        | "shuttle"
+        | "water";
       fixture: true;
       placementId?: string;
     }
@@ -186,7 +203,7 @@ export const blocked = (w: WorldManifest, p: Point, radius = 12) =>
   );
 export function validateWorld(w: WorldManifest): WorldManifest {
   if (
-    w.schemaVersion !== 1 ||
+    w.schemaVersion !== 2 ||
     !isCampus(w.campusId) ||
     !Number.isSafeInteger(w.version) ||
     w.version < 1 ||
@@ -209,6 +226,12 @@ export function validateWorld(w: WorldManifest): WorldManifest {
     w.geography !== "compressed campus geography"
   )
     throw new Error("INVALID_BOUNDS");
+  if (
+    !w.artDirection ||
+    !["pitched", "brutalist", "canopy"].includes(w.artDirection.roofStyle) ||
+    typeof w.artDirection.waterfrontSocialZone !== "boolean"
+  )
+    throw new Error("INVALID_ART_DIRECTION");
   const collections = [
     w.zones,
     w.roads,
@@ -285,8 +308,13 @@ export function validateWorld(w: WorldManifest): WorldManifest {
       throw new Error("UNKNOWN_SPAWN");
     if (
       v.identity.kind === "approximate" &&
-      (!/^[a-z0-9._-]{1,120}$/.test(v.identity.factKey) ||
-        !["building", "location", "hostel"].includes(v.identity.category))
+      (!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(
+        v.identity.canonicalEntityId,
+      ) ||
+        !/^[a-z0-9._-]{1,120}$/.test(v.identity.displayProperty) ||
+        !["building", "location", "hostel", "faculty"].includes(
+          v.identity.category,
+        ))
     )
       throw new Error("BAD_SOURCE_ENTITY_LINK");
     if (
@@ -353,6 +381,11 @@ export function validateWorld(w: WorldManifest): WorldManifest {
       road.width > 150
     )
       throw new Error("INVALID_PATH");
+  if (
+    w.npcSpawns.length > 32 ||
+    w.zones.some((z) => w.npcSpawns.filter((n) => n.zoneId === z.id).length > 6)
+  )
+    throw new Error("NPC_DENSITY_BUDGET");
   for (const b of w.assetBundles)
     if (
       !/^\/world-assets\/[a-z0-9/-]+\.[a-f0-9]{12}\.svg$/.test(b.path) ||
@@ -370,7 +403,9 @@ export type PublishedWorldFact = {
   id: string;
   campus: string;
   category: string;
-  key: string;
+  canonicalSubjectId: string | null;
+  propertyKey: string;
+  key?: string;
   value: unknown;
   lastObservedAt: string | Date;
   staleAt: string | Date | null;
@@ -389,7 +424,8 @@ export function compileWorldInformation(
         ? published.find(
             (f) =>
               f.campus === w.campusId &&
-              f.key === identity.factKey &&
+              f.canonicalSubjectId === identity.canonicalEntityId &&
+              f.propertyKey === identity.displayProperty &&
               f.category === identity.category &&
               typeof f.value === "string" &&
               f.staleAt &&

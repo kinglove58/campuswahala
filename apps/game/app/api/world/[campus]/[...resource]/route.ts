@@ -10,7 +10,7 @@ export async function GET(
     !isCampus(campus) ||
     !(
       ["latest", "information"].includes(resource.join("/")) ||
-      resource.join("/") === "versions/1"
+      ["versions/1", "versions/2"].includes(resource.join("/"))
     )
   )
     return NextResponse.json(

@@ -1,3 +1,9 @@
+# Phase 2.5 current identity/read model
+
+Phase 2 is merged. Migration 006 supersedes global entityType/key identity: facts use campus + subject type + canonical CampusSubject UUID or deterministic candidateSubjectKey + propertyKey. Existing IDs, versions, pointers and feedback are retained. Catalogue reads are scoped/paginated (maximum 100/page), exclude stale/missing versions and never expose candidates or private processing fields. World v2 binds canonical subject + property; geometry remains approximate. Critical contact/emergency/fee/deadline properties require the critical category and literal official authority. Unknown authority/state is rejected in application parsing and SQL constraints. Source URLs are unique per campus, not globally. See ADR 011 and the Phase 2.5 review.
+
+The sections below retain the original Phase 1 architecture history. Their old key/publication descriptions are superseded by the current model above and ADR 011.
+
 # Campus Intelligence foundation
 
 The worker discovers five curated public official URLs across FUTA, OAU and UNILAG, then retrieves only sources marked `permitted_public`. Other permitted official/student/community public HTML adapters can use the same provider-independent extractor interface and registry; nothing crawls private groups, credentials, CAPTCHA or paywalls. Live research is opt-in with `INTELLIGENCE_ENABLED=true`. The initial adapter intentionally extracts only an observed university name from visible public text or a literal name field in bounded public JSON metadata. It does not infer faculty, programmes, slang, dates, contacts, prices or routes. More category-specific extraction adapters can be added without changing publication authority.

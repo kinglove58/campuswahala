@@ -133,6 +133,10 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
   await expect(
     page.getByRole("dialog", { name: "Lecture hall", exact: true }),
   ).toBeVisible();
+  if (process.env.CAPTURE_VISUALS === "1")
+    await page.screenshot({
+      path: `artifacts/venue-${testInfo.project.name}.png`,
+    });
   await page
     .getByRole("button", { name: "Back to campus", exact: true })
     .click();
@@ -146,7 +150,7 @@ test("landing → guest onboarding → world → phone → resume → revoke", a
     });
   await page.getByRole("button", { name: "Campus map", exact: true }).click();
   await expect(
-    page.getByText(/Stylized fixture geometry, not real navigation/),
+    page.getByText(/Virtual campus navigation · compressed geography/),
   ).toBeVisible();
   await page.getByRole("button", { name: "All apps" }).click();
   await page.getByRole("button", { name: "My chapter" }).click();

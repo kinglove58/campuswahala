@@ -67,6 +67,8 @@ describe("deterministic ingestion security without network", () => {
     const candidate = {
       entityType: "critical" as const,
       key: "contact",
+      subjectKey: "security-office",
+      propertyKey: "contact",
       value: "300",
       category: "critical" as const,
       confidence: 1,
@@ -195,3 +197,4 @@ describe("deterministic ingestion security without network", () => {
     expect(robotsAllow("invalid", "/")).toBe(false);
   });
 });
+

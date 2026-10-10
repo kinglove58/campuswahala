@@ -18,3 +18,6 @@ export function validAcademicPosition(input: {
     ?.programmes.find((p) => p.id === input.programmeId)
     ?.structure.stages.some((s) => s.code === input.level);
 }
+
+
+export * from "./catalogue";

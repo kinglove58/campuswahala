@@ -8,9 +8,11 @@ import {
 } from "@campuswahala/game-engine";
 import {
   BadRequestException,
+  ConflictException,
   UnauthorizedException,
   ServiceUnavailableException,
 } from "@nestjs/common";
+import { parseCatalogueQuery, catalogueCursor } from "./catalogue";
 import { PrismaClient, Prisma } from "@campuswahala/database";
 import {
   hashGuestToken,
@@ -243,12 +245,20 @@ export class AccountService {
       throw new UnauthorizedException("GUEST_OWNERSHIP_REQUIRED");
     const hash = this.hash(guestToken);
     const db = this.database();
-    await db.$transaction(async (tx) => {
+    const conflict = await db.$transaction(async (tx) => {
       await tx.$queryRaw`SELECT "id" FROM "User" WHERE "id" = ${user.id}::uuid FOR UPDATE`;
       const current = await tx.user.findUniqueOrThrow({
         where: { id: user.id },
       });
-      if (current.status !== "active")
+      const session = await tx.userSession.findUnique({
+        where: { tokenHash: this.hash(String(token)) },
+      });
+      if (
+        current.status !== "active" ||
+        !session ||
+        session.revokedAt ||
+        session.expiresAt <= new Date()
+      )
         throw new UnauthorizedException("ACCOUNT_UNAVAILABLE");
       const receipt = await tx.guestConversion.findUnique({
         where: { tokenHash: hash },
@@ -256,7 +266,7 @@ export class AccountService {
       if (receipt) {
         if (receipt.userId !== user.id || receipt.expiresAt <= new Date())
           throw new UnauthorizedException("GUEST_ALREADY_CONSUMED");
-        return;
+        return receipt.outcome === "existing_character_conflict";
       }
       await tx.$queryRaw`SELECT "id" FROM "GuestPlayer" WHERE "tokenHash" = ${hash} FOR UPDATE`;
       const guest = await tx.guestPlayer.findUnique({
@@ -267,6 +277,19 @@ export class AccountService {
       const existing = await tx.playerCharacter.findUnique({
         where: { userId: user.id },
       });
+      if (existing) {
+        // Owner-bound receipt reserves this guest without consuming it. Another
+        // account cannot convert the same capability after a conflict.
+        await tx.guestConversion.create({
+          data: {
+            tokenHash: hash,
+            userId: user.id,
+            outcome: "existing_character_conflict",
+            expiresAt: guest.expiresAt,
+          },
+        });
+        return true;
+      }
       if (!existing) {
         const campus = await tx.campus.findUnique({
           where: { slug: guest.campusId },
@@ -314,7 +337,7 @@ export class AccountService {
         data: {
           tokenHash: hash,
           userId: user.id,
-          outcome: existing ? "existing_character_kept" : "converted",
+          outcome: "converted",
           expiresAt: new Date(Date.now() + 86400000),
         },
       });
@@ -328,7 +351,9 @@ export class AccountService {
         data: { userId: user.id, actorHash: userActor },
       });
       await tx.guestPlayer.delete({ where: { id: guest.id } });
+      return false;
     });
+    if (conflict) throw new ConflictException("EXISTING_CHARACTER_CONFLICT");
     return { character: await this.character(user.id), converted: true };
   }
   async privacy(token: unknown, input: unknown) {
@@ -383,15 +408,24 @@ export class AccountService {
     });
     return { deletionRequested: true };
   }
-  async publishedCatalogue() {
-    if (!this.db) return { facts: [] };
+  async publishedCatalogue(input: unknown = {}, canonicalIds?: string[]) {
+    const query = parseCatalogueQuery(input);
+    if (!this.db) return { facts: [], nextCursor: null };
     const rows = await this.db.campusFact.findMany({
       where: {
         status: "published",
         staleAt: { gt: new Date() },
         currentVersionId: { not: null },
+        ...(query.campus ? { campus: { slug: query.campus } } : {}),
+        ...(query.subjectType ? { subjectType: query.subjectType } : {}),
+        ...(query.category
+          ? { currentVersion: { category: query.category } }
+          : {}),
+        ...(query.after ? { id: { gt: query.after } } : {}),
+        ...(canonicalIds ? { canonicalSubjectId: { in: canonicalIds } } : {}),
       },
-      take: 100,
+      orderBy: { id: "asc" },
+      take: query.limit + 1,
       include: {
         campus: { select: { slug: true } },
         currentVersion: {
@@ -412,11 +446,18 @@ export class AccountService {
       },
     });
     return {
-      facts: rows.map((row) => ({
+      nextCursor:
+        rows.length > query.limit
+          ? catalogueCursor(query, rows[query.limit - 1]!.id)
+          : null,
+      facts: rows.slice(0, query.limit).map((row) => ({
         id: row.id,
         campus: row.campus.slug,
         category: row.currentVersion!.category,
-        key: row.key,
+        subjectType: row.subjectType,
+        canonicalSubjectId: row.canonicalSubjectId,
+        propertyKey: row.propertyKey,
+        key: row.propertyKey,
         value: row.currentVersion!.value,
         lastObservedAt: row.currentVersion!.lastObservedAt,
         staleAt: row.staleAt,

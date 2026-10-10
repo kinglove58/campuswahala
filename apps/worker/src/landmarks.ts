@@ -1,6 +1,6 @@
 import type { FactCandidate } from "@campuswahala/campus-content";
 /** Discovery hints, never published facts. Exact source pages must pass normal robots, safe-fetch, grounding and publication. */
-export const landmarkResearch = [
+const htmlLandmarkResearch = [
   {
     campus: "futa",
     url: "https://futa.edu.ng/news/877-experts-highlight-the-importance-of-artificial-intelligence-at-futa-s-more-than-certificate-summit",
@@ -78,7 +78,163 @@ export const landmarkResearch = [
     name: "Senate Building",
     category: "building",
   },
+  {
+    campus: "futa",
+    url: "https://www.futa.edu.ng/news/1433-fg-flags-off-construction-of-1500-bed-students-hostel-in-futa",
+    key: "akindeko-hostel.name",
+    name: "Akindeko Hostel",
+    category: "hostel",
+  },
+  {
+    campus: "futa",
+    url: "https://www.futa.edu.ng/news/1433-fg-flags-off-construction-of-1500-bed-students-hostel-in-futa",
+    key: "bisi-balogun-hostel.name",
+    name: "Bisi Balogun Hostel",
+    category: "hostel",
+  },
+  {
+    campus: "futa",
+    url: "https://www.futa.edu.ng/news/1433-fg-flags-off-construction-of-1500-bed-students-hostel-in-futa",
+    key: "oba-adesida-hostel.name",
+    name: "Oba Adesida Hostel",
+    category: "hostel",
+  },
+  {
+    campus: "futa",
+    url: "https://schools.futa.edu.ng/",
+    key: "school-of-life-sciences.name",
+    name: "School of Life Sciences",
+    category: "faculty",
+  },
+  {
+    campus: "futa",
+    url: "https://schools.futa.edu.ng/",
+    key: "school-of-physical-sciences.name",
+    name: "School of Physical Sciences",
+    category: "faculty",
+  },
+  {
+    campus: "futa",
+    url: "https://schools.futa.edu.ng/",
+    key: "computing.name",
+    name: "School of Computing",
+    category: "faculty",
+  },
+  {
+    campus: "futa",
+    url: "https://ppu.futa.edu.ng/home/140",
+    key: "senate-building-extension.name",
+    name: "Senate building extension",
+    category: "building",
+  },
+  {
+    campus: "futa",
+    url: "https://ppu.futa.edu.ng/home/140",
+    key: "central-research-lab.name",
+    name: "Central Research Lab",
+    category: "building",
+  },
+  {
+    campus: "oau",
+    url: "https://oauife.edu.ng/student-affairs/",
+    key: "moremi.name",
+    name: "Moremi",
+    category: "hostel",
+  },
+  {
+    campus: "oau",
+    url: "https://oauife.edu.ng/student-affairs/",
+    key: "akintola.name",
+    name: "Akintola",
+    category: "hostel",
+  },
+  {
+    campus: "oau",
+    url: "https://oauife.edu.ng/student-affairs/",
+    key: "mozambique.name",
+    name: "Mozambique",
+    category: "hostel",
+  },
+  {
+    campus: "oau",
+    url: "https://oauife.edu.ng/student-affairs/",
+    key: "fajuyi.name",
+    name: "Fajuyi",
+    category: "hostel",
+  },
+  {
+    campus: "oau",
+    url: "https://oauife.edu.ng/student-affairs/",
+    key: "awolowo.name",
+    name: "Awolowo",
+    category: "hostel",
+  },
+  {
+    campus: "oau",
+    url: "https://convocation.oauife.edu.ng/",
+    key: "oduduwa-hall.name",
+    name: "Oduduwa Hall",
+    category: "building",
+  },
+  {
+    campus: "unilag",
+    url: "https://unilag.edu.ng/explore-campus/",
+    key: "afe-babalola-hall.name",
+    name: "Afe Babalola Hall",
+    category: "building",
+  },
+  {
+    campus: "unilag",
+    url: "https://unilag.edu.ng/explore-campus/",
+    key: "medical-centre.name",
+    name: "Medical Centre",
+    category: "location",
+  },
+  {
+    campus: "unilag",
+    url: "https://unilag.edu.ng/explore-campus/",
+    key: "sport-centre.name",
+    name: "Sport Centre",
+    category: "location",
+  },
+  {
+    campus: "unilag",
+    url: "https://unilag.edu.ng/explore-campus/",
+    key: "unilag-chapel.name",
+    name: "UNILAG Chapel",
+    category: "location",
+  },
+  {
+    campus: "unilag",
+    url: "https://unilag.edu.ng/explore-campus/",
+    key: "unilag-mosque.name",
+    name: "UNILAG Mosque",
+    category: "location",
+  },
+  {
+    campus: "unilag",
+    url: "https://unilag.edu.ng/explore-campus/",
+    key: "lagoon-front.name",
+    name: "Lagoon Front",
+    category: "location",
+  },
 ] as const;
+const publicPageApis: Record<string, string> = {
+  "https://oauife.edu.ng/student-affairs/":
+    "https://oauife.edu.ng/wp-json/wp/v2/pages?slug=student-affairs&per_page=1&_fields=title,content,link",
+  "https://oauife.edu.ng/other-arms-and-units/":
+    "https://oauife.edu.ng/wp-json/wp/v2/pages?slug=other-arms-and-units&per_page=1&_fields=title,content,link",
+  "https://unilag.edu.ng/explore-campus/":
+    "https://unilag.edu.ng/wp-json/wp/v2/pages?slug=explore-campus&per_page=1&_fields=title,content,link",
+};
+export const landmarkResearch = [
+  ...htmlLandmarkResearch,
+  ...htmlLandmarkResearch.flatMap((hint) =>
+    publicPageApis[hint.url]
+      ? [{ ...hint, url: publicPageApis[hint.url]! }]
+      : [],
+  ),
+];
 export function extractLandmarks(page: {
   body: string;
   sourceUrl: string;
@@ -98,6 +254,8 @@ export function extractLandmarks(page: {
         {
           entityType: h.category,
           key: h.key,
+          subjectKey: `legacy:${h.key}`,
+          propertyKey: "name",
           value: match[0],
           category: h.category,
           confidence: 0.9,

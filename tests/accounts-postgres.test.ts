@@ -113,8 +113,9 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
           const fact = await db.campusFact.create({
             data: {
               campusId: campus.id,
-              entityType: "cultural",
-              key: `privacy-test-${randomUUID()}`,
+              subjectType: "cultural",
+              candidateSubjectKey: `privacy-test-${randomUUID()}`,
+              propertyKey: "name",
             },
           });
           feedbackFactIds.push(fact.id);
@@ -202,12 +203,21 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
             expiresAt: new Date(Date.now() + 86400000).toISOString(),
           },
         });
-        expect((await a.convert(first.token, extraGuest)).character?.id).toBe(
-          converted.character?.id,
+        await expect(a.convert(first.token, extraGuest)).rejects.toThrow(
+          "EXISTING_CHARACTER_CONFLICT",
+        );
+        expect(
+          await repo.findByTokenHash(hashGuestToken(extraGuest, key)),
+        ).not.toBeNull();
+        await expect(a.convert(first.token, extraGuest)).rejects.toThrow(
+          "EXISTING_CHARACTER_CONFLICT",
+        );
+        await expect(b.convert(second.token, extraGuest)).rejects.toThrow(
+          "GUEST_ALREADY_CONSUMED",
         );
         const worldInput = {
           campusId: "futa",
-          worldVersion: 1,
+          worldVersion: 2,
           spawnId: "spawn-venue-1",
           appearance: defaultAppearance,
         };
@@ -254,6 +264,9 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
           await db.playerWorldState.count({ where: { userId: userA } }),
         ).toBe(0);
         expect(await db.user.findUnique({ where: { id: userA } })).toBeNull();
+        expect(
+          await repo.findByTokenHash(hashGuestToken(extraGuest, key)),
+        ).toBeNull();
         expect(
           await db.factFeedback.count({
             where: { factId: { in: feedbackFactIds } },

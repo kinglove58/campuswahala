@@ -43,7 +43,7 @@ export default async function Campus({
       <p>
         Programme names, durations, schedules and the map are unverified
         gameplay fixtures. They are not official university information or real
-        navigation guidance. Verified catalogue and campus knowledge are planned
+        navigation guidance. Published current campus information is available through the verified guide; wider knowledge remains under research
         for the next phase.
       </p>
       <a
@@ -55,3 +55,4 @@ export default async function Campus({
     </main>
   );
 }
+

@@ -12,6 +12,12 @@ export default ts.config(
       "**/test-results/**",
     ],
   },
+  {
+    files: ["apps/game/public/sw.js"],
+    languageOptions: {
+      globals: { self: "readonly", caches: "readonly", URL: "readonly" },
+    },
+  },
   js.configs.recommended,
   ...ts.configs.recommended,
   {

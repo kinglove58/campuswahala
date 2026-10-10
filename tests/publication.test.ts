@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { candidateSchema } from "../packages/campus-content/src/publication";
+import {
+  candidateSchema,
+  isCriticalProperty,
+} from "../packages/campus-content/src/publication";
 import {
   PublicationPolicyService,
   matchEntity,
@@ -25,6 +28,8 @@ describe("server publication policy", () => {
         entityType: "programme",
         category: "cultural",
         key: "name",
+        subjectKey: "programme-one",
+        propertyKey: "name",
         value: "Course",
         excerpt: "Course",
         locator: "p",
@@ -140,4 +145,63 @@ describe("server publication policy", () => {
       ]).id,
     ).toBeNull();
   });
+});
+
+it("fails closed on unknown runtime authority and requires true official critical evidence", () => {
+  const unknown = JSON.parse(JSON.stringify(evidence("bad")));
+  unknown.authority = "trusted_blog";
+  unknown.observedAt = now;
+  expect(
+    policy.decide({
+      category: "cultural",
+      evidence: [unknown, evidence("good")],
+      contradiction: false,
+      now,
+    }).result,
+  ).toBe("REJECT");
+  for (const authority of [
+    "institutional",
+    "reputable",
+    "community",
+    "generated_fixture",
+  ] as const)
+    expect(
+      policy.decide({
+        category: "critical",
+        evidence: [evidence("a", authority), evidence("b", authority)],
+        contradiction: false,
+        now,
+      }).result,
+    ).not.toBe("ALLOW");
+});
+
+it("critical properties cannot downgrade authority by using a building subject", () => {
+  for (const propertyKey of [
+    "emergencyContact",
+    "security_contact",
+    "health-contact",
+    "official_fee",
+    "application_deadline",
+  ]) {
+    const candidate = {
+      entityType: "building",
+      subjectKey: "clinic-one",
+      propertyKey,
+      key: propertyKey,
+      value: "Public information",
+      excerpt: "Public information",
+      locator: "p",
+      confidence: 0.95,
+    };
+    expect(
+      candidateSchema.safeParse({ ...candidate, category: "building" }).success,
+    ).toBe(false);
+    expect(
+      candidateSchema.safeParse({ ...candidate, category: "critical" }).success,
+    ).toBe(true);
+  }
+});
+
+it("ordinary food properties do not become fee claims", () => {
+  expect(isCriticalProperty("coffee.name")).toBe(false);
 });

@@ -1,15 +1,34 @@
 import { test, expect } from "@playwright/test";
+import { PrismaClient } from "../../packages/database/src";
 import { validGuestFixture } from "../../packages/testing/src";
 test.skip(
   !process.env.TEST_DATABASE_URL,
   "Durable account flow requires the disposable PostgreSQL test database.",
 );
+test.beforeEach(async () => {
+  if (!process.env.TEST_DATABASE_URL) return;
+  // Disposable DB only: isolate the explicitly shared local fixture identity.
+  const db = new PrismaClient({
+    datasources: { db: { url: process.env.TEST_DATABASE_URL } },
+  });
+  try {
+    await db.user.deleteMany({
+      where: {
+        identities: {
+          some: { provider: "local-development", subject: "local-explorer" },
+        },
+      },
+    });
+  } finally {
+    await db.$disconnect();
+  }
+});
 test("save guest → browser-bound sign-in → durable same world → private account → revoke", async ({
   page,
   context,
   playwright,
 }) => {
-  test.setTimeout(120000);
+  test.setTimeout(180000);
   const response = await context.request.post(
     "http://localhost:3001/api/guest",
     {
@@ -130,6 +149,72 @@ test("save guest → browser-bound sign-in → durable same world → private ac
   await expect(
     page.getByRole("button", { name: "Account", exact: true }),
   ).toBeVisible();
+  const currentGuest = await context.request.post(
+    "http://localhost:3001/api/guest",
+    {
+      headers: { Origin: "http://localhost:3001" },
+      data: {
+        ...validGuestFixture,
+        nickname: "Future Legend",
+      },
+    },
+  );
+  expect(currentGuest.ok(), await currentGuest.text()).toBe(true);
+  const conflict = await context.request.post(
+    "http://localhost:3001/api/account/convert",
+    { headers: { Origin: "http://localhost:3001" }, data: {} },
+  );
+  expect(conflict.status()).toBe(409);
+  expect((await conflict.json()).error.code).toBe(
+    "EXISTING_CHARACTER_CONFLICT",
+  );
+  expect(
+    (await context.request.get("http://localhost:3001/api/guest")).ok(),
+  ).toBe(true);
+  expect(
+    (await context.cookies()).find((c) => c.name === "cw_guest")?.httpOnly,
+  ).toBe(true);
+  await page.reload();
+  await expect(
+    page.getByRole("heading", {
+      name: "We found an existing CampusWahala journey.",
+    }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", {
+      name: "Continue exploring current guest journey temporarily",
+    })
+    .click();
+  await expect(page.getByTestId("campus-world")).toHaveAttribute(
+    "data-ready",
+    "true",
+    { timeout: 30000 },
+  );
+  expect(
+    (
+      await (
+        await context.request.get("http://localhost:3001/api/account/world")
+      ).json()
+    ).spawnId,
+  ).toBe("spawn-venue-1");
+  await page.reload();
+  await page.getByRole("button", { name: "Resume existing journey" }).click();
+  await expect(page.getByTestId("campus-world")).toHaveAttribute(
+    "data-ready",
+    "true",
+    { timeout: 30000 },
+  );
+  expect(
+    (await context.request.get("http://localhost:3001/api/guest")).ok(),
+  ).toBe(true);
+  // Explicitly discard this test's temporary guest after proving preservation.
+  expect(
+    (
+      await context.request.delete("http://localhost:3001/api/guest", {
+        headers: { Origin: "http://localhost:3001" },
+      })
+    ).ok(),
+  ).toBe(true);
   await page.getByRole("button", { name: "Account", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Your private account" }),

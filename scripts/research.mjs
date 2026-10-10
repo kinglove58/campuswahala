@@ -1,5 +1,5 @@
 import { setTimeout as delay } from "node:timers/promises";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { PrismaClient } from "../packages/database/dist/index.js";
 import { CampusIntelligencePipeline } from "../apps/worker/dist/intelligence.js";
 if (
@@ -13,13 +13,31 @@ const db = new PrismaClient({
 });
 try {
   const pipeline = new CampusIntelligencePipeline(db);
-  await pipeline.discover();
-  const metrics = await pipeline.runDue(100);
+  let campus = process.env.RESEARCH_CAMPUS;
+  if (!campus) {
+    const request = JSON.parse(
+      await readFile("docs/research/request.json", "utf8"),
+    );
+    if (
+      Object.keys(request).sort().join(",") !== "campus,sourceSet" ||
+      request.sourceSet !== "curated-public-2026-10-10"
+    )
+      throw new Error("CONTROLLED_SOURCE_SET_REQUIRED");
+    campus = request.campus;
+  }
+  if (!campus || !["futa", "oau", "unilag"].includes(campus))
+    throw new Error("CONTROLLED_CAMPUS_REQUIRED");
+  await pipeline.discover(campus);
+  const metrics = await pipeline.runDue(100, campus);
   // The normal pipeline schedules page retrieval one minute after robots checks.
   // A second bounded tick is opt-in for isolated research; no pacing override.
   if (process.env.RESEARCH_SECOND_TICK === "true") {
-    await delay(61000);
-    Object.assign(metrics, await pipeline.runDue(100));
+    // Four bounded ticks let normal domain-rate/backoff windows expire. Never override them.
+    for (let tick = 1; tick < 4; tick++) {
+      await delay(31000);
+      await delay(30000);
+      Object.assign(metrics, await pipeline.runDue(100, campus));
+    }
   }
   const sources = await db.contentSource.findMany({
     where: { discoveryMethod: "curated_official_registry" },
@@ -37,7 +55,10 @@ try {
     where: { status: "published", staleAt: { gt: new Date() } },
     select: {
       campus: { select: { slug: true } },
-      key: true,
+      subjectType: true,
+      canonicalSubjectId: true,
+      candidateSubjectKey: true,
+      propertyKey: true,
       status: true,
       staleAt: true,
       currentVersion: {

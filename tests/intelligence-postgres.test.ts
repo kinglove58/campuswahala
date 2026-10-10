@@ -39,10 +39,12 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
             entityType: "cultural",
             category: "cultural",
             key: tag,
+            subjectKey: `legacy:${tag}`,
+            propertyKey: tag,
             value: page.body.split("|")[0]!,
             confidence: 0.95,
             locator: "fixture:visible",
-          excerpt: page.body.split("|")[0]!,
+            excerpt: page.body.split("|")[0]!,
           },
         ],
       };
@@ -78,10 +80,11 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
           await pipeline.process(source.id);
           const fact = await db.campusFact.findUniqueOrThrow({
             where: {
-              campusId_entityType_key: {
+              campusId_subjectType_candidateSubjectKey_propertyKey: {
                 campusId: campus.id,
-                entityType: "cultural",
-                key: tag,
+                subjectType: "cultural",
+                candidateSubjectKey: `legacy:${tag}`,
+                propertyKey: tag,
               },
             },
           });
@@ -95,10 +98,11 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
         }
         const fact = await db.campusFact.findUniqueOrThrow({
           where: {
-            campusId_entityType_key: {
+            campusId_subjectType_candidateSubjectKey_propertyKey: {
               campusId: campus.id,
-              entityType: "cultural",
-              key: tag,
+              subjectType: "cultural",
+              candidateSubjectKey: `legacy:${tag}`,
+              propertyKey: tag,
             },
           },
         });
@@ -153,10 +157,11 @@ describe.skipIf(!process.env.TEST_DATABASE_URL)(
       } finally {
         const fact = await db.campusFact.findUnique({
           where: {
-            campusId_entityType_key: {
+            campusId_subjectType_candidateSubjectKey_propertyKey: {
               campusId: campus.id,
-              entityType: "cultural",
-              key: tag,
+              subjectType: "cultural",
+              candidateSubjectKey: `legacy:${tag}`,
+              propertyKey: tag,
             },
           },
         });
