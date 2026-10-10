@@ -24,7 +24,7 @@ test("world phone controls, focus, waypoint, weather, guide and guest state isol
   ).toBeFocused();
   await page.keyboard.press("Shift+Tab");
   await expect(
-    page.getByRole("button", { name: "Account & privacy", exact: true }),
+    page.getByRole("button", { name: /Welcome to FUTA/ }),
   ).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(

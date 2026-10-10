@@ -126,7 +126,7 @@ jobs:
 
   # Optional isolated research on the Phase 2 branch. Never touches a production database.
   campus-research:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/phase-2-world-engine' && !startsWith(github.event.head_commit.message, 'docs:')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/phase-2-world-engine' && startsWith(github.event.head_commit.message, 'research:')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     services:
