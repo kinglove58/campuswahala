@@ -25,3 +25,33 @@ Local lint/typechecks and production game webpack build passed. Local checkpoint
 This checkpoint is not a completed Phase 3 acceptance claim. Remote CI must pass on the exact final head. Owner product/academic-balance review, prior FUTA verified-content/art/physical Android gates and Phase 1 ingress/egress/shared abuse/identity/DB-role/operations gates remain. Simulation curriculum is game content. SIWES/project tags are future context only. Nonconfigured programmes and programme-end progression fail closed/hold. 100-term and 2,000-command-per-term capacities are explicit; future archival needs a tombstone design. There is no money, economy, XP/rewards, ads/commerce, multiplayer/chat or Wahala Engine.
 
 Historical first implementation CI `b2a2027` / run [38049261372](https://github.com/kinglove58/campuswahala/actions/runs/38049261372): 138 tests passed, one failed. Carryover-start validation correctly rejected an overlapping timetable; slots were corrected and all supported 5–12 offering loads gained a regression test. Container smoke, web/API Trivy/SBOM, Semgrep, full-history secrets and CodeQL succeeded on that checkpoint. Corrected-head results supersede this checkpoint when recorded below.
+
+## Exact changed files
+
+25 files, confirmed against GitHub PR #11:
+
+- `.github/workflows/ci.yml`
+- `IMPLEMENTATION_STATUS.md`
+- `README.md`
+- `apps/api/src/academics.ts`
+- `apps/api/src/app.ts`
+- `apps/game/app/academic-panel.tsx`
+- `apps/game/app/academic-tutorial.tsx`
+- `apps/game/app/api/academic/[action]/route.ts`
+- `apps/game/app/campus-experience.tsx`
+- `apps/game/app/style.css`
+- `apps/game/app/use-academics.ts`
+- `apps/game/app/world.tsx`
+- `docs/decisions/013-server-authoritative-academics.md`
+- `docs/phase-3-review.md`
+- `packages/database/prisma/migrations/202610100007_academic_simulation/migration.sql`
+- `packages/database/prisma/schema.prisma`
+- `packages/domain/src/academics.ts`
+- `packages/domain/src/index.ts`
+- `packages/game-engine/src/engine.ts`
+- `tests/academics-postgres.test.ts`
+- `tests/academics.test.ts`
+- `tests/e2e/academics.spec.ts`
+- `tests/e2e/world.spec.ts`
+- `tests/migration-upgrade.test.ts`
+- `tests/pwa.test.ts`

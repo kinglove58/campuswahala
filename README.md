@@ -1,8 +1,8 @@
-Phase 2.5 merged at `30d045545380348335d6a3a6de321fd0e4bb3e41`. Phase 3 academic simulation is being validated on `codex/phase-3-academics`; see [Phase 3 review](docs/phase-3-review.md). Existing production/content/device gates remain open.
-
 # CampusWahala
 
-The playable digital world of African university life. Phase 2 shared virtual-campus engine with private character and Campus Intelligence foundations. FUTA, OAU and UNILAG use validated manifests, following cameras and the CW Pocket phone. Phase 2 is merged; Phase 2.5 authenticity/hardening is in review development. This is not a production launch.
+Phase 2.5 merged at `30d045545380348335d6a3a6de321fd0e4bb3e41`. Phase 3 academic simulation is being validated on `codex/phase-3-academics`; see [Phase 3 review](docs/phase-3-review.md). Existing production/content/device gates remain open.
+
+The playable digital world of African university life. Phase 2 shared virtual-campus engine with private character and Campus Intelligence foundations. FUTA, OAU and UNILAG use validated manifests, following cameras and the CW Pocket phone. Phases 2 and 2.5 are merged; Phase 3 private academic simulation is under branch validation. This is not a production launch.
 
 ## Run locally
 
@@ -13,7 +13,7 @@ Requires Node 22–24. Use `npx pnpm@10.32.1` wherever `pnpm` is shown if pnpm i
 3. `pnpm dev`
 4. Open http://localhost:3000 (marketing), http://localhost:3001 (game), http://localhost:3002 (admin boundary). API: http://localhost:4000/health/live.
 
-Default local storage is bounded, in-memory and temporary. No database, cloud credentials, GPS or payments are needed. A restart loses guests. Guests expire after 24 hours. Reloading the game resumes the guest using an HttpOnly cookie. Nothing earns money, XP, grades or competition points.
+Default local storage is bounded, in-memory and temporary. No database, cloud credentials, GPS or payments are needed. A restart loses guests. Guests expire after 24 hours. Reloading the game resumes the guest using an HttpOnly cookie. Guests create no durable academic state and nothing earns money, XP or competition points. Persistent private simulation grades require PostgreSQL and an authenticated durable character.
 
 For local production output, run `pnpm build`, then start the API with `pnpm --filter @campuswahala/api start` and each frontend with its `start` script in separate terminals. Frontend scripts prepare and run Next's standalone output. Root `.env.example` is a reference: export environment variables in the shell; the Nest API does not implicitly load a root `.env` file.
 
@@ -63,7 +63,7 @@ Apply the fifth migration, `202610090005_world_state`, after the four Phase 1 mi
 
 `pnpm build` compiles and validates manifests. Run `pnpm check:world-budgets` after build. World names remain fictional until live, published, non-stale catalogue facts match configured identity bindings. Geometry is **compressed campus geography**, never real GPS navigation. The isolated research report records actual robots/size/timeout failures and eligible UNILAG library publication; it is not imported as production seed data.
 
-CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, demo schedule, updates, settings and an academic Portal foundation. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 has not started; stop for Phase 2.5 review and the documented content/device validation gaps.
+CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, updates and settings. Authenticated Computing/Engineering simulation players have a private Portal, timetable, courses, assignments, tests/exams, results and progression; guests retain demo content. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 is under review on its dedicated branch; documented production/content/device gates remain open.
 
 ## Phase 2.5 hardening
 
@@ -73,4 +73,12 @@ World v2 uses canonical identities and original per-zone art; exact immutable v1
 
 Controlled research is separate from CI: dispatch `.github/workflows/research.yml` with a listed campus, or explicitly push `docs/research/request.json` on an owner-controlled `codex/research/**` branch with a `research:` commit. The request permits only `campus` and fixed `sourceSet=curated-public-2026-10-10`. Disposable PostgreSQL and read-only GitHub permissions produce artifacts, never production imports. Ordinary PRs/CI do not crawl.
 
-Physical Android acceptance remains a human gate: [device procedure](docs/mobile-device-acceptance.md). See ADRs 011/012 and the Phase 2.5 review for exact execution evidence. No Phase 3, rewards or monetization was added.
+Physical Android acceptance remains a human gate: [device procedure](docs/mobile-device-acceptance.md). See ADRs 011/012 and the Phase 2.5 review for exact execution evidence. Historically Phase 2.5 added no academics, rewards or monetization; Phase 3 academics is described below.
+
+## Private academic simulation (Phase 3)
+
+Use disposable/local PostgreSQL, apply migrations through 007, and configure the existing local-only identity provider (`AUTH_PROVIDER=local`, `APP_ENV=local`, `PLAYER_STORE=postgres`, `DATABASE_URL`, independent local session secret). Create a Computing or Engineering sample character and save the guest journey through Account. In Pocket Portal start a simulation semester. Courses use CW codes and are game content, not official university curriculum or real credentials.
+
+Academic travel changes server-owned presence and consumes game minutes. Map walking/shuttles remain cosmetic. At a study venue choose course study/assignment actions; submit before the game deadline. Use Schedule and Wait to next academic event, travel before its start, then attend/take the eligible action. End day deliberately misses crossed events. At semester end finalize results and view GPA/CGPA, carryovers and the progression decision. Definitions/history are snapshotted and private. Offline actions are disabled; explicitly retry an uncertain command with its original receipt key. No background mutation queue.
+
+[Phase 3 architecture and validation](docs/phase-3-review.md) · [ADR 013](docs/decisions/013-server-authoritative-academics.md).

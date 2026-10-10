@@ -249,6 +249,18 @@ export class AcademicService {
             semesterId: semester.id,
             entryMode: character.entryMode,
             activityTags: character.stage.activityTags,
+            programmePlan: {
+              stages: character.structure.stages.map((s) => ({
+                id: s.id,
+                order: s.order,
+                activityTags: s.activityTags,
+              })),
+              semesters: character.structure.semesters.map((s) => ({
+                id: s.id,
+                stageId: s.stageId,
+                order: s.order,
+              })),
+            },
             campusId: world.campusId,
             worldVersion: world.version,
             presenceVenueId:
@@ -305,7 +317,7 @@ export class AcademicService {
                   weights: c.weights,
                 }),
               );
-            const decision = decideProgression(term, character.structure);
+            const decision = decideProgression(term, term.programmePlan);
             term.progression = decision;
             await tx.academicSimulation.update({
               where: { userId },

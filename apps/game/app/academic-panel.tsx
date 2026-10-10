@@ -72,6 +72,7 @@ export function AcademicPanel({
       </section>
     );
   const term = state.term;
+  const previousResult = state.history.at(-1)?.result;
   const buttons = (commands: AcademicCommand[]) =>
     commands.map((c) => (
       <button
@@ -162,6 +163,16 @@ export function AcademicPanel({
                 ),
               )}
             </div>
+          )}
+          {mode !== "venue" && term.status === "active" && (
+            <p>
+              Current GPA: not finalized · CGPA:{" "}
+              {previousResult
+                ? decimal(previousResult.cgpaScaled)
+                : "no completed terms"}
+              <br />
+              Enrolled units: {term.courses.reduce((n, c) => n + c.units, 0)}
+            </p>
           )}
           {mode !== "venue" && state.carryovers.length > 0 && (
             <p>

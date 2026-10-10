@@ -595,6 +595,12 @@ export default function CampusExperience({
             )}
             {transport && (
               <>
+                {signedIn && academics.state?.term && (
+                  <p>
+                    Cosmetic shuttle preview. Use Portal academic travel to
+                    change your server-owned academic presence and time.
+                  </p>
+                )}
                 <p>Free virtual shuttle · No money or fare system</p>
                 {transport.destinations.map((d) => (
                   <button

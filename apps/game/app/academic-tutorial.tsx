@@ -33,6 +33,7 @@ export function AcademicTutorial({ world }: { world: WorldManifest }) {
         semesterId: id,
         entryMode: "demo",
         activityTags: [],
+        programmePlan: { stages: [], semesters: [] },
         campusId: world.campusId,
         worldVersion: world.version,
         venues,

@@ -16,6 +16,7 @@ import {
   decideProgression,
   processTime,
   assessmentScore,
+  validateAssessmentStrategy,
   allowedActions,
   validateTimetable,
   type AcademicTerm,
@@ -41,6 +42,7 @@ export function fixtureTerm(track: "computing" | "engineering" = "computing") {
     semesterId: randomUUID(),
     entryMode: "standard",
     activityTags: [],
+    programmePlan: { stages: [], semesters: [] },
     campusId: w.campusId,
     worldVersion: w.version,
     venues,
@@ -427,5 +429,36 @@ describe("versioned CampusWahala academic domain", () => {
     expect(decideProgression(term, refs).outcome).toBe(
       "progress_with_carryovers",
     );
+  });
+  it("fails closed on unknown assessment versions and malformed strategy weights", () => {
+    const term = fixtureTerm();
+    expect(() =>
+      validateAssessmentStrategy({ ...term.strategy, version: 2 }),
+    ).toThrow("ASSESSMENT_STRATEGY_UNAVAILABLE");
+    expect(() =>
+      validateAssessmentStrategy({ ...term.strategy, attendanceWeight: 9000 }),
+    ).toThrow("INVALID_ASSESSMENT_STRATEGY");
+    term.strategy.version = 2;
+    expect(() =>
+      run(term, { type: "STUDY", courseId: term.courses[0]!.id, minutes: 30 }),
+    ).toThrow("ASSESSMENT_STRATEGY_UNAVAILABLE");
+  });
+  it("snapshots programme progression references independently of later content edits", () => {
+    const fixture = fixtureTerm(),
+      plan = {
+        stages: [{ id: fixture.stageId, order: 0, activityTags: [] }],
+        semesters: [
+          { id: fixture.semesterId, stageId: fixture.stageId, order: 0 },
+        ],
+      };
+    const term = createTerm({
+      ...fixture,
+      programmePlan: plan,
+      templates: simulationCourses("computing", 0, 0),
+    });
+    plan.stages[0]!.order = 99;
+    plan.semesters[0]!.order = 99;
+    expect(term.programmePlan.stages[0]!.order).toBe(0);
+    expect(term.programmePlan.semesters[0]!.order).toBe(0);
   });
 });

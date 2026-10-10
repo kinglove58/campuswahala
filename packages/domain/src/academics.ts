@@ -199,6 +199,10 @@ export interface AcademicTerm {
   semesterId: string;
   entryMode: string;
   activityTags: string[];
+  programmePlan: {
+    stages: Array<{ id: string; order: number; activityTags: string[] }>;
+    semesters: Array<{ id: string; stageId: string | null; order: number }>;
+  };
   campusId: string;
   worldVersion: number;
   minute: number;
@@ -435,7 +439,7 @@ export function createTerm(
     | "travelPolicy"
   > & { templates: CourseTemplate[] },
 ): AcademicTerm {
-  const { templates, ...base } = input;
+  const { templates, ...base } = structuredClone(input);
   ensure(
     templates.length >= 5 &&
       templates.length <= 12 &&
@@ -513,6 +517,8 @@ export function createTerm(
     progression: null,
   };
   validateTimetable(term);
+  validatePolicy(term.gradePolicy);
+  validateAssessmentStrategy(term.strategy);
   return term;
 }
 export function validateTimetable(term: AcademicTerm) {
@@ -583,7 +589,34 @@ function evidence(
     score,
   };
 }
+export function validateAssessmentStrategy(strategy: AssessmentStrategy) {
+  ensure(
+    strategy.id === "cw-preparedness" && strategy.version === 1,
+    "ASSESSMENT_STRATEGY_UNAVAILABLE",
+  );
+  ensure(
+    [
+      strategy.assessmentMasteryWeight,
+      strategy.attendanceWeight,
+      strategy.courseworkWeight,
+      strategy.assignmentMasteryWeight,
+      strategy.effortWeight,
+    ].every((n) => integer(n, 0, 10000)) &&
+      strategy.assessmentMasteryWeight +
+        strategy.attendanceWeight +
+        strategy.courseworkWeight ===
+        10000 &&
+      strategy.assignmentMasteryWeight + strategy.effortWeight === 10000 &&
+      [
+        strategy.studyGainPerMinute,
+        strategy.lectureGain,
+        strategy.workGainPerMinute,
+      ].every((n) => integer(n, 1, 1000)),
+    "INVALID_ASSESSMENT_STRATEGY",
+  );
+}
 export function assessmentScore(term: AcademicTerm, c: CourseOffering) {
+  validateAssessmentStrategy(term.strategy);
   const attendance = Math.floor(
     (c.lectures.filter((l) => l.status === "attended").length * 10000) /
       c.lectures.length,
@@ -608,6 +641,7 @@ export function applyAcademicCommand(
   command: AcademicCommand,
 ) {
   ensure(term.status === "active", "TERM_NOT_ACTIVE");
+  validateAssessmentStrategy(term.strategy);
   ensure(
     command.type !== "START_TERM" && command.termId === term.id,
     "TERM_REVISION_CONFLICT",

@@ -209,7 +209,12 @@ test("private academic semester, phone schedule, offline refusal, retry receipt,
   await expect(
     page.getByText("GPA 0.000 · CGPA 0.000", { exact: true }),
   ).toBeVisible();
-  await expect(page.getByText("repeat stage", { exact: false })).toBeVisible();
+  await expect(
+    page.getByText(
+      "repeat stage · Failed-unit threshold reached under CampusWahala simulation rules.",
+      { exact: true },
+    ),
+  ).toBeVisible();
   if (process.env.CAPTURE_VISUALS) {
     await page.screenshot({
       path: `artifacts/academic-results-${test.info().project.name}.png`,
