@@ -24,3 +24,7 @@ Phase 2.5 adds subject/property identity with migration preservation, scoped pag
 Phase 3 reuses programme/stage/semester identity and adds private versioned terms, clock/presence, typed idempotent commands, fixed-point results/CGPA/carryovers/progression, Pocket academic views and ephemeral guest tutorial. Automated acceptance is pending on the exact implementation head; this is not a production signoff.
 
 See [Phase 3.1 acceptance review](docs/phase-3.1-review.md) for focused browser-boundary evidence; no Phase 4 started.
+
+## Phase 4 — campus life and Wahala (under review)
+
+Single academic/life timeline, private integer life metrics, policy-driven routines, bounded fictional contextual Wahala and CW Pocket/venue integration. Validation evidence: [Phase 4 review](docs/phase-4-review.md). No Phase 5 or deployment.

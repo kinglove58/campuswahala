@@ -26,6 +26,8 @@ it("cache allowlist excludes all private reads, writes, facts, pointers and arbi
       context,
     );
   for (const path of [
+    "/api/life/state",
+    "/api/life/commands",
     "/api/academic/state",
     "/api/academic/commands",
     "/api/account/me",

@@ -118,6 +118,11 @@ it.skipIf(!process.env.TEST_DATABASE_URL)(
       });
       copyMigration("202610100007_academic_simulation");
       migrate();
+      copyMigration("202610100008_campus_life");
+      migrate();
+      expect(await db.lifeSimulation.count()).toBe(0);
+      expect(await db.lifeCommandReceipt.count()).toBe(0);
+      expect(await db.wahalaOccurrence.count()).toBe(0);
       expect(
         await db.user.findUnique({ where: { id: preservedUser.id } }),
       ).not.toBeNull();

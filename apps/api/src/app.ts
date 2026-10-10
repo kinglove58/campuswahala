@@ -38,6 +38,7 @@ import type { PlayerRepository } from "@campuswahala/domain";
 import { factFeedbackSchema } from "@campuswahala/domain";
 import { AccountService } from "./accounts";
 import { AcademicService } from "./academics";
+import { LifeService } from "./life";
 import type { AppConfig } from "@campuswahala/config";
 import { log } from "@campuswahala/observability";
 import {
@@ -69,6 +70,7 @@ class ApiController {
     @Inject(REPOSITORY) private readonly repository: PlayerRepository,
     @Inject(AccountService) private readonly accounts: AccountService,
     @Inject(AcademicService) private readonly academics: AcademicService,
+    @Inject(LifeService) private readonly life: LifeService,
   ) {}
   @Get("health/live") live() {
     return { status: "ok", service: "campuswahala-api" };
@@ -127,6 +129,15 @@ class ApiController {
     return {
       venues: compileWorldInformation(compiledWorlds[campus], published.facts),
     };
+  }
+  @Get("v1/life/state") lifeState(@Headers("x-account-token") token: string) {
+    return this.life.read(token);
+  }
+  @Post("v1/life/commands") lifeCommand(
+    @Headers("x-account-token") token: string,
+    @Body() input: unknown,
+  ) {
+    return this.life.command(token, input);
   }
   @Get("v1/academic/state") academicState(
     @Headers("x-account-token") token: unknown,
@@ -300,6 +311,10 @@ export async function createApi(
       PlayerService,
       { provide: AccountService, useValue: accounts },
       { provide: AcademicService, useValue: new AcademicService(accounts) },
+      {
+        provide: LifeService,
+        useValue: new LifeService(new AcademicService(accounts)),
+      },
       { provide: REPOSITORY, useValue: repository },
       {
         provide: HASH_KEY,
@@ -392,7 +407,7 @@ export async function createApi(
       header,
       req.method,
       req.path,
-      `${res.locals.rawBody ?? ""}\n${req.headers["x-guest-token"] ?? ""}${req.path.startsWith("/v1/account/") || req.path.startsWith("/v1/academic/") || req.path === "/v1/feedback" ? `\n${req.headers["x-account-token"] ?? ""}` : ""}`,
+      `${res.locals.rawBody ?? ""}\n${req.headers["x-guest-token"] ?? ""}${req.path.startsWith("/v1/account/") || req.path.startsWith("/v1/academic/") || req.path.startsWith("/v1/life/") || req.path === "/v1/feedback" ? `\n${req.headers["x-account-token"] ?? ""}` : ""}`,
       config.BFF_SERVICE_SECRET ?? localTrustKey,
     );
     if (header || config.APP_ENV !== "local") {
@@ -458,6 +473,8 @@ export async function createApi(
   app.use("/v1/worlds", limiter(120, "client"));
   app.use("/v1/campuses", limiter(120, "client"));
   app.use("/v1/catalogue", limiter(120, "client"));
+  app.use("/v1/life", limiter(60, "client"));
+  app.use("/v1/life", limiter(100, "network"));
   app.use("/v1/academic", limiter(60, "client"));
   app.use("/v1/academic", limiter(100, "network"));
   app.use("/v1/account", limiter(60, "client"));
@@ -477,7 +494,10 @@ export async function createApi(
     if (
       ["/v1/account/begin", "/v1/account/callback"].includes(req.path) ||
       (!req.path.startsWith("/v1/account/") &&
-        !req.path.startsWith("/v1/academic/") &&
+        !(
+          req.path.startsWith("/v1/academic/") ||
+          req.path.startsWith("/v1/life/")
+        ) &&
         req.path !== "/v1/feedback") ||
       !req.headers["x-account-token"]
     )

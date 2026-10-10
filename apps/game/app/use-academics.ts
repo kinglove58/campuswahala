@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { readPrivate } from "./read-private";
 import type { AcademicCommand, AcademicView } from "@campuswahala/domain";
 export function useAcademics(enabled: boolean) {
   const [state, setState] = useState<AcademicView | null>(null),
@@ -11,11 +12,19 @@ export function useAcademics(enabled: boolean) {
   const pending = useRef<AcademicCommand | null>(null),
     running = useRef(false);
   const generation = useRef(0);
+  const readController = useRef<AbortController | null>(null);
+  const readAgain = useRef(false);
   const refresh = useCallback(async () => {
     const current = generation.current;
     if (!enabled) return;
+    if (readController.current) {
+      readAgain.current = true;
+      return;
+    }
+    const controller = new AbortController();
+    readController.current = controller;
     try {
-      const r = await fetch("/api/academic/state", { cache: "no-store" });
+      const r = await readPrivate("/api/academic/state", controller.signal);
       if (!r.ok)
         throw new Error(
           "Academic connection unavailable. Reconnect and retry.",
@@ -30,6 +39,14 @@ export function useAcademics(enabled: boolean) {
         setError(
           e instanceof Error ? e.message : "Academic connection unavailable.",
         );
+    } finally {
+      if (readController.current === controller) {
+        readController.current = null;
+        if (readAgain.current) {
+          readAgain.current = false;
+          void refresh();
+        }
+      }
     }
   }, [enabled]);
   useEffect(() => {
@@ -48,6 +65,9 @@ export function useAcademics(enabled: boolean) {
     const timer = setInterval(focus, 30000);
     return () => {
       generation.current++;
+      readController.current?.abort();
+      readController.current = null;
+      readAgain.current = false;
       clearInterval(timer);
       window.removeEventListener("focus", focus);
       window.removeEventListener("online", focus);

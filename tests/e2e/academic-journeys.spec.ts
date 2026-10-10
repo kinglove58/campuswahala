@@ -328,7 +328,9 @@ async function privacy(page: Page, context: BrowserContext) {
   }
   // No public profile/share feature exists. Ordinary private profile responses
   // also omit grade history; academics have their own private endpoint.
-  const profile = await context.request.get(`${origin}/api/account/me`);
+  const profile = await new AcademicJourney(context).request(() =>
+    context.request.get(`${origin}/api/account/me`),
+  );
   expect(profile.ok()).toBe(true);
   expect(await profile.text()).not.toMatch(
     /gpaScaled|cgpaScaled|qualityPoints/,

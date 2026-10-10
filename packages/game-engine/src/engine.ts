@@ -136,6 +136,16 @@ export class WorldEngine {
   moveTo(target: Point) {
     this.path = findPath(this.manifest, this.position, target);
   }
+  /** Presentation only: a validated manifest spawn grants no server presence/credit. */
+  resumeAtSpawn(spawnId: string) {
+    const spawn = this.manifest.spawnPoints.find((s) => s.id === spawnId);
+    if (!spawn) return false;
+    this.position = { x: spawn.x, y: spawn.y };
+    this.zoneId = spawn.zoneId;
+    this.path = [];
+    this.waypoint = null;
+    return true;
+  }
   setWaypoint(venueId: string) {
     const v = this.manifest.venues.find((v) => v.id === venueId);
     if (!v) return false;

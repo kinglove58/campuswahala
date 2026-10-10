@@ -1058,3 +1058,38 @@ dd {
 .academic-panel table { width: 100%; font-size: .75rem; border-collapse: collapse; }
 .academic-panel th, .academic-panel td { padding: .45rem .15rem; border-bottom: 1px solid #d4c4a5; text-align: left; }
 .academic-time-actions { padding: .4rem 0; }
+
+.life-panel {
+  padding: 0.5rem 0;
+}
+.life-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.life-metrics label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+.life-metrics meter {
+  width: 100%;
+  height: 1rem;
+  accent-color: #19583f;
+}
+.life-actions {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.life-actions button {
+  min-height: 44px;
+  text-align: left;
+}
+.wahala-story {
+  background: #eadbc1;
+  border: 1px solid #c6ab7d;
+  border-radius: 18px;
+  padding: 1rem;
+}

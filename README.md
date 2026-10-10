@@ -84,3 +84,5 @@ Academic travel changes server-owned presence and consumes game minutes. Map wal
 [Phase 3 architecture and validation](docs/phase-3-review.md) · [ADR 013](docs/decisions/013-server-authoritative-academics.md).
 
 [Phase 3.1 browser acceptance review](docs/phase-3.1-review.md).
+
+Phase 4 campus life and Wahala implementation is under review on `codex/phase-4-campus-life-wahala`; see [review notes](docs/phase-4-review.md). Phase 3.1 is merged; Phase 5 has not started.
