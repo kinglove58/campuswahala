@@ -4,6 +4,7 @@ import { spawn } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath, URL } from "node:url";
 import { setTimeout as delay } from "node:timers/promises";
+import { createConnection } from "node:net";
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const out = "art/characters/proof/baseline";
 const env = {
@@ -26,14 +27,30 @@ const children = [
     stdio: "ignore",
   }),
 ];
+// Readiness needs only a listening socket, not an unencrypted HTTP request.
+// Fixed loopback addresses; no credentials, response bodies or remote targets.
+function listening(port) {
+  return new Promise((resolve) => {
+    const socket = createConnection({ host: "127.0.0.1", port });
+    const finish = (ready) => {
+      socket.destroy();
+      resolve(ready);
+    };
+    socket.setTimeout(500);
+    socket.once("connect", () => finish(true));
+    socket.once("error", () => finish(false));
+    socket.once("timeout", () => finish(false));
+  });
+}
 let browser;
 try {
   let ready = false;
   for (let i = 0; i < 60; i++) {
     try {
+      const sockets = await Promise.all([listening(4000), listening(3001)]);
       ready =
-        (await fetch("http://127.0.0.1:4000/health/live")).ok &&
-        (await fetch("http://127.0.0.1:3001")).ok;
+        sockets.every(Boolean) &&
+        children.every((child) => child.exitCode === null);
     } catch {
       ready = false;
     }
