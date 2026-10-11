@@ -1,0 +1,195 @@
+{
+  "status": "ART_REVIEW_REQUIRED",
+  "sourceHash": "1a31b99cef930aa3b676e4495fcd14d7c09db4c62dc438c416f007dab3e7ca0d",
+  "hash": "102b6440f4c114e268f99c1251d9ae4f92e1bd80c4263124051a021aa04a7832",
+  "bytes": 104164,
+  "texture": {
+    "width": 1024,
+    "height": 640,
+    "rgbaBytes": 2621440
+  },
+  "frame": {
+    "width": 128,
+    "height": 160,
+    "foot": {
+      "x": 64,
+      "y": 148
+    }
+  },
+  "pivot": [
+    0.5,
+    0.925
+  ],
+  "appearance": {
+    "skin": "deep",
+    "hair": "crop",
+    "hairColour": "black",
+    "top": "lime",
+    "bottom": "trousers",
+    "shoes": "white",
+    "accessory": "backpack"
+  },
+  "frames": [
+    {
+      "direction": "down",
+      "state": "idle",
+      "index": 0
+    },
+    {
+      "direction": "down",
+      "state": "idle",
+      "index": 1
+    },
+    {
+      "direction": "down",
+      "state": "walk",
+      "index": 0
+    },
+    {
+      "direction": "down",
+      "state": "walk",
+      "index": 1
+    },
+    {
+      "direction": "down",
+      "state": "walk",
+      "index": 2
+    },
+    {
+      "direction": "down",
+      "state": "walk",
+      "index": 3
+    },
+    {
+      "direction": "down",
+      "state": "walk",
+      "index": 4
+    },
+    {
+      "direction": "down",
+      "state": "walk",
+      "index": 5
+    },
+    {
+      "direction": "left",
+      "state": "idle",
+      "index": 0
+    },
+    {
+      "direction": "left",
+      "state": "idle",
+      "index": 1
+    },
+    {
+      "direction": "left",
+      "state": "walk",
+      "index": 0
+    },
+    {
+      "direction": "left",
+      "state": "walk",
+      "index": 1
+    },
+    {
+      "direction": "left",
+      "state": "walk",
+      "index": 2
+    },
+    {
+      "direction": "left",
+      "state": "walk",
+      "index": 3
+    },
+    {
+      "direction": "left",
+      "state": "walk",
+      "index": 4
+    },
+    {
+      "direction": "left",
+      "state": "walk",
+      "index": 5
+    },
+    {
+      "direction": "up",
+      "state": "idle",
+      "index": 0
+    },
+    {
+      "direction": "up",
+      "state": "idle",
+      "index": 1
+    },
+    {
+      "direction": "up",
+      "state": "walk",
+      "index": 0
+    },
+    {
+      "direction": "up",
+      "state": "walk",
+      "index": 1
+    },
+    {
+      "direction": "up",
+      "state": "walk",
+      "index": 2
+    },
+    {
+      "direction": "up",
+      "state": "walk",
+      "index": 3
+    },
+    {
+      "direction": "up",
+      "state": "walk",
+      "index": 4
+    },
+    {
+      "direction": "up",
+      "state": "walk",
+      "index": 5
+    },
+    {
+      "direction": "right",
+      "state": "idle",
+      "index": 0
+    },
+    {
+      "direction": "right",
+      "state": "idle",
+      "index": 1
+    },
+    {
+      "direction": "right",
+      "state": "walk",
+      "index": 0
+    },
+    {
+      "direction": "right",
+      "state": "walk",
+      "index": 1
+    },
+    {
+      "direction": "right",
+      "state": "walk",
+      "index": 2
+    },
+    {
+      "direction": "right",
+      "state": "walk",
+      "index": 3
+    },
+    {
+      "direction": "right",
+      "state": "walk",
+      "index": 4
+    },
+    {
+      "direction": "right",
+      "state": "walk",
+      "index": 5
+    }
+  ],
+  "sharp": "0.35.5"
+}

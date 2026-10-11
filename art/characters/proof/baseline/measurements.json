@@ -1,0 +1,110 @@
+{
+  "browser": "153.0.8010.0",
+  "method": "Local software rendering, DPR 1. Canvas dimensions measured; avatar extent calculated from current source, not pixel segmentation. Not physical-device evidence.",
+  "rows": [
+    {
+      "width": 360,
+      "height": 640,
+      "canvas": {
+        "x": 0,
+        "y": 69,
+        "width": 360,
+        "height": 571
+      },
+      "defaultZoom": 0.88,
+      "sourceAvatarHeight": 52.5,
+      "calculatedAvatarHeight": 46.2,
+      "percentCanvasHeight": 8.09106830122592,
+      "textures": [
+        {
+          "path": "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+          "bodyBytes": 926
+        },
+        {
+          "path": "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+          "bodyBytes": 926
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "canvas": {
+        "x": 0,
+        "y": 69,
+        "width": 360,
+        "height": 731
+      },
+      "defaultZoom": 0.88,
+      "sourceAvatarHeight": 52.5,
+      "calculatedAvatarHeight": 46.2,
+      "percentCanvasHeight": 6.3201094391244865,
+      "textures": [
+        {
+          "path": "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+          "bodyBytes": 926
+        },
+        {
+          "path": "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+          "bodyBytes": 926
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "canvas": {
+        "x": 0,
+        "y": 69,
+        "width": 390,
+        "height": 775
+      },
+      "defaultZoom": 0.88,
+      "sourceAvatarHeight": 52.5,
+      "calculatedAvatarHeight": 46.2,
+      "percentCanvasHeight": 5.961290322580646,
+      "textures": [
+        {
+          "path": "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+          "bodyBytes": 926
+        },
+        {
+          "path": "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+          "bodyBytes": 926
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "canvas": {
+        "x": 0,
+        "y": 88,
+        "width": 1280,
+        "height": 812
+      },
+      "defaultZoom": 1.05,
+      "sourceAvatarHeight": 52.5,
+      "calculatedAvatarHeight": 55.125,
+      "percentCanvasHeight": 6.788793103448276,
+      "textures": [
+        {
+          "path": "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+          "bodyBytes": 926
+        },
+        {
+          "path": "/world-assets/zones/futa-zone-1.0f78d95709a6.svg",
+          "bodyBytes": 926
+        },
+        {
+          "path": "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+          "bodyBytes": 926
+        },
+        {
+          "path": "/world-assets/zones/futa-zone-4.4edd42894dc0.svg",
+          "bodyBytes": 926
+        }
+      ]
+    }
+  ]
+}

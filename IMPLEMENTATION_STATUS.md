@@ -32,3 +32,7 @@ Single academic/life timeline, private integer life metrics, policy-driven routi
 ## Phase 4.1 — merged acceptance patch
 
 Non-neutral Wahala choice/retry/resume browser proof, authoritative current venue, next scheduled academic event, carryover context and one presentation-only suggestion. No balancing or authority-model changes. See [Phase 4.1 review](docs/phase-4.1-review.md) and its PR for exact-head test/scan evidence. Device, narrative/balance/visual review and production configuration gates remain human acceptance work. No Phase 5.
+
+## Phase 4.2 — baseline / original art proof, blocked at M1
+
+Real baseline captures, measurements, original editable vector source and a 32-frame sprite proof are recorded in [Phase 4.2 checkpoint](docs/phase-4.2-review.md). The source attempt does not yet satisfy the required modeled young-adult proportions, elevated perspective or articulated motion. M1 is an ART REVIEW BLOCKER; the prototype is not integrated into production. Camera, exterior and navigable home/library/lecture milestones remain unimplemented. No world revision, migration, authority change or Phase 5.
