@@ -69,6 +69,14 @@ No runtime product code, public asset replacement, camera/world/interior integra
 
 ## Validation truthfulness
 
+### Mobile Wahala interceptor follow-up
+
+Reviewer comment [6110156507](https://github.com/kinglove58/campuswahala/pull/17#issuecomment-6110156507) identifies push run [38144126322](https://github.com/kinglove58/campuswahala/actions/runs/38144126322): 35/36 browser tests passed; mobile Wahala failed. Its retained trace (`browser-failures` artifact `11704801644`) records `route.fetch` failing with `socket hang up` about 2 ms after starting, before an HTTP response. The subsequent missing retry button is a consequence of the route handler throwing before it fulfills or aborts the intercepted browser request. The trace does not establish a server-side product defect or a committed choice.
+
+The interceptor now uses Playwright's bounded `maxRetries: 2` for `ECONNRESET` only. It forwards the same intercepted body and command ID; HTTP status failures are not retried by this option, and exhausted transport retries still fail the test. The deliberate response loss still requires a successful response and captured receipt. All existing quota handling, canonical minute, revision, bounded metric/passive decay, resolved occurrence, same-key receipt, exactly-once and refresh/history assertions remain unchanged. No production retry, security control, timeout, scanner or gameplay state was changed. Exact-head terminal CI and browser evidence are recorded in PR #17 when available; this document does not presume success.
+
+Both Semgrep fixes remain in place. Original editable Blender source, exports, rejected studies and artist handoff remain preserved outside runtime assets. **ART REVIEW BLOCKER remains active:** an external artist must supply the original expressive master rig, continuous anatomy/cloth, consistent elevated projection, four-direction idle/walk frames, Appearance mappings, representative player/NPC looks, transparent reproducible exports and actual Phaser mobile comparison specified in the handoff. No rejected art is approved or promoted; M2–M6 and Phase 5 remain unstarted.
+
 - Local production build and world compilation passed (baseline runtime unchanged).
 - Existing world budget check passed; all-game-JS figure above is from that baseline build.
 - Focused existing world/context tests: **26 passed**.
