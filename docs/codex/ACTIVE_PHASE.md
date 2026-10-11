@@ -7,6 +7,40 @@ Current master includes Phase 4.1 and the reviewer-owned Codex handoff workflow.
 Reviewed gameplay base: `0e4bd439d152b74499d491ace432a55d85e2699a`  
 Handoff merge: `19c0dd2b4bea6da623d46af6b19c36b2d6b1f965`
 
+## PHASE 4.2 APPROVED ART DIRECTION — BINDING ADDENDUM
+
+**Reviewer decision (11 October 2026):** the approved CampusWahala visual approach is **original stylized 3D-inspired African/Nigerian university-student characters, exported/composited as lightweight 2D directional sprites in the existing Phaser top-down/2.5D game.**
+
+This is **not** permission to rebuild the entire product in full real-time 3D.
+
+The previous reference image is inspiration for expressive, polished character design, **not a source of reusable assets, character likenesses, copied costumes or game trade dress**.
+
+Read and follow these newly published reviewer-owned specifications **in addition to this entire active-phase file**:
+
+1. **[PHASE_4_2_ART_DIRECTION.md](PHASE_4_2_ART_DIRECTION.md)** — approved visual style guide and character design system, avatar proportions, existing appearance compatibility, original offline asset pipeline, outdoor/building/interior visual grammar, quality gate.
+2. **[PHASE_4_2_ASSET_CHECKLIST.md](PHASE_4_2_ASSET_CHECKLIST.md)** — concrete original sprite/atlas/source deliverables, building/props, hostel/library/lecture furnishings, scene interactions, quality/provenance/performance evidence.
+3. **[PHASE_4_2_MILESTONES.md](PHASE_4_2_MILESTONES.md)** — ordered M0–M6 checkpoints and PR evidence. M1 is an **original-character-art quality gate**: do not build entire world using unconvincing placeholders.
+
+The three linked specifications are **mandatory** and augment the original 53 sections below. If wording differs, use the more specific requirement without weakening existing security/authority rules or original-asset quality goals.
+
+### Explicit visual implementation requirements
+
+- Prefer original offline 3D authoring → reproducible 2D sprite export and atlas packing, **or** original layered 2D/vector source with genuinely modeled 3D-inspired look. Keep editable sources and exact export steps. **Do not represent enlarged primitive graphics as completed character art.**
+- Implement one reusable appearance-aware avatar/sprite rig with **idle + walk in up/down/left/right**; NPCs share the rig. Preserve every existing \`Appearance\` choice and saved avatars.
+- At default **360×800 gameplay canvas**, target visually measured player height **8–12% outdoors** and **10–14% in navigable interiors**, adjusting camera/asset scale without inflating collision geometry.
+- The CW Pocket Map remains a wide overview; the world is a closer player-following scene.
+- Original exterior architecture, props and interiors must share character perspective, light direction, material palette and visual fidelity. Hostels/home, library and lecture room must be *navigable*, not illustrated modal-only panels.
+- Bed, desk and wardrobe call **existing** server-authoritative life/academic/account paths; visual scene entry or furniture proximity never grants game progression.
+- Source/licensing provenance, sprite sheet/frame/atlas dimensions, memory/transfer metrics, safe versioned assets, responsive mobile screenshots and old world/academic compatibility are required.
+- Maintain the existing Phase 4.2 JS/world/security/performance requirements, and explicitly report **human visual quality review** and **physical Android device** gates separately from CI.
+- If polished original character source art is not achievable in the available authoring environment, stop at M1 with an **ART REVIEW BLOCKER**, not a false "Phase 4.2 complete" claim.
+
+### Checkpoint and finish protocol
+
+Use one focused Phase 4.2 implementation branch/PR. Record actual completion and evidence for **M0 baseline → M1 original character art proof → M2 sprites/camera → M3 exterior → M4 navigable home → M5 library/lecture → M6 CI/visual acceptance**. The milestone file defines required evidence at each step. Checkpoint commits and PR updates allow reviewer inspection without needing the user to copy another large prompt. Do not merge or begin Phase 5 automatically.
+
+---
+
 ## Mission
 
 Upgrade CampusWahala from a visually miniature/map-like campus into a close, readable, lived-in top-down university world.
