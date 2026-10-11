@@ -26,7 +26,7 @@ The three linked specifications are **mandatory** and augment the original 53 se
 ### Explicit visual implementation requirements
 
 - Prefer original offline 3D authoring → reproducible 2D sprite export and atlas packing, **or** original layered 2D/vector source with genuinely modeled 3D-inspired look. Keep editable sources and exact export steps. **Do not represent enlarged primitive graphics as completed character art.**
-- Implement one reusable appearance-aware avatar/sprite rig with **idle + walk in up/down/left/right**; NPCs share the rig. Preserve every existing \`Appearance\` choice and saved avatars.
+- Implement one reusable appearance-aware avatar/sprite rig with **idle + walk in up/down/left/right**; NPCs share the rig. Preserve every existing `Appearance` choice and saved avatars.
 - At default **360×800 gameplay canvas**, target visually measured player height **8–12% outdoors** and **10–14% in navigable interiors**, adjusting camera/asset scale without inflating collision geometry.
 - The CW Pocket Map remains a wide overview; the world is a closer player-following scene.
 - Original exterior architecture, props and interiors must share character perspective, light direction, material palette and visual fidelity. Hostels/home, library and lecture room must be *navigable*, not illustrated modal-only panels.
