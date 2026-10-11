@@ -1,6 +1,6 @@
 # CampusWahala Phase 4.2 — asset production checklist
 
-**Scope:** original assets + implementation artifacts that must exist **in the repository/PR**, not only in a design prompt. Read with \`ACTIVE_PHASE.md\` and \`PHASE_4_2_ART_DIRECTION.md\`.
+**Scope:** original assets + implementation artifacts that must exist **in the repository/PR**, not only in a design prompt. Read with `ACTIVE_PHASE.md` and `PHASE_4_2_ART_DIRECTION.md`.
 
 ## 0. Production rules
 
