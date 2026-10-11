@@ -13,13 +13,18 @@ Reviewer-owned phase ledger.
 | Phase 3.1 | COMPLETE | merge `f3edf1b...` |
 | Phase 4 | COMPLETE | merge `51971dd...` |
 | Phase 4.1 | COMPLETE | merge `0e4bd439d152b74499d491ace432a55d85e2699a` |
-| Phase 5 | NOT STARTED | waiting for reviewer-owned active-phase publication |
+| Phase 4.2 | ACTIVE | visual world + navigable interiors |
+| Phase 5 | NOT STARTED | blocked until Phase 4.2 review |
 
 ## Current reviewed base
 
 Phase 4.1 merge:
 
 `0e4bd439d152b74499d491ace432a55d85e2699a`
+
+Repository handoff workflow merged after Phase 4.1 at:
+
+`19c0dd2b4bea6da623d46af6b19c36b2d6b1f965`
 
 ## Rule
 
