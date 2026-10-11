@@ -49,7 +49,23 @@ The character still has too-young/toy-like proportions, largely orthographic fac
 
 The mandatory milestone specification says: “If art still looks like primitive placeholders or no asset authoring tooling is available, **STOP; mark ART REVIEW BLOCKER**.” The approved art-direction document also rejects “cheap chibi blobs” and requires elevated perspective and modeled forms. This checkpoint stops because the actual rendered source does not yet satisfy that quality bar, not because user authorization is missing.
 
-Next work is a stronger original character source with adult-student proportions, coherent four facings/materials and articulated motion, robust existing Appearance layering, then actual in-Phaser 360×800 gameplay proof and human visual review. Do not propagate this prototype into buildings or rooms first.
+Next work requires the [external character-asset handoff](phase-4.2-art-handoff.md). Do not propagate either rejected prototype into buildings or rooms first.
+
+## PR #17 reviewer follow-up
+
+Read reviewer comment [6109240047](https://github.com/kinglove58/campuswahala/pull/17#issuecomment-6109240047) and the existing reviewer-owned Phase 4.2 specifications. Continue the same branch/PR; no merge or later milestone advancement.
+
+The exact Semgrep artifact `11699933196`, from PR run `38134411420`, identifies two `typescript.react.security.react-insecure-request.react-insecure-request` findings at `scripts/art/capture-baseline.mjs:35` and `:36`. Both were HTTP readiness fetches. The fix removes those requests and checks fixed loopback listening sockets with bounded timeouts and child-process liveness. No remote host, credentials or response body is involved in readiness. The existing local guest browser flow still uses the existing BFF; no endpoint, scanner rule, exclusion or assertion was weakened.
+
+Security-fix commit: `d099d5ade55f8538f013169220c787abc056ef4b`. Local Semgrep **1.180.0**, matching CI's two configuration packs and strict/error flags, scanned **74 rules / 89 source files with zero findings and zero errors**. CI PR run [38142992522](https://github.com/kinglove58/campuswahala/actions/runs/38142992522) passed its Semgrep, CodeQL, secret and container jobs when recorded; main verification was still running at this document checkpoint. Terminal evidence for the final follow-up head belongs in the PR body, not an assumed pass here.
+
+The fixed capture script was executed against disposable local memory API/BFF/game servers and produced all four baseline viewports successfully. Existing baseline images are preserved. Local lint/typecheck, 151 tests, original vector proof integrity and existing world budgets passed; 13 PostgreSQL cases were skipped locally. The full PostgreSQL/browser/security gates remain CI responsibilities.
+
+A second [original offline Blender study](../art/characters/offline/README.md) tests genuine modeled source rather than another enlargement of primitive Phaser graphics. It has original procedural cheek/jaw/cloth profiles, face/hair/shoe/backpack materials, a single elevated orthographic projection, all current Appearance parameter mappings and opposing articulated limb poses. Actual CPU-rendered exports show four representative looks/facings and six walk frames in four directions for the first look: **40 transparent 128×160 frames, 754,245 encoded frame bytes / 3,276,800 decoded RGBA bytes**, plus a 640×800 close-up and contact sheets. Source, export recipe, source/frame hashes and sizes are retained. The binaries and dependencies used for authoring are scratch-only, not game dependencies. This is not a completed atlas, runtime transfer/performance measurement, complete idle export, exhaustive appearance proof, actual upgraded-game screenshot or accepted NPC rig.
+
+Visual inspection rejects this study too: segmented mannequin-like limbs, synthetic face/hair treatment, insufficient expressive anatomy and cloth deformation. **M1 remains unresolved.** Polished source-quality character assets now require a human character artist or experienced rig authoring pass as specified in the handoff. No service has been commissioned and no accepted external assets have been supplied. The reviewer explicitly requires M1 visual approval before M2–M6. The stop is the repository's quality gate, not a request for more user authorization or another pasted prompt.
+
+No runtime product code, public asset replacement, camera/world/interior integration, migration, balancing or authoritative behavior changed in this follow-up. M2–M6 and Phase 5 remain unstarted; PR #17 remains draft and unmerged.
 
 ## Validation truthfulness
 

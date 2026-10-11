@@ -2,6 +2,8 @@
 
 **Status: ART REVIEW BLOCKER. Experimental source, not approved production assets.**
 
+PR #17 follow-up: the original offline [Blender study and source](offline/README.md) was also rendered and inspected. It still does not meet the art bar. The concrete [external artist/rig handoff](../../docs/phase-4.2-art-handoff.md) records the unresolved asset dependency and M1 approval gate. Neither prototype is a production player/NPC replacement.
+
 This is an original hand-authored layered vector attempt. No reference-game sprites, traced images, commercial pack, real-person likeness or generated reference image was used. The shape/path/material source is in `student-rig.mjs`; `composite.mjs` combines existing Appearance values. The original work was created for CampusWahala in this task on 11 October 2026 and is retained in this repository for project use.
 
 ## Reproduce
