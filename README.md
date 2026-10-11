@@ -1,8 +1,8 @@
 # CampusWahala
 
-Phase 2.5 merged at `30d045545380348335d6a3a6de321fd0e4bb3e41`. Phase 3 academic simulation is being validated on `codex/phase-3-academics`; see [Phase 3 review](docs/phase-3-review.md). Existing production/content/device gates remain open.
+Phases 0–4 are implemented and merged. Phase 3 merged at `c37500cf95c2296581350ca346b95de3211b998a`, Phase 3.1 at `f3edf1b5ca7ac598eb73d683339f88e30c71fb64`, and Phase 4 at `51971dd7c9f5af932b45052b7b2d3774e2d71669`. Phase 4.1 is the current focused acceptance patch on `codex/phase-4.1-life-acceptance`; see [review notes](docs/phase-4.1-review.md). Production, device and content gates remain open. Phase 5 has not started.
 
-The playable digital world of African university life. Phase 2 shared virtual-campus engine with private character and Campus Intelligence foundations. FUTA, OAU and UNILAG use validated manifests, following cameras and the CW Pocket phone. Phases 2 and 2.5 are merged; Phase 3 private academic simulation is under branch validation. This is not a production launch.
+The playable digital world of African university life. FUTA, OAU and UNILAG share validated virtual-world manifests and CW Pocket. Authenticated players have private academic simulation, daily-life metrics and contextual fictional Wahala on one server-owned game timeline. Simulation courses, housing and compressed geography are game representations, not official university records or physical navigation. This is not a production launch.
 
 ## Run locally
 
@@ -63,7 +63,7 @@ Apply the fifth migration, `202610090005_world_state`, after the four Phase 1 mi
 
 `pnpm build` compiles and validates manifests. Run `pnpm check:world-budgets` after build. World names remain fictional until live, published, non-stale catalogue facts match configured identity bindings. Geometry is **compressed campus geography**, never real GPS navigation. The isolated research report records actual robots/size/timeout failures and eligible UNILAG library publication; it is not imported as production seed data.
 
-CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, updates and settings. Authenticated Computing/Engineering simulation players have a private Portal, timetable, courses, assignments, tests/exams, results and progression; guests retain demo content. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 is merged at `c37500c`; Phase 3.1 adds browser acceptance evidence on a focused branch. Documented production/content/device gates remain open.
+CW Pocket includes virtual map/waypoints, published guide/feedback, appearance, private account controls, cosmetic inventory, updates and settings. Authenticated Computing/Engineering simulation players have a private Portal, timetable, courses, assignments, tests/exams, results and progression; guests retain demo content. There are no rewards, money, commerce, advertising, chat or multiplayer. Phase 3 is merged at `c37500c`; Phase 3.1 is merged at `f3edf1b` with browser acceptance evidence. Documented production/content/device gates remain open.
 
 ## Phase 2.5 hardening
 
@@ -85,4 +85,4 @@ Academic travel changes server-owned presence and consumes game minutes. Map wal
 
 [Phase 3.1 browser acceptance review](docs/phase-3.1-review.md).
 
-Phase 4 campus life and Wahala implementation is under review on `codex/phase-4-campus-life-wahala`; see [review notes](docs/phase-4-review.md). Phase 3.1 is merged; Phase 5 has not started.
+Phase 4 campus life and Wahala merged at `51971dd`; apply migration 008. Its post-merge CI passed all jobs. [Historical Phase 4 review](docs/phase-4-review.md) records architecture and earlier acceptance fixes. Phase 4.1 adds non-neutral Wahala browser evidence and a concise authoritative Today view; it is awaiting exact-head validation/review, not merged. Phase 5 has not started.

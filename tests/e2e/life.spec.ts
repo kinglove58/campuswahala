@@ -132,6 +132,9 @@ test("campus daily routine uses real venue authority, life choices, shared acade
       exact: true,
     }),
   ).toHaveCount(0);
+  await expect(venue.getByTestId("life-current-venue")).toHaveText(
+    `Current: ${av.term!.venues.find((v) => v.id === av.term!.presenceVenueId)!.name}`,
+  );
   expect((await life()).state!.metrics).toEqual(lv.state!.metrics);
   expect((await academics()).term!.presenceVenueId).not.toBe(food.id);
   const denied = await request(() =>
@@ -284,7 +287,12 @@ test("campus daily routine uses real venue authority, life choices, shared acade
     .click();
   await expect(
     page.getByRole("button", { name: "Sleep · 6 hours", exact: true }),
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 80000 });
+  // Match the production private read bound after a genuine 429 window.
+  await expect(page.getByTestId("life-current-venue")).toHaveText(
+    `Current: ${(await academics()).term!.venues.find((v) => v.id === lv.state!.homeVenueId)!.name}`,
+    { timeout: 80000 },
+  );
   const restMinute = (await academics()).term!.minute;
   await clickLife("Rest · 30 min");
   await expect

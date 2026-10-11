@@ -3,6 +3,7 @@ import {
   expect,
   type BrowserContext,
   type Page,
+  type Locator,
   type APIResponse,
 } from "@playwright/test";
 import { randomUUID } from "node:crypto";
@@ -69,6 +70,37 @@ class AcademicJourney {
   }
 }
 
+async function academicUiAction(page: Page, button: Locator) {
+  // A definite 429 has not executed the action. Retry the real UI only
+  // while that response is rate-limited; never retry an uncertain commit.
+  let accepted = false;
+  await expect
+    .poll(
+      async () => {
+        const [response] = await Promise.all([
+          page.waitForResponse(
+            (r) =>
+              r.url().endsWith("/api/academic/commands") &&
+              r.request().method() === "POST",
+          ),
+          button.click(),
+        ]);
+        expect((await response.allHeaders())["cache-control"]).toContain(
+          "no-store",
+        );
+        accepted = response.ok();
+        return response.status();
+      },
+      {
+        timeout: 75000,
+        intervals: [1000, 2000],
+        message: "Retry the UI academic action only after a definite 429",
+      },
+    )
+    .not.toBe(429);
+  expect(accepted).toBe(true);
+}
+
 async function signIn(page: Page, context: BrowserContext) {
   test.skip(!process.env.TEST_DATABASE_URL, "Requires disposable PostgreSQL.");
   // Only reset the local-development identity fixture. No academic rows, grades,
@@ -106,9 +138,13 @@ async function signIn(page: Page, context: BrowserContext) {
   ).toBeVisible();
   const journey = new AcademicJourney(context);
   await portal(page);
-  await page
-    .getByRole("button", { name: "Start simulation semester", exact: true })
-    .click();
+  await academicUiAction(
+    page,
+    page.getByRole("button", {
+      name: "Start simulation semester",
+      exact: true,
+    }),
+  );
   await expect(
     page.getByText("Academic presence:", { exact: false }),
   ).toBeVisible();
@@ -180,15 +216,14 @@ async function assessments(
     if (page && !usedUi) {
       await portal(page, true);
       await page.locator("summary").filter({ hasText: course.code }).click();
-      await page
-        .getByRole("button", {
-          name:
-            kind === "test"
-              ? `Take ${course.code} test`
-              : `Write ${course.code} examination`,
-          exact: true,
-        })
-        .click();
+      const action = page.getByRole("button", {
+        name:
+          kind === "test"
+            ? `Take ${course.code} test`
+            : `Write ${course.code} examination`,
+        exact: true,
+      });
+      await academicUiAction(page, action);
       await expect(
         page.getByText(`${kind === "test" ? "Test" : "Exam"}: taken`, {
           exact: false,
@@ -232,12 +267,13 @@ async function finish(
   await journey.send({ type: "WAIT_TO_NEXT_EVENT" });
   expect(journey.state.term!.minute).toBe(journey.state.term!.endMinute);
   await portal(page, true);
-  await page
-    .getByRole("button", {
+  await academicUiAction(
+    page,
+    page.getByRole("button", {
       name: "Complete semester and receive results",
       exact: true,
-    })
-    .click();
+    }),
+  );
   await expect(
     page.getByRole("heading", { name: "Private simulation results" }),
   ).toBeVisible();
@@ -397,9 +433,10 @@ test("successful semester through CW Pocket and actual lecture venue; visual mov
   });
   expect(denied.status()).toBe(409);
   expect((await denied.json()).error.code).toBe("LECTURE_NOT_ELIGIBLE");
-  await venue
-    .getByRole("button", { name: `Travel to ${hall.name}`, exact: true })
-    .click();
+  await academicUiAction(
+    page,
+    venue.getByRole("button", { name: `Travel to ${hall.name}`, exact: true }),
+  );
   await venue.locator("summary").filter({ hasText: first.code }).click();
   await expect(
     venue.getByRole("button", {
@@ -407,9 +444,13 @@ test("successful semester through CW Pocket and actual lecture venue; visual mov
       exact: true,
     }),
   ).toBeVisible();
-  await venue
-    .getByRole("button", { name: `Attend ${first.code} lecture`, exact: true })
-    .click();
+  await academicUiAction(
+    page,
+    venue.getByRole("button", {
+      name: `Attend ${first.code} lecture`,
+      exact: true,
+    }),
+  );
   await expect(venue.getByText("Lectures 1/3", { exact: false })).toBeVisible();
   await journey.read();
   expect(journey.state.term!.presenceVenueId).toBe(hall.id);
@@ -423,27 +464,33 @@ test("successful semester through CW Pocket and actual lecture venue; visual mov
   await journey.send({ type: "TRAVEL_TO_VENUE", venueId: library.id });
   await portal(page, true);
   await page.locator("summary").filter({ hasText: first.code }).click();
-  await page
-    .getByRole("button", { name: `Study ${first.code} · 120 min`, exact: true })
-    .click();
+  await academicUiAction(
+    page,
+    page.getByRole("button", {
+      name: `Study ${first.code} · 120 min`,
+      exact: true,
+    }),
+  );
   await expect
     .poll(async () => (await journey.read()).term!.courses[0]!.mastery)
     .toBeGreaterThan(800);
   await journey.read();
   for (let i = 0; i < 2; i++)
     await journey.send({ type: "STUDY", courseId: first.id, minutes: 120 });
-  await page
-    .getByRole("button", {
+  await academicUiAction(
+    page,
+    page.getByRole("button", {
       name: `Work on ${first.code} assignment · 60 min`,
       exact: true,
-    })
-    .click();
-  await page
-    .getByRole("button", {
+    }),
+  );
+  await academicUiAction(
+    page,
+    page.getByRole("button", {
       name: `Submit ${first.code} assignment`,
       exact: true,
-    })
-    .click();
+    }),
+  );
   await expect(
     page.getByText("Assignment submitted:", { exact: false }),
   ).toBeVisible();
@@ -498,12 +545,13 @@ test("one genuine carryover retakes once, passes, clears and retains immutable f
   ).toBeVisible();
   await resultCapture(page, "academic-carryover-results");
   const originalHistory = structuredClone(journey.state.history[0]!);
-  await page
-    .getByRole("button", {
+  await academicUiAction(
+    page,
+    page.getByRole("button", {
       name: "Begin next simulation semester",
       exact: true,
-    })
-    .click();
+    }),
+  );
   await expect(
     page.getByText("Current GPA: not finalized", { exact: false }),
   ).toBeVisible();
@@ -520,6 +568,14 @@ test("one genuine carryover retakes once, passes, clears and retains immutable f
       .filter({ hasText: `${failed.code} · ${failed.title}` }),
   ).toContainText("Carryover");
   await capture(page, "academic-carryover-enrolled");
+  await page.getByRole("button", { name: "← All apps", exact: true }).click();
+  await page.getByRole("button", { name: "Campus life", exact: true }).click();
+  await expect(page.getByTestId("life-carryovers")).toHaveText(
+    `Carryover: ${failed.code}`,
+  );
+  await capture(page, "campus-life-carryover-context");
+  await page.getByRole("button", { name: "← All apps", exact: true }).click();
+  await page.getByRole("button", { name: "Portal", exact: true }).click();
   for (const course of journey.state.term!.courses)
     await prepare(journey, course);
   await finish(journey, page);
