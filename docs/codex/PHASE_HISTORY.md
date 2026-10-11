@@ -12,14 +12,14 @@ Reviewer-owned phase ledger.
 | Phase 3 | COMPLETE | merge `c37500c...` |
 | Phase 3.1 | COMPLETE | merge `f3edf1b...` |
 | Phase 4 | COMPLETE | merge `51971dd...` |
-| Phase 4.1 | ACTIVE | acceptance/UI closure |
-| Phase 5 | NOT STARTED | reviewer must approve first |
+| Phase 4.1 | COMPLETE | merge `0e4bd439d152b74499d491ace432a55d85e2699a` |
+| Phase 5 | NOT STARTED | waiting for reviewer-owned active-phase publication |
 
-## Current base
+## Current reviewed base
 
-Current reviewed Phase 4 merge:
+Phase 4.1 merge:
 
-`51971dd7c9f5af932b45052b7b2d3774e2d71669`
+`0e4bd439d152b74499d491ace432a55d85e2699a`
 
 ## Rule
 
