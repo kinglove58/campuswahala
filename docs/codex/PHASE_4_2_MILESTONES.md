@@ -2,19 +2,19 @@
 
 **Active phase:** 4.2 Visual World & Navigable Interiors
 **Status:** execution plan; one Phase 4.2 implementation PR; no Phase 5.
-**Source of authority:** \`docs/codex/ACTIVE_PHASE.md\` and the project constitution. This document specifies order, deliverables and review checkpoints.
+**Source of authority:** `docs/codex/ACTIVE_PHASE.md` and the project constitution. This document specifies order, deliverables and review checkpoints.
 
 ## Workflow
 
 - Read current master and all Phase 4.2 reviewer-owned docs first.
-- Use the existing suggested branch \`codex/phase-4.2-visual-world\`; do not open separate competing phase PRs.
+- Use the existing suggested branch `codex/phase-4.2-visual-world`; do not open separate competing phase PRs.
 - Implement checkpoints sequentially. Each completed checkpoint should have a clearly named commit or PR update and a brief **evidence summary** (screenshots/tests/blockers).
 - Progress after a checkpoint only if its objective tests and deliverables pass; do not hide unresolved core visual defects.
 - At the **M1 art-proof checkpoint**, if quality/asset tooling is not sufficient, stop for human art review rather than proceeding to wire placeholder art into the whole game.
 - Subsequent milestones can continue without user copy/paste when their acceptance gates pass; do not automatically merge.
 - Maintain a progress table in the Phase 4.2 PR body with M0–M6 and actual status/evidence.
 - The final PR requires all Phase 4.2 checks and screenshots before reviewer approval. Local progress/partial CI does not establish phase completion.
-- Reviewer-owned \`docs/codex/*\` files must not be changed by the implementation agent; changes can be proposed in PR comments.
+- Reviewer-owned `docs/codex/*` files must not be changed by the implementation agent; changes can be proposed in PR comments.
 
 ## M0 — baseline, contracts and authority safety
 
@@ -26,7 +26,7 @@ Deliver:
 3. record baseline player rendered height, default camera, main building relative size, all-game-JS gzip and actual texture transfer;
 4. ADR draft covering v3 world vs v2 snapshots, versioned interior schema, sprite pipeline, authority separation and fallback;
 5. inventory actual authoring/export tooling and asset source/provenance method;
-6. document all current \`Appearance\` values and asset-loading interface.
+6. document all current `Appearance` values and asset-loading interface.
 
 **Gate M0:** no changes to academic/life authority, no untracked migrations, baseline screenshots/measurements and version plan documented.
 
@@ -96,7 +96,7 @@ Deliver:
 3. original home bed/desk/chair/wardrobe/window/personal props;
 4. bed → existing SLEEP, desk → authorized STUDY/REST, wardrobe → validated Appearance edit/save, phone → CW Pocket, exit → exterior;
 5. browser scene position persists through phone open/close and action refresh;
-6. visual interior presence never sets \`AcademicTerm.presenceVenueId\`;
+6. visual interior presence never sets `AcademicTerm.presenceVenueId`;
 7. semantic nearby-action controls accessible on mobile/keyboard/reduced motion;
 8. real browser gameplay from exterior through door, bed, desk, wardrobe, exit.
 
