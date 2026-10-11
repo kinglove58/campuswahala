@@ -1,7 +1,7 @@
 # CampusWahala Phase 4.2 — approved visual direction
 
 **Status:** binding art-direction specification for the active Phase 4.2.
-**Owner:** project reviewer. Codex reads this alongside \`ACTIVE_PHASE.md\`.
+**Owner:** project reviewer. Codex reads this alongside `ACTIVE_PHASE.md`.
 **Decision:** original 3D-*inspired* stylized African/Nigerian campus art, delivered at runtime as optimized **2D directional sprites in the existing Phaser top-down/2.5D renderer**.
 
 ## 1. Non-negotiable medium decision
@@ -56,7 +56,7 @@ These are acceptance *ranges*, not a command to blindly multiply existing camera
 
 ### Base variation
 
-Retain and honor the exact current serialized \`Appearance\` choices unless a separately reviewed additive mapping is required:
+Retain and honor the exact current serialized `Appearance` choices unless a separately reviewed additive mapping is required:
 
 - skin: deep, brown, warm, light;
 - hair: crop, afro, braids, covered;
