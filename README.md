@@ -1,6 +1,6 @@
 # CampusWahala
 
-Phases 0–4 are implemented and merged. Phase 3 merged at `c37500cf95c2296581350ca346b95de3211b998a`, Phase 3.1 at `f3edf1b5ca7ac598eb73d683339f88e30c71fb64`, and Phase 4 at `51971dd7c9f5af932b45052b7b2d3774e2d71669`. Phase 4.1 is the current focused acceptance patch on `codex/phase-4.1-life-acceptance`; see [review notes](docs/phase-4.1-review.md). Production, device and content gates remain open. Phase 5 has not started.
+Phases 0–4.1 are implemented and merged. Phase 3 merged at `c37500cf95c2296581350ca346b95de3211b998a`, Phase 3.1 at `f3edf1b5ca7ac598eb73d683339f88e30c71fb64`, and Phase 4 at `51971dd7c9f5af932b45052b7b2d3774e2d71669`. Phase 4.1 merged at `0e4bd439d152b74499d491ace432a55d85e2699a`; see [review notes](docs/phase-4.1-review.md). Phase 4.2 visual world and navigable interiors is the current reviewer-owned assignment in [ACTIVE_PHASE.md](docs/codex/ACTIVE_PHASE.md). Production, device and content gates remain open. Phase 5 has not started.
 
 The playable digital world of African university life. FUTA, OAU and UNILAG share validated virtual-world manifests and CW Pocket. Authenticated players have private academic simulation, daily-life metrics and contextual fictional Wahala on one server-owned game timeline. Simulation courses, housing and compressed geography are game representations, not official university records or physical navigation. This is not a production launch.
 
@@ -85,4 +85,4 @@ Academic travel changes server-owned presence and consumes game minutes. Map wal
 
 [Phase 3.1 browser acceptance review](docs/phase-3.1-review.md).
 
-Phase 4 campus life and Wahala merged at `51971dd`; apply migration 008. Its post-merge CI passed all jobs. [Historical Phase 4 review](docs/phase-4-review.md) records architecture and earlier acceptance fixes. Phase 4.1 adds non-neutral Wahala browser evidence and a concise authoritative Today view; it is awaiting exact-head validation/review, not merged. Phase 5 has not started.
+Phase 4 campus life and Wahala merged at `51971dd`; apply migration 008. Its post-merge CI passed all jobs. [Historical Phase 4 review](docs/phase-4-review.md) records architecture and earlier acceptance fixes. Phase 4.1 merged at `0e4bd439`; it proves non-neutral Wahala consequences and adds a concise authoritative Today view. Its [post-merge CI](https://github.com/kinglove58/campuswahala/actions/runs/38115280934) passed all five jobs. Phase 5 has not started.

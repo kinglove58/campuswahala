@@ -1,6 +1,6 @@
 # CampusWahala implementation status
 
-Updated: 10 October 2026. Phase 2 merged at `9427141`; Phase 2.5 at `30d0455`; Phase 3 at `c37500cf95c2296581350ca346b95de3211b998a`; Phase 3.1 at `f3edf1b5ca7ac598eb73d683339f88e30c71fb64`; Phase 4 at `51971dd7c9f5af932b45052b7b2d3774e2d71669`. Phase 4 post-merge push CI `38080149734` passed all jobs. Phase 4.1 is the current focused acceptance patch, not merged. Production/content/device acceptance remains open; Phase 0–4 security boundaries are preserved. No production launch or Phase 5. Historical review documents retain their original checkpoint wording.
+Updated: 11 October 2026. Phase 2 merged at `9427141`; Phase 2.5 at `30d0455`; Phase 3 at `c37500cf95c2296581350ca346b95de3211b998a`; Phase 3.1 at `f3edf1b5ca7ac598eb73d683339f88e30c71fb64`; Phase 4 at `51971dd7c9f5af932b45052b7b2d3774e2d71669`. Phase 4 post-merge push CI `38080149734` passed all jobs. Phase 4.1 merged at `0e4bd439d152b74499d491ace432a55d85e2699a`; post-merge CI `38115280934` passed all five jobs. Phase 4.2 visual world and navigable interiors is the current reviewer-owned assignment in [ACTIVE_PHASE.md](docs/codex/ACTIVE_PHASE.md). Production/content/device acceptance remains open; Phase 0–4.1 security boundaries are preserved. No production launch or Phase 5. Historical review documents retain their original checkpoint wording.
 
 | Deliverable                                                          | Status                                            | Scope / remaining boundary                                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,6 +29,6 @@ See [Phase 3.1 acceptance review](docs/phase-3.1-review.md) for merged browser-b
 
 Single academic/life timeline, private integer life metrics, policy-driven routines, bounded fictional contextual Wahala and CW Pocket/venue integration. Validation evidence: [Phase 4 review](docs/phase-4-review.md). No Phase 5 or deployment.
 
-## Phase 4.1 — focused acceptance patch (current branch)
+## Phase 4.1 — merged acceptance patch
 
 Non-neutral Wahala choice/retry/resume browser proof, authoritative current venue, next scheduled academic event, carryover context and one presentation-only suggestion. No balancing or authority-model changes. See [Phase 4.1 review](docs/phase-4.1-review.md) and its PR for exact-head test/scan evidence. Device, narrative/balance/visual review and production configuration gates remain human acceptance work. No Phase 5.
