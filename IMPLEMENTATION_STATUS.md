@@ -36,3 +36,7 @@ Non-neutral Wahala choice/retry/resume browser proof, authoritative current venu
 ## Phase 4.2 — baseline / original art proof, blocked at M1
 
 Real baseline captures, measurements, original editable vector source and a 32-frame sprite proof are recorded in [Phase 4.2 checkpoint](docs/phase-4.2-review.md). The source attempt does not yet satisfy the required modeled young-adult proportions, elevated perspective or articulated motion. M1 is an ART REVIEW BLOCKER; the prototype is not integrated into production. Camera, exterior and navigable home/library/lecture milestones remain unimplemented. No world revision, migration, authority change or Phase 5.
+
+## M1 supplied prototype intake ? 12 October 2026
+
+PR #17 remains draft, Phase 4.2 incomplete and ART REVIEW BLOCKER retained. The owner ZIP matches the reviewer SHA and its 35 retained files are quarantined outside runtime. New original layered source supports all 768 canonical Appearance combinations; six exported examples each contain 40 unique poses, with 52 semantic OpenRaster layers and actual isolated Phaser evidence at four viewports. Native 360x800 proof body is about 73px / 10% of the 731px canvas. No production avatar/world/authority change or migration. Source/style/cloth/gait approval and physical Android remain human gates. M2?M6/Phase 5 were not started. See [M1 intake review](docs/phase-4.2-m1-intake-review.md) and PR #17 for exact-head validation; local PG cases are skipped, not passes.

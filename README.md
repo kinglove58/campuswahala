@@ -86,3 +86,7 @@ Academic travel changes server-owned presence and consumes game minutes. Map wal
 [Phase 3.1 browser acceptance review](docs/phase-3.1-review.md).
 
 Phase 4 campus life and Wahala merged at `51971dd`; apply migration 008. Its post-merge CI passed all jobs. [Historical Phase 4 review](docs/phase-4-review.md) records architecture and earlier acceptance fixes. Phase 4.1 merged at `0e4bd439`; it proves non-neutral Wahala consequences and adds a concise authoritative Today view. Its [post-merge CI](https://github.com/kinglove58/campuswahala/actions/runs/38115280934) passed all five jobs. Phase 5 has not started.
+
+### M1 in-house character prototype (review-only)
+
+The supplied ZIP has been checksum-verified and preserved outside runtime. [M1 source and Phaser evidence](docs/phase-4.2-m1-intake-review.md) document the new editable vector/OpenRaster candidate, directional animation and canonical Appearance mapping. It is an isolated art laboratory, not the production character/room upgrade. ART REVIEW BLOCKER and human visual approval remain; PR #17 is draft and M2?M6/Phase 5 are not started.

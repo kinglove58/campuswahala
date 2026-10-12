@@ -1,0 +1,4281 @@
+{
+  "status": "M1 VISUAL REVIEW REQUIRED; NOT RUNTIME",
+  "sourceHash": "205e56ea689f9e1c40652111fa9c7a64e5be9ac4925b62ddc2fc8775eae17847",
+  "version": "m1-layered-1",
+  "geometry": {
+    "width": 128,
+    "height": 192,
+    "foot": {
+      "x": 64,
+      "y": 177
+    }
+  },
+  "choices": {
+    "skin": [
+      "deep",
+      "brown",
+      "warm",
+      "light"
+    ],
+    "hair": [
+      "crop",
+      "afro",
+      "braids",
+      "covered"
+    ],
+    "hairColour": [
+      "black",
+      "brown"
+    ],
+    "top": [
+      "lime",
+      "clay",
+      "blue"
+    ],
+    "bottom": [
+      "trousers",
+      "skirt"
+    ],
+    "shoes": [
+      "dark",
+      "white"
+    ],
+    "accessory": [
+      "none",
+      "backpack"
+    ]
+  },
+  "palettes": {
+    "skin": {
+      "deep": "#774832",
+      "brown": "#a96b45",
+      "warm": "#c28a60",
+      "light": "#deb693"
+    },
+    "hairColour": {
+      "black": "#20262b",
+      "brown": "#654332"
+    },
+    "top": {
+      "lime": "#c2d273",
+      "clay": "#d88b71",
+      "blue": "#729dbb"
+    },
+    "shoes": {
+      "dark": "#37404b",
+      "white": "#eee9df"
+    }
+  },
+  "pipeline": {
+    "sharp": "0.35.5",
+    "svgRenderer": "2.63.2"
+  },
+  "atlases": [
+    {
+      "look": 0,
+      "appearance": {
+        "skin": "brown",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "role": "player-proof",
+      "path": "look-0.2eb591aeed03.png",
+      "hash": "2eb591aeed03836a25f4d4cb2a606023f4b2f25c9b08e99f0cbd810469e11446",
+      "bytes": 287622,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 12,
+            "width": 61,
+            "height": 167
+          },
+          "rgbaHash": "004f578a165f2b88464a036a08b269e8ddf69a3ad47b88364842712a0be6702b"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 12,
+            "width": 61,
+            "height": 167
+          },
+          "rgbaHash": "c6cb8c4c0caca0465bbefe54cf971a6377ba728e895bf008d10833f6983b9cc2"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 12,
+            "width": 61,
+            "height": 167
+          },
+          "rgbaHash": "24f7e41dbadb7c755ff5346bb7419d2ed47a0ccb0f39fecb1526f38a719994c0"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 12,
+            "width": 59,
+            "height": 167
+          },
+          "rgbaHash": "27929f5f437fe1c33cce52bc4af233582ad1cadb118d93fb974357aa1bd0d21f"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 12,
+            "width": 58,
+            "height": 167
+          },
+          "rgbaHash": "63881764181f4167eaeb4871d6d5e5679a978c8601b2f077ff61cee83a0377e4"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 12,
+            "width": 59,
+            "height": 167
+          },
+          "rgbaHash": "855c5fd8f31081d03d67defd2a89d4a32b87068c8770b62592c4e715fc7be9f1"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 12,
+            "width": 61,
+            "height": 167
+          },
+          "rgbaHash": "587cc771298f5f262cc1cc83ba24d9f2977817109e30e2413511a1294d81a8e1"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 12,
+            "width": 63,
+            "height": 167
+          },
+          "rgbaHash": "6867634a092dd0c6272ffc8836c319669aca5eb9fd01d26ceb13064d9be26b36"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 12,
+            "width": 64,
+            "height": 167
+          },
+          "rgbaHash": "2b4ea4df64ff3297a68227f59fc0b5e716d115097085a33815759657c2821b9f"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 12,
+            "width": 63,
+            "height": 167
+          },
+          "rgbaHash": "14c72cc6e3b4faccba8d5cc3a0471a3a123fc035f7ac6b94e349bba863e66d05"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "1a204ffc8c217549185badc8ee122315602f0676c56bf9137894e6cfa7c43b15"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "18e7477be99d6141763dfc97ec83087668ed12cdff56e4a08942a2f109e7783a"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "c052d39b34f63bb4e312d939dcbddfc32ac4a0bc0ab455c54ea1bd9d7c50af6d"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 59,
+            "height": 166
+          },
+          "rgbaHash": "0ad66f2fed452eeb8178116a9c71e9fbcfacb8787082cf54d7a4bfa2b22b4fb6"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 58,
+            "height": 166
+          },
+          "rgbaHash": "fc7182cf9729cf722ee2582f421965411a4f6824d0e43228d4bb31536abd5c43"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 59,
+            "height": 166
+          },
+          "rgbaHash": "f533827178b1ce48cfee2093d575bd11b9814c509d0c3369f0cf8c9354251753"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "823985fac256755366aabd8a57c0585c0e59f006930ee933bd72ebb406d280ab"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 13,
+            "width": 63,
+            "height": 166
+          },
+          "rgbaHash": "cf05467858eafe436f979cad6e2cbef71515712a7b2f90befbd3739ad642e71b"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 13,
+            "width": 64,
+            "height": 166
+          },
+          "rgbaHash": "76744c182ca3bf2c68c840d41f24774c55cafb14ef802f67b6fd8c7c48f4fd51"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 13,
+            "width": 63,
+            "height": 166
+          },
+          "rgbaHash": "c3f290559bc1450fa47130afef865be570a62b7b55b5e1114ce5b1a40030722d"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "50acaff1ce5ab8ae1606feb21b33c0b6be561add0255ce248182e6073e4fe2af"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "8105fa73a091c838ae4b383b2a47d1f3bff4959f1d59356259059d0152c844a4"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "8f1256227de33652ff477cb88128b8acafc3ae00456328995f7b6ce695b646c8"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "c4dca5cf767e94d07fb23051b260797ceb5754240fd8543e5320ebbed7b963ba"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "79c7241a69f6feefeb94113d8b6859dcc31d833b41f258deb92022700e8d23d6"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "e0e26a59ac42d9de0dbe8b5a50d0ffae98567aff8478866d896ab205594b5ed8"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "cbe8ab63f41ea0d4507d486a81a885f51d7af815899769d66930565863887836"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "c1af0ddd37aa794d8490716b48235b570cb35c40fbac209fbd7315e81eeeaad0"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 38,
+            "y": 14,
+            "width": 53,
+            "height": 165
+          },
+          "rgbaHash": "46a07901687a16244c395f77b822cb238c6dcaeb8ffd16b2ae6fffdd7bfe7a7c"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "fba584616cef71bba211b3817aa55aec992d6de06b4893146e52353d2301946f"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "e15ccd8335dca4ff141d17dc6d86853bb7250b5a0d5bfb4a4f7b9a2551551fa7"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "98f609055906a661ed3f6f99ed6bf0ed17881122fb894a3f4b49aa79e2e5d428"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "c9a9b3716c70506d8845d4c2ab977d19abdad860df6c4af782209a61adf21391"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "ac8a1307d97ce64eecb2a4079fde87b1717fc8f982a1cedad87bc1e5f835b836"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "317e8292a5a2288e67985794b3586d653f0d255308d8e13215cc07dd4a119d8a"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "64d9c82b92bca1714a9d75577e40eff3bc610f6e0ece22f5b769bd180e2b0cf2"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "0115594fe40a351cb0ba827b20303a03ab7fa4a393432647155b95aa1e0f26a2"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "fc2177d5fa3f6ef4b686accf5f6505bf98319b9ff03b4bd320a4d59d32e204c3"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "30ef6a505728a2d209eeba86328268b1d1b7fa765bebbce1917e6c5a3adc3795"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "e01e49f1f6b61ba716cbcc1fe379d17f22c19f624ff26bd56053ec15a7fbe0ee"
+        }
+      ]
+    },
+    {
+      "look": 1,
+      "appearance": {
+        "skin": "deep",
+        "hair": "braids",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "skirt",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "role": "player-proof",
+      "path": "look-1.c819b427511c.png",
+      "hash": "c819b427511c50436c61e99953e534aa798bbee3183dcfcb6b48dec2d624b4c4",
+      "bytes": 256539,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "dab4a52d97e00d69656dd180f366b7cb29e1ad5ea0b2e83249078c8d56cfe6f9"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "a8d0823afeb8f786b132fd16a844673a461b0e02bf82df965d99a6c2e7165508"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "e4a176434e9a03b278ca1e7fbca5ae6c00f1f45146da4e468cd516233a600edd"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "c40f49cfdf856a031eef375562d86aadd48342f7611e1352dff615bb8149f79a"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 58,
+            "height": 165
+          },
+          "rgbaHash": "e6ec56e78b0ccd5842b7901a4212969372b55c3977db16cc9ecbb347da4ddbc8"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "7b9a20b710626dc11b35174dec06c70c3171a30cd0ee7502caa1c9b1168d5c4a"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "23b677695a568447cb6e90b61f5463cb9bf88bd9ed7847354abb4d6e24414fb2"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "d548eb54057f6dcae7c71b4b23b026b7cd658e37ae25c9db0556f5a7a4a8fc2a"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 14,
+            "width": 64,
+            "height": 165
+          },
+          "rgbaHash": "b09952afdf1d7583399ea604d70963b95fe66da796e40d48555f566506fcdc9c"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "f3a00a992bd032126036a58c76c7b3674b834640ad916c2a1c0fad24f94c7767"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "041f15c502504f73a121fc127c8322d644c66f5c6205b6f1cc3366815627b621"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "b59a39963a8131dcdc6accdf51bc11bce67e5b247afb4bfbfe1f2c2235dbcd86"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "a6eb57af16f9f116f3b246e83abf9fc6afb0b8ad39ab4aeaaa2adc36263af3a4"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "185b96fd3a0cc7c572f37f67ff4ad2396f8fc0632b93051d3aaec556580490dd"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 58,
+            "height": 165
+          },
+          "rgbaHash": "77ef53b62bf26397f2a1ce74973668565f53a239c872df3e40b73986862f2349"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "dd3e877672c71af48badb48e14deaea63a5a5a1704f89c2891e2515ecf4b927e"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "93bc2603e3bbf06f25e578d2b95ce6587a6f4a2a7926ec47a2f59d9d0cd72372"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "fc35e2ca55c7e4fd82208dab6492cfbaeff13259b244abcf9c2a5edae9054093"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 14,
+            "width": 64,
+            "height": 165
+          },
+          "rgbaHash": "d66d6ea38322ad8b334b90dd0e13780ad5f49777efcede52bf7aec2b2c4f1bd8"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "710315b2e62ed8f55e4e5f9669b0d1e2ac5f741a5c6438826986c1405f2508b3"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "28a114757b0f66ca74f5bdff7bf17603031c8bc177ae3ffec10e6e13ba8f58b2"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "4ee139c8baec9f2c5f4ce6b194da777bbe6862f1b80b81f32423614fad7b1009"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "fcd095f85524652283898eb5096be9c9c1946dc0c461d92fc502bf938b255422"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "73555a6c35b7ad35e6d62fc49c25e7c720537386c7b7fabbfb70a9ac2abc3671"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "c8817e81997e9dd73841c22b790273f8f89b5c19bdab26f56211d996013cc40d"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "9d09190739d5da10427dccec970c052c968faaf4b95f98fe41ce709a63d109bd"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "8d546a593169a20af1ceab6b005ed172cf91827e9f6f34d5ce191ab3bcf5fb0f"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "2ba5ff5c6a912bec81406fb9bebcec7991766eab64566b955c75feba090a0534"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 38,
+            "y": 14,
+            "width": 48,
+            "height": 165
+          },
+          "rgbaHash": "e2676c5f6135b36ebde952f683efab5eeff6b0a2f7a175f742e8f641bdafe273"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "f20ab9f5edec0dcc5cc1b079ade639f124fd15218d2cc8ac01c5fa9ae09414c6"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "f035609fa9ee6f3df18ad229ae8c9f54536dadb0825e1fc6b6ea46a0bbfc1c25"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "bd7d0cc8807a012bcd5f55e0ea300221f6e24860211360f5bf9d9a6b2ceeacda"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "3100f1056e997965a5e0c75e5ea99233794d431fb4f797a2faaedcba7a40b76e"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "4c5018f4a26e63850565f24db598a76cfa687d0ed56d6cd9b355ce19ed395143"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "6a219bf7cb74064c6f1f0385977dc0380882a46ed841bcf28b275a85d32722e8"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 45,
+            "height": 165
+          },
+          "rgbaHash": "9438788c9d2c11ec7b54c5f3af61aa7228d0a23654aefea29f7fb887b7cf9025"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "684c8b14a43154427c977539bacebe970d81fbdab72332617903f0810315f0a1"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "d2ba72a012ff112b136d207be894edc87dc58da15fac1f137161780e63ba6bdc"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 46,
+            "height": 165
+          },
+          "rgbaHash": "9cb74cf8ff8d42052787db483e3e5ebc76384ad7ad6b043fdf1ba8345c745a63"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 43,
+            "y": 14,
+            "width": 45,
+            "height": 165
+          },
+          "rgbaHash": "143d21fe81cf7b6a599602ab415d68cb7279060ae47cb5dfb475af232037ad9c"
+        }
+      ]
+    },
+    {
+      "look": 2,
+      "appearance": {
+        "skin": "warm",
+        "hair": "covered",
+        "hairColour": "brown",
+        "top": "clay",
+        "bottom": "skirt",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "role": "player-proof",
+      "path": "look-2.7cbb996a60be.png",
+      "hash": "7cbb996a60be6e4e98378abad1005f186241e7f46ff038d76add9d49778a6dab",
+      "bytes": 266608,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "ad0d3ebce53f83a16db4c7c16008dd803daf0141e6cf43330111efa66e129ccd"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "eafab8236bd1f20ecea72f731f23d4cfc520d27c1e785fe62cd88828921b84b1"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "83766fbef1f2b4a21d49990b97d514df25221772934d5a5bacc7bb3b7e91e0c1"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 59,
+            "height": 166
+          },
+          "rgbaHash": "c8a37be124ecea55bd4a640446f52de19e6d7be2ec1e091512b231b0753f8a85"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 58,
+            "height": 166
+          },
+          "rgbaHash": "b1418e20e41540925165d74b7403803711853e267a7a798add60797abfb42b7d"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 59,
+            "height": 166
+          },
+          "rgbaHash": "b3fad08de72b9b74c02a4d7a4aaf92c0cd130da611f2e74a516317f388162356"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "efbe1800fe438794739d68e7dab425fb24108b1602a6400d4ae80d1bb205084c"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 13,
+            "width": 63,
+            "height": 166
+          },
+          "rgbaHash": "08d767c957446af57be5ecbe1f209fc37c28c9df6afa8080de19cbed945e32e2"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 13,
+            "width": 64,
+            "height": 166
+          },
+          "rgbaHash": "229c501a75dd207997e85bc87dba1347239903d5042e509d355d8134ba67f669"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 13,
+            "width": 63,
+            "height": 166
+          },
+          "rgbaHash": "baac5799273c2738d6673d6c58586347fc2534b32368a748e3e241c2c2ab32a0"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "f9682922b9ed125dafaf144ffa9a408cfac8c0537247788747a0b6e31a9cb15c"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "430aa61ca1fd488f504a512673ef1c179253181b391cbd54c9b5187f58852bd0"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "4f14b850aa6108d51fae7df19987423cc74787a53759e79bca5e50d4d3d94f2d"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 59,
+            "height": 166
+          },
+          "rgbaHash": "15f7ba9f3bb1f2a7837092166cd4e5347729527f00070630ce5f399b3542c572"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 58,
+            "height": 166
+          },
+          "rgbaHash": "a320adb2387e04f84543162a227e66e2f70d0a465180fcc305f845cbfd37786b"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 13,
+            "width": 59,
+            "height": 166
+          },
+          "rgbaHash": "4145a754c5ac87d4c0ce4e26d79ec3cbf7ef623743c9323b71c4cc0f937220ef"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 13,
+            "width": 61,
+            "height": 166
+          },
+          "rgbaHash": "e2fa2680ee2a7fc2e1a075450177957e1a841d5a0fe0072d380fb17b43f65a81"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 13,
+            "width": 63,
+            "height": 166
+          },
+          "rgbaHash": "75a28be215e44ea0e2a7da44f6a06678f375cdeff701ba7fa7b32461d3e44226"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 13,
+            "width": 64,
+            "height": 166
+          },
+          "rgbaHash": "36aa32505e5828bcefba94f1d07e156ade68add9458b73955f793428fd0340d8"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 13,
+            "width": 63,
+            "height": 166
+          },
+          "rgbaHash": "4469df7092da428fc682644f280c685038e9720382cd16a35a7df999785e4b77"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "4373be68d8228b613912efc10be160334ef7dc1830586ee57e516917ac57a426"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "6bea3865d648107a151090a654743f117c15693dccd61b3a23a2d9a06b0e9c6f"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "de9f123c0504f4ddef108c21fd6b02ddff63199ed805407cc343319c48962a79"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "7b160600d87eb33fc84bf5bcf7646c3577ca3d7dd690d06f877e90ad2faa9444"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "14b7c0a16000c1d05e63f3753c2e9dee633a4629f16fdfa62aa03c301e47952b"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "ec80f8dbfc38f480b193749a90b67d8cef53b3730bc3f9885d2f05f46e363936"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "9a69051f3327a521812c930af7a831d9ec03f0e51e8a8fea4d6193c7091c9a17"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "5c4167f18e9f182d685c1b7f528d81f337e1a0bab312d65d420feaaf2f0b6689"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 38,
+            "y": 15,
+            "width": 53,
+            "height": 164
+          },
+          "rgbaHash": "aca9a0991c988ddbdb4c323d7a828b5bd7645e7db59c113dabfeed7516f44aad"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "43ed22d81b575c7307341dd29907d6fb0796200f49850069062266f61ed6ba72"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "45c4bc9c5434b967e56cb6bc260e48856cac21d1f122150530c32bc234d259ad"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "f26a111ac80c17ecb6dd951fd0c035e4a737c80f1a9ee806b663913ae6f8f3f8"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "ffe0629fe893a40fa1ceb343401e1eb369d233bdc00cfe6e0931a649651376b0"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "7579980600e10abfbb60ac50f04a3eb907aa9ad45e5464582edfd40cacf9111b"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "8edcebd65abcdd9d6aa37729eb091836a1655cd135b9e6b0d0b28f1e9fb8bddf"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "fdd26575bd21eea38a4b2b52ad885cd0f4103b99107d549cb7f58de2f8f5b91e"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "48a3b95aaefad300e68a992d25e79fe34fe8612c7eae7a2c990a4cd04b5c7b36"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "a510ea16f9ec0c4f368553651047a8f752109487fb19d04366d3e77d4a65ad77"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 52,
+            "height": 164
+          },
+          "rgbaHash": "51b6944e96752e483056daa583350361775fc6ef5feec5f8ae2591119b0e2b5d"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 15,
+            "width": 51,
+            "height": 164
+          },
+          "rgbaHash": "98bc5620c5c1ffe49a631d3f4e0b43b41ec1e2c95ec1d173734fa24295d3aed1"
+        }
+      ]
+    },
+    {
+      "look": 3,
+      "appearance": {
+        "skin": "light",
+        "hair": "afro",
+        "hairColour": "brown",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "role": "player-proof",
+      "path": "look-3.3085c54d218f.png",
+      "hash": "3085c54d218faab708ef3f8303577ac514ab1e927c0495081804a3d44cc70a66",
+      "bytes": 284316,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "5e1d77e71f94e07bcf08d60cb61480089f08328168149acb63248f7a122eda58"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "b5398ab0abe3f676124d190208b2b4615b766774bdc64b9e5ec6886f6210362f"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "7d1e88d8cf8203aa48ea888147739544dbbb208e8b8ae9647ab4543d1991e785"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "ccb621cb60477f5984fb364bace3b8f18e0665f3348e5856be00bf4efecd4f22"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "8c7b3f9cedd23779866688fe9e4ea1f09cec3394736ba283b6b08aadf87e245a"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "712b3e2ffbcc3fc820c3e9b6cd425d998096711373193157a9bf9abdf23a5ad5"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "169d142f7e48785023d5026b96e2db14efb4fd01aafaeabf43975eab77673334"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "0d0bdf4074ce1c2cc3c2e30308b5a2e71b94af49f62f0cc932647f5fc07ba241"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 7,
+            "width": 64,
+            "height": 172
+          },
+          "rgbaHash": "064607f2230985505e1b59b0b4ebbb3531856a60e5086f1b2d24d67aa60ab6ad"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "f9d74800bc452388236d34d55ad1ab4ba8a6097211b8fec588f682900846b79c"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "867d10680abc63a4cfc2e8b8703b88f6aaafa627e4a77d35f7d3e9be9e1a0c73"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "4a7a8ea2aed4bfeac47fa610f518308d58bec47b864906903df347a0f596132c"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "53ee2212ac74e3602eb7cea851f7d995793aa31a12ea2b13b91cdffd794e7e98"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "3e6e8e999d6e810c68cd8ac3f0bf09afd87ad7524b9c85cc6cb1db87dcccd488"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "d6e43bda69a676d8940f117dfe3554603172fca2266397ea93d1d90d2e83a911"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "c3c920e90fba37d9099c67afb26e6a97fa11ad048daa7d678b873ae79f3013ae"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "51b29307a29b35360bd06500ce6e499432610ac751e78d74438b0be4ec7bd3f8"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "b9295720648f060a8398b0fe651b8346457a913e1cc6671245c0d56640ff8cfc"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 7,
+            "width": 64,
+            "height": 172
+          },
+          "rgbaHash": "74605398ad0c13ccb40243d2b9a32562644a1fc1ff6a74cb0f2a6142f09aa040"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "4f1fb15da2faea25bf886eed817cdce99b0864d4c5c6b292bb8b8c00bcd1de38"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "e6f29158549643db05c9525c935bcec183fbf237803f19b6566131bf05aae7af"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "dce2ea714ae227257d44cd5aaa9f8cad1f3532c0ff8fd218397ad48edea30238"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "0b1fd012538b252fa32ce8385a744bc1b4bab51c2f0202ad0d977d2847709af0"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "e11380100807c1e014b8a985147050273a50bcc4a54d4d5f8f01f5df0c027941"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "8cee0638b836a42d317bc01f55d858860f1c17e2836ba4a8bc12533894bcf471"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "ec54f45602fde18fcf17e2ac2fa3c7bd2594abeef41a9dde6f030cd29e741462"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "e71bd6e77b4ca59a5d3941b36a8c5bc2e2df13c63f76b38bb66659aa3243195b"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "50e5d05ea5fedeeafaf07c3c339d7c53c7a8a758d399380a3be22e4cb8c15e28"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "a62d2ea263251bb21e956599d6714571aeb62767d44968eab6af48aa78443ee6"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "60c7317fb06b074d5cc846b2468c4686c4059fff3923b9e46735c43a1a012a11"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "b36107c3a05592cf3b6e76f3fddd8aaeef75ccd2baac217c730a0e8c983224d3"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "84645e2055a2143a7ed30f1f59213fc80009907bf99982302aee821bda3c1d4c"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "7aa5cd08920d4e1e3e02375d931d22ac8e9a5a2cd4affb9e34244a92f6d12c54"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "45a5ddf940c5b5363fd878648c5a939ac5b2b8526393acd8967607942afddde9"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "a5cb83d0d1932dd12fc977d3596a1ca1a08e3a30bae569bd9aa9ef1cccc23c69"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "72f6c286d89e8783b079962aba01b01859705389bd2da6926c2157e70ac472d7"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "8a9df9632592d59765de01345cc1fcca38d60812127ea088221e29f2946f1baf"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "79c22267d27156d2258d3b8a41d20974df8165fcf36111224e6e853bf100b8dc"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "ba14e46ddf721e826bd77d843fa63a6bde7534abc918b5b5d99a3e331bd28a70"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "a533f1421cc8527e333f034edf9b1c928f156cd1b9feeb313da77bd75f8cf40d"
+        }
+      ]
+    },
+    {
+      "look": 4,
+      "appearance": {
+        "skin": "deep",
+        "hair": "afro",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "none"
+      },
+      "role": "fictional-npc-proof",
+      "path": "look-4.9d987d39f7ee.png",
+      "hash": "9d987d39f7ee75869283a4a6d44abee19f8ef8c782083393746dcc1415241a2e",
+      "bytes": 272618,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "1db9b70f4ca660aabdf931889d8953b464e4a8f434b93a907bbb77749f36725c"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "f263c40f9abf699d41afe3121414886655a933f0a4248011fe14a54e46abe254"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "6382cbbae49a3884828201adc6f0d9aa291cec3eae4c2a46dd045fd52b653f91"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "ec4cddf83a3b7c959abc5b85ef9361b696e7f31b509121ec61cc84d70d76fcd8"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "da39131bdecca693e2709afb729130608b5c1f4423b1786ba2f3365e55afc1f9"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "ac36c755c1f6c3b31f6b1777686a70fc0423646dffb6b2912f29cec45d28310b"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "ded267bd9134b1cf0b5693336c1a12e7942d8de4061eff53680ed817c363b62d"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "684fd02707b789cf1369471ed19060642018894a8b390ed7e9bc8e41044ee0d3"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 7,
+            "width": 64,
+            "height": 172
+          },
+          "rgbaHash": "caba65a724090b12373b6ab0e89a291f5ff33e70b92894785ea274b518a9f1dd"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "25be793c79fd5caecedcf705fa9f4d6140075b191837ebf8e95dc7016a7fa079"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "d70edd35cb4b9346de7ca997628761512994e557a82be1a382e490a8d5e2a2b0"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "aabe6faaf33fc8d546cd6c25c79b0aaf1f212f238bdfbe9eb15b8714322a0490"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "8c58aea8e8f997ce021d8b518ca0d293d807289b9740ea2561fa322f511de380"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "ce00889c945853342dcffc08959bcf0e72b0ebdc907fc7b23eff6b54bb204ed3"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "eaf011da4ecc29f1c3376e63dd33591abbcf8a792b4d7a9e8f441b52eaa1b0a5"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 7,
+            "width": 59,
+            "height": 172
+          },
+          "rgbaHash": "5644b81e21130aed35e33b2b7c6d9411db162d0f928070e3f2a024d385743b07"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 7,
+            "width": 61,
+            "height": 172
+          },
+          "rgbaHash": "7b5711a22a291863cb4be57ad222439f8944382e1cf3e94c98886cee0d7f31fd"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "88e6cf993efcbdd3c0c0e4935470d0d18aec7139f21409ee5f5e238258ce66d9"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 7,
+            "width": 64,
+            "height": 172
+          },
+          "rgbaHash": "2a9d032a57c96a35b9bce32e288188b5337e6bb1639985e75ef72369a1c18348"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 7,
+            "width": 63,
+            "height": 172
+          },
+          "rgbaHash": "10cb5af621641331bfd55dad007e422601867a4496210ecc563ceaac406f5cce"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "75d49d2b20b74d267f95ed4c8a071c2075a631c1563d39b043e3c42fc56d57b1"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "b716790e9db6f872609133acad4acd0bf073b85ff6be2f28887c848bf49741c0"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "414d2c01e185578a8ce8f4a5b0511c3410a3e33c1c965d7cd9bc46721c6c9153"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "d25fc79ddf575556acb12411a7259af025d9ed32fde864211a3354d73d73f23d"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "754020518b78a91f6eb30f8a99bb16607a859a7031995dcd389856ee26ced0dc"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "b78277012f34d3d4c3aeb073e676e216be4ea720f2568081ed04c2fcf9eeb3f1"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "28bf4a6e83fbb0292af2cc7667662de5eaf4ce381318e97d3f6232c9d36e8e5b"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "67336cc0587a9da5ac667ae889afa48b40c5a10b2c0fd69c6a90b31a51de9b60"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "81d070745d6c0f71c6baa7ff4131a4e917244eb6eef2b15863b8b3752aa9414f"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "f17374754384da08d5bf5dcf10948041740e07b1f5452aa75b5720a64d948ad3"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "53c3fc5815b1fde560d66265c2bed55c39cbf88706646960cf297d4ce5d4fe64"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "477456d18258867ae79bc573815d89eaebddba1f63ae6cd64b64f4409c2e77cd"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "9b3407972a13d3b4866348e937b60506475b68b0b3cafff3107467b61f9e2094"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "59cd61582dd2814db27a7a2e98980296c59fe046c2781922f5aafd2983c2fff0"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "d10ef3b1705bd0b8b2b726384bcfaabe20811e9ed3eb68761e7850771d2ce0a9"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "948995b73349def0098b2ae127b8ccb2c758d724d724ce7b0d9dde232c2ffbf0"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "f5ecc1e38f0917f3952ef5ca03f077ca830451fbaf9f65fdb391e2b396bab8f7"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "13be5ab4648f57489de3f6f4c82f58b2eb57063d21fcda02ed48c8131a09dc07"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "e4bdbaf29934c537e9221f1386bcb0873572c6f126a711451d1357d25499d598"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 35,
+            "y": 7,
+            "width": 58,
+            "height": 172
+          },
+          "rgbaHash": "a17693ca2e8914450af031475a344ca866e9804decca88f256ea09acf33d11bd"
+        }
+      ]
+    },
+    {
+      "look": 5,
+      "appearance": {
+        "skin": "warm",
+        "hair": "braids",
+        "hairColour": "brown",
+        "top": "lime",
+        "bottom": "skirt",
+        "shoes": "dark",
+        "accessory": "backpack"
+      },
+      "role": "fictional-npc-proof",
+      "path": "look-5.f471106cc7a8.png",
+      "hash": "f471106cc7a8c20c860580a241fc19a64691628bab26597e45aad01a630f96b0",
+      "bytes": 284010,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "89d342f21325953190f3b08a2be5f55c7ce9be00db646f05c84f08a4f5b80ab3"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "b7b977cdc117fe2c318753972fafc00649a6b880b8ed8f8a53fd782109f2bcd8"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "2496e22e198f1e5ee8a83137ab4a98219735fbdc7bc5a2b567660059ee44f5e9"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "68184403d306bac09e88e5a74a714bb5b27135e7790875dcad5bae55ac08ea67"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 58,
+            "height": 165
+          },
+          "rgbaHash": "9ca0e3b33e98de4bc855390cb0210915bef723a372407a18bd37ccd5a9298e46"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "b45fd8dfd1b3e40e2ead45f989b4c2edaea606c4145f16dce56f337f6e26fe27"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "c54b865e2b6a70fbd0cbcca6d77f527af3c8b78cb40d8b8d083fbf25f98d607c"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "0d3be72a5d29cfe83a62f4188c10dd61d4c6178eb6585fc396e899af156ae6cd"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 14,
+            "width": 64,
+            "height": 165
+          },
+          "rgbaHash": "c7d1db16be8ef032a479e18d250678be82a6e7038e5a8a192acb9a9c6f59cdfc"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "17fdc1ff54e7010ff7d7b10414ec12e9390afe92bc06c1bfe050645dcab1012f"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "0d1a2424c1c7e5c879e1c5e0496e81f849dd13622b50c3dbe7adf036c203c373"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "2f6d751231b571a0bd4fe06b8238da06424ff490c401f7880e48a544663b9e2f"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "f9d8de2647dbf671fad452c4c61705008aea45c07a57e3a61ec2f825ab84f3b5"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "d96449fa0ca30772264e6f5120a30c6c2066803b07ec8ae2eb42500855941ed6"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 58,
+            "height": 165
+          },
+          "rgbaHash": "4cefcaef32ee8aade6d44e90c173f8997f6b8c1c685c6a08547dec35364ab9ea"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 34,
+            "y": 14,
+            "width": 59,
+            "height": 165
+          },
+          "rgbaHash": "63981f5d36a9b261ea0c85782557b5d57e9cc2a59dc2eefed7c0b955544d044d"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 165
+          },
+          "rgbaHash": "ec4d5a64a65ee7df6caa4bf619656ee653f77ce7b576494c7a8a3adabab2b0a0"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "f38d5f03db75b3d607551b08832603deaeee054314934d282c47b3ddb3ab8170"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 31,
+            "y": 14,
+            "width": 64,
+            "height": 165
+          },
+          "rgbaHash": "d1bac8ea605edf0ee73e3f0e9462dd3a6f11a82cb3807c5991ad72d416406ce6"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 32,
+            "y": 14,
+            "width": 63,
+            "height": 165
+          },
+          "rgbaHash": "b1a9114a022a6b111ad2494483bba1e8ddf7e374e3c7af6e02d86401e3ebe3c0"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "100ee63afe4c997ff6b9f95368cfb35be226ac012560c5a3988b412209a6466c"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "9991cf54ac7f3620502f0aa3f1f2819f828deb12a6e56a77247409158a68bc38"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "b411152d493ed8b7876fa6dc88664aff7aaeef1c1b669c7002cb6037b1e1e5c5"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "7776f88367f11afce6141e65cc9fc68aef4c051b32401690538eee0ef394eb1e"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "cf568a8852f2126b8e3cc9e4f04441a24e45b4e253fa9c2201b87ffd0b466a0e"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "ea745321a63fd31c1bb5083a848a7d05150cb565c2c784f7b93b59d2afaa50a9"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "637e4f0b557e0740794795ca42336589e63a61eb30c4c8dcb607e4849c5a135f"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "ac24f7c151152f86d5a5602145c0eb279fcac0987270c04beb794223d8d08eb8"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 38,
+            "y": 14,
+            "width": 53,
+            "height": 165
+          },
+          "rgbaHash": "217c14bbd31bf0648e70f43d03d4d787404d6b7920132cd1969e530f015c8d19"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 40,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "affe152097bc17f97bbf42cea092a273726f8452adc23a854dd1b0b83383fb2d"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "1bc8fdeac2bcd9b7c5df1fc9c39934174af8dd827153275fcf5ddc9f6d75aca5"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "ce8ed0dd8774d1ca0b582989709386465ce64943b4f45f4fe783065ca7792627"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "1d3a364499931e2aab5d469a2c8178e16d1f2f6537b254f39fe783ae6b43aea7"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "5ca1563e82b0459fa471a033933c319f13c55b80f708c4531dd408d0a28b20f8"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "eabb120e248c937c694530ade7d0c53a28f42dca5dead72fac53c715c9d52023"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "02120725d22d414bba578e9feeed0319cf52a4ff29463f0acb4a094f92f2c196"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "d7a5324e2a46d71bf59e4fbcd2e50026260ce6dbed99bb3ef9d39b33bd8d1c1e"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "5621dcfc57db3703f270a75ce27a6b411cbbceac05bec10327209721d0ed8c46"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 52,
+            "height": 165
+          },
+          "rgbaHash": "c57c15bed5a447e857ac78993907601487566c33cbbc4be1ca1ea82dac012ff0"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "bodyAlpha": {
+            "x": 37,
+            "y": 14,
+            "width": 51,
+            "height": 165
+          },
+          "rgbaHash": "ce08bb5d429f7d6aac32e31c5bff25c10cd5f9604add64f6c112bca933ac2992"
+        }
+      ]
+    }
+  ]
+}

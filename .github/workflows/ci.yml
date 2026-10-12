@@ -35,8 +35,12 @@ jobs:
       - run: pnpm build
       - name: Verify original character proof integrity (not visual approval)
         run: node scripts/art/verify-student.mjs
+      - name: Verify M1 intake, modular source and exported poses (not visual approval)
+        run: node scripts/art/verify-m1.mjs
       - run: pnpm check:world-budgets
       - run: pnpm exec playwright install --with-deps chromium
+      - name: Capture isolated actual Phaser M1 proof (no gameplay authority)
+        run: node scripts/art/capture-m1.mjs
       - run: pnpm test:e2e
       - run: pnpm audit --audit-level high
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -54,6 +58,13 @@ jobs:
         with:
           name: browser-measurements
           path: test-results/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: m1-character-proof
+          path: |
+            art/characters/m1/evidence/
+            art/characters/m1/export/
   sast:
     runs-on: ubuntu-latest
     permissions:
@@ -80,7 +91,7 @@ jobs:
           semgrep scan --config p/javascript --config p/nodejs --oss-only
           --metrics=off --disable-version-check --strict --error --jobs 2
           --exclude '**/node_modules/**' --exclude '**/.next/**' --exclude '**/dist/**'
-          --json --output /output/semgrep.json apps packages scripts
+          --json --output /output/semgrep.json apps packages scripts art/characters/m1
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:

@@ -1,0 +1,191 @@
+{
+  "status": "UNAPPROVED M1 CANDIDATE ONLY \u2014 NOT A RUNTIME ASSET",
+  "sourceZipSha256": "54a95d22452eb84ee7b88ffaef6e4c346091d20cd351badcd0035d951bac164b",
+  "archiveEntries": 36,
+  "distinctFrameFiles": 28,
+  "atlasCells": 32,
+  "openRasterFrameLayers": 32,
+  "limitations": [
+    "AI-generated sprite-frame study, not modular anatomy/clothing/hair layers",
+    "Four directional atlas rows reuse frames and mirror right-facing source",
+    "No authored idle frames, two NPC variants or full saved Appearance mapping",
+    "No actual Phaser 360x800 proof; never promote into public runtime assets"
+  ],
+  "files": [
+    {
+      "name": "README.txt",
+      "bytes": 1832,
+      "sha256": "06b2f57aa8415287fdf0a31ff67d2bca459ff2b19fea133c4b585a50c6dfed72"
+    },
+    {
+      "name": "cw-student-down-walk-00.png",
+      "bytes": 21099,
+      "sha256": "c986438c68bb1fd36a3ca7b99e952f9e036257c69552f5e4ec376897f40e6ec6"
+    },
+    {
+      "name": "cw-student-down-walk-01.png",
+      "bytes": 21188,
+      "sha256": "6848fe1b574b63a72b86752c600cc354fb64d6aa2d094b5c853562667d31d499"
+    },
+    {
+      "name": "cw-student-down-walk-02.png",
+      "bytes": 20505,
+      "sha256": "03c98eef0ebff64336f09c95675efda62d2135c3a51f3724231a213b9c8c0f4f"
+    },
+    {
+      "name": "cw-student-down-walk-03.png",
+      "bytes": 20624,
+      "sha256": "8d244cdee4e294acb41a2e3d6ae9d09c431bc7cf094468260f49a75ff96fb815"
+    },
+    {
+      "name": "cw-student-down-walk-04.png",
+      "bytes": 20790,
+      "sha256": "c2579d2f416da8f876df20921f8bd36ac49b18fa1930da3be28c693cce915aa1"
+    },
+    {
+      "name": "cw-student-down-walk-05.png",
+      "bytes": 20817,
+      "sha256": "bb9f2ba03e77ba9b7905982df2825aecda976fd7ca38f2cbd686315c966d41c0"
+    },
+    {
+      "name": "cw-student-down-walk-06.png",
+      "bytes": 21145,
+      "sha256": "571add8bca3a5b7ce58ca32ae994bf9f2312ac585f9b1dfb4d81e607e7ab7942"
+    },
+    {
+      "name": "cw-student-down-walk-07.png",
+      "bytes": 20368,
+      "sha256": "d2514a05a48bbe7d02df3865b6cec2d9399275780fa035dd27981ab350bf9043"
+    },
+    {
+      "name": "cw-student-left-walk-00.png",
+      "bytes": 20731,
+      "sha256": "6016567fb0ec47c7e7525efa7c258aa993eab8e82d038bb0ba7a04110eee7af9"
+    },
+    {
+      "name": "cw-student-left-walk-01.png",
+      "bytes": 22118,
+      "sha256": "746edcb8527b1321b7ad2fb01a05a93e91648a4f8d8c86bb946423a419b747d7"
+    },
+    {
+      "name": "cw-student-left-walk-02.png",
+      "bytes": 22187,
+      "sha256": "38c221668545d85954d8a1733b1c8c1cde2289676bb63afa80b86b7fbaeaa16e"
+    },
+    {
+      "name": "cw-student-left-walk-03.png",
+      "bytes": 21399,
+      "sha256": "c4064de49ff40f590d33dc4e1b3ed57554636d6233dd463e1fb85fbda226ce8b"
+    },
+    {
+      "name": "cw-student-left-walk-04.png",
+      "bytes": 21860,
+      "sha256": "e9079580474b0171b98d8f7a86487e4a840950bf55517f637f9d155de9b5e5c4"
+    },
+    {
+      "name": "cw-student-left-walk-05.png",
+      "bytes": 22257,
+      "sha256": "198893ee42ed757c8915f5ff48b1e7fe002332a784e07c8cb432eacc83aee340"
+    },
+    {
+      "name": "cw-student-left-walk-06.png",
+      "bytes": 21987,
+      "sha256": "64d9447fb10417789dcdcbfe647f619947986773a7263eacefe791a342b0e7fc"
+    },
+    {
+      "name": "cw-student-m1-candidate-atlas.json",
+      "bytes": 4794,
+      "sha256": "14584f8f2fd96aa7e519c06fb3c7a57c490d08c44521caa22d0491aeae8a079b"
+    },
+    {
+      "name": "cw-student-m1-candidate-atlas.png",
+      "bytes": 435316,
+      "sha256": "1a1fd26f8b287690f9fdbc48de36dadd6261725855ed1b7df807938e5808a6f4"
+    },
+    {
+      "name": "cw-student-m1-candidate-preview.jpg",
+      "bytes": 156433,
+      "sha256": "cd2eb22df0b29cf5361069c881ec57edee4bdcad56959770209b0a558de679b9"
+    },
+    {
+      "name": "cw-student-m1-editable-frames.ora",
+      "bytes": 576880,
+      "sha256": "8d92bf84b3383b098a2698f2dbb00202364e35261d039195259559267c08d44f"
+    },
+    {
+      "name": "cw-student-right-walk-00.png",
+      "bytes": 22726,
+      "sha256": "611f1ddd3bb4ca7c469078e9a92bd257d325e16a55f5dc936b449b3d0430fc4f"
+    },
+    {
+      "name": "cw-student-right-walk-01.png",
+      "bytes": 23341,
+      "sha256": "f2eef7038d9d541d2e87ccd0ee70471e6f3507f9ff036f73c89d71aeaffdf94f"
+    },
+    {
+      "name": "cw-student-right-walk-02.png",
+      "bytes": 22669,
+      "sha256": "e74795ee00c7f85ff69cdeea55455cf7d904285bbcac9dd8a0239b4c54bc7811"
+    },
+    {
+      "name": "cw-student-right-walk-03.png",
+      "bytes": 23062,
+      "sha256": "46a1d35447af6dd6f0812f9b1dd9ea925cba8f2c120aec235f4c0b599616cb47"
+    },
+    {
+      "name": "cw-student-right-walk-04.png",
+      "bytes": 23083,
+      "sha256": "6f05b1c25efd4fcf10e157643a587e1d8426e30fb26adbc2c9ce72c58b2b0de3"
+    },
+    {
+      "name": "cw-student-right-walk-05.png",
+      "bytes": 22445,
+      "sha256": "d9a942ff128e651bf15e31c29b7cdc21e71993cff18e7df2c46562680d8c1d8e"
+    },
+    {
+      "name": "cw-student-right-walk-06.png",
+      "bytes": 19673,
+      "sha256": "ca76cfe98559183fe41880fa5f40b77b05e25bcbf6419b369bed7a6e92a5abe9"
+    },
+    {
+      "name": "cw-student-up-walk-00.png",
+      "bytes": 21368,
+      "sha256": "6399d4703d93b16ce24fc8e78ee0c0b48bf9340bc14034fe2bc571e3c5663b66"
+    },
+    {
+      "name": "cw-student-up-walk-01.png",
+      "bytes": 20937,
+      "sha256": "ff50cc88e2ab7eb58422470cf84df6b63bdf380b2661a9c6e90eba4714a65d2a"
+    },
+    {
+      "name": "cw-student-up-walk-02.png",
+      "bytes": 20437,
+      "sha256": "9176f9744c0bba50cb2b5c91750d7e788ef9add10893abe54ff8bad8c8128b5f"
+    },
+    {
+      "name": "cw-student-up-walk-03.png",
+      "bytes": 20968,
+      "sha256": "7ad1b19c168a499a1d17d8d084afcc919d66138b6ca0d7cd340c8e49efd33b76"
+    },
+    {
+      "name": "cw-student-up-walk-04.png",
+      "bytes": 21603,
+      "sha256": "86ba22cbf1f460fc2646399204d63a89d07420eeb7b9387a65ed7acb82e5bed7"
+    },
+    {
+      "name": "cw-student-up-walk-05.png",
+      "bytes": 21083,
+      "sha256": "e5b9784b001defbae9af352aeec6c9344a541ff1634a224921d21238610a543f"
+    },
+    {
+      "name": "source-character-sheet.png",
+      "bytes": 1871459,
+      "sha256": "d87278d96b0cfe9327154729cabf7793656d7a7879e7c9798dc5303754d59347"
+    },
+    {
+      "name": "split_sheet.py",
+      "bytes": 4746,
+      "sha256": "f311af22e5327fa7742e737b2a9c0abc5def5db403a5781f005176d8ab4373d8"
+    }
+  ]
+}
