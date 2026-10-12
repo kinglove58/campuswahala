@@ -1,5 +1,6 @@
 /* global Phaser, document, window, performance */
 import { WorldEngine, blocked } from "../../../packages/game-engine/src/index";
+import { drawBaselineGround } from "./proof-ground.mjs";
 // This file is bundled only by the isolated proof server; no app imports it.
 const spec = await (await fetch("/spec.json")).json();
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -41,7 +42,7 @@ class Proof extends Phaser.Scene {
     for (const asset of spec.world.assetBundles.filter((a) =>
       visible.some((z) => z.bundle === a.id),
     ))
-      this.load.svg(asset.id, asset.path);
+      this.load.svg(asset.id, asset.path, { width: 64, height: 80 });
     for (const look of [0, 4, 5])
       this.load.image(`look-${look}`, `/atlas/${spec.atlases[look].path}`);
     this.load.on("loaderror", (file) => observations.errors.push(file.key));
@@ -49,55 +50,13 @@ class Proof extends Phaser.Scene {
   create() {
     scene = this.scene.get("cw-m1-proof");
     const w = spec.world;
-    this.add
-      .rectangle(
-        w.bounds.width / 2,
-        w.bounds.height / 2,
-        w.bounds.width,
-        w.bounds.height,
-        w.palette.ground,
-      )
-      .setDepth(-100);
-    const roads = this.add.graphics().setDepth(-90);
-    for (const road of [...w.roads, ...w.paths]) {
-      roads.lineStyle(road.width + 12, 0xe7dbc1);
-      roads.strokePoints(road.points);
-      roads.lineStyle(
-        road.width,
-        road.id.includes("road") ? 0x7f8580 : 0xe7d6ac,
-      );
-      roads.strokePoints(road.points);
-    }
-    for (const asset of w.assetBundles) {
-      const zone = w.zones.find((z) => z.bundle === asset.id);
-      if (zone && this.textures.exists(asset.id))
-        this.add
-          .image(zone.x, zone.y, asset.id)
-          .setOrigin(0)
-          .setDepth(-60)
-          .setDisplaySize(zone.width, zone.height);
-    }
-    // Unmodified v2 geometry/palette: deliberately not an M3 exterior upgrade.
-    for (const b of w.buildings) {
-      this.add
-        .rectangle(
-          b.x + b.width / 2,
-          b.y + b.height / 2,
-          b.width,
-          b.height,
-          b.color ?? w.palette.wall,
-        )
-        .setDepth(100 + b.y);
-      this.add
-        .rectangle(
-          b.x + b.width / 2,
-          b.y + 12,
-          b.width + 10,
-          30,
-          w.palette.roof,
-        )
-        .setDepth(101 + b.y);
-    }
+    const visible = engine.visibleZones({
+      x: engine.position.x - window.innerWidth / proofZoom / 2,
+      y: engine.position.y - (window.innerHeight - 69) / proofZoom / 2,
+      width: window.innerWidth / proofZoom,
+      height: (window.innerHeight - 69) / proofZoom,
+    });
+    drawBaselineGround(this, w, visible);
     for (const id of [0, 4, 5]) this.register(id);
     this.player = this.add
       .sprite(engine.position.x, engine.position.y, "look-0", "down-idle-0")
@@ -157,21 +116,42 @@ class Proof extends Phaser.Scene {
           frames: atlas.frames
             .filter((f) => f.direction === dir && f.state === state)
             .map((f) => ({ key: `look-${id}`, frame: f.name })),
-          frameRate: state === "idle" ? 2 : 8,
+          frameRate: state === "idle" ? 2 : spec.gait.fps,
           repeat: -1,
         });
   }
   update(_time, delta) {
     if (!this.player) return;
     const old = { ...engine.position };
-    engine.tick(delta, {
+    const input = {
       x:
         Number(this.keys.RIGHT.isDown || this.keys.D.isDown) -
         Number(this.keys.LEFT.isDown || this.keys.A.isDown),
       y:
         Number(this.keys.DOWN.isDown || this.keys.S.isDown) -
         Number(this.keys.UP.isDown || this.keys.W.isDown),
-    });
+    };
+    const motionFacing =
+      input.x || input.y
+        ? Math.abs(input.x) > Math.abs(input.y)
+          ? input.x < 0
+            ? "left"
+            : "right"
+          : input.y < 0
+            ? "up"
+            : "down"
+        : lastFacing;
+    // ART LAB ONLY: pace the existing cosmetic engine to the exported plant travel.
+    // Production engine remains 230 world units/s; no academic/life clock is used.
+    const cycleSpeed = spec.gait.projectedStride[motionFacing] * scale;
+    engine.tick((delta * cycleSpeed) / 230, input);
+    observations.pace = {
+      worldUnitsPerSecond: cycleSpeed,
+      sourceUnitsPerCycle: spec.gait.projectedStride[motionFacing],
+      cycleSeconds: 8 / spec.gait.fps,
+      engineDeltaRatio: cycleSpeed / 230,
+      productionSpeedChanged: false,
+    };
     const dx = engine.position.x - old.x,
       dy = engine.position.y - old.y;
     const moving = Math.hypot(dx, dy) > 0.01;
@@ -209,12 +189,32 @@ class Proof extends Phaser.Scene {
     observations.state = state;
     observations.look = selected;
     observations.frame = this.player.frame.name;
+    observations.locomotion ??= [];
+    if (
+      moving &&
+      observations.locomotion.length < 96 &&
+      observations.locomotion.at(-1)?.frame !== this.player.frame.name
+    )
+      observations.locomotion.push({
+        direction: facing,
+        frame: this.player.frame.name,
+        position: { ...engine.position },
+        worldUnitsPerSecond: cycleSpeed,
+      });
     const key = `${selected}-${facing}-${state}`;
     observations.seen ??= {};
     observations.seen[key] ??= [];
     if (!observations.seen[key].includes(this.player.frame.name))
       observations.seen[key].push(this.player.frame.name);
     observations.position = { ...engine.position };
+    observations.screenFoot = {
+      x:
+        (this.player.x - this.cameras.main.worldView.x) *
+        this.cameras.main.zoom,
+      y:
+        (this.player.y - this.cameras.main.worldView.y) *
+        this.cameras.main.zoom,
+    };
     observations.zoom = this.cameras.main.zoom;
     observations.canvas = {
       width: this.scale.width,
@@ -248,6 +248,7 @@ const game = new Phaser.Game({
   backgroundColor: "#b9c996",
   scene: Proof,
   render: { antialias: true, roundPixels: true },
+  fps: { target: 30, forceSetTimeOut: true },
 });
 lookInput.addEventListener("change", () => {
   const next = Number(lookInput.value);

@@ -3,9 +3,12 @@ import assert from "node:assert/strict";
 import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
 import { startProof } from "./m1-proof-server.mjs";
-const out = "art/characters/m1/evidence";
+const masterFirst = process.argv.includes("--master-first");
+const out = masterFirst
+  ? "artifacts/m1-master-first/evidence"
+  : "art/characters/m1/evidence";
 await mkdir(out, { recursive: true });
-const { server, port, spec } = await startProof();
+const { server, port, spec } = await startProof({ masterFirst });
 const browser = await chromium.launch({
   executablePath: process.env.CW_CHROMIUM_EXECUTABLE || undefined,
   args: [
@@ -17,12 +20,14 @@ const browser = await chromium.launch({
 });
 const rows = [];
 try {
-  for (const [width, height] of [
-    [360, 640],
-    [360, 800],
-    [390, 844],
-    [1280, 900],
-  ]) {
+  for (const [width, height] of masterFirst
+    ? [[360, 800]]
+    : [
+        [360, 640],
+        [360, 800],
+        [390, 844],
+        [1280, 900],
+      ]) {
     const context = await browser.newContext({
       viewport: { width, height },
       deviceScaleFactor: 1,
@@ -78,10 +83,22 @@ try {
             { timeout: 5000 },
           );
           await page.screenshot({ path: `${out}/${dir}-${state}-360x800.png` });
+          if (state === "idle") {
+            const foot = await page.evaluate(() => window.__cwM1.screenFoot);
+            await page.screenshot({
+              path: `${out}/native-master-${dir}-crop.png`,
+              clip: {
+                x: Math.max(0, Math.floor(foot.x - 55)),
+                y: Math.max(69, Math.floor(69 + foot.y - 95)),
+                width: 110,
+                height: 115,
+              },
+            });
+          }
         }
       await page.selectOption("#motion", "idle");
       await page.selectOption("#direction", "down");
-      for (const look of [1, 2, 3, 0]) {
+      for (const look of masterFirst ? [0] : [1, 2, 3, 0]) {
         await page.selectOption("#look", String(look));
         await page.waitForFunction(
           (id) => window.__cwM1.look === id && !window.__cwM1.switching,
@@ -96,14 +113,29 @@ try {
       await page.locator("canvas").focus();
       const before = await page.evaluate(() => ({ ...window.__cwM1.position }));
       await page.keyboard.down("ArrowRight");
-      await page.waitForTimeout(220);
-      await page.keyboard.up("ArrowRight");
+      try {
+        await page.waitForFunction(
+          (old) => window.__cwM1.position.x > old.x + 4,
+          before,
+          { timeout: 5000 },
+        );
+      } finally {
+        await page.keyboard.up("ArrowRight");
+      }
       const after = await page.evaluate(() => ({ ...window.__cwM1.position }));
       assert(after.x > before.x);
       assert.equal(await page.evaluate(() => window.__cwM1.direction), "right");
       await page.screenshot({ path: `${out}/keyboard-movement-360x800.png` });
       await page.locator("canvas").click({ position: { x: 150, y: 390 } });
-      await page.waitForTimeout(450);
+      await page.waitForFunction(
+        (old) =>
+          Math.hypot(
+            window.__cwM1.position.x - old.x,
+            window.__cwM1.position.y - old.y,
+          ) > 4,
+        after,
+        { timeout: 5000 },
+      );
       const tapped = await page.evaluate(() => ({ ...window.__cwM1.position }));
       assert(Math.hypot(tapped.x - after.x, tapped.y - after.y) > 0);
       initial.interaction = {
@@ -112,6 +144,48 @@ try {
         tapped,
         kind: "existing WorldEngine cosmetic keyboard/pointer movement only",
       };
+      const played = [];
+      for (const [key, dir, axis, sign] of [
+        ["ArrowRight", "right", "x", 1],
+        ["ArrowDown", "down", "y", 1],
+        ["ArrowLeft", "left", "x", -1],
+        ["ArrowUp", "up", "y", -1],
+      ]) {
+        await page.locator("canvas").focus();
+        const start = await page.evaluate(() => ({
+          ...window.__cwM1.position,
+        }));
+        await page.keyboard.down(key);
+        try {
+          await page.waitForFunction(
+            ({ start, axis, sign }) =>
+              (window.__cwM1.position[axis] - start[axis]) * sign >=
+              window.__cwM1.pace.worldUnitsPerSecond * 1.25,
+            { start, axis, sign },
+            { timeout: 10000 },
+          );
+          const walking = await page.evaluate(() =>
+            structuredClone(window.__cwM1),
+          );
+          assert.equal(walking.direction, dir);
+          assert.equal(walking.state, "walk");
+          assert.equal(walking.pace.productionSpeedChanged, false);
+          assert(walking.bodyPercent >= 8 && walking.bodyPercent <= 12);
+          assert.equal(walking.pace.cycleSeconds, 1);
+          played.push({
+            direction: dir,
+            start,
+            end: walking.position,
+            pace: walking.pace,
+          });
+          await page.screenshot({
+            path: `${out}/played-walk-${dir}-360x800.png`,
+          });
+        } finally {
+          await page.keyboard.up(key);
+        }
+      }
+      initial.playedFourDirections = played;
     }
     assert.deepEqual(issues, []);
     assert(!requests.some((url) => url.includes("/api/")));
@@ -159,6 +233,13 @@ try {
         scaleMethod:
           "exported body alpha bounds × live sprite scale × live camera zoom / measured canvas height; excludes ground shadow",
         productionRuntimeChanged: false,
+        groundComposition:
+          "read-only adaptation of existing v2 CampusScene floor/buildings/decorations; separate UI and two art-proof NPCs; no M3 asset upgrade",
+        masterFirst,
+        capturedPlayerLooks: masterFirst ? [0] : [0, 1, 2, 3],
+        comparisonVariants: masterFirst
+          ? "prior rejected 12248aa atlases, not current variant acceptance"
+          : "six current-source player/NPC examples",
         rows,
         reduced,
       },
@@ -167,7 +248,7 @@ try {
     ) + "\n",
   );
   console.log(
-    `M1 actual Phaser proof passed: ${rows.length} viewports, eight states, four player looks, two NPCs, movement, bounded textures and reduced motion. Visual approval pending.`,
+    `M1 actual Phaser proof passed: ${rows.length} viewports, eight states, ${masterFirst ? "one master (old comparison NPCs)" : "four player looks, two current NPCs"}, movement, bounded textures and reduced motion. Visual approval pending.`,
   );
 } finally {
   await browser.close();

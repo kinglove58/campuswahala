@@ -90,3 +90,5 @@ Phase 4 campus life and Wahala merged at `51971dd`; apply migration 008. Its pos
 ### M1 in-house character prototype (review-only)
 
 The supplied ZIP has been checksum-verified and preserved outside runtime. [M1 source and Phaser evidence](docs/phase-4.2-m1-intake-review.md) document the new editable vector/OpenRaster candidate, directional animation and canonical Appearance mapping. It is an isolated art laboratory, not the production character/room upgrade. ART REVIEW BLOCKER and human visual approval remain; PR #17 is draft and M2?M6/Phase 5 are not started.
+
+The current draft PR #17 M1 character-quality candidate and played Phaser evidence are documented in [M1 refinement review](docs/phase-4.2-m1-refinement-review.md). M1 still requires explicit visual approval; M2-M6 and Phase 5 have not started.

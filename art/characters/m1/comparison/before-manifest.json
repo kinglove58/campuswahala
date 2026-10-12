@@ -1,0 +1,18 @@
+{
+  "commit": "12248aacbecae885cb7905cf9279457fb141c96c",
+  "status": "reviewer-rejected prior M1, comparison only",
+  "files": [
+    {
+      "originalPath": "art/characters/m1/export/walk-board.png",
+      "path": "before-walk-board.png",
+      "bytes": 547451,
+      "sha256": "35b9cef9fed95b4edee701a03489a3cbc00069dd4046cd9e369a5288b79ae156"
+    },
+    {
+      "originalPath": "art/characters/m1/export/close-up.png",
+      "path": "before-master-close-up.png",
+      "bytes": 88522,
+      "sha256": "36a0d22dfc7709a05f9898e05009d9868ae7965149e84388c478d75ac6fe950d"
+    }
+  ]
+}

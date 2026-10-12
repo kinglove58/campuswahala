@@ -10,6 +10,7 @@ import {
   looks,
   validateLook,
 } from "../../art/characters/m1/student.mjs";
+import { gait, pose } from "../../art/characters/m1/forms.mjs";
 const require = createRequire(import.meta.url);
 const { parseAppearance } = require("../../packages/game-engine/dist");
 const sharp = createRequire(
@@ -19,15 +20,28 @@ const spec = JSON.parse(
   await readFile("art/characters/m1/export/manifest.json", "utf8"),
 );
 const hash = (data) => createHash("sha256").update(data).digest("hex");
-assert.equal(
-  spec.sourceHash,
-  hash(
-    (await readFile("art/characters/m1/student.mjs", "utf8")).replace(
-      /\r\n/g,
-      "\n",
+const sourceFiles = await Promise.all(
+  ["student.mjs", "forms.mjs"].map(async (path) => ({
+    path,
+    hash: hash(
+      (await readFile(`art/characters/m1/${path}`, "utf8")).replace(
+        /\r\n/g,
+        "\n",
+      ),
     ),
-  ),
+  })),
 );
+assert.deepEqual(spec.sourceFiles, sourceFiles);
+assert.equal(spec.sourceHash, hash(JSON.stringify(sourceFiles)));
+assert.deepEqual(spec.gait, gait);
+assert.equal(pose("walk", 0).near.phase, "contact");
+assert.equal(pose("walk", 4).far.phase, "contact");
+assert(pose("walk", 6).near.bend >= 15 && pose("walk", 6).near.lift >= 11);
+for (let frame = 0; frame < 4; frame++)
+  assert.equal(
+    pose("walk", frame).near.travel - pose("walk", frame + 1).near.travel,
+    9,
+  );
 assert.deepEqual(choices, spec.choices);
 assert.deepEqual(geometry, spec.geometry);
 let combinations = [{}];
@@ -52,6 +66,7 @@ for (const look of combinations) {
 assert.throws(() => svg({ ...looks[0], hair: "unknown" }));
 assert.throws(() => svg(looks[0], "diagonal"));
 assert.throws(() => svg(looks[0], "walk", 8));
+assert.throws(() => svg(looks[0], "down", "idle", 0, true, "untrusted"));
 let byteCount = 0;
 for (const atlas of spec.atlases) {
   assert.deepEqual(atlas.appearance, looks[atlas.look]);

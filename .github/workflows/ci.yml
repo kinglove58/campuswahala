@@ -37,6 +37,8 @@ jobs:
         run: node scripts/art/verify-student.mjs
       - name: Verify M1 intake, modular source and exported poses (not visual approval)
         run: node scripts/art/verify-m1.mjs
+      - name: Verify prior M1 comparison provenance and regenerate labeled sheets
+        run: node scripts/art/compare-m1.mjs
       - run: pnpm check:world-budgets
       - run: pnpm exec playwright install --with-deps chromium
       - name: Capture isolated actual Phaser M1 proof (no gameplay authority)
@@ -65,6 +67,7 @@ jobs:
           path: |
             art/characters/m1/evidence/
             art/characters/m1/export/
+            art/characters/m1/comparison/
   sast:
     runs-on: ubuntu-latest
     permissions:

@@ -90,3 +90,7 @@ No runtime product code, academic/life authority, balancing, private caches, dat
 ## Supplied in-house M1 follow-up ? 12 October 2026
 
 The actual reviewer-hash-matched ZIP is now staged and verified. A new modular vector/52-layer OpenRaster candidate and an isolated actual Phaser proof are available in [M1 intake review](phase-4.2-m1-intake-review.md). Canonical Appearance contracts, six examples, 40 unique poses each, four viewport captures, movement and reduced motion are exercised. This resolves binary availability and adds real M1 engineering evidence; it does not resolve the approved visual-quality standard or install production sprites. ART REVIEW BLOCKER remains. All earlier rejected sources, baseline and transport/security fixes are preserved. M2?M6/Phase 5 remain unstarted; PR #17 remains draft/unmerged. Final exact head and CI are in the updated PR body.
+
+## Current M1 quality refinement
+
+[Latest M1 review and visual evidence](phase-4.2-m1-refinement-review.md) supersedes the 12248aa art checkpoint for current source/evidence. Human approval remains open. M2-M6/Phase 5 remain blocked; PR #17 draft/unmerged. Exact current head and CI are in the PR body.

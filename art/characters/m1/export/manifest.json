@@ -1,7 +1,36 @@
 {
   "status": "M1 VISUAL REVIEW REQUIRED; NOT RUNTIME",
-  "sourceHash": "205e56ea689f9e1c40652111fa9c7a64e5be9ac4925b62ddc2fc8775eae17847",
-  "version": "m1-layered-1",
+  "sourceHash": "b2c04871e15b418c5b8b5b7ff03fc5089906e3a5eec44b3438896431b15f8e2d",
+  "sourceFiles": [
+    {
+      "path": "student.mjs",
+      "hash": "65163fed7b9efea3c117a0d5978fa175f3013973f0de941fdd2f60bd1687de3a"
+    },
+    {
+      "path": "forms.mjs",
+      "hash": "24975abef7dcfb462e9cd20bdad35cfc86a1e9a860e1d36481cd81e8af54e307"
+    }
+  ],
+  "gait": {
+    "fps": 8,
+    "projectedStride": {
+      "down": 39.6,
+      "up": 39.6,
+      "left": 72,
+      "right": 72
+    },
+    "phases": [
+      "contact",
+      "plant",
+      "passing-stance",
+      "push-off",
+      "opposite-contact",
+      "lift",
+      "passing-swing",
+      "lower"
+    ]
+  },
+  "version": "m1-layered-2",
   "geometry": {
     "width": 128,
     "height": 192,
@@ -83,9 +112,9 @@
         "accessory": "backpack"
       },
       "role": "player-proof",
-      "path": "look-0.2eb591aeed03.png",
-      "hash": "2eb591aeed03836a25f4d4cb2a606023f4b2f25c9b08e99f0cbd810469e11446",
-      "bytes": 287622,
+      "path": "look-0.f635627e22b6.png",
+      "hash": "f635627e22b632f351841dd21309dada152e35f9631c1008653b35935041629c",
+      "bytes": 438754,
       "width": 1024,
       "height": 960,
       "rgbaBytes": 3932160,
@@ -95,680 +124,720 @@
           "state": "idle",
           "index": 0,
           "name": "down-idle-0",
+          "phase": "still-breath",
           "x": 0,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 12,
-            "width": 61,
-            "height": 167
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "004f578a165f2b88464a036a08b269e8ddf69a3ad47b88364842712a0be6702b"
+          "rgbaHash": "a8b86eafd94a7c27635456198442bf8871f0cc6457ad985f2284be0faa9fece2"
         },
         {
           "direction": "down",
           "state": "idle",
           "index": 1,
           "name": "down-idle-1",
+          "phase": "still-breath",
           "x": 128,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 12,
-            "width": 61,
-            "height": 167
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "c6cb8c4c0caca0465bbefe54cf971a6377ba728e895bf008d10833f6983b9cc2"
+          "rgbaHash": "b42a3e018f3eaddf8cb36f03c7cb1807304120763fa1711a052deea4f8fb4e05"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 0,
           "name": "down-walk-0",
+          "phase": "contact",
           "x": 256,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 12,
-            "width": 61,
-            "height": 167
+            "x": 36,
+            "y": 15,
+            "width": 56,
+            "height": 170
           },
-          "rgbaHash": "24f7e41dbadb7c755ff5346bb7419d2ed47a0ccb0f39fecb1526f38a719994c0"
+          "rgbaHash": "1bc0395109aa22557038fd000bdc493954a0ec4781cee322ca7b3621a0e5696e"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 1,
           "name": "down-walk-1",
+          "phase": "plant",
           "x": 384,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 12,
-            "width": 59,
-            "height": 167
+            "x": 36,
+            "y": 15,
+            "width": 57,
+            "height": 165
           },
-          "rgbaHash": "27929f5f437fe1c33cce52bc4af233582ad1cadb118d93fb974357aa1bd0d21f"
+          "rgbaHash": "c32331c254c8e53544dfb1c1303020c9a20e173848862a624af267e9c1d72e50"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 2,
           "name": "down-walk-2",
+          "phase": "passing-stance",
           "x": 512,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 12,
-            "width": 58,
-            "height": 167
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "63881764181f4167eaeb4871d6d5e5679a978c8601b2f077ff61cee83a0377e4"
+          "rgbaHash": "630dcd7ce38ee7fc5dd68d2127d9bdd0f294a99188f00bacad9727743cccce0a"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 3,
           "name": "down-walk-3",
+          "phase": "push-off",
           "x": 640,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 12,
-            "width": 59,
-            "height": 167
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 159
           },
-          "rgbaHash": "855c5fd8f31081d03d67defd2a89d4a32b87068c8770b62592c4e715fc7be9f1"
+          "rgbaHash": "03ce11198d1766d8421a783a252c4451ed9effabd68d8c0848842f46e7ac006e"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 4,
           "name": "down-walk-4",
+          "phase": "opposite-contact",
           "x": 768,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 12,
-            "width": 61,
-            "height": 167
+            "x": 32,
+            "y": 15,
+            "width": 62,
+            "height": 170
           },
-          "rgbaHash": "587cc771298f5f262cc1cc83ba24d9f2977817109e30e2413511a1294d81a8e1"
+          "rgbaHash": "6fd043a4af8d282cdffa0bf3d8376c4b4ef08022a70ddb399e22916e1ddcb197"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 5,
           "name": "down-walk-5",
+          "phase": "lift",
           "x": 896,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 12,
-            "width": 63,
-            "height": 167
+            "y": 15,
+            "width": 60,
+            "height": 165
           },
-          "rgbaHash": "6867634a092dd0c6272ffc8836c319669aca5eb9fd01d26ceb13064d9be26b36"
+          "rgbaHash": "32839a3e65e3b39d877583f751d6e81134deb4d29d73607c10b53c966f5a3706"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 6,
           "name": "down-walk-6",
+          "phase": "passing-swing",
           "x": 0,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 12,
-            "width": 64,
-            "height": 167
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "2b4ea4df64ff3297a68227f59fc0b5e716d115097085a33815759657c2821b9f"
+          "rgbaHash": "339643b340027bb92f363885a2824f42c0ee8521f8a0d7ea845a966183d126a9"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 7,
           "name": "down-walk-7",
+          "phase": "lower",
           "x": 128,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 12,
-            "width": 63,
-            "height": 167
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 159
           },
-          "rgbaHash": "14c72cc6e3b4faccba8d5cc3a0471a3a123fc035f7ac6b94e349bba863e66d05"
+          "rgbaHash": "ad84993917dd4ba3cbc83f1901631a60659a233164c1e705d0d816e4db7f10d9"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 0,
           "name": "up-idle-0",
+          "phase": "still-breath",
           "x": 256,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "1a204ffc8c217549185badc8ee122315602f0676c56bf9137894e6cfa7c43b15"
+          "rgbaHash": "bfbc735cac3e7fdd2d8444e5440aa914bcaf46b07e584c17af49bad1ea9cd999"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 1,
           "name": "up-idle-1",
+          "phase": "still-breath",
           "x": 384,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "18e7477be99d6141763dfc97ec83087668ed12cdff56e4a08942a2f109e7783a"
+          "rgbaHash": "d9b0e583a71f295e09c7ff94de49a52e9b53025b81a0834cfe4d3fd46ede3868"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 0,
           "name": "up-walk-0",
+          "phase": "contact",
           "x": 512,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
+            "x": 36,
+            "y": 15,
+            "width": 56,
             "height": 166
           },
-          "rgbaHash": "c052d39b34f63bb4e312d939dcbddfc32ac4a0bc0ab455c54ea1bd9d7c50af6d"
+          "rgbaHash": "cd91a4a4b66282d7e5203a60a3d80a4f006db068f6d7a7f6ad0fbf2c07e33395"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 1,
           "name": "up-walk-1",
+          "phase": "plant",
           "x": 640,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 59,
-            "height": 166
+            "x": 36,
+            "y": 16,
+            "width": 57,
+            "height": 154
           },
-          "rgbaHash": "0ad66f2fed452eeb8178116a9c71e9fbcfacb8787082cf54d7a4bfa2b22b4fb6"
+          "rgbaHash": "9d0505d0ce41b38c3e41f8b21768b2aad560165cf152b34a59b14c06fc7f2baa"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 2,
           "name": "up-walk-2",
+          "phase": "passing-stance",
           "x": 768,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 58,
-            "height": 166
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "fc7182cf9729cf722ee2582f421965411a4f6824d0e43228d4bb31536abd5c43"
+          "rgbaHash": "f6438d2a90e858541a20070bfe31771675ea7390450e83c1ae04ae0e7128adec"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 3,
           "name": "up-walk-3",
+          "phase": "push-off",
           "x": 896,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 59,
-            "height": 166
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 164
           },
-          "rgbaHash": "f533827178b1ce48cfee2093d575bd11b9814c509d0c3369f0cf8c9354251753"
+          "rgbaHash": "beda1db69f09ecdbac162530d286b042473002fb6d61f8679512bab9dbb9c0a2"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 4,
           "name": "up-walk-4",
+          "phase": "opposite-contact",
           "x": 0,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
+            "x": 32,
+            "y": 15,
+            "width": 62,
             "height": 166
           },
-          "rgbaHash": "823985fac256755366aabd8a57c0585c0e59f006930ee933bd72ebb406d280ab"
+          "rgbaHash": "0ed3c8d1fbde3fa58ae7943d4cd6b7aed40969180c2c00c70b76d97e5f061476"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 5,
           "name": "up-walk-5",
+          "phase": "lift",
           "x": 128,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 13,
-            "width": 63,
-            "height": 166
+            "y": 16,
+            "width": 60,
+            "height": 154
           },
-          "rgbaHash": "cf05467858eafe436f979cad6e2cbef71515712a7b2f90befbd3739ad642e71b"
+          "rgbaHash": "17bedeadf92c5b8d9fc6c9300d92dd0b9d6239530e59682b3ca4107c15d7937f"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 6,
           "name": "up-walk-6",
+          "phase": "passing-swing",
           "x": 256,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 13,
-            "width": 64,
-            "height": 166
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "76744c182ca3bf2c68c840d41f24774c55cafb14ef802f67b6fd8c7c48f4fd51"
+          "rgbaHash": "4aece85bf75884097818ded7a3eb847b88a8d9593084c74f9b02f7d4ef1953eb"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 7,
           "name": "up-walk-7",
+          "phase": "lower",
           "x": 384,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 13,
-            "width": 63,
-            "height": 166
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 164
           },
-          "rgbaHash": "c3f290559bc1450fa47130afef865be570a62b7b55b5e1114ce5b1a40030722d"
+          "rgbaHash": "f3caa5d51103e8c0ec0639b96bac7d6812f56a4e03466eb74ec06b8881a506c3"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 0,
           "name": "left-idle-0",
+          "phase": "still-breath",
           "x": 512,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 48,
+            "height": 163
           },
-          "rgbaHash": "50acaff1ce5ab8ae1606feb21b33c0b6be561add0255ce248182e6073e4fe2af"
+          "rgbaHash": "5db081aca8be578de6bdaee4ed94e87d7a053ab08d0ede0de83e505971afc218"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 1,
           "name": "left-idle-1",
+          "phase": "still-breath",
           "x": 640,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 49,
+            "height": 163
           },
-          "rgbaHash": "8105fa73a091c838ae4b383b2a47d1f3bff4959f1d59356259059d0152c844a4"
+          "rgbaHash": "47b6f08f89dbb739234f7189e345f086f7c17d15bcc52fa6783bc6e93b8fdd99"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 0,
           "name": "left-walk-0",
+          "phase": "contact",
           "x": 768,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 32,
+            "y": 16,
+            "width": 60,
+            "height": 163
           },
-          "rgbaHash": "8f1256227de33652ff477cb88128b8acafc3ae00456328995f7b6ce695b646c8"
+          "rgbaHash": "2cca2d5bb7ea7619f379672686ed4d6ced1a8328470c784f969b69ee04163e94"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 1,
           "name": "left-walk-1",
+          "phase": "plant",
           "x": 896,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 41,
+            "y": 17,
+            "width": 52,
+            "height": 162
           },
-          "rgbaHash": "c4dca5cf767e94d07fb23051b260797ceb5754240fd8543e5320ebbed7b963ba"
+          "rgbaHash": "ec877ca0e8d4b5bbe9392461a75a3be13817e940942cfe693222c91639ac1137"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 2,
           "name": "left-walk-2",
+          "phase": "passing-stance",
           "x": 0,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 49,
+            "height": 163
           },
-          "rgbaHash": "79c7241a69f6feefeb94113d8b6859dcc31d833b41f258deb92022700e8d23d6"
+          "rgbaHash": "e8eab6a6096dd6b00f1712ddbf49165e228343dd431b832f4dd152efabd44009"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 3,
           "name": "left-walk-3",
+          "phase": "push-off",
           "x": 128,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 31,
+            "y": 16,
+            "width": 60,
+            "height": 164
           },
-          "rgbaHash": "e0e26a59ac42d9de0dbe8b5a50d0ffae98567aff8478866d896ab205594b5ed8"
+          "rgbaHash": "7a5ce13e34ba4c8ffc837485b9a8dce5f3ec7c7d4ffd41a4fd10a0f12a19bd32"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 4,
           "name": "left-walk-4",
+          "phase": "opposite-contact",
           "x": 256,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 25,
+            "y": 16,
+            "width": 67,
+            "height": 163
           },
-          "rgbaHash": "cbe8ab63f41ea0d4507d486a81a885f51d7af815899769d66930565863887836"
+          "rgbaHash": "f108a3b5f6e9e6822fb222bfaddafbb5820b2e922c129a74089ae30f8e4017ca"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 5,
           "name": "left-walk-5",
+          "phase": "lift",
           "x": 384,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 34,
+            "y": 17,
+            "width": 56,
+            "height": 162
           },
-          "rgbaHash": "c1af0ddd37aa794d8490716b48235b570cb35c40fbac209fbd7315e81eeeaad0"
+          "rgbaHash": "c956d9943ab1991fd0fc8ec80c2ca5efa3ef39121a9e6ccf0c98a5a2da4c7272"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 6,
           "name": "left-walk-6",
+          "phase": "passing-swing",
           "x": 512,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 38,
-            "y": 14,
-            "width": 53,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 48,
+            "height": 163
           },
-          "rgbaHash": "46a07901687a16244c395f77b822cb238c6dcaeb8ffd16b2ae6fffdd7bfe7a7c"
+          "rgbaHash": "302f21fbe872c70fe55542805d3c23328d9be3ffc7398e5ee03a36d1cdfd6698"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 7,
           "name": "left-walk-7",
+          "phase": "lower",
           "x": 640,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 38,
+            "y": 16,
+            "width": 53,
+            "height": 164
           },
-          "rgbaHash": "fba584616cef71bba211b3817aa55aec992d6de06b4893146e52353d2301946f"
+          "rgbaHash": "9ec6acdfebedae9110ccd6acf5dc6aafc96cba9d5509eee498c9804440aa03ca"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 0,
           "name": "right-idle-0",
+          "phase": "still-breath",
           "x": 768,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "y": 16,
+            "width": 46,
+            "height": 163
           },
-          "rgbaHash": "e15ccd8335dca4ff141d17dc6d86853bb7250b5a0d5bfb4a4f7b9a2551551fa7"
+          "rgbaHash": "af36b9e305579cb77d47e7524b29d728576cd7760c6f0ab1852d9ff6dec75a28"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 1,
           "name": "right-idle-1",
+          "phase": "still-breath",
           "x": 896,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "y": 16,
+            "width": 46,
+            "height": 163
           },
-          "rgbaHash": "98f609055906a661ed3f6f99ed6bf0ed17881122fb894a3f4b49aa79e2e5d428"
+          "rgbaHash": "5755517f6e9c7f9fdb522f92e4de522fec936aa015b69a573dfd27a4373821ac"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 0,
           "name": "right-walk-0",
+          "phase": "contact",
           "x": 0,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 32,
+            "y": 16,
+            "width": 68,
+            "height": 163
           },
-          "rgbaHash": "c9a9b3716c70506d8845d4c2ab977d19abdad860df6c4af782209a61adf21391"
+          "rgbaHash": "ed922fa4160e10b219b2568bd428d9310c82955bd44f4073a4bf2a1f35a0b179"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 1,
           "name": "right-walk-1",
+          "phase": "plant",
           "x": 128,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 38,
+            "y": 17,
+            "width": 53,
+            "height": 162
           },
-          "rgbaHash": "ac8a1307d97ce64eecb2a4079fde87b1717fc8f982a1cedad87bc1e5f835b836"
+          "rgbaHash": "164c9c5a5a4f06725e98db5cd70d93314d69d493a1de243919501344a0a28319"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 2,
           "name": "right-walk-2",
+          "phase": "passing-stance",
           "x": 256,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "y": 16,
+            "width": 46,
+            "height": 163
           },
-          "rgbaHash": "317e8292a5a2288e67985794b3586d653f0d255308d8e13215cc07dd4a119d8a"
+          "rgbaHash": "e44738dc283d7156847ce5fa238a7ffec3428d056a1ea91021b3b80ab944bcd2"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 3,
           "name": "right-walk-3",
+          "phase": "push-off",
           "x": 384,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "y": 16,
+            "width": 50,
+            "height": 164
           },
-          "rgbaHash": "64d9c82b92bca1714a9d75577e40eff3bc610f6e0ece22f5b769bd180e2b0cf2"
+          "rgbaHash": "beaecd3ee6b3e4696dc10769866a49a01db204b68f06426e50cec146cec67c93"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 4,
           "name": "right-walk-4",
+          "phase": "opposite-contact",
           "x": 512,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 36,
+            "y": 16,
+            "width": 57,
+            "height": 163
           },
-          "rgbaHash": "0115594fe40a351cb0ba827b20303a03ab7fa4a393432647155b95aa1e0f26a2"
+          "rgbaHash": "7a072019f2abc927618bcd9cb9e4e4c2d878f2f36bad1eb97c5cc369b03c210b"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 5,
           "name": "right-walk-5",
+          "phase": "lift",
           "x": 640,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 35,
+            "y": 17,
+            "width": 49,
+            "height": 162
           },
-          "rgbaHash": "fc2177d5fa3f6ef4b686accf5f6505bf98319b9ff03b4bd320a4d59d32e204c3"
+          "rgbaHash": "9592598919fad2fc78b869246754f8350c890f382952e308b60d246c2532546a"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 6,
           "name": "right-walk-6",
+          "phase": "passing-swing",
           "x": 768,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 36,
+            "y": 16,
+            "width": 47,
+            "height": 163
           },
-          "rgbaHash": "30ef6a505728a2d209eeba86328268b1d1b7fa765bebbce1917e6c5a3adc3795"
+          "rgbaHash": "01a10708053c1dde04ba4b276af7c7f7cb9ac11beca987451d97604a10997c60"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 7,
           "name": "right-walk-7",
+          "phase": "lower",
           "x": 896,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "y": 16,
+            "width": 57,
+            "height": 164
           },
-          "rgbaHash": "e01e49f1f6b61ba716cbcc1fe379d17f22c19f624ff26bd56053ec15a7fbe0ee"
+          "rgbaHash": "f178891b75a8cab731e8aa070b54eb409aafa43d171e1dff6411817abf188d81"
         }
       ]
     },
@@ -784,9 +853,9 @@
         "accessory": "none"
       },
       "role": "player-proof",
-      "path": "look-1.c819b427511c.png",
-      "hash": "c819b427511c50436c61e99953e534aa798bbee3183dcfcb6b48dec2d624b4c4",
-      "bytes": 256539,
+      "path": "look-1.ce1855cc78ae.png",
+      "hash": "ce1855cc78ae0b50ccb8159b8b1f99ca749556385ad566224531ddd97e34e1cf",
+      "bytes": 424149,
       "width": 1024,
       "height": 960,
       "rgbaBytes": 3932160,
@@ -796,680 +865,720 @@
           "state": "idle",
           "index": 0,
           "name": "down-idle-0",
+          "phase": "still-breath",
           "x": 0,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "dab4a52d97e00d69656dd180f366b7cb29e1ad5ea0b2e83249078c8d56cfe6f9"
+          "rgbaHash": "c09d85e719c1f72812256cab3231f466ccfd2371ce8993fda48ef21889e4f741"
         },
         {
           "direction": "down",
           "state": "idle",
           "index": 1,
           "name": "down-idle-1",
+          "phase": "still-breath",
           "x": 128,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "a8d0823afeb8f786b132fd16a844673a461b0e02bf82df965d99a6c2e7165508"
+          "rgbaHash": "29680c11cc628372f333397579bad13eb48c95e8e5c98bbb73c4d267284db267"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 0,
           "name": "down-walk-0",
+          "phase": "contact",
           "x": 256,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 36,
+            "y": 15,
+            "width": 56,
+            "height": 170
           },
-          "rgbaHash": "e4a176434e9a03b278ca1e7fbca5ae6c00f1f45146da4e468cd516233a600edd"
+          "rgbaHash": "5f76e64d6b870a337a399db81ff68df8790d58be026e4360f8b57937ecab0b2b"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 1,
           "name": "down-walk-1",
+          "phase": "plant",
           "x": 384,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
+            "x": 36,
+            "y": 15,
+            "width": 57,
             "height": 165
           },
-          "rgbaHash": "c40f49cfdf856a031eef375562d86aadd48342f7611e1352dff615bb8149f79a"
+          "rgbaHash": "fa774a996ed3db935253bb2c7451b92b8f4f7f67794ba1f53c6e01ea8069527e"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 2,
           "name": "down-walk-2",
+          "phase": "passing-stance",
           "x": 512,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 58,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "e6ec56e78b0ccd5842b7901a4212969372b55c3977db16cc9ecbb347da4ddbc8"
+          "rgbaHash": "02bf69e5e6385b205c90aa77a72b4db4e6aa84bf4755809df8c7645549696306"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 3,
           "name": "down-walk-3",
+          "phase": "push-off",
           "x": 640,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 159
           },
-          "rgbaHash": "7b9a20b710626dc11b35174dec06c70c3171a30cd0ee7502caa1c9b1168d5c4a"
+          "rgbaHash": "d38746632699fca6f352bd1d7fdeb208f81989a5baaf469450686b2a96f2c5af"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 4,
           "name": "down-walk-4",
+          "phase": "opposite-contact",
           "x": 768,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 32,
+            "y": 15,
+            "width": 62,
+            "height": 170
           },
-          "rgbaHash": "23b677695a568447cb6e90b61f5463cb9bf88bd9ed7847354abb4d6e24414fb2"
+          "rgbaHash": "6d5eaad7b355ab55a87b9b2d50b2ce83ea1c772f09d2a77fa9a6da1d25728fbd"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 5,
           "name": "down-walk-5",
+          "phase": "lift",
           "x": 896,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 14,
-            "width": 63,
+            "y": 15,
+            "width": 60,
             "height": 165
           },
-          "rgbaHash": "d548eb54057f6dcae7c71b4b23b026b7cd658e37ae25c9db0556f5a7a4a8fc2a"
+          "rgbaHash": "49272e9f0231b9e22101d90acde7dfc080faef85b4a12f052ba69194d67682ad"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 6,
           "name": "down-walk-6",
+          "phase": "passing-swing",
           "x": 0,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 14,
-            "width": 64,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "b09952afdf1d7583399ea604d70963b95fe66da796e40d48555f566506fcdc9c"
+          "rgbaHash": "24201bdfa01320b53e2906caa8d309a5d9b2fb521a36430794eb5a32292a9073"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 7,
           "name": "down-walk-7",
+          "phase": "lower",
           "x": 128,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 14,
-            "width": 63,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 159
           },
-          "rgbaHash": "f3a00a992bd032126036a58c76c7b3674b834640ad916c2a1c0fad24f94c7767"
+          "rgbaHash": "e2634b07250009fce5da3d159260bd4f386ca8f6b6fea8ed2f19338f9ac9200c"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 0,
           "name": "up-idle-0",
+          "phase": "still-breath",
           "x": 256,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "041f15c502504f73a121fc127c8322d644c66f5c6205b6f1cc3366815627b621"
+          "rgbaHash": "8ebd12f1423e2dd19c5d0ed5ee8c7305f93f979bd96abceeb6c486ceeac3f505"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 1,
           "name": "up-idle-1",
+          "phase": "still-breath",
           "x": 384,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "b59a39963a8131dcdc6accdf51bc11bce67e5b247afb4bfbfe1f2c2235dbcd86"
+          "rgbaHash": "855e459e1f692eab813086396626008e5b87078431d7762a093f5d0d68d7e6a2"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 0,
           "name": "up-walk-0",
+          "phase": "contact",
           "x": 512,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 36,
+            "y": 15,
+            "width": 56,
+            "height": 166
           },
-          "rgbaHash": "a6eb57af16f9f116f3b246e83abf9fc6afb0b8ad39ab4aeaaa2adc36263af3a4"
+          "rgbaHash": "9a04de8f26af1a39c2a487f39b5171ca5ba3d26f4a8e792f117b5d0af7b4b923"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 1,
           "name": "up-walk-1",
+          "phase": "plant",
           "x": 640,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
-            "height": 165
+            "x": 36,
+            "y": 16,
+            "width": 57,
+            "height": 154
           },
-          "rgbaHash": "185b96fd3a0cc7c572f37f67ff4ad2396f8fc0632b93051d3aaec556580490dd"
+          "rgbaHash": "2050f549ec1e506200cb3cf26d8536a89d1e0ad0e5ea8f82cf17b5098f1d9b77"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 2,
           "name": "up-walk-2",
+          "phase": "passing-stance",
           "x": 768,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 58,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "77ef53b62bf26397f2a1ce74973668565f53a239c872df3e40b73986862f2349"
+          "rgbaHash": "2f685612821be04388c491bfa1dbbf531492c6425d405728cdf84ee228061918"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 3,
           "name": "up-walk-3",
+          "phase": "push-off",
           "x": 896,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 164
           },
-          "rgbaHash": "dd3e877672c71af48badb48e14deaea63a5a5a1704f89c2891e2515ecf4b927e"
+          "rgbaHash": "fcec4373ed4d2275a067b6758cabe995ef4d031e943952b56c269efe8452464e"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 4,
           "name": "up-walk-4",
+          "phase": "opposite-contact",
           "x": 0,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 32,
+            "y": 15,
+            "width": 62,
+            "height": 166
           },
-          "rgbaHash": "93bc2603e3bbf06f25e578d2b95ce6587a6f4a2a7926ec47a2f59d9d0cd72372"
+          "rgbaHash": "ad016bdc98aff798ab20a6dba66063f122a7f9e1cf39c7ac913f03e4bce8434f"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 5,
           "name": "up-walk-5",
+          "phase": "lift",
           "x": 128,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 14,
-            "width": 63,
-            "height": 165
+            "y": 16,
+            "width": 60,
+            "height": 154
           },
-          "rgbaHash": "fc35e2ca55c7e4fd82208dab6492cfbaeff13259b244abcf9c2a5edae9054093"
+          "rgbaHash": "620ddc73d77676f0c05d14d530476da62aed5f606903965f012cbab53d356a9b"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 6,
           "name": "up-walk-6",
+          "phase": "passing-swing",
           "x": 256,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 14,
-            "width": 64,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "d66d6ea38322ad8b334b90dd0e13780ad5f49777efcede52bf7aec2b2c4f1bd8"
+          "rgbaHash": "899952d8202583705042ba72dd0687e07e3ec408872c879b01e4b20d99ccc147"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 7,
           "name": "up-walk-7",
+          "phase": "lower",
           "x": 384,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 14,
-            "width": 63,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 164
           },
-          "rgbaHash": "710315b2e62ed8f55e4e5f9669b0d1e2ac5f741a5c6438826986c1405f2508b3"
+          "rgbaHash": "0a5c995922444c80853f22b8c0205a01c7bb5a06ff413625c812ed17712c4c6b"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 0,
           "name": "left-idle-0",
+          "phase": "still-breath",
           "x": 512,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 39,
+            "height": 163
           },
-          "rgbaHash": "28a114757b0f66ca74f5bdff7bf17603031c8bc177ae3ffec10e6e13ba8f58b2"
+          "rgbaHash": "dc747fed94696867deb8fb10cb7ac7165f07df8780b20b33bcb0a95701e0b7ca"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 1,
           "name": "left-idle-1",
+          "phase": "still-breath",
           "x": 640,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 39,
+            "height": 163
           },
-          "rgbaHash": "4ee139c8baec9f2c5f4ce6b194da777bbe6862f1b80b81f32423614fad7b1009"
+          "rgbaHash": "c2f62d69c07e86000daa311f9387f03334a12a7e7d8a1002ebff7586881deacf"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 0,
           "name": "left-walk-0",
+          "phase": "contact",
           "x": 768,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 32,
+            "y": 16,
+            "width": 56,
+            "height": 163
           },
-          "rgbaHash": "fcd095f85524652283898eb5096be9c9c1946dc0c461d92fc502bf938b255422"
+          "rgbaHash": "c22179157bcb47e055caba7b83bde1d71ed857df0edcf7c63fedcfbfb545842a"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 1,
           "name": "left-walk-1",
+          "phase": "plant",
           "x": 896,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 41,
+            "y": 17,
+            "width": 42,
+            "height": 162
           },
-          "rgbaHash": "73555a6c35b7ad35e6d62fc49c25e7c720537386c7b7fabbfb70a9ac2abc3671"
+          "rgbaHash": "b72ecb454bbf4db3eb5f219d15b457ab5fbdea00070d74985bafc56b0085214e"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 2,
           "name": "left-walk-2",
+          "phase": "passing-stance",
           "x": 0,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 39,
+            "height": 163
           },
-          "rgbaHash": "c8817e81997e9dd73841c22b790273f8f89b5c19bdab26f56211d996013cc40d"
+          "rgbaHash": "56358fd417817096ea5b20ded2ba0d66946b73c56e25f94c2018eeed7df7b552"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 3,
           "name": "left-walk-3",
+          "phase": "push-off",
           "x": 128,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 31,
+            "y": 16,
+            "width": 52,
+            "height": 164
           },
-          "rgbaHash": "9d09190739d5da10427dccec970c052c968faaf4b95f98fe41ce709a63d109bd"
+          "rgbaHash": "2c0f2b2b17782cb954f665681d52ab9abbc26a2fa67c41a8f3cc357e692e295c"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 4,
           "name": "left-walk-4",
+          "phase": "opposite-contact",
           "x": 256,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 25,
+            "y": 16,
+            "width": 67,
+            "height": 163
           },
-          "rgbaHash": "8d546a593169a20af1ceab6b005ed172cf91827e9f6f34d5ce191ab3bcf5fb0f"
+          "rgbaHash": "4162c581b46201d4fc84cc91a669c373fe08a9bd1d83f35cfa2fa60e97c0afbb"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 5,
           "name": "left-walk-5",
+          "phase": "lift",
           "x": 384,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 34,
+            "y": 17,
+            "width": 48,
+            "height": 162
           },
-          "rgbaHash": "2ba5ff5c6a912bec81406fb9bebcec7991766eab64566b955c75feba090a0534"
+          "rgbaHash": "c6041213b83ecc878ab83a36a3fafd81ead779b465404e2d5ac2266f6833e0ba"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 6,
           "name": "left-walk-6",
+          "phase": "passing-swing",
           "x": 512,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 38,
-            "y": 14,
-            "width": 48,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 38,
+            "height": 163
           },
-          "rgbaHash": "e2676c5f6135b36ebde952f683efab5eeff6b0a2f7a175f742e8f641bdafe273"
+          "rgbaHash": "85fe5d50a69bfa96efa0a685612576f9562c1bf996a6068a01dd24da1d669c3e"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 7,
           "name": "left-walk-7",
+          "phase": "lower",
           "x": 640,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 38,
+            "y": 16,
+            "width": 45,
+            "height": 164
           },
-          "rgbaHash": "f20ab9f5edec0dcc5cc1b079ade639f124fd15218d2cc8ac01c5fa9ae09414c6"
+          "rgbaHash": "f17900ece0ea6c35c0b0a42bec63b1bdef7ba91c3e15b46cb5e14d2635f3db17"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 0,
           "name": "right-idle-0",
+          "phase": "still-breath",
           "x": 768,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 44,
+            "y": 16,
+            "width": 39,
+            "height": 163
           },
-          "rgbaHash": "f035609fa9ee6f3df18ad229ae8c9f54536dadb0825e1fc6b6ea46a0bbfc1c25"
+          "rgbaHash": "c5135fc8404510181632e26b7802d9f6ee5d012c60dea3d68c4d07d12b63f6ae"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 1,
           "name": "right-idle-1",
+          "phase": "still-breath",
           "x": 896,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 45,
+            "y": 16,
+            "width": 38,
+            "height": 163
           },
-          "rgbaHash": "bd7d0cc8807a012bcd5f55e0ea300221f6e24860211360f5bf9d9a6b2ceeacda"
+          "rgbaHash": "e490be17b30ca0a9e23d39874f4669b6f72cb2655a46788fd62f084562d2f2ca"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 0,
           "name": "right-walk-0",
+          "phase": "contact",
           "x": 0,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 32,
+            "y": 16,
+            "width": 68,
+            "height": 163
           },
-          "rgbaHash": "3100f1056e997965a5e0c75e5ea99233794d431fb4f797a2faaedcba7a40b76e"
+          "rgbaHash": "59f8da7b5f39d8090ff3c9aa451af88277027619f645453b45d696ea1246f6a9"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 1,
           "name": "right-walk-1",
+          "phase": "plant",
           "x": 128,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 42,
+            "y": 17,
+            "width": 49,
+            "height": 162
           },
-          "rgbaHash": "4c5018f4a26e63850565f24db598a76cfa687d0ed56d6cd9b355ce19ed395143"
+          "rgbaHash": "a9cd26df223242b43698ff1d52d8e8e1187b0e6e57339f36bd195904178fe2b7"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 2,
           "name": "right-walk-2",
+          "phase": "passing-stance",
           "x": 256,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 45,
+            "y": 16,
+            "width": 38,
+            "height": 163
           },
-          "rgbaHash": "6a219bf7cb74064c6f1f0385977dc0380882a46ed841bcf28b275a85d32722e8"
+          "rgbaHash": "d5b7693908471e4f72162d67f69ce89029ba1a96476da353c0c8225ea81f1eed"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 3,
           "name": "right-walk-3",
+          "phase": "push-off",
           "x": 384,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
+            "x": 42,
+            "y": 16,
             "width": 45,
-            "height": 165
+            "height": 164
           },
-          "rgbaHash": "9438788c9d2c11ec7b54c5f3af61aa7228d0a23654aefea29f7fb887b7cf9025"
+          "rgbaHash": "b98460ca1b09eaf105cf0cc5c25e9c487c15ec50fea83daf7d518b505ee68bdb"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 4,
           "name": "right-walk-4",
+          "phase": "opposite-contact",
           "x": 512,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 37,
+            "y": 16,
+            "width": 56,
+            "height": 163
           },
-          "rgbaHash": "684c8b14a43154427c977539bacebe970d81fbdab72332617903f0810315f0a1"
+          "rgbaHash": "2ce43229f5da72b635e5dab8ee821efbc25cf729af6c63965527ea7f8b774550"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 5,
           "name": "right-walk-5",
+          "phase": "lift",
           "x": 640,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "y": 17,
+            "width": 41,
+            "height": 162
           },
-          "rgbaHash": "d2ba72a012ff112b136d207be894edc87dc58da15fac1f137161780e63ba6bdc"
+          "rgbaHash": "13ade56d88963b256839440ab731f25412adaa228ff3069ff40f3d86cc858361"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 6,
           "name": "right-walk-6",
+          "phase": "passing-swing",
           "x": 768,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 46,
-            "height": 165
+            "x": 44,
+            "y": 16,
+            "width": 39,
+            "height": 163
           },
-          "rgbaHash": "9cb74cf8ff8d42052787db483e3e5ebc76384ad7ad6b043fdf1ba8345c745a63"
+          "rgbaHash": "43b7ba140b2f0e7b55f4b114088b5559457bb4ef2235d04e108f814e07e80cc1"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 7,
           "name": "right-walk-7",
+          "phase": "lower",
           "x": 896,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 43,
-            "y": 14,
-            "width": 45,
-            "height": 165
+            "x": 41,
+            "y": 16,
+            "width": 53,
+            "height": 164
           },
-          "rgbaHash": "143d21fe81cf7b6a599602ab415d68cb7279060ae47cb5dfb475af232037ad9c"
+          "rgbaHash": "065de6b9292d6e466c11f734c18a614874e464e739fa3b6fbba9a335f6187d75"
         }
       ]
     },
@@ -1485,9 +1594,9 @@
         "accessory": "backpack"
       },
       "role": "player-proof",
-      "path": "look-2.7cbb996a60be.png",
-      "hash": "7cbb996a60be6e4e98378abad1005f186241e7f46ff038d76add9d49778a6dab",
-      "bytes": 266608,
+      "path": "look-2.c75eecc9ab42.png",
+      "hash": "c75eecc9ab423d249bf7b27c6cdc4643baf5e59d94649fd0bd65c373176f498a",
+      "bytes": 478377,
       "width": 1024,
       "height": 960,
       "rgbaBytes": 3932160,
@@ -1497,680 +1606,720 @@
           "state": "idle",
           "index": 0,
           "name": "down-idle-0",
+          "phase": "still-breath",
           "x": 0,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "ad0d3ebce53f83a16db4c7c16008dd803daf0141e6cf43330111efa66e129ccd"
+          "rgbaHash": "a5d9d32da84b7a0bb7be248bb7502f1b84defa6bbf94c92e567cdf22d5c44914"
         },
         {
           "direction": "down",
           "state": "idle",
           "index": 1,
           "name": "down-idle-1",
+          "phase": "still-breath",
           "x": 128,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "eafab8236bd1f20ecea72f731f23d4cfc520d27c1e785fe62cd88828921b84b1"
+          "rgbaHash": "7acc1e9b2b9b99500e152066610d7949b510331c3ec87f05e47a0aa8a9fedf25"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 0,
           "name": "down-walk-0",
+          "phase": "contact",
           "x": 256,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 36,
+            "y": 15,
+            "width": 56,
+            "height": 170
           },
-          "rgbaHash": "83766fbef1f2b4a21d49990b97d514df25221772934d5a5bacc7bb3b7e91e0c1"
+          "rgbaHash": "f4c641f574e205755a9899732ec829f532efddef1f976618895489cc2ff907e1"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 1,
           "name": "down-walk-1",
+          "phase": "plant",
           "x": 384,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 59,
-            "height": 166
+            "x": 36,
+            "y": 15,
+            "width": 57,
+            "height": 165
           },
-          "rgbaHash": "c8a37be124ecea55bd4a640446f52de19e6d7be2ec1e091512b231b0753f8a85"
+          "rgbaHash": "6591490a9f85d7d8e6daad9df1443fe00b66a802e4e8903a42ded70a0cebdbf4"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 2,
           "name": "down-walk-2",
+          "phase": "passing-stance",
           "x": 512,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 58,
-            "height": 166
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "b1418e20e41540925165d74b7403803711853e267a7a798add60797abfb42b7d"
+          "rgbaHash": "de8628d6f5a030b86afd3a571f29a9afc962a16a6534b8fa79d4200242be0438"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 3,
           "name": "down-walk-3",
+          "phase": "push-off",
           "x": 640,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 59,
-            "height": 166
+            "x": 33,
+            "y": 14,
+            "width": 61,
+            "height": 160
           },
-          "rgbaHash": "b3fad08de72b9b74c02a4d7a4aaf92c0cd130da611f2e74a516317f388162356"
+          "rgbaHash": "fd432648147039918d00e1deed0f2014d0458840954837a78a5ef957318c0ba4"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 4,
           "name": "down-walk-4",
+          "phase": "opposite-contact",
           "x": 768,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 32,
+            "y": 15,
+            "width": 62,
+            "height": 170
           },
-          "rgbaHash": "efbe1800fe438794739d68e7dab425fb24108b1602a6400d4ae80d1bb205084c"
+          "rgbaHash": "30fd781a09a8a3e46f18baae6a14b33a4bcaeec1adab441e324756aecc40bb1e"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 5,
           "name": "down-walk-5",
+          "phase": "lift",
           "x": 896,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 13,
-            "width": 63,
-            "height": 166
+            "y": 15,
+            "width": 60,
+            "height": 165
           },
-          "rgbaHash": "08d767c957446af57be5ecbe1f209fc37c28c9df6afa8080de19cbed945e32e2"
+          "rgbaHash": "065e044f3317d6f46f95a6c22cf9d88ad04d90c170b84298b02091100282476c"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 6,
           "name": "down-walk-6",
+          "phase": "passing-swing",
           "x": 0,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 13,
-            "width": 64,
-            "height": 166
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "229c501a75dd207997e85bc87dba1347239903d5042e509d355d8134ba67f669"
+          "rgbaHash": "ec88f709fbf12dc2dcd86a560fb7325788f4a0ea708198fdd857b1a1f7c918c1"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 7,
           "name": "down-walk-7",
+          "phase": "lower",
           "x": 128,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 13,
-            "width": 63,
-            "height": 166
+            "x": 35,
+            "y": 14,
+            "width": 57,
+            "height": 160
           },
-          "rgbaHash": "baac5799273c2738d6673d6c58586347fc2534b32368a748e3e241c2c2ab32a0"
+          "rgbaHash": "0393e9896d357823d1de5a9515ceca36b9e5670fd56baf2b060e2d52bba96bfe"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 0,
           "name": "up-idle-0",
+          "phase": "still-breath",
           "x": 256,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 34,
+            "y": 16,
+            "width": 59,
+            "height": 163
           },
-          "rgbaHash": "f9682922b9ed125dafaf144ffa9a408cfac8c0537247788747a0b6e31a9cb15c"
+          "rgbaHash": "1e59b962272301e8a2e5c204f20bb4e0a141285e2d0677560eac529af25b4d60"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 1,
           "name": "up-idle-1",
+          "phase": "still-breath",
           "x": 384,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "430aa61ca1fd488f504a512673ef1c179253181b391cbd54c9b5187f58852bd0"
+          "rgbaHash": "4ee9393fa41500eea95ae9e2b885d404132d2c73125be6e2da9c45dc6d7d2c59"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 0,
           "name": "up-walk-0",
+          "phase": "contact",
           "x": 512,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 36,
+            "y": 16,
+            "width": 56,
+            "height": 165
           },
-          "rgbaHash": "4f14b850aa6108d51fae7df19987423cc74787a53759e79bca5e50d4d3d94f2d"
+          "rgbaHash": "9b2b22a0aad166e11fe32167b625ed669f1d1dbe09bccd7f89d7572dfda83828"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 1,
           "name": "up-walk-1",
+          "phase": "plant",
           "x": 640,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 59,
-            "height": 166
+            "x": 36,
+            "y": 16,
+            "width": 57,
+            "height": 154
           },
-          "rgbaHash": "15f7ba9f3bb1f2a7837092166cd4e5347729527f00070630ce5f399b3542c572"
+          "rgbaHash": "c5329973f3d76ec1006a68b086b6fdcbae0a6f434d9b8e09b1fc954b591a891d"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 2,
           "name": "up-walk-2",
+          "phase": "passing-stance",
           "x": 768,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 58,
-            "height": 166
+            "x": 35,
+            "y": 16,
+            "width": 59,
+            "height": 159
           },
-          "rgbaHash": "a320adb2387e04f84543162a227e66e2f70d0a465180fcc305f845cbfd37786b"
+          "rgbaHash": "d7d3cadc34c536f30bc1ac92ff77df68647fe7281bb991982632d699061ae51e"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 3,
           "name": "up-walk-3",
+          "phase": "push-off",
           "x": 896,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 13,
-            "width": 59,
-            "height": 166
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 164
           },
-          "rgbaHash": "4145a754c5ac87d4c0ce4e26d79ec3cbf7ef623743c9323b71c4cc0f937220ef"
+          "rgbaHash": "18354a6d21b3730509cc9d4734a2ba2723b20aee29a831779bd02a7069c58d66"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 4,
           "name": "up-walk-4",
+          "phase": "opposite-contact",
           "x": 0,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 13,
-            "width": 61,
-            "height": 166
+            "x": 32,
+            "y": 16,
+            "width": 62,
+            "height": 165
           },
-          "rgbaHash": "e2fa2680ee2a7fc2e1a075450177957e1a841d5a0fe0072d380fb17b43f65a81"
+          "rgbaHash": "7c5506e863ddf002ae1aba66ec1a95f52540383349034c24e4512b7e152ec4d6"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 5,
           "name": "up-walk-5",
+          "phase": "lift",
           "x": 128,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 13,
-            "width": 63,
-            "height": 166
+            "y": 16,
+            "width": 60,
+            "height": 154
           },
-          "rgbaHash": "75a28be215e44ea0e2a7da44f6a06678f375cdeff701ba7fa7b32461d3e44226"
+          "rgbaHash": "398e962c38363928191801d7a9df0ffdd2c3763c26677ecf1aab697e9e6ba81c"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 6,
           "name": "up-walk-6",
+          "phase": "passing-swing",
           "x": 256,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 13,
-            "width": 64,
-            "height": 166
+            "x": 33,
+            "y": 16,
+            "width": 59,
+            "height": 159
           },
-          "rgbaHash": "36aa32505e5828bcefba94f1d07e156ade68add9458b73955f793428fd0340d8"
+          "rgbaHash": "58b3a0401c97a38bc23228a0450d5160b6926c244e02248c0d3558b4a2da423a"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 7,
           "name": "up-walk-7",
+          "phase": "lower",
           "x": 384,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 13,
-            "width": 63,
-            "height": 166
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 164
           },
-          "rgbaHash": "4469df7092da428fc682644f280c685038e9720382cd16a35a7df999785e4b77"
+          "rgbaHash": "f250bad6a76cf59aeebf93d8c87717755c6a2b6d494dbf2b191a3904e202bc51"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 0,
           "name": "left-idle-0",
+          "phase": "still-breath",
           "x": 512,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 43,
+            "y": 17,
+            "width": 48,
+            "height": 162
           },
-          "rgbaHash": "4373be68d8228b613912efc10be160334ef7dc1830586ee57e516917ac57a426"
+          "rgbaHash": "f10fda2b6a02f2ae54331b46f4dc89c0a009d315c3ce958643768576a94c17c6"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 1,
           "name": "left-idle-1",
+          "phase": "still-breath",
           "x": 640,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 43,
+            "y": 17,
+            "width": 49,
+            "height": 162
           },
-          "rgbaHash": "6bea3865d648107a151090a654743f117c15693dccd61b3a23a2d9a06b0e9c6f"
+          "rgbaHash": "902c3fac0934aaeb3f2494196754eccfc3344446a40a63fdf7c9f886282282e5"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 0,
           "name": "left-walk-0",
+          "phase": "contact",
           "x": 768,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 32,
+            "y": 17,
+            "width": 60,
+            "height": 162
           },
-          "rgbaHash": "de9f123c0504f4ddef108c21fd6b02ddff63199ed805407cc343319c48962a79"
+          "rgbaHash": "cd2a02daf02763f2d783b90c9b405c6c611dca73807638b967eda0127e506d6c"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 1,
           "name": "left-walk-1",
+          "phase": "plant",
           "x": 896,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 41,
+            "y": 17,
+            "width": 52,
+            "height": 162
           },
-          "rgbaHash": "7b160600d87eb33fc84bf5bcf7646c3577ca3d7dd690d06f877e90ad2faa9444"
+          "rgbaHash": "40bc7daa6face1b4598d3d2351c74290de6a67562e8ff0f662c85ff7d70f372a"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 2,
           "name": "left-walk-2",
+          "phase": "passing-stance",
           "x": 0,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 43,
+            "y": 17,
+            "width": 49,
+            "height": 162
           },
-          "rgbaHash": "14b7c0a16000c1d05e63f3753c2e9dee633a4629f16fdfa62aa03c301e47952b"
+          "rgbaHash": "5ba9d63de5a5ff1f1f0bf9d725ea7f6a7e6f236a8a4e7efeded627413f91c19f"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 3,
           "name": "left-walk-3",
+          "phase": "push-off",
           "x": 128,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
+            "x": 31,
+            "y": 16,
+            "width": 60,
             "height": 164
           },
-          "rgbaHash": "ec80f8dbfc38f480b193749a90b67d8cef53b3730bc3f9885d2f05f46e363936"
+          "rgbaHash": "df6b6acd0ba02eeb7da1fadc14d9e770cc79a2ea11344259b5106e3f8abb53ba"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 4,
           "name": "left-walk-4",
+          "phase": "opposite-contact",
           "x": 256,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 25,
+            "y": 17,
+            "width": 67,
+            "height": 162
           },
-          "rgbaHash": "9a69051f3327a521812c930af7a831d9ec03f0e51e8a8fea4d6193c7091c9a17"
+          "rgbaHash": "6c698f2a5a31fcb025f87a6e0eae1684aa6872fc396079280d1e25d6e4962425"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 5,
           "name": "left-walk-5",
+          "phase": "lift",
           "x": 384,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
-            "height": 164
+            "x": 34,
+            "y": 17,
+            "width": 56,
+            "height": 162
           },
-          "rgbaHash": "5c4167f18e9f182d685c1b7f528d81f337e1a0bab312d65d420feaaf2f0b6689"
+          "rgbaHash": "b4170f2053c43ce387127c96778b9c5e1ae2db1069976da53f45a881d4427a91"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 6,
           "name": "left-walk-6",
+          "phase": "passing-swing",
           "x": 512,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 38,
-            "y": 15,
-            "width": 53,
-            "height": 164
+            "x": 43,
+            "y": 17,
+            "width": 48,
+            "height": 162
           },
-          "rgbaHash": "aca9a0991c988ddbdb4c323d7a828b5bd7645e7db59c113dabfeed7516f44aad"
+          "rgbaHash": "25dc99f5df8d82d75673133f315ccc249d726e413455156ead668b84c3b407e6"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 7,
           "name": "left-walk-7",
+          "phase": "lower",
           "x": 640,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 15,
-            "width": 51,
+            "x": 38,
+            "y": 16,
+            "width": 53,
             "height": 164
           },
-          "rgbaHash": "43ed22d81b575c7307341dd29907d6fb0796200f49850069062266f61ed6ba72"
+          "rgbaHash": "c44d9c22fbea33979960f1a3048bda3b39c12e1a40b5c06f194b70cb4852dc73"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 0,
           "name": "right-idle-0",
+          "phase": "still-breath",
           "x": 768,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "y": 17,
+            "width": 47,
+            "height": 162
           },
-          "rgbaHash": "45c4bc9c5434b967e56cb6bc260e48856cac21d1f122150530c32bc234d259ad"
+          "rgbaHash": "ac331e09a05dfb912758094cf1bf099f5312cdef870976d5f3baadf2a92f1cca"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 1,
           "name": "right-idle-1",
+          "phase": "still-breath",
           "x": 896,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "y": 17,
+            "width": 47,
+            "height": 162
           },
-          "rgbaHash": "f26a111ac80c17ecb6dd951fd0c035e4a737c80f1a9ee806b663913ae6f8f3f8"
+          "rgbaHash": "de3748268f73693c59c721ee2053b09374e63ab0c2296afbfa94e0e8430f377a"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 0,
           "name": "right-walk-0",
+          "phase": "contact",
           "x": 0,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "x": 32,
+            "y": 17,
+            "width": 68,
+            "height": 162
           },
-          "rgbaHash": "ffe0629fe893a40fa1ceb343401e1eb369d233bdc00cfe6e0931a649651376b0"
+          "rgbaHash": "fd9c0977ac171979cb952833e2fa1882c26b02f62b93361a2a27415c5770faf7"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 1,
           "name": "right-walk-1",
+          "phase": "plant",
           "x": 128,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "x": 38,
+            "y": 17,
+            "width": 53,
+            "height": 162
           },
-          "rgbaHash": "7579980600e10abfbb60ac50f04a3eb907aa9ad45e5464582edfd40cacf9111b"
+          "rgbaHash": "57577e2bb998e67441e63e10210aa05a27e3bf9c9e193f986386e9d725d67153"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 2,
           "name": "right-walk-2",
+          "phase": "passing-stance",
           "x": 256,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "y": 17,
+            "width": 47,
+            "height": 162
           },
-          "rgbaHash": "8edcebd65abcdd9d6aa37729eb091836a1655cd135b9e6b0d0b28f1e9fb8bddf"
+          "rgbaHash": "689cf8f7f04f7aed1f3de06da2320d8f1510f572bab6542b171ed028253c6ac3"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 3,
           "name": "right-walk-3",
+          "phase": "push-off",
           "x": 384,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 15,
-            "width": 51,
+            "y": 16,
+            "width": 50,
             "height": 164
           },
-          "rgbaHash": "fdd26575bd21eea38a4b2b52ad885cd0f4103b99107d549cb7f58de2f8f5b91e"
+          "rgbaHash": "20cfb6923668abfdd9cbb152155e7ab9d93b1d69a72754f132fd6fdda3cf4e97"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 4,
           "name": "right-walk-4",
+          "phase": "opposite-contact",
           "x": 512,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "x": 36,
+            "y": 17,
+            "width": 57,
+            "height": 162
           },
-          "rgbaHash": "48a3b95aaefad300e68a992d25e79fe34fe8612c7eae7a2c990a4cd04b5c7b36"
+          "rgbaHash": "d9c8afd8ab2a6e866a8adf35348b6d9fd963a08c7f3613433fb1a87138078b40"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 5,
           "name": "right-walk-5",
+          "phase": "lift",
           "x": 640,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "x": 35,
+            "y": 17,
+            "width": 49,
+            "height": 162
           },
-          "rgbaHash": "a510ea16f9ec0c4f368553651047a8f752109487fb19d04366d3e77d4a65ad77"
+          "rgbaHash": "d4a8a8a3a9dc48f55ddb8a5973111fad40261b41c917572375bf3a17cdc4cd5c"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 6,
           "name": "right-walk-6",
+          "phase": "passing-swing",
           "x": 768,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 15,
-            "width": 52,
-            "height": 164
+            "x": 36,
+            "y": 17,
+            "width": 48,
+            "height": 162
           },
-          "rgbaHash": "51b6944e96752e483056daa583350361775fc6ef5feec5f8ae2591119b0e2b5d"
+          "rgbaHash": "2a79eb1fb6dc914d6b40021f10d221c78f2eb172aba5411a72a77051594e8095"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 7,
           "name": "right-walk-7",
+          "phase": "lower",
           "x": 896,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 15,
-            "width": 51,
+            "y": 16,
+            "width": 57,
             "height": 164
           },
-          "rgbaHash": "98bc5620c5c1ffe49a631d3f4e0b43b41ec1e2c95ec1d173734fa24295d3aed1"
+          "rgbaHash": "5103190c30dbdfa107ff68e229021f3cadb410410e6e7cbbb47fc34472faa4de"
         }
       ]
     },
@@ -2186,9 +2335,9 @@
         "accessory": "none"
       },
       "role": "player-proof",
-      "path": "look-3.3085c54d218f.png",
-      "hash": "3085c54d218faab708ef3f8303577ac514ab1e927c0495081804a3d44cc70a66",
-      "bytes": 284316,
+      "path": "look-3.81fefefda7a9.png",
+      "hash": "81fefefda7a97b56a34c32eb939c4ffefa3420c2f1b9b92d18e19bf67dd8090b",
+      "bytes": 433363,
       "width": 1024,
       "height": 960,
       "rgbaBytes": 3932160,
@@ -2198,680 +2347,720 @@
           "state": "idle",
           "index": 0,
           "name": "down-idle-0",
+          "phase": "still-breath",
           "x": 0,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "5e1d77e71f94e07bcf08d60cb61480089f08328168149acb63248f7a122eda58"
+          "rgbaHash": "401fc07dd6d7dd2ce083dd45d49a0319942823af7e178a7624ca928787715860"
         },
         {
           "direction": "down",
           "state": "idle",
           "index": 1,
           "name": "down-idle-1",
+          "phase": "still-breath",
           "x": 128,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "b5398ab0abe3f676124d190208b2b4615b766774bdc64b9e5ec6886f6210362f"
+          "rgbaHash": "ecef8ba56d6526f438ea8c579c42998f623fa7a1e1c16b0bb6636cb82cc0fdf6"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 0,
           "name": "down-walk-0",
+          "phase": "contact",
           "x": 256,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 36,
+            "y": 9,
+            "width": 57,
+            "height": 176
           },
-          "rgbaHash": "7d1e88d8cf8203aa48ea888147739544dbbb208e8b8ae9647ab4543d1991e785"
+          "rgbaHash": "457f81b8ec78622fb792998ed70a95dba9491684bf25f37025ff019907c2d73a"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 1,
           "name": "down-walk-1",
+          "phase": "plant",
           "x": 384,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 58,
+            "height": 170
           },
-          "rgbaHash": "ccb621cb60477f5984fb364bace3b8f18e0665f3348e5856be00bf4efecd4f22"
+          "rgbaHash": "fe0cf50a100701dc559ec28ce26acec8cd6c5b62ca3a5a3e37d261fdcb9e9be2"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 2,
           "name": "down-walk-2",
+          "phase": "passing-stance",
           "x": 512,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
+            "x": 35,
+            "y": 9,
             "width": 59,
-            "height": 172
+            "height": 166
           },
-          "rgbaHash": "8c7b3f9cedd23779866688fe9e4ea1f09cec3394736ba283b6b08aadf87e245a"
+          "rgbaHash": "7ab5db9a3f916d74c2d436552b5d1de5e85eadc5894bc23e35d771d9ea025330"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 3,
           "name": "down-walk-3",
+          "phase": "push-off",
           "x": 640,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 61,
+            "height": 165
           },
-          "rgbaHash": "712b3e2ffbcc3fc820c3e9b6cd425d998096711373193157a9bf9abdf23a5ad5"
+          "rgbaHash": "e470ecaaeb6b6ec800e0a9c6aa45e7e6631e57a1a7919e6e4cc1adb29cd5676f"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 4,
           "name": "down-walk-4",
+          "phase": "opposite-contact",
           "x": 768,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 32,
+            "y": 9,
+            "width": 62,
+            "height": 176
           },
-          "rgbaHash": "169d142f7e48785023d5026b96e2db14efb4fd01aafaeabf43975eab77673334"
+          "rgbaHash": "ae63f2912ddab973757aaf577245b58d137ce9d8149d2ace8122fe53fb10f9d7"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 5,
           "name": "down-walk-5",
+          "phase": "lift",
           "x": 896,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "y": 10,
+            "width": 61,
+            "height": 170
           },
-          "rgbaHash": "0d0bdf4074ce1c2cc3c2e30308b5a2e71b94af49f62f0cc932647f5fc07ba241"
+          "rgbaHash": "3121f92682f203ff71322793514eccf971878e400464c74e6ab61a9c782ace70"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 6,
           "name": "down-walk-6",
+          "phase": "passing-swing",
           "x": 0,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 7,
-            "width": 64,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 60,
+            "height": 166
           },
-          "rgbaHash": "064607f2230985505e1b59b0b4ebbb3531856a60e5086f1b2d24d67aa60ab6ad"
+          "rgbaHash": "112a0652edacaa0c907c8b72c8a5512d4de87c9b293430a284b7069a047e7321"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 7,
           "name": "down-walk-7",
+          "phase": "lower",
           "x": 128,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "x": 35,
+            "y": 9,
+            "width": 58,
+            "height": 165
           },
-          "rgbaHash": "f9d74800bc452388236d34d55ad1ab4ba8a6097211b8fec588f682900846b79c"
+          "rgbaHash": "85160ed0910cc219e67659accc30e35b1e7622de0dca7a6a8329d9cfb6b7cbcc"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 0,
           "name": "up-idle-0",
+          "phase": "still-breath",
           "x": 256,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "867d10680abc63a4cfc2e8b8703b88f6aaafa627e4a77d35f7d3e9be9e1a0c73"
+          "rgbaHash": "f30c009959e4548867a09003a6c7a32d54a7b28d62bcd28cf7276e4dd1e5ca87"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 1,
           "name": "up-idle-1",
+          "phase": "still-breath",
           "x": 384,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "4a7a8ea2aed4bfeac47fa610f518308d58bec47b864906903df347a0f596132c"
+          "rgbaHash": "4d0530a42ec3cde27beb0d6799a2729447426bf3e55872abdd8b3e96ee1ffe34"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 0,
           "name": "up-walk-0",
+          "phase": "contact",
           "x": 512,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
+            "x": 36,
+            "y": 9,
+            "width": 57,
             "height": 172
           },
-          "rgbaHash": "53ee2212ac74e3602eb7cea851f7d995793aa31a12ea2b13b91cdffd794e7e98"
+          "rgbaHash": "dc07e6549577dff61ef1b0c1563780498997bb3793527b025729a4e85e1cd704"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 1,
           "name": "up-walk-1",
+          "phase": "plant",
           "x": 640,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 58,
+            "height": 160
           },
-          "rgbaHash": "3e6e8e999d6e810c68cd8ac3f0bf09afd87ad7524b9c85cc6cb1db87dcccd488"
+          "rgbaHash": "7345eae1d7118bb42a42f458bc07ffeef2710d67dd6cf866077baef59862c04f"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 2,
           "name": "up-walk-2",
+          "phase": "passing-stance",
           "x": 768,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
+            "x": 35,
+            "y": 9,
             "width": 59,
-            "height": 172
+            "height": 166
           },
-          "rgbaHash": "d6e43bda69a676d8940f117dfe3554603172fca2266397ea93d1d90d2e83a911"
+          "rgbaHash": "c912ed516b559a1218ef78e887e3c5f31a210b627c9acc8fd9e9681cac3c8bdb"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 3,
           "name": "up-walk-3",
+          "phase": "push-off",
           "x": 896,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 61,
+            "height": 170
           },
-          "rgbaHash": "c3c920e90fba37d9099c67afb26e6a97fa11ad048daa7d678b873ae79f3013ae"
+          "rgbaHash": "2a22912120f1a9e1858b263b384b3ad79282fa3534708be54d18e244800b7a23"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 4,
           "name": "up-walk-4",
+          "phase": "opposite-contact",
           "x": 0,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
+            "x": 32,
+            "y": 9,
+            "width": 62,
             "height": 172
           },
-          "rgbaHash": "51b29307a29b35360bd06500ce6e499432610ac751e78d74438b0be4ec7bd3f8"
+          "rgbaHash": "18ad6406683545f95966ee9910984fcf8996cd3edac46e4aa843b32153236c61"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 5,
           "name": "up-walk-5",
+          "phase": "lift",
           "x": 128,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "y": 10,
+            "width": 61,
+            "height": 160
           },
-          "rgbaHash": "b9295720648f060a8398b0fe651b8346457a913e1cc6671245c0d56640ff8cfc"
+          "rgbaHash": "95f25e3cd3f7711eec93e023b8e9de41fd02a4d2b58fe1a5e703479796aa92fc"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 6,
           "name": "up-walk-6",
+          "phase": "passing-swing",
           "x": 256,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 7,
-            "width": 64,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 60,
+            "height": 166
           },
-          "rgbaHash": "74605398ad0c13ccb40243d2b9a32562644a1fc1ff6a74cb0f2a6142f09aa040"
+          "rgbaHash": "7a7b35c11fff53ddf94dfe2baad7ee09b0e7040f0cb916692d9a22f32b575a60"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 7,
           "name": "up-walk-7",
+          "phase": "lower",
           "x": 384,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "x": 35,
+            "y": 9,
+            "width": 58,
+            "height": 170
           },
-          "rgbaHash": "4f1fb15da2faea25bf886eed817cdce99b0864d4c5c6b292bb8b8c00bcd1de38"
+          "rgbaHash": "76bce1b6ccce7e69ddeb0c0f3881f97897b3ccceabc0d2eaadf3c6d3dd6ef9af"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 0,
           "name": "left-idle-0",
+          "phase": "still-breath",
           "x": 512,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "e6f29158549643db05c9525c935bcec183fbf237803f19b6566131bf05aae7af"
+          "rgbaHash": "95830e6953ced6a59bdc3ff5fe578b69ff662cac9fcbd85cbe6a775c3461c070"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 1,
           "name": "left-idle-1",
+          "phase": "still-breath",
           "x": 640,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "dce2ea714ae227257d44cd5aaa9f8cad1f3532c0ff8fd218397ad48edea30238"
+          "rgbaHash": "1e564e4de29bc556702991053ace04330874a3a0302bd3335049cb3ce31d61c5"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 0,
           "name": "left-walk-0",
+          "phase": "contact",
           "x": 768,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 32,
+            "y": 10,
+            "width": 57,
+            "height": 169
           },
-          "rgbaHash": "0b1fd012538b252fa32ce8385a744bc1b4bab51c2f0202ad0d977d2847709af0"
+          "rgbaHash": "3381b2b757fc62817a3b4bd0f30858756076a2a67fa615d16029e499ca51e561"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 1,
           "name": "left-walk-1",
+          "phase": "plant",
           "x": 896,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 11,
+            "width": 53,
+            "height": 168
           },
-          "rgbaHash": "e11380100807c1e014b8a985147050273a50bcc4a54d4d5f8f01f5df0c027941"
+          "rgbaHash": "8e34166c8713976602116d01d06d25cf0d717fc1e600f90d85ee697a7d4783c4"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 2,
           "name": "left-walk-2",
+          "phase": "passing-stance",
           "x": 0,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "8cee0638b836a42d317bc01f55d858860f1c17e2836ba4a8bc12533894bcf471"
+          "rgbaHash": "a1c6aba66e6a66bc9a95c159bc110f4d9f9a4a88ade87c2406913956a5ae4905"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 3,
           "name": "left-walk-3",
+          "phase": "push-off",
           "x": 128,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
+            "x": 31,
+            "y": 10,
             "width": 58,
-            "height": 172
+            "height": 170
           },
-          "rgbaHash": "ec54f45602fde18fcf17e2ac2fa3c7bd2594abeef41a9dde6f030cd29e741462"
+          "rgbaHash": "8f28c236aee6467d79aaed2872afa97f2522728c72910af6e8858ac3f227ecbe"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 4,
           "name": "left-walk-4",
+          "phase": "opposite-contact",
           "x": 256,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 25,
+            "y": 10,
+            "width": 67,
+            "height": 169
           },
-          "rgbaHash": "e71bd6e77b4ca59a5d3941b36a8c5bc2e2df13c63f76b38bb66659aa3243195b"
+          "rgbaHash": "2c43276fa9cedb3445e00eed371b4014c2af5736533d5a678c58d6239ccffaac"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 5,
           "name": "left-walk-5",
+          "phase": "lift",
           "x": 384,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 34,
+            "y": 11,
+            "width": 55,
+            "height": 168
           },
-          "rgbaHash": "50e5d05ea5fedeeafaf07c3c339d7c53c7a8a758d399380a3be22e4cb8c15e28"
+          "rgbaHash": "511da81d3b7cbeb06c9cfa243b053e007f2fdf8ca431b247e58ca470e41301e8"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 6,
           "name": "left-walk-6",
+          "phase": "passing-swing",
           "x": 512,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "a62d2ea263251bb21e956599d6714571aeb62767d44968eab6af48aa78443ee6"
+          "rgbaHash": "4e1e436dd41eab48b24a4d2d746b635d5d5e4aef29d5e24665dcc446d18b2d73"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 7,
           "name": "left-walk-7",
+          "phase": "lower",
           "x": 640,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 170
           },
-          "rgbaHash": "60c7317fb06b074d5cc846b2468c4686c4059fff3923b9e46735c43a1a012a11"
+          "rgbaHash": "eb0773d369eae0b73bf3dc0b87e78db673e4d72acf21edc52f206a7a353d24c5"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 0,
           "name": "right-idle-0",
+          "phase": "still-breath",
           "x": 768,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "b36107c3a05592cf3b6e76f3fddd8aaeef75ccd2baac217c730a0e8c983224d3"
+          "rgbaHash": "dcba9fc67268a27fed5a55eabeb4cb53fa60c36d7536df69993ade64a3ad1b1d"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 1,
           "name": "right-idle-1",
+          "phase": "still-breath",
           "x": 896,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "84645e2055a2143a7ed30f1f59213fc80009907bf99982302aee821bda3c1d4c"
+          "rgbaHash": "905943d0a0348f6183ffa96b499a0c3a7e162ccbef51c91e7afc7b108cc85a92"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 0,
           "name": "right-walk-0",
+          "phase": "contact",
           "x": 0,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 32,
+            "y": 10,
+            "width": 68,
+            "height": 169
           },
-          "rgbaHash": "7aa5cd08920d4e1e3e02375d931d22ac8e9a5a2cd4affb9e34244a92f6d12c54"
+          "rgbaHash": "130ef9f5205af574b00c42faa90576c17137986b6e51bec0a875887b53d61a49"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 1,
           "name": "right-walk-1",
+          "phase": "plant",
           "x": 128,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 11,
+            "width": 53,
+            "height": 168
           },
-          "rgbaHash": "45a5ddf940c5b5363fd878648c5a939ac5b2b8526393acd8967607942afddde9"
+          "rgbaHash": "e289d94be224e0986f1dd87c990fc9609faf4d4b2de40767cffe68c88c1de453"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 2,
           "name": "right-walk-2",
+          "phase": "passing-stance",
           "x": 256,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "a5cb83d0d1932dd12fc977d3596a1ca1a08e3a30bae569bd9aa9ef1cccc23c69"
+          "rgbaHash": "ac4d584bf7844cb6bbb31982717cda5f644376cb895e583192d02a0cf7da5bbb"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 3,
           "name": "right-walk-3",
+          "phase": "push-off",
           "x": 384,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 170
           },
-          "rgbaHash": "72f6c286d89e8783b079962aba01b01859705389bd2da6926c2157e70ac472d7"
+          "rgbaHash": "fbd09a1046629ec02234459a956d38aee9914b699f928f046f4d5049155a2aea"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 4,
           "name": "right-walk-4",
+          "phase": "opposite-contact",
           "x": 512,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 37,
+            "y": 10,
+            "width": 56,
+            "height": 169
           },
-          "rgbaHash": "8a9df9632592d59765de01345cc1fcca38d60812127ea088221e29f2946f1baf"
+          "rgbaHash": "caf1a818e3ab987e2f51fcdafa73982d2f874a42a39066d8553efeeca49f6ed7"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 5,
           "name": "right-walk-5",
+          "phase": "lift",
           "x": 640,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 11,
+            "width": 53,
+            "height": 168
           },
-          "rgbaHash": "79c22267d27156d2258d3b8a41d20974df8165fcf36111224e6e853bf100b8dc"
+          "rgbaHash": "427d800149b237c269770e327c95efff2fb853aeeb51f7d0dbd02361d4dbd783"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 6,
           "name": "right-walk-6",
+          "phase": "passing-swing",
           "x": 768,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "ba14e46ddf721e826bd77d843fa63a6bde7534abc918b5b5d99a3e331bd28a70"
+          "rgbaHash": "1d018280bd8d7cd00655da2cf1047f5854ac34bfe69419e1693f0f25f0e9fa4b"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 7,
           "name": "right-walk-7",
+          "phase": "lower",
           "x": 896,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 55,
+            "height": 170
           },
-          "rgbaHash": "a533f1421cc8527e333f034edf9b1c928f156cd1b9feeb313da77bd75f8cf40d"
+          "rgbaHash": "d215a281e6110ab90b77369a7ecb0cce80034ca52ba0f652292ad4018a696a02"
         }
       ]
     },
@@ -2887,9 +3076,9 @@
         "accessory": "none"
       },
       "role": "fictional-npc-proof",
-      "path": "look-4.9d987d39f7ee.png",
-      "hash": "9d987d39f7ee75869283a4a6d44abee19f8ef8c782083393746dcc1415241a2e",
-      "bytes": 272618,
+      "path": "look-4.13ee4bc3633c.png",
+      "hash": "13ee4bc3633c7050be9ea439d6f1ca15a52f1490f4b258f2d545029061576112",
+      "bytes": 411492,
       "width": 1024,
       "height": 960,
       "rgbaBytes": 3932160,
@@ -2899,680 +3088,720 @@
           "state": "idle",
           "index": 0,
           "name": "down-idle-0",
+          "phase": "still-breath",
           "x": 0,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "1db9b70f4ca660aabdf931889d8953b464e4a8f434b93a907bbb77749f36725c"
+          "rgbaHash": "d26a62352e3acc7438d74c35c33e54b9c7284fb9c951b0f35bd6f9e9150aabee"
         },
         {
           "direction": "down",
           "state": "idle",
           "index": 1,
           "name": "down-idle-1",
+          "phase": "still-breath",
           "x": 128,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "f263c40f9abf699d41afe3121414886655a933f0a4248011fe14a54e46abe254"
+          "rgbaHash": "7332a19d08bddf393689a02865b28119832a1046cde9d5cf2ad462fafa82217d"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 0,
           "name": "down-walk-0",
+          "phase": "contact",
           "x": 256,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 36,
+            "y": 9,
+            "width": 57,
+            "height": 176
           },
-          "rgbaHash": "6382cbbae49a3884828201adc6f0d9aa291cec3eae4c2a46dd045fd52b653f91"
+          "rgbaHash": "f6c0017a387041e6878abad31c33569bbc84c49f650f4363a1a708155486025e"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 1,
           "name": "down-walk-1",
+          "phase": "plant",
           "x": 384,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 58,
+            "height": 170
           },
-          "rgbaHash": "ec4cddf83a3b7c959abc5b85ef9361b696e7f31b509121ec61cc84d70d76fcd8"
+          "rgbaHash": "b4946b2bd7ad7abb9c3fa759e4dad1a5b5a29026175dd628a2e05d02f53ec0db"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 2,
           "name": "down-walk-2",
+          "phase": "passing-stance",
           "x": 512,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
+            "x": 35,
+            "y": 9,
             "width": 59,
-            "height": 172
+            "height": 166
           },
-          "rgbaHash": "da39131bdecca693e2709afb729130608b5c1f4423b1786ba2f3365e55afc1f9"
+          "rgbaHash": "23ac7bbb995abe65a064035fd87cfd64ecd1d72d241493c46ee362840f68ffaa"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 3,
           "name": "down-walk-3",
+          "phase": "push-off",
           "x": 640,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 61,
+            "height": 165
           },
-          "rgbaHash": "ac36c755c1f6c3b31f6b1777686a70fc0423646dffb6b2912f29cec45d28310b"
+          "rgbaHash": "c82f22580823e7e3229ec82a75b425def63b161231f9ed5d2a4789e242843066"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 4,
           "name": "down-walk-4",
+          "phase": "opposite-contact",
           "x": 768,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 32,
+            "y": 9,
+            "width": 62,
+            "height": 176
           },
-          "rgbaHash": "ded267bd9134b1cf0b5693336c1a12e7942d8de4061eff53680ed817c363b62d"
+          "rgbaHash": "2f4fa84d888dfa299d969a02d3823213df345641a82a657cb6ebad04bef2870f"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 5,
           "name": "down-walk-5",
+          "phase": "lift",
           "x": 896,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "y": 10,
+            "width": 61,
+            "height": 170
           },
-          "rgbaHash": "684fd02707b789cf1369471ed19060642018894a8b390ed7e9bc8e41044ee0d3"
+          "rgbaHash": "728b8d25230a972ca4ed4df9bf75886c60d66f8fd97ff77e24b0769462f08f06"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 6,
           "name": "down-walk-6",
+          "phase": "passing-swing",
           "x": 0,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 7,
-            "width": 64,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 60,
+            "height": 166
           },
-          "rgbaHash": "caba65a724090b12373b6ab0e89a291f5ff33e70b92894785ea274b518a9f1dd"
+          "rgbaHash": "bbb6787e906ad53b56b3a3e5a5d185bd792f384e168bf646b30296789ae084ce"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 7,
           "name": "down-walk-7",
+          "phase": "lower",
           "x": 128,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "x": 35,
+            "y": 9,
+            "width": 58,
+            "height": 165
           },
-          "rgbaHash": "25be793c79fd5caecedcf705fa9f4d6140075b191837ebf8e95dc7016a7fa079"
+          "rgbaHash": "272d5d6d6ab8013901f75243b05e38b5bed782503bb0ca5243293caeaa381cdf"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 0,
           "name": "up-idle-0",
+          "phase": "still-breath",
           "x": 256,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "d70edd35cb4b9346de7ca997628761512994e557a82be1a382e490a8d5e2a2b0"
+          "rgbaHash": "37acf16ed29185424b4e949425315aa83145dcdbd02caced1dd904f77560c0db"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 1,
           "name": "up-idle-1",
+          "phase": "still-breath",
           "x": 384,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
-            "height": 172
+            "x": 34,
+            "y": 9,
+            "width": 59,
+            "height": 170
           },
-          "rgbaHash": "aabe6faaf33fc8d546cd6c25c79b0aaf1f212f238bdfbe9eb15b8714322a0490"
+          "rgbaHash": "a30e33f99dc9c3ccd46ebdaba3075a22f13e02474e27c4c6c70533f28745cce6"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 0,
           "name": "up-walk-0",
+          "phase": "contact",
           "x": 512,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
+            "x": 36,
+            "y": 9,
+            "width": 57,
             "height": 172
           },
-          "rgbaHash": "8c58aea8e8f997ce021d8b518ca0d293d807289b9740ea2561fa322f511de380"
+          "rgbaHash": "4876fbd72ac3975fde286f01d9f8ac4702796e62576c08306f133cf3bc939bfb"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 1,
           "name": "up-walk-1",
+          "phase": "plant",
           "x": 640,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 58,
+            "height": 160
           },
-          "rgbaHash": "ce00889c945853342dcffc08959bcf0e72b0ebdc907fc7b23eff6b54bb204ed3"
+          "rgbaHash": "4155557107e8c7ec4cb4cb8d2d00fede6692049f2a64dffce8de56d2188f2d65"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 2,
           "name": "up-walk-2",
+          "phase": "passing-stance",
           "x": 768,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
+            "x": 35,
+            "y": 9,
             "width": 59,
-            "height": 172
+            "height": 166
           },
-          "rgbaHash": "eaf011da4ecc29f1c3376e63dd33591abbcf8a792b4d7a9e8f441b52eaa1b0a5"
+          "rgbaHash": "1f8a51d68fb8240cd4a23d9d30f91c092e3817e650cf64052eab756bd88f8ce0"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 3,
           "name": "up-walk-3",
+          "phase": "push-off",
           "x": 896,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 7,
-            "width": 59,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 61,
+            "height": 170
           },
-          "rgbaHash": "5644b81e21130aed35e33b2b7c6d9411db162d0f928070e3f2a024d385743b07"
+          "rgbaHash": "eaeaec179ac2ab56e07aef794558d7f92c9fa0680d4caf30962365f4059a970a"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 4,
           "name": "up-walk-4",
+          "phase": "opposite-contact",
           "x": 0,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 7,
-            "width": 61,
+            "x": 32,
+            "y": 9,
+            "width": 62,
             "height": 172
           },
-          "rgbaHash": "7b5711a22a291863cb4be57ad222439f8944382e1cf3e94c98886cee0d7f31fd"
+          "rgbaHash": "8840cd4398a27ac184dbddfaa7720c3442e1c6a7bc16d6a70537e2d01c789716"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 5,
           "name": "up-walk-5",
+          "phase": "lift",
           "x": 128,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "y": 10,
+            "width": 61,
+            "height": 160
           },
-          "rgbaHash": "88e6cf993efcbdd3c0c0e4935470d0d18aec7139f21409ee5f5e238258ce66d9"
+          "rgbaHash": "810b66f4364a18162ea45ed0741207e4f9e467b85d450584f1f0c1ec7be946ad"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 6,
           "name": "up-walk-6",
+          "phase": "passing-swing",
           "x": 256,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 7,
-            "width": 64,
-            "height": 172
+            "x": 33,
+            "y": 9,
+            "width": 60,
+            "height": 166
           },
-          "rgbaHash": "2a9d032a57c96a35b9bce32e288188b5337e6bb1639985e75ef72369a1c18348"
+          "rgbaHash": "132a75e4bf29806d02589b2d4f38df6a829261eec2f3f3b66c83278feafa0784"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 7,
           "name": "up-walk-7",
+          "phase": "lower",
           "x": 384,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 7,
-            "width": 63,
-            "height": 172
+            "x": 35,
+            "y": 9,
+            "width": 58,
+            "height": 170
           },
-          "rgbaHash": "10cb5af621641331bfd55dad007e422601867a4496210ecc563ceaac406f5cce"
+          "rgbaHash": "91b546c591ef922dd8b239cf97ad1d8365df5d533c0203ef9f3eeb8825b0b86d"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 0,
           "name": "left-idle-0",
+          "phase": "still-breath",
           "x": 512,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "75d49d2b20b74d267f95ed4c8a071c2075a631c1563d39b043e3c42fc56d57b1"
+          "rgbaHash": "523c871636362bc62800efe0c3881843ef1e9f3d3ace45c06903d6b48e735338"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 1,
           "name": "left-idle-1",
+          "phase": "still-breath",
           "x": 640,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "b716790e9db6f872609133acad4acd0bf073b85ff6be2f28887c848bf49741c0"
+          "rgbaHash": "f8ac691f42b5d3bf32f7efa8b44089c652504d5684d341f83a3dab412086fc85"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 0,
           "name": "left-walk-0",
+          "phase": "contact",
           "x": 768,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 32,
+            "y": 10,
+            "width": 57,
+            "height": 169
           },
-          "rgbaHash": "414d2c01e185578a8ce8f4a5b0511c3410a3e33c1c965d7cd9bc46721c6c9153"
+          "rgbaHash": "6a83b998d32b16e6fdb6b5aebea2e30efa2679adef4e7f7d27322e9b0301c2ce"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 1,
           "name": "left-walk-1",
+          "phase": "plant",
           "x": 896,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 11,
+            "width": 53,
+            "height": 168
           },
-          "rgbaHash": "d25fc79ddf575556acb12411a7259af025d9ed32fde864211a3354d73d73f23d"
+          "rgbaHash": "2f1da42f83a7cbf4e3e0837dd10f8ca5536e9a47cb95664bb1d02280de418574"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 2,
           "name": "left-walk-2",
+          "phase": "passing-stance",
           "x": 0,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "754020518b78a91f6eb30f8a99bb16607a859a7031995dcd389856ee26ced0dc"
+          "rgbaHash": "ea885c0f054361584410b2a75b8b2997f5dee0c0da9b6d86ee6883f0fdeed945"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 3,
           "name": "left-walk-3",
+          "phase": "push-off",
           "x": 128,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
+            "x": 31,
+            "y": 10,
             "width": 58,
-            "height": 172
+            "height": 170
           },
-          "rgbaHash": "b78277012f34d3d4c3aeb073e676e216be4ea720f2568081ed04c2fcf9eeb3f1"
+          "rgbaHash": "8f48c274f7bb483fdfe402d7356b06e5e6915a207add33dde59385a63dd34d83"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 4,
           "name": "left-walk-4",
+          "phase": "opposite-contact",
           "x": 256,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 25,
+            "y": 10,
+            "width": 67,
+            "height": 169
           },
-          "rgbaHash": "28bf4a6e83fbb0292af2cc7667662de5eaf4ce381318e97d3f6232c9d36e8e5b"
+          "rgbaHash": "6740de1bd0be3c928c8392cde963209ba6ec0388a575c9d02b6df6f774a6a9fb"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 5,
           "name": "left-walk-5",
+          "phase": "lift",
           "x": 384,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 34,
+            "y": 11,
+            "width": 55,
+            "height": 168
           },
-          "rgbaHash": "67336cc0587a9da5ac667ae889afa48b40c5a10b2c0fd69c6a90b31a51de9b60"
+          "rgbaHash": "f200600829fc16df00b01845424727167dec6e6c46abb63f5fd1dab54b4f4e3b"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 6,
           "name": "left-walk-6",
+          "phase": "passing-swing",
           "x": 512,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "81d070745d6c0f71c6baa7ff4131a4e917244eb6eef2b15863b8b3752aa9414f"
+          "rgbaHash": "355efbe07221e518072bb35094d00f5e578681f29df556904dd2fe4fd7915b1c"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 7,
           "name": "left-walk-7",
+          "phase": "lower",
           "x": 640,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 36,
+            "y": 10,
+            "width": 53,
+            "height": 170
           },
-          "rgbaHash": "f17374754384da08d5bf5dcf10948041740e07b1f5452aa75b5720a64d948ad3"
+          "rgbaHash": "65c597dd66f4c0c843ae92f52ee4441e9a5a7eedc9a8179bf545a73dccf2804b"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 0,
           "name": "right-idle-0",
+          "phase": "still-breath",
           "x": 768,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "53c3fc5815b1fde560d66265c2bed55c39cbf88706646960cf297d4ce5d4fe64"
+          "rgbaHash": "9d19f8d7c7ac878354ea37fa22b30b41ebc7cbad29c909bbf1d140d57d3ff0dc"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 1,
           "name": "right-idle-1",
+          "phase": "still-breath",
           "x": 896,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "477456d18258867ae79bc573815d89eaebddba1f63ae6cd64b64f4409c2e77cd"
+          "rgbaHash": "425f2e5c4cba1540ba3c7310d57e97b39cb1289f0a4cb905e77c5c9069f33ddd"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 0,
           "name": "right-walk-0",
+          "phase": "contact",
           "x": 0,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 32,
+            "y": 10,
+            "width": 68,
+            "height": 169
           },
-          "rgbaHash": "9b3407972a13d3b4866348e937b60506475b68b0b3cafff3107467b61f9e2094"
+          "rgbaHash": "f29b3b8919302804614df3f903d9e3c70b950000cb433bcddcad6a1c543bc137"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 1,
           "name": "right-walk-1",
+          "phase": "plant",
           "x": 128,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 11,
+            "width": 53,
+            "height": 168
           },
-          "rgbaHash": "59cd61582dd2814db27a7a2e98980296c59fe046c2781922f5aafd2983c2fff0"
+          "rgbaHash": "1c6e2501a6c23b8c2a0320d94a9a24abaca5e7898729090d46890e2c91862503"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 2,
           "name": "right-walk-2",
+          "phase": "passing-stance",
           "x": 256,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "d10ef3b1705bd0b8b2b726384bcfaabe20811e9ed3eb68761e7850771d2ce0a9"
+          "rgbaHash": "17033e8986dbf9c0f3ef6c9dfa3c6b58127028eb91447b5a3bd2446a662cd352"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 3,
           "name": "right-walk-3",
+          "phase": "push-off",
           "x": 384,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 170
           },
-          "rgbaHash": "948995b73349def0098b2ae127b8ccb2c758d724d724ce7b0d9dde232c2ffbf0"
+          "rgbaHash": "2f5793237688dd02d9d114a958feaca6de69387403f55633ebc6e8930804b6f4"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 4,
           "name": "right-walk-4",
+          "phase": "opposite-contact",
           "x": 512,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 37,
+            "y": 10,
+            "width": 56,
+            "height": 169
           },
-          "rgbaHash": "f5ecc1e38f0917f3952ef5ca03f077ca830451fbaf9f65fdb391e2b396bab8f7"
+          "rgbaHash": "e350707d3cfb29ccd35ed86cb977ab8b148de5da918c1a03cef7e1657159c6b2"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 5,
           "name": "right-walk-5",
+          "phase": "lift",
           "x": 640,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 11,
+            "width": 53,
+            "height": 168
           },
-          "rgbaHash": "13be5ab4648f57489de3f6f4c82f58b2eb57063d21fcda02ed48c8131a09dc07"
+          "rgbaHash": "1de9aca0a5d732134d3b4cf072b4202069764f0de32a285760c08a3092a7bc46"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 6,
           "name": "right-walk-6",
+          "phase": "passing-swing",
           "x": 768,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 53,
+            "height": 169
           },
-          "rgbaHash": "e4bdbaf29934c537e9221f1386bcb0873572c6f126a711451d1357d25499d598"
+          "rgbaHash": "105619827d13bec66f6959d15e57cab5eeee3e0347f3df62adc9d54ddff7a689"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 7,
           "name": "right-walk-7",
+          "phase": "lower",
           "x": 896,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 35,
-            "y": 7,
-            "width": 58,
-            "height": 172
+            "x": 39,
+            "y": 10,
+            "width": 55,
+            "height": 170
           },
-          "rgbaHash": "a17693ca2e8914450af031475a344ca866e9804decca88f256ea09acf33d11bd"
+          "rgbaHash": "678bb99a63b5bbebc22d94cc318d4f32c762b96feb24bad7519ad1a89fbab8dd"
         }
       ]
     },
@@ -3588,9 +3817,9 @@
         "accessory": "backpack"
       },
       "role": "fictional-npc-proof",
-      "path": "look-5.f471106cc7a8.png",
-      "hash": "f471106cc7a8c20c860580a241fc19a64691628bab26597e45aad01a630f96b0",
-      "bytes": 284010,
+      "path": "look-5.9e38f3233e5a.png",
+      "hash": "9e38f3233e5a4398b089d076de3656aab89c91217bfc9b69f6784ea88af99a95",
+      "bytes": 490541,
       "width": 1024,
       "height": 960,
       "rgbaBytes": 3932160,
@@ -3600,680 +3829,720 @@
           "state": "idle",
           "index": 0,
           "name": "down-idle-0",
+          "phase": "still-breath",
           "x": 0,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "89d342f21325953190f3b08a2be5f55c7ce9be00db646f05c84f08a4f5b80ab3"
+          "rgbaHash": "cd2fca01a8b321a7747b110d8a0c68f0ab004df5b3e5b166d50dfa4ffe4cd6d8"
         },
         {
           "direction": "down",
           "state": "idle",
           "index": 1,
           "name": "down-idle-1",
+          "phase": "still-breath",
           "x": 128,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "b7b977cdc117fe2c318753972fafc00649a6b880b8ed8f8a53fd782109f2bcd8"
+          "rgbaHash": "868f88dcad7ea79d555ed5bea111dfd55cfdec90b03a5df77d8c3f128523741f"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 0,
           "name": "down-walk-0",
+          "phase": "contact",
           "x": 256,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 36,
+            "y": 15,
+            "width": 56,
+            "height": 170
           },
-          "rgbaHash": "2496e22e198f1e5ee8a83137ab4a98219735fbdc7bc5a2b567660059ee44f5e9"
+          "rgbaHash": "2f353c179540d73a032ab1df4e318c6eee608925b7ae0f914f9ddf0ab74f3852"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 1,
           "name": "down-walk-1",
+          "phase": "plant",
           "x": 384,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
+            "x": 36,
+            "y": 15,
+            "width": 57,
             "height": 165
           },
-          "rgbaHash": "68184403d306bac09e88e5a74a714bb5b27135e7790875dcad5bae55ac08ea67"
+          "rgbaHash": "dfa7ac0fc1423eaec429485240b93898e2d9d3e4183096987a8d6169bbd62741"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 2,
           "name": "down-walk-2",
+          "phase": "passing-stance",
           "x": 512,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 58,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "9ca0e3b33e98de4bc855390cb0210915bef723a372407a18bd37ccd5a9298e46"
+          "rgbaHash": "7caffdd4eb0592cd78f5717447feb5f604d8e67d3d1b6c383430d97e2ea68ac0"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 3,
           "name": "down-walk-3",
+          "phase": "push-off",
           "x": 640,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 159
           },
-          "rgbaHash": "b45fd8dfd1b3e40e2ead45f989b4c2edaea606c4145f16dce56f337f6e26fe27"
+          "rgbaHash": "df6794d7da4e0baff212335c6b8c315775a77517b03ef090ed4deb661f0fe759"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 4,
           "name": "down-walk-4",
+          "phase": "opposite-contact",
           "x": 768,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 32,
+            "y": 15,
+            "width": 62,
+            "height": 170
           },
-          "rgbaHash": "c54b865e2b6a70fbd0cbcca6d77f527af3c8b78cb40d8b8d083fbf25f98d607c"
+          "rgbaHash": "b62fe3e2e3232aa787bf2c7f4319ce1befb6ffe3ad4ee9a66d61cd690aafb79d"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 5,
           "name": "down-walk-5",
+          "phase": "lift",
           "x": 896,
           "y": 0,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 14,
-            "width": 63,
+            "y": 15,
+            "width": 60,
             "height": 165
           },
-          "rgbaHash": "0d3be72a5d29cfe83a62f4188c10dd61d4c6178eb6585fc396e899af156ae6cd"
+          "rgbaHash": "96c1fe970e223690fe71393cdc041fd5c2cc8b7af2078ce3269f9c5eb94b40fc"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 6,
           "name": "down-walk-6",
+          "phase": "passing-swing",
           "x": 0,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 14,
-            "width": 64,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "c7d1db16be8ef032a479e18d250678be82a6e7038e5a8a192acb9a9c6f59cdfc"
+          "rgbaHash": "9f5c69c3e8e59e8c245f4a3c0b1f3928f91736c7639d967eaf48b7486ef789cf"
         },
         {
           "direction": "down",
           "state": "walk",
           "index": 7,
           "name": "down-walk-7",
+          "phase": "lower",
           "x": 128,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 14,
-            "width": 63,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 159
           },
-          "rgbaHash": "17fdc1ff54e7010ff7d7b10414ec12e9390afe92bc06c1bfe050645dcab1012f"
+          "rgbaHash": "7f44d68810c8f88118caec0297ea2602db0cd3d8a5e20999ac8eb2707dba361a"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 0,
           "name": "up-idle-0",
+          "phase": "still-breath",
           "x": 256,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "0d1a2424c1c7e5c879e1c5e0496e81f849dd13622b50c3dbe7adf036c203c373"
+          "rgbaHash": "f91b42ca7f6b1ba7dbc3c48eb061df30e2eda6c53f18fbf94cfe3013fd08ce4b"
         },
         {
           "direction": "up",
           "state": "idle",
           "index": 1,
           "name": "up-idle-1",
+          "phase": "still-breath",
           "x": 384,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 34,
+            "y": 15,
+            "width": 59,
+            "height": 164
           },
-          "rgbaHash": "2f6d751231b571a0bd4fe06b8238da06424ff490c401f7880e48a544663b9e2f"
+          "rgbaHash": "a74a8e39358e6eeff8a6d0aecd734af1ecd1732c6a062c70162468b14ca34896"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 0,
           "name": "up-walk-0",
+          "phase": "contact",
           "x": 512,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 36,
+            "y": 15,
+            "width": 56,
+            "height": 166
           },
-          "rgbaHash": "f9d8de2647dbf671fad452c4c61705008aea45c07a57e3a61ec2f825ab84f3b5"
+          "rgbaHash": "8d596d32af9f468387dc3a5a385fe44ff0e383a21c01c17f7982c2c167da923d"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 1,
           "name": "up-walk-1",
+          "phase": "plant",
           "x": 640,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
-            "height": 165
+            "x": 36,
+            "y": 16,
+            "width": 57,
+            "height": 154
           },
-          "rgbaHash": "d96449fa0ca30772264e6f5120a30c6c2066803b07ec8ae2eb42500855941ed6"
+          "rgbaHash": "6023391dfaf2b4ec245ce2a68b8e9ee2f0a3bf6b7738bd1c30f86413477efc7b"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 2,
           "name": "up-walk-2",
+          "phase": "passing-stance",
           "x": 768,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 58,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "4cefcaef32ee8aade6d44e90c173f8997f6b8c1c685c6a08547dec35364ab9ea"
+          "rgbaHash": "96313ebaead90b7dc2a33c93f3f75d9f2cc894bcbe3090757c87adb1f989f0e0"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 3,
           "name": "up-walk-3",
+          "phase": "push-off",
           "x": 896,
           "y": 192,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 34,
-            "y": 14,
-            "width": 59,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 61,
+            "height": 164
           },
-          "rgbaHash": "63981f5d36a9b261ea0c85782557b5d57e9cc2a59dc2eefed7c0b955544d044d"
+          "rgbaHash": "7b1aa13cb7064f640d94fdf4280e3c5adf023aff801a137ee27226f556a3cb24"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 4,
           "name": "up-walk-4",
+          "phase": "opposite-contact",
           "x": 0,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 33,
-            "y": 14,
-            "width": 61,
-            "height": 165
+            "x": 32,
+            "y": 15,
+            "width": 62,
+            "height": 166
           },
-          "rgbaHash": "ec4d5a64a65ee7df6caa4bf619656ee653f77ce7b576494c7a8a3adabab2b0a0"
+          "rgbaHash": "21351ad4c221a0c8a36ecb6519ff91d156bcf1e697cff1f37516418aa7bcb280"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 5,
           "name": "up-walk-5",
+          "phase": "lift",
           "x": 128,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 32,
-            "y": 14,
-            "width": 63,
-            "height": 165
+            "y": 16,
+            "width": 60,
+            "height": 154
           },
-          "rgbaHash": "f38d5f03db75b3d607551b08832603deaeee054314934d282c47b3ddb3ab8170"
+          "rgbaHash": "22539b6d8dfe22762894340735611ac4eb9a05885ea746c17cf9cdae124a9384"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 6,
           "name": "up-walk-6",
+          "phase": "passing-swing",
           "x": 256,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 31,
-            "y": 14,
-            "width": 64,
-            "height": 165
+            "x": 33,
+            "y": 15,
+            "width": 59,
+            "height": 160
           },
-          "rgbaHash": "d1bac8ea605edf0ee73e3f0e9462dd3a6f11a82cb3807c5991ad72d416406ce6"
+          "rgbaHash": "679b298cf3293a4402aa7ad1a917f1fa750e14762d18cdcb0d105c939e5d8dc4"
         },
         {
           "direction": "up",
           "state": "walk",
           "index": 7,
           "name": "up-walk-7",
+          "phase": "lower",
           "x": 384,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 32,
-            "y": 14,
-            "width": 63,
-            "height": 165
+            "x": 35,
+            "y": 15,
+            "width": 57,
+            "height": 164
           },
-          "rgbaHash": "b1a9114a022a6b111ad2494483bba1e8ddf7e374e3c7af6e02d86401e3ebe3c0"
+          "rgbaHash": "f49d432c3b97f8b564140dd6987b251f05f9382e36478c81ca03064ec1b43247"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 0,
           "name": "left-idle-0",
+          "phase": "still-breath",
           "x": 512,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 48,
+            "height": 163
           },
-          "rgbaHash": "100ee63afe4c997ff6b9f95368cfb35be226ac012560c5a3988b412209a6466c"
+          "rgbaHash": "bb6f7b597e4354464adb58aff2eb9e6c74d0947c0dcc16ae3d89a066538a501e"
         },
         {
           "direction": "left",
           "state": "idle",
           "index": 1,
           "name": "left-idle-1",
+          "phase": "still-breath",
           "x": 640,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 49,
+            "height": 163
           },
-          "rgbaHash": "9991cf54ac7f3620502f0aa3f1f2819f828deb12a6e56a77247409158a68bc38"
+          "rgbaHash": "6efee20aacbc9485a095ed79a910fff43e693f8cbe64e95aa48a0ea24253bfb6"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 0,
           "name": "left-walk-0",
+          "phase": "contact",
           "x": 768,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 32,
+            "y": 16,
+            "width": 60,
+            "height": 163
           },
-          "rgbaHash": "b411152d493ed8b7876fa6dc88664aff7aaeef1c1b669c7002cb6037b1e1e5c5"
+          "rgbaHash": "5ee06c3dc482287905f675f6b46df0b18b2cba4c95bbfe64306f1f6f37aff796"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 1,
           "name": "left-walk-1",
+          "phase": "plant",
           "x": 896,
           "y": 384,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 41,
+            "y": 17,
+            "width": 52,
+            "height": 162
           },
-          "rgbaHash": "7776f88367f11afce6141e65cc9fc68aef4c051b32401690538eee0ef394eb1e"
+          "rgbaHash": "46b2127a70989e780afcdbd1a524600303889c3ef32bc852805c5cecb2010335"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 2,
           "name": "left-walk-2",
+          "phase": "passing-stance",
           "x": 0,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 49,
+            "height": 163
           },
-          "rgbaHash": "cf568a8852f2126b8e3cc9e4f04441a24e45b4e253fa9c2201b87ffd0b466a0e"
+          "rgbaHash": "f670f5b351ba6bf76b852f33e1b3339f7954cac5e5a5f53a76dcc6fb436fa9e4"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 3,
           "name": "left-walk-3",
+          "phase": "push-off",
           "x": 128,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 31,
+            "y": 16,
+            "width": 60,
+            "height": 164
           },
-          "rgbaHash": "ea745321a63fd31c1bb5083a848a7d05150cb565c2c784f7b93b59d2afaa50a9"
+          "rgbaHash": "7b54b4dc347d68d53b1e10b13ffb13f122f2083cbc878a26384bbb281fc2928a"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 4,
           "name": "left-walk-4",
+          "phase": "opposite-contact",
           "x": 256,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 25,
+            "y": 16,
+            "width": 67,
+            "height": 163
           },
-          "rgbaHash": "637e4f0b557e0740794795ca42336589e63a61eb30c4c8dcb607e4849c5a135f"
+          "rgbaHash": "efed3afc03d0ee9865e1bd4112d6f71e9ccab9e5927801878abae35f216b6441"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 5,
           "name": "left-walk-5",
+          "phase": "lift",
           "x": 384,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 34,
+            "y": 17,
+            "width": 56,
+            "height": 162
           },
-          "rgbaHash": "ac24f7c151152f86d5a5602145c0eb279fcac0987270c04beb794223d8d08eb8"
+          "rgbaHash": "39a4cd675d8f242e35f9cb99952885bdd0326b2427b9f819b50661ba923ac315"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 6,
           "name": "left-walk-6",
+          "phase": "passing-swing",
           "x": 512,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 38,
-            "y": 14,
-            "width": 53,
-            "height": 165
+            "x": 43,
+            "y": 16,
+            "width": 48,
+            "height": 163
           },
-          "rgbaHash": "217c14bbd31bf0648e70f43d03d4d787404d6b7920132cd1969e530f015c8d19"
+          "rgbaHash": "f10d421a89c3ead14b9d8564df1ecb473360ffdb383927739b4cfddc74b8a397"
         },
         {
           "direction": "left",
           "state": "walk",
           "index": 7,
           "name": "left-walk-7",
+          "phase": "lower",
           "x": 640,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 40,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "x": 38,
+            "y": 16,
+            "width": 53,
+            "height": 164
           },
-          "rgbaHash": "affe152097bc17f97bbf42cea092a273726f8452adc23a854dd1b0b83383fb2d"
+          "rgbaHash": "e2032bf0c8753413365270e3fa6f3608eb86e615885ac702f8c5ca020e04d411"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 0,
           "name": "right-idle-0",
+          "phase": "still-breath",
           "x": 768,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "y": 16,
+            "width": 46,
+            "height": 163
           },
-          "rgbaHash": "1bc8fdeac2bcd9b7c5df1fc9c39934174af8dd827153275fcf5ddc9f6d75aca5"
+          "rgbaHash": "bf2d5187172c04d11c36072fdb9915db64b3f961e2d6ca1b958fb87fc8c3dc01"
         },
         {
           "direction": "right",
           "state": "idle",
           "index": 1,
           "name": "right-idle-1",
+          "phase": "still-breath",
           "x": 896,
           "y": 576,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "y": 16,
+            "width": 46,
+            "height": 163
           },
-          "rgbaHash": "ce8ed0dd8774d1ca0b582989709386465ce64943b4f45f4fe783065ca7792627"
+          "rgbaHash": "452476c88837bf0697feedb9ea7ec6bb7613973d1840ffb2a455642b6e3c13b4"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 0,
           "name": "right-walk-0",
+          "phase": "contact",
           "x": 0,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 32,
+            "y": 16,
+            "width": 68,
+            "height": 163
           },
-          "rgbaHash": "1d3a364499931e2aab5d469a2c8178e16d1f2f6537b254f39fe783ae6b43aea7"
+          "rgbaHash": "abeb02e971e97963d0c4e5e8ee6e18c4d5573dc51a5197046e68f4ce98534d3e"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 1,
           "name": "right-walk-1",
+          "phase": "plant",
           "x": 128,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 38,
+            "y": 17,
+            "width": 53,
+            "height": 162
           },
-          "rgbaHash": "5ca1563e82b0459fa471a033933c319f13c55b80f708c4531dd408d0a28b20f8"
+          "rgbaHash": "3ed59af38886aeb177b877e592aa95b85539c7969da12249b5ed023866632065"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 2,
           "name": "right-walk-2",
+          "phase": "passing-stance",
           "x": 256,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "y": 16,
+            "width": 46,
+            "height": 163
           },
-          "rgbaHash": "eabb120e248c937c694530ade7d0c53a28f42dca5dead72fac53c715c9d52023"
+          "rgbaHash": "375e3982efe38a44813c181d0b7751b2a48d95a1f7da7f13ce896ab4008a9087"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 3,
           "name": "right-walk-3",
+          "phase": "push-off",
           "x": 384,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "y": 16,
+            "width": 50,
+            "height": 164
           },
-          "rgbaHash": "02120725d22d414bba578e9feeed0319cf52a4ff29463f0acb4a094f92f2c196"
+          "rgbaHash": "da8133441b44f3981c07312b1473fc3475603cf7d18776bf5e05daf7490d10f4"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 4,
           "name": "right-walk-4",
+          "phase": "opposite-contact",
           "x": 512,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 36,
+            "y": 16,
+            "width": 57,
+            "height": 163
           },
-          "rgbaHash": "d7a5324e2a46d71bf59e4fbcd2e50026260ce6dbed99bb3ef9d39b33bd8d1c1e"
+          "rgbaHash": "4ed3254038edda1adea9bfc103ae9159cb9ca25f5ceadba19e4b007c2192ad41"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 5,
           "name": "right-walk-5",
+          "phase": "lift",
           "x": 640,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 35,
+            "y": 17,
+            "width": 49,
+            "height": 162
           },
-          "rgbaHash": "5621dcfc57db3703f270a75ce27a6b411cbbceac05bec10327209721d0ed8c46"
+          "rgbaHash": "20fd91644117b31aa38fefdf1d37da9b799d0814062fd5d2a77d1cbda8eb58e4"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 6,
           "name": "right-walk-6",
+          "phase": "passing-swing",
           "x": 768,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
-            "x": 37,
-            "y": 14,
-            "width": 52,
-            "height": 165
+            "x": 36,
+            "y": 16,
+            "width": 47,
+            "height": 163
           },
-          "rgbaHash": "c57c15bed5a447e857ac78993907601487566c33cbbc4be1ca1ea82dac012ff0"
+          "rgbaHash": "2966756d602cf1ed0180a12ea23eb6b8b22cf2ae006d500a54d9eb130e1382d7"
         },
         {
           "direction": "right",
           "state": "walk",
           "index": 7,
           "name": "right-walk-7",
+          "phase": "lower",
           "x": 896,
           "y": 768,
           "width": 128,
           "height": 192,
           "bodyAlpha": {
             "x": 37,
-            "y": 14,
-            "width": 51,
-            "height": 165
+            "y": 16,
+            "width": 57,
+            "height": 164
           },
-          "rgbaHash": "ce08bb5d429f7d6aac32e31c5bff25c10cd5f9604add64f6c112bca933ac2992"
+          "rgbaHash": "60c4ef297fd315c5121eb35c052f2ae433d3015cba99103094de6131fff74be3"
         }
       ]
     }

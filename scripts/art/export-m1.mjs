@@ -1,5 +1,5 @@
 import { createRequire } from "node:module";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import {
   svg,
@@ -10,11 +10,13 @@ import {
   choices,
   palettes,
 } from "../../art/characters/m1/student.mjs";
+import { gait } from "../../art/characters/m1/forms.mjs";
 const require = createRequire(import.meta.url);
 const sharp = createRequire(
   require.resolve("next/package.json", { paths: ["apps/game"] }),
 )("sharp");
-const root = "art/characters/m1";
+const masterFirst = process.argv.includes("--master-first");
+const root = masterFirst ? "artifacts/m1-master-first" : "art/characters/m1";
 const hash = (buffer) => createHash("sha256").update(buffer).digest("hex");
 const frames = directions.flatMap((direction) =>
   ["idle", "walk"].flatMap((state) =>
@@ -28,8 +30,36 @@ const frames = directions.flatMap((direction) =>
 );
 await mkdir(`${root}/export`, { recursive: true });
 await mkdir(`${root}/source`, { recursive: true });
-const sourceHash = hash(
-  (await readFile(`${root}/student.mjs`, "utf8")).replace(/\r\n/g, "\n"),
+const sourceFiles = await Promise.all(
+  ["student.mjs", "forms.mjs"].map(async (path) => ({
+    path,
+    hash: hash(
+      (await readFile(`art/characters/m1/${path}`, "utf8")).replace(
+        /\r\n/g,
+        "\n",
+      ),
+    ),
+  })),
+);
+const sourceHash = hash(JSON.stringify(sourceFiles));
+function nestedSvg(look, direction, state, frame, prefix, expression = "warm") {
+  return svg(look, direction, state, frame, true, expression)
+    .replace(/^<svg[^>]*>/, "")
+    .replace(/<\/svg>$/, "")
+    .replaceAll('id="', `id="${prefix}-`)
+    .replaceAll("url(#", `url(#${prefix}-`);
+}
+const turnaround = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="2048" height="768"><rect width="100%" height="100%" fill="#e7e5da"/>${directions.map((dir, i) => `<svg x="${i * 512}" width="512" height="768" viewBox="0 0 128 192">${nestedSvg(looks[0], dir, "idle", 0, `turn-${i}`)}</svg>`).join("")}</svg>`;
+await writeFile(`${root}/source/master-turnaround.svg`, turnaround);
+await writeFile(
+  `${root}/export/master-turnaround.png`,
+  await sharp(Buffer.from(turnaround)).png().toBuffer(),
+);
+const expressions = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1536" height="768"><rect width="100%" height="100%" fill="#e7e5da"/>${["warm", "attentive", "soft"].map((expression, i) => `<svg x="${i * 512}" width="512" height="768" viewBox="0 0 128 192">${nestedSvg(looks[0], "down", "idle", 0, `expression-${i}`, expression)}</svg>`).join("")}</svg>`;
+await writeFile(`${root}/source/expression-board.svg`, expressions);
+await writeFile(
+  `${root}/export/expression-board.png`,
+  await sharp(Buffer.from(expressions)).png().toBuffer(),
 );
 function alphaBounds(data, info) {
   let left = info.width,
@@ -47,7 +77,7 @@ function alphaBounds(data, info) {
   return { x: left, y: top, width: right - left + 1, height: bottom - top + 1 };
 }
 const atlases = [];
-for (let look = 0; look < looks.length; look++) {
+for (let look = 0; look < (masterFirst ? 1 : looks.length); look++) {
   const entries = [];
   const metadata = [];
   for (let i = 0; i < frames.length; i++) {
@@ -65,6 +95,7 @@ for (let look = 0; look < looks.length; look++) {
     entries.push({ input: image, left: x, top: y });
     metadata.push({
       ...f,
+      phase: f.state === "walk" ? gait.phases[f.index] : "still-breath",
       x,
       y,
       width: geometry.width,
@@ -94,6 +125,20 @@ for (let look = 0; look < looks.length; look++) {
     rgbaBytes: 1024 * 960 * 4,
     frames: metadata,
   });
+}
+// The interim native master proof retains the five OLD comparison/NPC atlases.
+// It is written only to ignored artifacts and is never the final variant proof.
+if (masterFirst) {
+  const prior = JSON.parse(
+    await readFile("art/characters/m1/export/manifest.json", "utf8"),
+  );
+  for (const atlas of prior.atlases.slice(1)) {
+    await copyFile(
+      `art/characters/m1/export/${atlas.path}`,
+      `${root}/export/${atlas.path}`,
+    );
+    atlases.push(atlas);
+  }
 }
 for (const direction of directions) {
   await writeFile(`${root}/source/${direction}.svg`, svg(looks[0], direction));
@@ -149,7 +194,11 @@ await writeFile(
     {
       status: "M1 VISUAL REVIEW REQUIRED; NOT RUNTIME",
       sourceHash,
-      version: "m1-layered-1",
+      sourceFiles,
+      gait,
+      version: masterFirst
+        ? "m1-layered-2-MASTER-FIRST-old-comparison-variants"
+        : "m1-layered-2",
       geometry,
       choices,
       palettes,

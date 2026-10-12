@@ -5,7 +5,10 @@ import { dirname } from "node:path";
 import { directions } from "../../art/characters/m1/student.mjs";
 const require = createRequire(import.meta.url);
 /** Fixed-whitelist, loopback, non-runtime art laboratory. No account/API paths. */
-export async function startProof() {
+export async function startProof({ masterFirst = false } = {}) {
+  const exportRoot = masterFirst
+    ? "artifacts/m1-master-first/export"
+    : "art/characters/m1/export";
   const {
     createCampusWorld,
     validateWorld,
@@ -20,7 +23,7 @@ export async function startProof() {
     outfile: "artifacts/m1-proof/dist/proof.js",
   });
   const spec = JSON.parse(
-    await readFile("art/characters/m1/export/manifest.json", "utf8"),
+    await readFile(`${exportRoot}/manifest.json`, "utf8"),
   );
   spec.world = validateWorld(createCampusWorld("futa"));
   spec.directions = directions;
@@ -35,7 +38,7 @@ export async function startProof() {
     ],
     ...spec.atlases.map((a) => [
       `/atlas/${a.path}`,
-      [`art/characters/m1/export/${a.path}`, "image/png"],
+      [`${exportRoot}/${a.path}`, "image/png"],
     ]),
     ...spec.world.assetBundles.map((a) => [
       a.path,
