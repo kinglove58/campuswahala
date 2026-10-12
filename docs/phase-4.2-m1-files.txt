@@ -4,7 +4,7 @@ Iteration starting head: 12248aacbecae885cb7905cf9279457fb141c96c
 Final head: recorded in draft PR body
 Migrations: none
 
-This iteration (131 paths, including deleted superseded proof atlases):
+This iteration (132 paths, including this inventory and deleted superseded proof atlases; rename detection disabled):
 M	.github/workflows/ci.yml
 M	IMPLEMENTATION_STATUS.md
 M	README.md
@@ -129,6 +129,7 @@ M	art/characters/m1/source/up-torso-and-hood.png
 M	art/characters/m1/source/up.svg
 M	art/characters/m1/source/walk-board.svg
 M	art/characters/m1/student.mjs
+M	docs/phase-4.2-m1-files.txt
 A	docs/phase-4.2-m1-refinement-review.md
 M	docs/phase-4.2-review.md
 M	scripts/art/capture-m1.mjs
@@ -137,7 +138,7 @@ M	scripts/art/export-m1.mjs
 M	scripts/art/m1-proof-server.mjs
 M	scripts/art/verify-m1.mjs
 
-Complete base-to-head (242 paths, final index tree vs base):
+Complete base-to-head (242 paths, final tree vs base):
 .github/workflows/ci.yml
 IMPLEMENTATION_STATUS.md
 README.md
