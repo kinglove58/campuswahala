@@ -174,7 +174,7 @@ export class WorldEngine {
       this.bus.emit("PLAYER_ENTERED_VENUE", { venueId: i.venueId });
     if (i.npcId) this.bus.emit("NPC_INTERACTED", { npcId: i.npcId });
   }
-  tick(delta: number, direction: Point = { x: 0, y: 0 }) {
+  tick(delta: number, direction: Point = { x: 0, y: 0 }, cosmeticSpeed = 230) {
     const dt = Math.max(0, Math.min(delta, 50));
     this.elapsedMs += dt;
     this.battery.tick(dt / 1000, this.phoneOpen);
@@ -184,7 +184,13 @@ export class WorldEngine {
       this.bus.emit("TIME_PERIOD_CHANGED", { period: time.period });
     }
     if (this.paused) return;
-    const speed = dt * 0.23;
+    // Renderers may pace walking to a sprite stride; elapsed/academic time and
+    // collision rules are independent. Default preserves existing consumers.
+    const speed =
+      (dt / 1000) *
+      (Number.isFinite(cosmeticSpeed)
+        ? Math.max(0, Math.min(230, cosmeticSpeed))
+        : 230);
     let target = this.path[0];
     if (direction.x || direction.y) {
       this.path = [];

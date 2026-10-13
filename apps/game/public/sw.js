@@ -1,5 +1,5 @@
 /* CW Pocket offline foundation. No account data or mutation queue. */
-const CACHE = "cw-public-p25-2";
+const CACHE = "cw-public-m2-b1";
 const MAX_ENTRIES = 96;
 const ESSENTIAL = [
   "/offline.html",
@@ -10,6 +10,9 @@ function allowed(url) {
   if (url.origin !== self.location.origin || url.search) return false;
   return (
     ESSENTIAL.includes(url.pathname) ||
+    /^\/character-assets\/b-[a-f0-9]{12}\/look-[0-5]\.[a-f0-9]{12}\.png$/.test(
+      url.pathname,
+    ) ||
     /^\/world-assets\/[a-z0-9/-]+\.[a-f0-9]{12}\.svg$/.test(url.pathname) ||
     /^\/api\/world\/(futa|oau|unilag)\/versions\/(1|2)$/.test(url.pathname) ||
     /^\/_next\/static\/[a-zA-Z0-9_./-]+\.(js|css|woff2)$/.test(url.pathname)

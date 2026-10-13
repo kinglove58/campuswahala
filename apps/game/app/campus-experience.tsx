@@ -1159,8 +1159,8 @@ export default function CampusExperience({
                     Camera zoom
                     <input
                       type="range"
-                      min=".75"
-                      max="1.6"
+                      min=".8"
+                      max="1.2"
                       step=".05"
                       value={zoom}
                       onChange={(e) => {

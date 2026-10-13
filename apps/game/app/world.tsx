@@ -3,11 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import {
   WorldEngine,
   npcPosition,
+  cameraProfile,
+  cosmeticWalkSpeed,
+  facingFor,
+  appearanceKey,
   type WorldManifest,
   type Appearance,
   type Weather,
 } from "@campuswahala/game-engine";
 import type PhaserType from "phaser";
+import { CharacterAtlasCache, CharacterVisual } from "./character-visual";
 export type WorldSnapshot = {
   x: number;
   y: number;
@@ -109,14 +114,20 @@ export default function CampusWorld({
       .then(({ default: Phaser }) => {
         if (disposed || !container.current) return;
         class CampusScene extends Phaser.Scene {
-          person!: PhaserType.GameObjects.Container;
+          person!: CharacterVisual;
+          atlas!: CharacterAtlasCache;
+          profile = cameraProfile(360, 731, reduced);
+          zoomFactor = 1;
+          characterReady = false;
           avatarKey = "";
+          avatarChangedAt = 0;
+          lastAvatarAttempt = 0;
           keys!: Record<string, PhaserType.Input.Keyboard.Key>;
           chunks = new Map<string, PhaserType.GameObjects.Container>();
           loadingBundles = new Set<string>();
           loadedBundles = new Set<string>();
           failedBundles = new Set<string>();
-          npcs = new Map<string, PhaserType.GameObjects.Container>();
+          npcs = new Map<string, CharacterVisual>();
           overlay!: PhaserType.GameObjects.Graphics;
           rain!: PhaserType.GameObjects.Graphics;
           navigation!: PhaserType.GameObjects.Graphics;
@@ -172,31 +183,55 @@ export default function CampusWorld({
                 roads.strokePoints(road.points);
               }
             }
-            this.person = this.add
-              .container(engine.position.x, engine.position.y)
-              .setDepth(5000);
-            this.drawAvatar();
+            this.atlas = new CharacterAtlasCache(this);
+            this.profile = cameraProfile(
+              this.scale.width,
+              this.scale.height,
+              reduced,
+            );
+            this.person = new CharacterVisual(
+              this,
+              this.atlas,
+              engine.position.x,
+              engine.position.y,
+              props.current.appearance,
+            );
+            this.avatarKey = appearanceKey(props.current.appearance);
             const camera = this.cameras.main;
-            const applyZoom = (value: number) =>
+            const applyZoom = (factor: number) => {
+              this.zoomFactor = Math.max(0.8, Math.min(1.2, factor));
               camera.setZoom(
                 Math.max(
-                  this.scale.width / manifest.bounds.width,
-                  this.scale.height / manifest.bounds.height,
-                  0.75,
-                  Math.min(1.6, value),
+                  this.profile.minZoom,
+                  Math.min(
+                    this.profile.maxZoom,
+                    this.profile.defaultZoom * this.zoomFactor,
+                  ),
                 ),
               );
-            applyZoom(window.innerWidth < 600 ? 0.88 : 1.05);
-            const resize = () => applyZoom(camera.zoom);
+            };
+            applyZoom(1);
+            const resize = () => {
+              this.profile = cameraProfile(
+                this.scale.width,
+                this.scale.height,
+                reduced,
+              );
+              applyZoom(this.zoomFactor);
+            };
             this.scale.on("resize", resize);
-            this.events.once("shutdown", () =>
-              this.scale.off("resize", resize),
-            );
+            this.events.once("shutdown", () => {
+              this.scale.off("resize", resize);
+              this.person.dispose();
+              for (const npc of this.npcs.values()) npc.dispose();
+              this.npcs.clear();
+              this.atlas.dispose();
+            });
             camera.startFollow(
-              this.person,
+              this.person.sprite,
               true,
-              reduced ? 1 : 0.1,
-              reduced ? 1 : 0.1,
+              this.profile.follow,
+              this.profile.follow,
             );
             camera.roundPixels = true;
             this.keys = this.input.keyboard!.addKeys(
@@ -216,7 +251,7 @@ export default function CampusWorld({
             this.navigation = this.add.graphics().setDepth(5500);
             this.events.once("shutdown", () => engine.dispose());
             this.updateChunks();
-            setStatus("ready");
+
             performance.measure("cw.world_boot_ms", {
               start: boot,
               end: performance.now(),
@@ -226,73 +261,6 @@ export default function CampusWorld({
               zoom: applyZoom,
             });
           }
-          drawAvatar() {
-            this.avatarKey = JSON.stringify(props.current.appearance);
-            this.person.removeAll(true);
-            const ring = this.add.graphics();
-            ring.lineStyle(2, 0xffedb0, 0.9);
-            ring.strokeEllipse(0, 20, 38, 14);
-            this.person.add([ring, this.avatar(props.current.appearance)]);
-          }
-          avatar(a: Appearance) {
-            const g = this.add.graphics();
-            const skin = {
-              deep: 0x4c3026,
-              brown: 0x805137,
-              warm: 0xb57a52,
-              light: 0xd7a67e,
-            }[a.skin];
-            g.fillStyle(0x1c2d24, 0.2);
-            g.fillEllipse(0, 18, 29, 10);
-            g.fillStyle(a.shoes === "white" ? 0xf5eddc : 0x27322d);
-            g.fillRoundedRect(-10, 12, 8, 8, 2);
-            g.fillRoundedRect(2, 12, 8, 8, 2);
-            g.fillStyle(0x334951);
-            if (a.bottom === "skirt") {
-              g.fillTriangle(-8, 1, 8, 1, 14, 14);
-              g.fillTriangle(-8, 1, 14, 14, -14, 14);
-            } else {
-              g.fillRect(-8, 0, 7, 15);
-              g.fillRect(1, 0, 7, 15);
-            }
-            g.fillStyle(
-              { lime: 0xc8d885, clay: 0xca7857, blue: 0x718fa9 }[a.top],
-            );
-            g.fillRoundedRect(-11, -12, 22, 19, 5);
-            g.lineStyle(2, 0x284333, 0.7);
-            g.strokeRoundedRect(-11, -12, 22, 19, 5);
-            g.fillStyle(skin);
-            g.fillCircle(0, -22, 9);
-            g.fillRect(-14, -8, 4, 12);
-            g.fillRect(10, -8, 4, 12);
-            g.fillStyle(a.hairColour === "black" ? 0x262521 : 0x694731);
-            g.fillEllipse(
-              0,
-              -28,
-              a.hair === "afro" ? 26 : 19,
-              a.hair === "afro" ? 21 : 9,
-            );
-            if (a.hair === "braids") {
-              g.fillRoundedRect(-12, -27, 5, 23, 2);
-              g.fillRoundedRect(7, -27, 5, 23, 2);
-            }
-            if (a.hair === "covered") {
-              g.fillStyle(0xa7614b);
-              g.fillEllipse(0, -25, 25, 26);
-              g.fillStyle(skin);
-              g.fillCircle(1, -21, 7);
-            }
-            if (a.accessory === "backpack") {
-              g.fillStyle(0x927251);
-              g.fillRoundedRect(-7, -10, 14, 16, 3);
-              g.lineStyle(1, 0xdac09a);
-              g.strokeRect(-5, -4, 10, 7);
-            }
-            g.fillStyle(0x221f1d);
-            g.fillCircle(-3, -21, 1);
-            g.fillCircle(3, -21, 1);
-            return g;
-          }
           updateChunks() {
             const visible = engine.visibleZones(this.cameras.main.worldView);
             for (const [id, chunk] of this.chunks)
@@ -301,7 +269,7 @@ export default function CampusWorld({
                 this.chunks.delete(id);
                 for (const [nid, n] of this.npcs)
                   if (npcIndex.get(nid)?.zoneId === id) {
-                    n.destroy(true);
+                    n.dispose();
                     this.npcs.delete(nid);
                   }
               }
@@ -559,9 +527,13 @@ export default function CampusWorld({
                 (n) => n.zoneId === zone.id,
               )) {
                 if (this.npcs.size >= 16) break;
-                const npc = this.add
-                  .container(n.x, n.y, [this.avatar(n.appearance)])
-                  .setDepth(4000);
+                const npc = new CharacterVisual(
+                  this,
+                  this.atlas,
+                  n.x,
+                  n.y,
+                  n.appearance,
+                );
                 this.npcs.set(n.id, npc);
               }
             }
@@ -571,17 +543,93 @@ export default function CampusWorld({
             const p = props.current;
             if (engine.phoneOpen !== p.paused) engine.setPhone(p.paused);
             const down = (key: string) => (this.keys[key]?.isDown ? 1 : 0);
-            engine.tick(delta, {
+            const input = {
               x:
                 Math.max(down("D"), down("RIGHT")) -
                 Math.max(down("A"), down("LEFT")),
               y:
                 Math.max(down("S"), down("DOWN")) -
                 Math.max(down("W"), down("UP")),
-            });
-            this.person.setPosition(engine.position.x, engine.position.y);
-            if (JSON.stringify(p.appearance) !== this.avatarKey)
-              this.drawAvatar();
+            };
+            const target = engine.path[0];
+            const desired =
+              input.x || input.y
+                ? input
+                : {
+                    x: (target?.x ?? engine.position.x) - engine.position.x,
+                    y: (target?.y ?? engine.position.y) - engine.position.y,
+                  };
+            const facing = facingFor(desired.x, desired.y, this.person.facing);
+            engine.tick(
+              delta,
+              input,
+              cosmeticWalkSpeed(this.profile.spriteScale, facing),
+            );
+            this.person.update(
+              engine.position.x,
+              engine.position.y,
+              time,
+              this.profile.spriteScale,
+              reduced,
+              p.paused,
+            );
+            if (appearanceKey(p.appearance) !== this.avatarKey) {
+              this.avatarKey = appearanceKey(p.appearance);
+              this.avatarChangedAt = time;
+            }
+            if (
+              !p.paused &&
+              time - this.avatarChangedAt >= 150 &&
+              (this.person.appearance !== this.avatarKey ||
+                (this.person.failed && time - this.lastAvatarAttempt > 1000))
+            ) {
+              this.lastAvatarAttempt = time;
+              void this.person.setAppearance(p.appearance);
+            }
+            if (this.person.entry && !this.characterReady) {
+              this.characterReady = true;
+              setStatus("ready");
+            }
+            if (
+              !this.person.entry &&
+              this.person.failed &&
+              this.atlas.pending.size === 0
+            )
+              setStatus("failed");
+            const metrics = container.current;
+            if (metrics) {
+              metrics.dataset.characterReady = String(!!this.person.entry);
+              metrics.dataset.appearance = this.person.entry?.id ?? "loading";
+              metrics.dataset.requestedAppearance = this.avatarKey;
+              metrics.dataset.characterFrame = `${this.person.facing}-${this.person.state}-${this.person.frame}`;
+              metrics.dataset.position = JSON.stringify(engine.position);
+              metrics.dataset.bodyHeight = String(
+                (this.person.entry?.bodyHeight ?? 152) *
+                  this.profile.spriteScale *
+                  this.cameras.main.zoom,
+              );
+              metrics.dataset.canvasHeight = String(this.scale.height);
+              metrics.dataset.cameraZoom = String(this.cameras.main.zoom);
+              metrics.dataset.cameraProfile = this.profile.version;
+              metrics.dataset.activeNpcs = String(
+                [...this.npcs.values()].filter((n) => n.sprite.visible).length,
+              );
+              metrics.dataset.characterTextures = String(
+                this.atlas.entries.size,
+              );
+              metrics.dataset.decodedCharacterBytes = String(
+                this.atlas.entries.size * 3932160,
+              );
+              metrics.dataset.characterPeakTextures = String(this.atlas.peak);
+              metrics.dataset.characterGenerated = String(this.atlas.generated);
+              metrics.dataset.characterTransferBytes = String(
+                this.atlas.transferred,
+              );
+              metrics.dataset.characterFailures = String(this.atlas.failures);
+              metrics.dataset.characterPending = String(
+                this.atlas.pending.size,
+              );
+            }
             if (time - this.lastChunk > 250) {
               this.updateChunks();
               this.lastChunk = time;
@@ -593,17 +641,25 @@ export default function CampusWorld({
               const n = npcIndex.get(id)!;
               const view = this.cameras.main.worldView;
               const nearby =
-                Math.abs(npc.x - engine.position.x) < view.width &&
-                Math.abs(npc.y - engine.position.y) < view.height;
+                Math.abs(npc.sprite.x - engine.position.x) < view.width &&
+                Math.abs(npc.sprite.y - engine.position.y) < view.height;
               const active =
                 nearby &&
                 clock.hour >= n.activeHours[0] &&
                 clock.hour < n.activeHours[1];
-              npc.setVisible(active);
-              if (active && !p.paused && !reduced) {
-                const pos = npcPosition(n, engine.elapsedMs);
-                npc.setPosition(pos.x, pos.y);
-              }
+              const pos =
+                active && !p.paused && !reduced
+                  ? npcPosition(n, engine.elapsedMs)
+                  : { x: npc.sprite.x, y: npc.sprite.y };
+              npc.update(
+                pos.x,
+                pos.y,
+                time,
+                this.profile.spriteScale,
+                reduced,
+                p.paused,
+                active,
+              );
             }
             this.overlay.clear();
             const alpha =
@@ -718,6 +774,7 @@ export default function CampusWorld({
                 "Virtual campus. Use arrow keys or WASD to walk; tap a destination.",
               );
               g.canvas.setAttribute("role", "img");
+              g.canvas.tabIndex = 0;
             },
           },
         });

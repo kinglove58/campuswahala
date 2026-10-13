@@ -115,6 +115,11 @@ test("save guest → browser-bound sign-in → durable same world → private ac
   expect(worldResponse.headers()["cache-control"]).toContain("no-store");
   const worldState = await worldResponse.json();
   expect(worldState.appearance.skin).toBe("deep");
+  await page.keyboard.press("Escape");
+  await expect(page.getByTestId("campus-world")).toHaveAttribute(
+    "data-appearance",
+    /^deep-/,
+  );
   const safeReturn = await context.request.post(
     "http://localhost:3001/api/account/world",
     {
@@ -140,6 +145,10 @@ test("save guest → browser-bound sign-in → durable same world → private ac
       ).json()
     ).spawnId,
   ).toBe("spawn-venue-1");
+  await expect(page.getByTestId("campus-world")).toHaveAttribute(
+    "data-appearance",
+    /^deep-/,
+  );
   await page.getByRole("button", { name: "Open virtual phone" }).click();
   await page.getByRole("button", { name: "My chapter", exact: true }).click();
   await expect(

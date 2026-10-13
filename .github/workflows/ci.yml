@@ -35,6 +35,8 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - name: Verify production M2 uses exact approved B source and immutable atlases
+        run: node scripts/art/verify-m2-character.mjs
       - name: Verify original character proof integrity (not visual approval)
         run: node scripts/art/verify-student.mjs
       - name: Verify M1 intake, modular source and exported poses (not visual approval)
@@ -62,7 +64,14 @@ jobs:
       - name: Assemble selected B before-after and native comparisons
         run: node scripts/art/compare-painted-campus.mjs
       - run: pnpm test:e2e
+      - name: Capture M2 indoor camera staging only (no M4 room or authority)
+        run: node scripts/art/capture-m2-staging.mjs
       - run: pnpm audit --audit-level high
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: m2-production-character-proof
+          path: artifacts/m2-production/
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
