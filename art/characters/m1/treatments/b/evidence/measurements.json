@@ -1,0 +1,1056 @@
+{
+  "status": "A/B master selection pending; no art approval",
+  "treatment": "b",
+  "sourceHash": "e6ae61ffa0090590d4bf0d067e3bd39258b0c70bde666f893ec9398f5aedb83c",
+  "browser": "145.0.7632.6",
+  "renderer": "Phaser CANVAS, software Chromium, DPR1; not physical-device performance",
+  "frameCap": 30,
+  "animationFps": 8,
+  "ground": "existing FUTA v2, read-only drawBaselineGround",
+  "worldVersion": 2,
+  "sourceRevision": "geometry-2026-10-10.25",
+  "productionRuntimeChanged": false,
+  "appearancePermutationsGenerated": 0,
+  "npcAtlasesGenerated": 0,
+  "canvasDOM": {
+    "x": 0,
+    "y": 69,
+    "width": 360,
+    "height": 731
+  },
+  "initial": {
+    "errors": [],
+    "frameMs": [
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "direction": "down",
+    "state": "idle",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": false,
+    "bootAt": 413.89999997615814,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 16.150978135788264,
+      "sourceUnitsPerCycle": 30.72,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.07022164406864463,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-idle-1",
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0",
+        "down-idle-1"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 73.56265822784812,
+    "bodyPercent": 10.063291139240508,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "playedFourDirections": [
+    {
+      "direction": "right",
+      "start": {
+        "x": 512,
+        "y": 666
+      },
+      "end": {
+        "x": 554.9060828539552,
+        "y": 666
+      },
+      "pace": {
+        "worldUnitsPerSecond": 33.64787111622555,
+        "sourceUnitsPerCycle": 64,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.14629509180967631,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "right",
+          "frame": "right-walk-0",
+          "position": {
+            "x": 513.1877698504028,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-1",
+          "position": {
+            "x": 518.0492142695157,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-2",
+          "position": {
+            "x": 521.826187802312,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-3",
+          "position": {
+            "x": 526.8888464905395,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-4",
+          "position": {
+            "x": 530.6476501728129,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-5",
+          "position": {
+            "x": 534.4646646721573,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-6",
+          "position": {
+            "x": 539.5189113924051,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-7",
+          "position": {
+            "x": 543.377649252054,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-0",
+          "position": {
+            "x": 547.1775033372494,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-1",
+          "position": {
+            "x": 552.3323571922551,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        }
+      ]
+    },
+    {
+      "direction": "down",
+      "start": {
+        "x": 564.7450568471311,
+        "y": 666
+      },
+      "end": {
+        "x": 564.7450568471311,
+        "y": 686.8216795027904
+      },
+      "pace": {
+        "worldUnitsPerSecond": 16.150978135788264,
+        "sourceUnitsPerCycle": 30.72,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.07022164406864463,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "down",
+          "frame": "down-walk-0",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 666.5869265454642
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-1",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 668.9869618964423
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-2",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 670.7994246627729
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-3",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 673.1584365292284
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-4",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 674.9355286534803
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-5",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 677.2678914061081
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-6",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 679.0050906143839
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-7",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 680.7834748169541
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-0",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 683.2041834199654
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-1",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 685.0452334176254
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-2",
+          "position": {
+            "x": 564.7450568471311,
+            "y": 686.8216795027904
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        }
+      ]
+    },
+    {
+      "direction": "left",
+      "start": {
+        "x": 564.7450568471311,
+        "y": 689.1091425361813
+      },
+      "end": {
+        "x": 522.2050628310608,
+        "y": 689.1091425361813
+      },
+      "pace": {
+        "worldUnitsPerSecond": 33.64787111622555,
+        "sourceUnitsPerCycle": 64,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.14629509180967631,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "left",
+          "frame": "left-walk-0",
+          "position": {
+            "x": 563.5579599541105,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-1",
+          "position": {
+            "x": 558.5629334869068,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-2",
+          "position": {
+            "x": 554.6739125434539,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-3",
+          "position": {
+            "x": 550.7808538553066,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-4",
+          "position": {
+            "x": 545.6778177219402,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-5",
+          "position": {
+            "x": 541.857774914075,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-6",
+          "position": {
+            "x": 538.0000464905996,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-7",
+          "position": {
+            "x": 533.0729887229104,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-0",
+          "position": {
+            "x": 529.4851162258475,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-1",
+          "position": {
+            "x": 524.6889486768205,
+            "y": 689.1091425361813
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        }
+      ]
+    },
+    {
+      "direction": "up",
+      "start": {
+        "x": 515.9640556962829,
+        "y": 689.1091425361813
+      },
+      "end": {
+        "x": 515.9640556962829,
+        "y": 668.3312321841292
+      },
+      "pace": {
+        "worldUnitsPerSecond": 16.150978135788264,
+        "sourceUnitsPerCycle": 30.72,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.07022164406864463,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "up",
+          "frame": "up-walk-0",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 688.5457964187857
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-1",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 686.2940270471615
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-2",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 684.0206153647775
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-3",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 682.2247881058496
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-4",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 680.396012851515
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-5",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 678.0226266144608
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-6",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 676.2695994475927
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-7",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 673.9323914015242
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-0",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 672.1021625592441
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-1",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 670.2454461127636
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-2",
+          "position": {
+            "x": 515.9640556962829,
+            "y": 668.3312321841292
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        }
+      ]
+    }
+  ],
+  "final": {
+    "errors": [],
+    "frameMs": [
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      30.839999997615813,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.32000000178814,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.31999999880791,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.310000002384186,
+      33.310000002384186,
+      33.310000002384186,
+      33.310000002384186,
+      33.310000002384186,
+      33.310000002384186,
+      33.28666667143504,
+      33.28666667143504,
+      33.28666667143504,
+      33.28666667143504,
+      33.310000002384186,
+      33.310000002384186,
+      33.310000002384186,
+      33.29666666785876,
+      33.29333333571752,
+      33.29333333571752,
+      33.30333333512148,
+      33.300000000000004,
+      33.300000000000004,
+      33.300000000000004,
+      33.300000000000004,
+      33.300000000000004,
+      33.26666666666667,
+      33.2800000011921,
+      33.25999999940396,
+      33.25999999940396,
+      33.27333333094914,
+      33.276666666070625,
+      33.276666666070625,
+      33.276666666070625,
+      33.276666666070625,
+      33.276666666070625,
+      33.309999999403956,
+      33.28666666547458,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.30666666726272,
+      33.30666666726272,
+      33.30666666726272,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.309999999403956,
+      33.39666666487853,
+      34.413333331545196,
+      35.17999999821186,
+      36.63666666547457,
+      36.71333333154519,
+      36.82999999821185,
+      36.96666666666666,
+      38.27333333094914,
+      38.32999999821186,
+      38.34000000059605,
+      38.60999999940395,
+      38.959999999403955,
+      39.57000000178814,
+      38.28000000119209,
+      38.24000000059605,
+      38.15,
+      38,
+      37.190000000596044,
+      38.25999999940395,
+      38.35,
+      38.02000000178814,
+      36.82000000178814,
+      35.58999999761581,
+      35.439999997615814,
+      35.49000000059605,
+      36.77000000178814,
+      37.00999999940395,
+      36.53000000119209,
+      36,
+      36.019999998807904,
+      36.440000000596044,
+      36.25,
+      36.310000002384186,
+      36.37000000178814,
+      37.56999999880791,
+      36.6,
+      37.10999999940395,
+      38.00999999940395,
+      37.5,
+      38.690000000596044,
+      38.47999999821186,
+      38.52999999821186,
+      38.81999999880791,
+      39.89000000059605,
+      38.67000000178814,
+      38.32999999821186,
+      37.95,
+      38.25999999940395,
+      38.310000002384186,
+      37.15999999940395,
+      37.08000000119209,
+      38.3,
+      37.90999999940395,
+      36.95,
+      38.12999999821186,
+      38.4,
+      38.16999999880791,
+      37.059999999403956,
+      37.57999999821186,
+      37.5,
+      37.34000000059605
+    ],
+    "direction": "left",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": false,
+    "bootAt": 413.89999997615814,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 33.64787111622555,
+      "sourceUnitsPerCycle": 64,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.14629509180967631,
+      "productionSpeedChanged": false
+    },
+    "frame": "left-walk-0",
+    "locomotion": [
+      {
+        "direction": "up",
+        "frame": "up-walk-0",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 688.5457964187857
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-1",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 686.2940270471615
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-2",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 684.0206153647775
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-3",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 682.2247881058496
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-4",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 680.396012851515
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-5",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 678.0226266144608
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-6",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 676.2695994475927
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-7",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 673.9323914015242
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-0",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 672.1021625592441
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-1",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 670.2454461127636
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-2",
+        "position": {
+          "x": 515.9640556962829,
+          "y": 668.3312321841292
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "left",
+        "frame": "left-walk-0",
+        "position": {
+          "x": 515.4668523970499,
+          "y": 666.7673743861933
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      }
+    ],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0",
+        "down-idle-1"
+      ],
+      "0-down-walk": [
+        "down-walk-0",
+        "down-walk-1",
+        "down-walk-2",
+        "down-walk-3",
+        "down-walk-4",
+        "down-walk-5",
+        "down-walk-6",
+        "down-walk-7"
+      ],
+      "0-up-idle": [
+        "up-idle-0"
+      ],
+      "0-up-walk": [
+        "up-walk-0",
+        "up-walk-1",
+        "up-walk-2",
+        "up-walk-3",
+        "up-walk-4",
+        "up-walk-5",
+        "up-walk-6",
+        "up-walk-7"
+      ],
+      "0-left-idle": [
+        "left-idle-0"
+      ],
+      "0-left-walk": [
+        "left-walk-0",
+        "left-walk-1",
+        "left-walk-2",
+        "left-walk-3",
+        "left-walk-4",
+        "left-walk-5",
+        "left-walk-6",
+        "left-walk-7"
+      ],
+      "0-right-idle": [
+        "right-idle-0"
+      ],
+      "0-right-walk": [
+        "right-walk-0",
+        "right-walk-1",
+        "right-walk-2",
+        "right-walk-3",
+        "right-walk-4",
+        "right-walk-5",
+        "right-walk-6",
+        "right-walk-7"
+      ]
+    },
+    "position": {
+      "x": 512.3728760207504,
+      "y": 665.0560549953551
+    },
+    "screenFoot": {
+      "x": 178.9681308982603,
+      "y": 365.2493283959125
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 73.56265822784812,
+    "bodyPercent": 10.063291139240508,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "reduced": {
+    "errors": [],
+    "frameMs": [
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      30.230000001192092,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.15999999940395,
+      33.15999999940395
+    ],
+    "direction": "down",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": true,
+    "bootAt": 402.90000000596046,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 16.150978135788264,
+      "sourceUnitsPerCycle": 30.72,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.07022164406864463,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-walk-0",
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0"
+      ],
+      "0-down-walk": [
+        "down-walk-0"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 76.80126582278483,
+    "bodyPercent": 10.506329113924053,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "requests": [
+    "/",
+    "/phaser.js",
+    "/proof.js",
+    "/spec.json",
+    "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+    "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+    "/atlas/master.png",
+    "http://127.0.0.1:65026/6bac7b93-7f1f-4921-980e-e465b3bafc44",
+    "http://127.0.0.1:65026/5c8e137a-746b-4401-8ecc-eac2c7edcb4b",
+    "http://127.0.0.1:65026/c3c576d2-0cb0-46bb-80a6-10fe12cf73e5"
+  ],
+  "authorityRequests": 0,
+  "nativeCrop": "110x115 exact screenshot pixels, no resizing, centered on measured foot; full viewports 360x800",
+  "scaleMethod": "body alpha (shadow excluded) x sprite scale x camera zoom / measured 731px canvas height"
+}

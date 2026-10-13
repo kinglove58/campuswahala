@@ -5,10 +5,17 @@ import { dirname } from "node:path";
 import { directions } from "../../art/characters/m1/student.mjs";
 const require = createRequire(import.meta.url);
 /** Fixed-whitelist, loopback, non-runtime art laboratory. No account/API paths. */
-export async function startProof({ masterFirst = false } = {}) {
-  const exportRoot = masterFirst
-    ? "artifacts/m1-master-first/export"
-    : "art/characters/m1/export";
+export async function startProof({
+  masterFirst = false,
+  treatment = null,
+} = {}) {
+  if (treatment !== null && !["a", "b"].includes(treatment))
+    throw new Error("INVALID_M1_SELECTION_TREATMENT");
+  const exportRoot = treatment
+    ? `art/characters/m1/treatments/${treatment}/export`
+    : masterFirst
+      ? "artifacts/m1-master-first/export"
+      : "art/characters/m1/export";
   const {
     createCampusWorld,
     validateWorld,
@@ -27,6 +34,9 @@ export async function startProof({ masterFirst = false } = {}) {
   );
   spec.world = validateWorld(createCampusWorld("futa"));
   spec.directions = directions;
+  const lookOptions = treatment
+    ? `<option value="0">Master ${treatment.toUpperCase()}</option>`
+    : '<option value="0">Crop / lime</option><option value="1">Braids / blue</option><option value="2">Covered / clay</option><option value="3">Afro / blue</option>';
   const files = new Map([
     ["/proof.js", ["artifacts/m1-proof/dist/proof.js", "text/javascript"]],
     [
@@ -45,7 +55,7 @@ export async function startProof({ masterFirst = false } = {}) {
       [`apps/game/public${a.path}`, "image/svg+xml"],
     ]),
   ]);
-  const markup = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CW M1 Phaser art laboratory — unapproved</title><style>html,body{margin:0;background:#172b26;font:12px system-ui;color:#fff}header{height:69px;box-sizing:border-box;padding:5px 8px;background:#213d33}strong{display:block;font-size:12px}select{font:12px system-ui;margin:4px 3px 2px 0;max-width:110px;background:#faf1dc;color:#203c31;border:0;border-radius:3px;padding:3px}#metrics{font-size:10px;color:#dfdfb5}canvas{display:block}</style><header><strong>CampusWahala · M1 art lab · NOT production</strong><label>Look <select id="look"><option value="0">Crop / lime</option><option value="1">Braids / blue</option><option value="2">Covered / clay</option><option value="3">Afro / blue</option></select></label><label>Face <select id="direction">${directions.map((d) => `<option>${d}</option>`).join("")}</select></label><label>Pose <select id="motion"><option>idle</option><option>walk</option></select></label><div id="metrics">Opening original art proof…</div></header><main id="world" aria-label="Phaser M1 cosmetic character proof; arrow keys or tap to move"></main><script src="/phaser.js"></script><script type="module" src="/proof.js"></script></html>`;
+  const markup = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CW M1 Phaser art laboratory — unapproved</title><style>html,body{margin:0;background:#172b26;font:12px system-ui;color:#fff}header{height:69px;box-sizing:border-box;padding:5px 8px;background:#213d33}strong{display:block;font-size:12px}select{font:12px system-ui;margin:4px 3px 2px 0;max-width:110px;background:#faf1dc;color:#203c31;border:0;border-radius:3px;padding:3px}#metrics{font-size:10px;color:#dfdfb5}canvas{display:block}</style><header><strong>CampusWahala · M1 ${treatment ? treatment.toUpperCase() + " selection" : "art"} lab · NOT production</strong><label>Look <select id="look">${lookOptions}</select></label><label>Face <select id="direction">${directions.map((d) => `<option>${d}</option>`).join("")}</select></label><label>Pose <select id="motion"><option>idle</option><option>walk</option></select></label><div id="metrics">Opening original art proof…</div></header><main id="world" aria-label="Phaser M1 cosmetic character proof; arrow keys or tap to move"></main><script src="/phaser.js"></script><script type="module" src="/proof.js"></script></html>`;
   const server = createServer(async (req, res) => {
     res.setHeader("Cache-Control", "no-store");
     res.setHeader("X-Content-Type-Options", "nosniff");

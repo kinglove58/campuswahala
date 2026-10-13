@@ -3,6 +3,8 @@ import { WorldEngine, blocked } from "../../../packages/game-engine/src/index";
 import { drawBaselineGround } from "./proof-ground.mjs";
 // This file is bundled only by the isolated proof server; no app imports it.
 const spec = await (await fetch("/spec.json")).json();
+const initialLookIds = spec.selectionProof ? [0] : [0, 4, 5];
+const npcLookIds = spec.selectionProof ? [] : [4, 5];
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const directionInput = document.querySelector("#direction");
 const motionInput = document.querySelector("#motion");
@@ -43,7 +45,7 @@ class Proof extends Phaser.Scene {
       visible.some((z) => z.bundle === a.id),
     ))
       this.load.svg(asset.id, asset.path, { width: 64, height: 80 });
-    for (const look of [0, 4, 5])
+    for (const look of initialLookIds)
       this.load.image(`look-${look}`, `/atlas/${spec.atlases[look].path}`);
     this.load.on("loaderror", (file) => observations.errors.push(file.key));
   }
@@ -57,7 +59,7 @@ class Proof extends Phaser.Scene {
       height: (window.innerHeight - 69) / proofZoom,
     });
     drawBaselineGround(this, w, visible);
-    for (const id of [0, 4, 5]) this.register(id);
+    for (const id of initialLookIds) this.register(id);
     this.player = this.add
       .sprite(engine.position.x, engine.position.y, "look-0", "down-idle-0")
       .setOrigin(0.5, spec.geometry.foot.y / spec.geometry.height)
@@ -75,9 +77,9 @@ class Proof extends Phaser.Scene {
       };
       if (!blocked(w, point)) free.push(point);
     }
-    if (free.length < 2)
+    if (free.length < npcLookIds.length)
       throw new Error("M1 NPC proof requires safe existing-ground positions");
-    this.npcs = [4, 5].map((id, index) =>
+    this.npcs = npcLookIds.map((id, index) =>
       this.add
         .sprite(free[index].x, free[index].y, `look-${id}`, "down-idle-0")
         .setOrigin(0.5, spec.geometry.foot.y / spec.geometry.height)
@@ -101,7 +103,7 @@ class Proof extends Phaser.Scene {
     );
     this.cameras.main.roundPixels = true;
     this.game.canvas.tabIndex = 0;
-    observations.peakAtlasCount = 3;
+    observations.peakAtlasCount = initialLookIds.length;
     observations.ready = true;
   }
   register(id) {
@@ -173,7 +175,7 @@ class Proof extends Phaser.Scene {
       .setDepth(200 + engine.position.y);
     for (const [sprite, id] of [
       [this.player, selected],
-      ...this.npcs.map((sprite, index) => [sprite, index + 4]),
+      ...this.npcs.map((sprite, index) => [sprite, npcLookIds[index]]),
     ]) {
       sprite.setDepth(200 + sprite.y);
       if (reduced) {
@@ -252,7 +254,12 @@ const game = new Phaser.Game({
 });
 lookInput.addEventListener("change", () => {
   const next = Number(lookInput.value);
-  if (![0, 1, 2, 3].includes(next) || !scene || selected === next) return;
+  if (
+    !(spec.selectionProof ? [0] : [0, 1, 2, 3]).includes(next) ||
+    !scene ||
+    selected === next
+  )
+    return;
   const old = selected;
   observations.switching = true;
   scene.load.image(`look-${next}`, `/atlas/${spec.atlases[next].path}`);

@@ -1,0 +1,829 @@
+{
+  "status": "M1 A/B VISUAL SELECTION REQUIRED; NOT RUNTIME",
+  "selectionProof": true,
+  "treatment": "b",
+  "version": "m1-selection-1",
+  "sourceFiles": [
+    {
+      "path": "master.mjs",
+      "hash": "379dbcc0b767f6ae56fdebc888806ba67b8ad997ae646720e4fb4672fc98e72a"
+    }
+  ],
+  "sourceHash": "e6ae61ffa0090590d4bf0d067e3bd39258b0c70bde666f893ec9398f5aedb83c",
+  "geometry": {
+    "width": 128,
+    "height": 192,
+    "foot": {
+      "x": 64,
+      "y": 177
+    }
+  },
+  "gait": {
+    "fps": 8,
+    "projectedStride": {
+      "down": 30.72,
+      "up": 30.72,
+      "left": 64,
+      "right": 64
+    },
+    "phases": [
+      "left-contact",
+      "left-recoil",
+      "left-midstance",
+      "left-toe-off",
+      "right-contact",
+      "right-recoil",
+      "right-midstance",
+      "right-toe-off"
+    ],
+    "travel": [
+      16,
+      8,
+      0,
+      -8,
+      -16,
+      -10,
+      0,
+      11
+    ],
+    "lift": [
+      0,
+      0,
+      0,
+      0.5,
+      5,
+      10,
+      12,
+      6
+    ],
+    "knee": [
+      0,
+      1,
+      1,
+      3,
+      8,
+      15,
+      17,
+      8
+    ],
+    "toe": [
+      -6,
+      0,
+      0,
+      12,
+      25,
+      -10,
+      -14,
+      -12
+    ]
+  },
+  "directions": [
+    "down",
+    "up",
+    "left",
+    "right"
+  ],
+  "atlases": [
+    {
+      "look": 0,
+      "appearance": {
+        "skin": "brown",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "role": "single-master-selection-only",
+      "path": "master.png",
+      "hash": "ae9c3139bdb1f4184698f30f2a52d0f20ef9459130e3957f36db27409bd788be",
+      "bytes": 413128,
+      "width": 1024,
+      "height": 960,
+      "rgbaBytes": 3932160,
+      "frames": [
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 0,
+          "name": "down-idle-0",
+          "x": 0,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 19,
+            "width": 58,
+            "height": 158
+          },
+          "rgbaHash": "8f5c7a504c2787ef1ea11e5e2f00dac7f7f45c5a1841e0f72e9f42d6bcd8d880"
+        },
+        {
+          "direction": "down",
+          "state": "idle",
+          "index": 1,
+          "name": "down-idle-1",
+          "x": 128,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 159
+          },
+          "rgbaHash": "160d0645543772bdc2c89b20ba6a3d025b457769bdb15d1be7fe71324f4a8513"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 0,
+          "name": "down-walk-0",
+          "x": 256,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "left-contact",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 19,
+            "width": 58,
+            "height": 166
+          },
+          "rgbaHash": "f50695a844589b494c9229aba99f7dbbc915db22351d1958a911e25048fe0a1e"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 1,
+          "name": "down-walk-1",
+          "x": 384,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "left-recoil",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 20,
+            "width": 58,
+            "height": 161
+          },
+          "rgbaHash": "e432dfd0449fb585e4cac288ee87be09dcc878053e3f10f13ff969fa899fb5f4"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 2,
+          "name": "down-walk-2",
+          "x": 512,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "left-midstance",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 159
+          },
+          "rgbaHash": "84271e64156ef28b0f297d98258e455a97a3179ff6db74bcfb50ab287188ac33"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 3,
+          "name": "down-walk-3",
+          "x": 640,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "left-toe-off",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 158
+          },
+          "rgbaHash": "f75c6c38cd1fe783651a735a4b7feb77c921f0ffc93b4174c206a4af95434481"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 4,
+          "name": "down-walk-4",
+          "x": 768,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "right-contact",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 19,
+            "width": 58,
+            "height": 165
+          },
+          "rgbaHash": "e413d0a01164166a3872d935340e32bce73f772a191470b238a8782f49a2427d"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 5,
+          "name": "down-walk-5",
+          "x": 896,
+          "y": 0,
+          "width": 128,
+          "height": 192,
+          "phase": "right-recoil",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 20,
+            "width": 58,
+            "height": 160
+          },
+          "rgbaHash": "07397700868a2089dcc2dd042b508ab0450a8fd86261849e44809b973d938c93"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 6,
+          "name": "down-walk-6",
+          "x": 0,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "right-midstance",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 158
+          },
+          "rgbaHash": "5ef9196e0ddaaa0f71881abe96b11bd2780f379d942523f2e95acf558354896a"
+        },
+        {
+          "direction": "down",
+          "state": "walk",
+          "index": 7,
+          "name": "down-walk-7",
+          "x": 128,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "right-toe-off",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 159
+          },
+          "rgbaHash": "2f4493a132b36ff29aebfc91718d1311642ea16b70ba61d9eb2b1e563e11df0b"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 0,
+          "name": "up-idle-0",
+          "x": 256,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 159
+          },
+          "rgbaHash": "c6190acd05e6ddaa00d32209327bc85ca5ce9313f4d13895393256488eb75165"
+        },
+        {
+          "direction": "up",
+          "state": "idle",
+          "index": 1,
+          "name": "up-idle-1",
+          "x": 384,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 159
+          },
+          "rgbaHash": "a52c4c58b7cec33d7cfe0226ecc2e6fb2ecad80a8a374227ce47263a7189964a"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 0,
+          "name": "up-walk-0",
+          "x": 512,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "left-contact",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 161
+          },
+          "rgbaHash": "ad2c9dbf1bbd36755d4573bec73a2214e079f093c89973187a54f925cc7236f0"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 1,
+          "name": "up-walk-1",
+          "x": 640,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "left-recoil",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 19,
+            "width": 58,
+            "height": 154
+          },
+          "rgbaHash": "2cfda6847ef48160f45a25c14dacc53bfc74dde858c4c667e651a288e500d40e"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 2,
+          "name": "up-walk-2",
+          "x": 768,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "left-midstance",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 159
+          },
+          "rgbaHash": "f3cc0f7afd800d5fbd68d4d8dd9712b68e056ca8f72fab935324069d03378981"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 3,
+          "name": "up-walk-3",
+          "x": 896,
+          "y": 192,
+          "width": 128,
+          "height": 192,
+          "phase": "left-toe-off",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 163
+          },
+          "rgbaHash": "5ac560fe69b21caf87dbbf06be346448ff8d37218b92d85d47e3bb7fc70960f0"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 4,
+          "name": "up-walk-4",
+          "x": 0,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "right-contact",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 162
+          },
+          "rgbaHash": "c242958aa2f56d508a9e101c655a5b195bfc167757811122e3336e6206169ba6"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 5,
+          "name": "up-walk-5",
+          "x": 128,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "right-recoil",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 19,
+            "width": 58,
+            "height": 153
+          },
+          "rgbaHash": "742dca6449ff467c81a4c77907792fe722e8a8469b201cca5534ad24e3e5e4ca"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 6,
+          "name": "up-walk-6",
+          "x": 256,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "right-midstance",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 158
+          },
+          "rgbaHash": "0bcf971153cec991c9bada149b2e36401c45a94a5641151a9cb194708b255157"
+        },
+        {
+          "direction": "up",
+          "state": "walk",
+          "index": 7,
+          "name": "up-walk-7",
+          "x": 384,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "right-toe-off",
+          "bodyAlpha": {
+            "x": 35,
+            "y": 18,
+            "width": 58,
+            "height": 162
+          },
+          "rgbaHash": "2a54109f4196a6d5d37f924ed2a169588fa21631ab6ef1ef29171d702a65265a"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 0,
+          "name": "left-idle-0",
+          "x": 512,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 44,
+            "y": 18,
+            "width": 47,
+            "height": 159
+          },
+          "rgbaHash": "8a333d7ab147a99e616f5fea2bade3954edc3ae35821e3d99f1f88dfc37dea27"
+        },
+        {
+          "direction": "left",
+          "state": "idle",
+          "index": 1,
+          "name": "left-idle-1",
+          "x": 640,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 44,
+            "y": 18,
+            "width": 47,
+            "height": 159
+          },
+          "rgbaHash": "8eac12ea8bcc52219850a7d24e30c7a3e4fd436c2efc70bf5f717762a6d54da8"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 0,
+          "name": "left-walk-0",
+          "x": 768,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "left-contact",
+          "bodyAlpha": {
+            "x": 39,
+            "y": 18,
+            "width": 52,
+            "height": 159
+          },
+          "rgbaHash": "fdc6d9a7bf1d55fa5d6f382f612b617f19fb0315745edb38da91ba0a87c8f9fa"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 1,
+          "name": "left-walk-1",
+          "x": 896,
+          "y": 384,
+          "width": 128,
+          "height": 192,
+          "phase": "left-recoil",
+          "bodyAlpha": {
+            "x": 44,
+            "y": 19,
+            "width": 47,
+            "height": 158
+          },
+          "rgbaHash": "7bbf454061f9ff11f610fce410a1b891a01f152caad361fd8d9ae72a2daa7b6c"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 2,
+          "name": "left-walk-2",
+          "x": 0,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "left-midstance",
+          "bodyAlpha": {
+            "x": 44,
+            "y": 18,
+            "width": 47,
+            "height": 159
+          },
+          "rgbaHash": "0ef9bb5175cf719f0460111697e3438ee8951c7f6b78e8c8b54764449487c81c"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 3,
+          "name": "left-walk-3",
+          "x": 128,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "left-toe-off",
+          "bodyAlpha": {
+            "x": 37,
+            "y": 18,
+            "width": 54,
+            "height": 159
+          },
+          "rgbaHash": "6e22b18d8e064f878580d65ce1853d6af6e2712f20f03978f74da8b31fabd310"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 4,
+          "name": "left-walk-4",
+          "x": 256,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "right-contact",
+          "bodyAlpha": {
+            "x": 32,
+            "y": 18,
+            "width": 59,
+            "height": 155
+          },
+          "rgbaHash": "5d6fc8e61437203fa975fcb1e85a95a3bd9b24f22e4905a4b7071687f5b75e6f"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 5,
+          "name": "left-walk-5",
+          "x": 384,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "right-recoil",
+          "bodyAlpha": {
+            "x": 40,
+            "y": 19,
+            "width": 51,
+            "height": 154
+          },
+          "rgbaHash": "6ba995e88dd2665f0f277632adb3363b1ae5f9e344c1a7bd362f9de0b8a52ec0"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 6,
+          "name": "left-walk-6",
+          "x": 512,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "right-midstance",
+          "bodyAlpha": {
+            "x": 44,
+            "y": 18,
+            "width": 47,
+            "height": 155
+          },
+          "rgbaHash": "34ef3308f8c6965a38d67c221869ade1a15b6bbc3247f4232833cf686cbb8329"
+        },
+        {
+          "direction": "left",
+          "state": "walk",
+          "index": 7,
+          "name": "left-walk-7",
+          "x": 640,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "right-toe-off",
+          "bodyAlpha": {
+            "x": 44,
+            "y": 18,
+            "width": 47,
+            "height": 155
+          },
+          "rgbaHash": "32117f3f31f0f6811accab4f55872d30dca49ecb9ef13ffc6f0c678e1f666f1d"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 0,
+          "name": "right-idle-0",
+          "x": 768,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 50,
+            "height": 159
+          },
+          "rgbaHash": "aa110a656ba5897a318dd85d007d17400643d272a33f348a7457bb5ef2a66d4b"
+        },
+        {
+          "direction": "right",
+          "state": "idle",
+          "index": 1,
+          "name": "right-idle-1",
+          "x": 896,
+          "y": 576,
+          "width": 128,
+          "height": 192,
+          "phase": "still-breath",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 50,
+            "height": 159
+          },
+          "rgbaHash": "1dad7c98297817f639c896d84fe591d13100957d50ff8993e56598a6679a1acb"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 0,
+          "name": "right-walk-0",
+          "x": 0,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "left-contact",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 59,
+            "height": 159
+          },
+          "rgbaHash": "fd15cbe883c2bd38aa2ffde2a03940cdd3083833c88cad4a53c3705ed87425ca"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 1,
+          "name": "right-walk-1",
+          "x": 128,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "left-recoil",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 19,
+            "width": 51,
+            "height": 158
+          },
+          "rgbaHash": "11b4801fee8e3ff3d7b324d6ad0de718bc7d5a441adab4b1f8f8faa391e45815"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 2,
+          "name": "right-walk-2",
+          "x": 256,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "left-midstance",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 49,
+            "height": 159
+          },
+          "rgbaHash": "6f5a3e7f053868bb3983cb250ba97e9a5d5e1158e8ab79bbd6af6a217f3a1fdb"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 3,
+          "name": "right-walk-3",
+          "x": 384,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "left-toe-off",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 50,
+            "height": 159
+          },
+          "rgbaHash": "be3cfcacb87995d1d94841f159adde9dfccdd32e469dc6a47b2ffa68d43a2504"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 4,
+          "name": "right-walk-4",
+          "x": 512,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "right-contact",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 52,
+            "height": 155
+          },
+          "rgbaHash": "aa5d086116c3fa0d5d8530a4aaf785cf68f4db922a03c1b7e2734381a356cae9"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 5,
+          "name": "right-walk-5",
+          "x": 640,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "right-recoil",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 19,
+            "width": 50,
+            "height": 154
+          },
+          "rgbaHash": "0c66770a1690a00aab7b65309318b3efe72b706d6ea1855ada63f1957b6b2b77"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 6,
+          "name": "right-walk-6",
+          "x": 768,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "right-midstance",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 49,
+            "height": 155
+          },
+          "rgbaHash": "cf1485a3519917badd4ec4d141ac8b45b4b3af0becb994f9fd667faddd4cd0e3"
+        },
+        {
+          "direction": "right",
+          "state": "walk",
+          "index": 7,
+          "name": "right-walk-7",
+          "x": 896,
+          "y": 768,
+          "width": 128,
+          "height": 192,
+          "phase": "right-toe-off",
+          "bodyAlpha": {
+            "x": 34,
+            "y": 18,
+            "width": 54,
+            "height": 155
+          },
+          "rgbaHash": "49ebb96db1fee26bd0198db70fa0138f9936441ed743940364eb779a08b6f98c"
+        }
+      ]
+    }
+  ]
+}

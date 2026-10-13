@@ -37,12 +37,18 @@ jobs:
         run: node scripts/art/verify-student.mjs
       - name: Verify M1 intake, modular source and exported poses (not visual approval)
         run: node scripts/art/verify-m1.mjs
+      - name: Verify A/B single-master source, atlas pixels and semantic ORA layers
+        run: node scripts/art/verify-m1-treatments.mjs
       - name: Verify prior M1 comparison provenance and regenerate labeled sheets
         run: node scripts/art/compare-m1.mjs
       - run: pnpm check:world-budgets
       - run: pnpm exec playwright install --with-deps chromium
       - name: Capture isolated actual Phaser M1 proof (no gameplay authority)
         run: node scripts/art/capture-m1.mjs
+      - name: Capture both A/B masters in native Phaser (no variants or authority)
+        run: node scripts/art/capture-m1-treatments.mjs
+      - name: Assemble A/B evidence without resizing native screenshot pixels
+        run: node scripts/art/compare-m1-treatments.mjs
       - run: pnpm test:e2e
       - run: pnpm audit --audit-level high
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -68,6 +74,11 @@ jobs:
             art/characters/m1/evidence/
             art/characters/m1/export/
             art/characters/m1/comparison/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: m1-treatment-selection
+          path: art/characters/m1/treatments/
   sast:
     runs-on: ubuntu-latest
     permissions:

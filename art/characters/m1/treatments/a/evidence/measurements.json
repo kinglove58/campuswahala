@@ -1,0 +1,1030 @@
+{
+  "status": "A/B master selection pending; no art approval",
+  "treatment": "a",
+  "sourceHash": "e6ae61ffa0090590d4bf0d067e3bd39258b0c70bde666f893ec9398f5aedb83c",
+  "browser": "145.0.7632.6",
+  "renderer": "Phaser CANVAS, software Chromium, DPR1; not physical-device performance",
+  "frameCap": 30,
+  "animationFps": 8,
+  "ground": "existing FUTA v2, read-only drawBaselineGround",
+  "worldVersion": 2,
+  "sourceRevision": "geometry-2026-10-10.25",
+  "productionRuntimeChanged": false,
+  "appearancePermutationsGenerated": 0,
+  "npcAtlasesGenerated": 0,
+  "canvasDOM": {
+    "x": 0,
+    "y": 69,
+    "width": 360,
+    "height": 731
+  },
+  "initial": {
+    "errors": [],
+    "frameMs": [
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813
+    ],
+    "direction": "down",
+    "state": "idle",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": false,
+    "bootAt": 795.4000000059605,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 16.150978135788264,
+      "sourceUnitsPerCycle": 30.72,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.07022164406864463,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-idle-0",
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 73.10000000000001,
+    "bodyPercent": 10,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "playedFourDirections": [
+    {
+      "direction": "right",
+      "start": {
+        "x": 512,
+        "y": 666
+      },
+      "end": {
+        "x": 555.0574982739781,
+        "y": 666
+      },
+      "pace": {
+        "worldUnitsPerSecond": 33.64787111622555,
+        "sourceUnitsPerCycle": 64,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.14629509180967631,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "right",
+          "frame": "right-walk-0",
+          "position": {
+            "x": 513.3398582279083,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-1",
+          "position": {
+            "x": 518.7871120830345,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-2",
+          "position": {
+            "x": 522.7494853855608,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-3",
+          "position": {
+            "x": 526.6516289989695,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-4",
+          "position": {
+            "x": 530.5578103568722,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-5",
+          "position": {
+            "x": 534.43068032245,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-6",
+          "position": {
+            "x": 539.4240243960979,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-7",
+          "position": {
+            "x": 543.0526108172917,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-0",
+          "position": {
+            "x": 547.8474324512536,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-1",
+          "position": {
+            "x": 551.4679433833594,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        }
+      ]
+    },
+    {
+      "direction": "down",
+      "start": {
+        "x": 559.9670591485265,
+        "y": 666
+      },
+      "end": {
+        "x": 559.9670591485265,
+        "y": 687.8139955996074
+      },
+      "pace": {
+        "worldUnitsPerSecond": 16.150978135788264,
+        "sourceUnitsPerCycle": 30.72,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.07022164406864463,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "down",
+          "frame": "down-walk-0",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 666.5806276639815
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-1",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 668.8608227571633
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-2",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 671.1784881196008
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-3",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 673.0292287041905
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-4",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 674.9377897905255
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-5",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 676.863470913723
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-6",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 678.7087201657367
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-7",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 681.1967783475551
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-0",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 683.0163475443234
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-1",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 684.8393084465387
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-2",
+          "position": {
+            "x": 559.9670591485265,
+            "y": 687.218670545532
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        }
+      ]
+    },
+    {
+      "direction": "left",
+      "start": {
+        "x": 559.9670591485265,
+        "y": 690.1902890127452
+      },
+      "end": {
+        "x": 516.8947558116381,
+        "y": 690.1902890127452
+      },
+      "pace": {
+        "worldUnitsPerSecond": 33.64787111622555,
+        "sourceUnitsPerCycle": 64,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.14629509180967631,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "left",
+          "frame": "left-walk-0",
+          "position": {
+            "x": 558.7355470656726,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-1",
+          "position": {
+            "x": 553.8697284237759,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-2",
+          "position": {
+            "x": 550.3161767552114,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-3",
+          "position": {
+            "x": 545.6882485618656,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-4",
+          "position": {
+            "x": 540.9799019564318,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-5",
+          "position": {
+            "x": 537.3001707712817,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-6",
+          "position": {
+            "x": 533.4367222097568,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-7",
+          "position": {
+            "x": 528.3040759497679,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-0",
+          "position": {
+            "x": 524.4207751442644,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-1",
+          "position": {
+            "x": 520.6596161108527,
+            "y": 690.1902890127452
+          },
+          "worldUnitsPerSecond": 33.64787111622555
+        }
+      ]
+    },
+    {
+      "direction": "up",
+      "start": {
+        "x": 513.2766002304703,
+        "y": 690.1902890127452
+      },
+      "end": {
+        "x": 513.2766002304703,
+        "y": 669.8516852659384
+      },
+      "pace": {
+        "worldUnitsPerSecond": 16.150978135788264,
+        "sourceUnitsPerCycle": 30.72,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.07022164406864463,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "up",
+          "frame": "up-walk-0",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 689.6103073878987
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-1",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 687.3357651370645
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-2",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 685.0197148723926
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-3",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 683.3072266606838
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-4",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 680.9821318482171
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-5",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 679.2014865086983
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-6",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 677.3211896340528
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-7",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 675.4110134499523
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-0",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 672.8636811784431
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-1",
+          "position": {
+            "x": 513.2766002304703,
+            "y": 671.031998748121
+          },
+          "worldUnitsPerSecond": 16.150978135788264
+        }
+      ]
+    }
+  ],
+  "final": {
+    "errors": [],
+    "frameMs": [
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      30.339999997615813,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.32666666905085,
+      33.32666666905085,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.31999999880791,
+      33.31999999880791,
+      33.31999999880791,
+      33.31999999880791,
+      33.28666666547458,
+      33.28666666547458,
+      33.2833333303531,
+      33.269999998807904,
+      33.26666666368643,
+      33.26666666368643,
+      33.279999998211856,
+      33.279999998211856,
+      33.279999998211856,
+      33.279999998211856,
+      33.313333331545195,
+      33.313333331545195,
+      33.31666666666666,
+      33.31666666666666,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.30666666726271,
+      33.31999999880791,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.3166666696469,
+      33.3166666696469,
+      33.29333333869776,
+      33.29333333869776,
+      33.29333333869776,
+      33.29666667083899,
+      33.29666667083899,
+      33.29666667083899,
+      33.29666667083899,
+      33.27333333690961,
+      33.2866666684548,
+      33.2866666684548,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.276666666070625,
+      33.276666666070625,
+      33.276666666070625,
+      33.276666666070625,
+      33.3,
+      33.3,
+      33.28666666547458,
+      33.28666666547458,
+      33.28666666547458,
+      33.28666666547458,
+      34.77666666309039,
+      34.74333332975705,
+      34.79999999701977,
+      35.69666666487852,
+      36.45333333214124,
+      36.48999999761581,
+      36.55999999940395,
+      36.58666666547457,
+      36.69333333273728,
+      36.67999999821186,
+      35.37000000178814,
+      35.5,
+      35.440000000596044,
+      35.77999999821186,
+      35.25,
+      35.2,
+      36.14000000059605,
+      36.28000000119209,
+      36.24000000059605,
+      36.25999999940395,
+      36.1,
+      36.03000000119209,
+      36.03000000119209,
+      35.01000000238419,
+      34.98999999761581,
+      36.43000000119209,
+      35.40999999940395,
+      35.95,
+      37.15999999940395,
+      37.230000001192096,
+      38.95,
+      39.019999998807904,
+      39.119999998807906,
+      39.709999999403955,
+      40.26000000238419,
+      39.75999999940395,
+      39.89000000059605,
+      39.66999999880791,
+      39.75,
+      39.730000001192096,
+      39.49000000059605,
+      39.49000000059605,
+      39.50999999940395,
+      39.9,
+      39.47999999821186,
+      38.7,
+      38.97999999821186,
+      38.64000000059605,
+      37.32999999821186,
+      37.95,
+      36.809999999403956,
+      36.690000000596044,
+      36.790000000596045,
+      35.8,
+      35.630000001192094,
+      36.50999999940395,
+      36.24000000059605,
+      36.10999999940395,
+      36.45,
+      36.939999997615814,
+      36.64000000059605,
+      36.65999999940395
+    ],
+    "direction": "left",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": false,
+    "bootAt": 795.4000000059605,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 33.64787111622555,
+      "sourceUnitsPerCycle": 64,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.14629509180967631,
+      "productionSpeedChanged": false
+    },
+    "frame": "left-walk-0",
+    "locomotion": [
+      {
+        "direction": "up",
+        "frame": "up-walk-0",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 689.6103073878987
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-1",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 687.3357651370645
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-2",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 685.0197148723926
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-3",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 683.3072266606838
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-4",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 680.9821318482171
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-5",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 679.2014865086983
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-6",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 677.3211896340528
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-7",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 675.4110134499523
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-0",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 672.8636811784431
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-1",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 671.031998748121
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-2",
+        "position": {
+          "x": 513.2766002304703,
+          "y": 669.2684734454647
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      },
+      {
+        "direction": "left",
+        "frame": "left-walk-0",
+        "position": {
+          "x": 512.7384512678384,
+          "y": 667.1630107042554
+        },
+        "worldUnitsPerSecond": 16.150978135788264
+      }
+    ],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0",
+        "down-idle-1"
+      ],
+      "0-down-walk": [
+        "down-walk-0",
+        "down-walk-1",
+        "down-walk-2",
+        "down-walk-3",
+        "down-walk-4",
+        "down-walk-5",
+        "down-walk-6",
+        "down-walk-7"
+      ],
+      "0-up-walk": [
+        "up-walk-0",
+        "up-walk-1",
+        "up-walk-2",
+        "up-walk-3",
+        "up-walk-4",
+        "up-walk-5",
+        "up-walk-6",
+        "up-walk-7"
+      ],
+      "0-up-idle": [
+        "up-idle-0"
+      ],
+      "0-left-walk": [
+        "left-walk-0",
+        "left-walk-1",
+        "left-walk-2",
+        "left-walk-3",
+        "left-walk-4",
+        "left-walk-5",
+        "left-walk-6",
+        "left-walk-7"
+      ],
+      "0-left-idle": [
+        "left-idle-0"
+      ],
+      "0-right-walk": [
+        "right-walk-0",
+        "right-walk-1",
+        "right-walk-2",
+        "right-walk-3",
+        "right-walk-4",
+        "right-walk-5",
+        "right-walk-6",
+        "right-walk-7"
+      ],
+      "0-right-idle": [
+        "right-idle-0",
+        "right-idle-1"
+      ]
+    },
+    "position": {
+      "x": 509.33834863566227,
+      "y": 664.8954543173944
+    },
+    "screenFoot": {
+      "x": 178.9377467993828,
+      "y": 365.1079997993071
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 73.56265822784812,
+    "bodyPercent": 10.063291139240508,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "reduced": {
+    "errors": [],
+    "frameMs": [
+      30.25,
+      30.25,
+      30.25,
+      30.25,
+      30.24666666487853,
+      30.24666666487853,
+      30.24666666487853,
+      30.24666666487853,
+      30.24666666487853,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.32999999821186,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209
+    ],
+    "direction": "down",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": true,
+    "bootAt": 426.30000001192093,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 16.150978135788264,
+      "sourceUnitsPerCycle": 30.72,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.07022164406864463,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-walk-0",
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0"
+      ],
+      "0-down-walk": [
+        "down-walk-0"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 76.80126582278483,
+    "bodyPercent": 10.506329113924053,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "requests": [
+    "/",
+    "/phaser.js",
+    "/proof.js",
+    "/spec.json",
+    "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+    "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+    "/atlas/master.png",
+    "http://127.0.0.1:63991/69655838-e9f3-4173-859b-4be98ef17de4",
+    "http://127.0.0.1:63991/4a2854dc-0ff6-4d28-be89-cbe49029a5a1",
+    "http://127.0.0.1:63991/6c7e4afd-c412-451b-96eb-43fbebcdd3dc"
+  ],
+  "authorityRequests": 0,
+  "nativeCrop": "110x115 exact screenshot pixels, no resizing, centered on measured foot; full viewports 360x800",
+  "scaleMethod": "body alpha (shadow excluded) x sprite scale x camera zoom / measured 731px canvas height"
+}
