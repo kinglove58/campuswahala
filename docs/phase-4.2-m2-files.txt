@@ -34,6 +34,7 @@ A	scripts/art/verify-m2-character.mjs
 A	tests/character-visual.test.ts
 M	tests/e2e/account.spec.ts
 A	tests/e2e/character-m2-evidence.spec.ts
+A	tests/e2e/character-m2-network.spec.ts
 A	tests/e2e/character-m2.spec.ts
 M	tests/pwa.test.ts
 
@@ -652,6 +653,7 @@ A	scripts/art/verify-student.mjs
 A	tests/character-visual.test.ts
 M	tests/e2e/account.spec.ts
 A	tests/e2e/character-m2-evidence.spec.ts
+A	tests/e2e/character-m2-network.spec.ts
 A	tests/e2e/character-m2.spec.ts
 M	tests/e2e/wahala-consequence.spec.ts
 M	tests/pwa.test.ts

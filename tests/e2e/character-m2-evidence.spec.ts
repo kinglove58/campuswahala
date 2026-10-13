@@ -53,7 +53,7 @@ for (const [width, height, dpr] of [
       timeout: 15000,
     });
     const readyMs = Date.now() - boot;
-    const playerReadyWireBytes = wireBytes;
+    const playerReadyPageCdpBytes = wireBytes;
     await expect
       .poll(
         async () => Number(await world.getAttribute("data-character-pending")),
@@ -65,7 +65,7 @@ for (const [width, height, dpr] of [
       )
       .toBe(0);
     const atlasReadyMs = Date.now() - boot;
-    const atlasesReadyWireBytes = wireBytes;
+    const atlasesReadyPageCdpBytes = wireBytes;
     page.on("request", (r) => {
       if (
         r.method() === "POST" &&
@@ -222,9 +222,9 @@ for (const [width, height, dpr] of [
       viewport: { width, height, dpr },
       readyMs,
       atlasReadyMs,
-      playerReadyWireBytes,
-      atlasesReadyWireBytes,
-      sessionWireBytes: wireBytes,
+      playerReadyPageCdpBytes,
+      atlasesReadyPageCdpBytes,
+      sessionPageCdpBytes: wireBytes,
       canvasDOM: await canvas.boundingBox(),
       phases,
       sample,
@@ -252,7 +252,7 @@ for (const [width, height, dpr] of [
             "Real API guest + keyboard + existing UI; no injected authority/scene/frame",
           physicalAndroid: "not tested",
           transferNote:
-            "CDP encodedDataLength covers browser-page traffic, excluding APIRequest guest setup. ResourceTiming sizes and nominal PNG bytes are reported separately; SW/cache entries may have zero transferSize.",
+            "Page CDP bytes are lower bounds: service-worker fetches may be omitted. ResourceTiming and nominal PNG sizes are separate. Actual cold-network bytes are in cold-network.json; APIRequest guest setup is excluded.",
           measurements,
         },
         null,
