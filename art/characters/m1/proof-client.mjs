@@ -24,6 +24,9 @@ window.__cwM1 = observations;
 let selected = 0,
   lastFacing = "down",
   scene;
+// B M1 LAB ONLY: distance-driven pose clock, separate from authoritative time.
+let walkDistance = 0,
+  walkFacing = "down";
 const proofZoom = window.innerWidth < 600 ? 0.88 : 1.05;
 const scale = Math.min(
   0.65,
@@ -170,6 +173,11 @@ class Proof extends Phaser.Scene {
     }
     const facing = moving ? lastFacing : directionInput.value;
     const state = moving || motionInput.value === "walk" ? "walk" : "idle";
+    if (spec.paintedCampus && moving) {
+      if (walkFacing !== facing) walkDistance = 0;
+      walkFacing = facing;
+      walkDistance += Math.hypot(dx, dy) / scale;
+    }
     this.player
       .setPosition(engine.position.x, engine.position.y)
       .setDepth(200 + engine.position.y);
@@ -181,6 +189,12 @@ class Proof extends Phaser.Scene {
       if (reduced) {
         sprite.anims.stop();
         sprite.setFrame(`${facing}-${state}-0`);
+      } else if (spec.paintedCampus && sprite === this.player && moving) {
+        sprite.anims.stop();
+        const stride = spec.gait.projectedStride[facing];
+        sprite.setFrame(
+          `${facing}-walk-${Math.floor((walkDistance / stride) * 8) % 8}`,
+        );
       } else sprite.play(`${id}-${facing}-${state}`, true);
     }
     const frame = spec.atlases[selected].frames.find(
@@ -191,6 +205,28 @@ class Proof extends Phaser.Scene {
     observations.state = state;
     observations.look = selected;
     observations.frame = this.player.frame.name;
+    if (spec.paintedCampus) {
+      const planted = frame.contacts?.find((c) => c.planted);
+      observations.plant = planted
+        ? {
+            leg: planted.leg,
+            source: { x: planted.x, y: planted.y },
+            world: {
+              x: this.player.x + (planted.x - 64) * scale,
+              y: this.player.y + (planted.y - 177) * scale,
+            },
+            sourceDistance: walkDistance,
+            sourceUnitsPerFrame: spec.gait.projectedStride[facing] / 8,
+            // Eight baked frames have bounded stepwise drift between pose changes.
+            maxQuantizationWorldUnits:
+              (spec.gait.projectedStride[facing] / 8) * scale,
+          }
+        : null;
+      observations.gaitClock = moving
+        ? "actual cosmetic distance"
+        : "preview animation time";
+      observations.spriteScale = scale;
+    }
     observations.locomotion ??= [];
     if (
       moving &&
@@ -202,6 +238,9 @@ class Proof extends Phaser.Scene {
         frame: this.player.frame.name,
         position: { ...engine.position },
         worldUnitsPerSecond: cycleSpeed,
+        ...(spec.paintedCampus
+          ? { plant: observations.plant, gaitClock: observations.gaitClock }
+          : {}),
       });
     const key = `${selected}-${facing}-${state}`;
     observations.seen ??= {};

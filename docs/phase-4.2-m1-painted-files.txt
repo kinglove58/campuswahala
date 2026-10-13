@@ -1,0 +1,748 @@
+PR #17 selected B final M1 proof exact inventory
+Base: 7eded507ddb1876c77d25ecde94446667388123a
+Iteration / selected B starting head: 8fc0425f4ce14d034a380a3f511f6ad766b7ff66
+Final head: draft PR body (avoids a self-referential hash)
+
+THIS ITERATION (152 paths, name-status)
+M	.github/workflows/ci.yml
+M	IMPLEMENTATION_STATUS.md
+M	README.md
+A	art/characters/m1/painted-campus/README.md
+A	art/characters/m1/painted-campus/appearance.mjs
+A	art/characters/m1/painted-campus/comparison/native-b-before-after.png
+A	art/characters/m1/painted-campus/comparison/native-four-facing.png
+A	art/characters/m1/painted-campus/comparison/native-four-player-looks.png
+A	art/characters/m1/painted-campus/comparison/provenance.json
+A	art/characters/m1/painted-campus/comparison/selected-b-before-after.png
+A	art/characters/m1/painted-campus/evidence/down-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/down-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/futa-1280x900.png
+A	art/characters/m1/painted-campus/evidence/futa-360x640.png
+A	art/characters/m1/painted-campus/evidence/futa-360x800-dpr2.png
+A	art/characters/m1/painted-campus/evidence/futa-360x800.png
+A	art/characters/m1/painted-campus/evidence/futa-390x844.png
+A	art/characters/m1/painted-campus/evidence/keyboard-movement-360x800.png
+A	art/characters/m1/painted-campus/evidence/left-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/left-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/look-0-360x800.png
+A	art/characters/m1/painted-campus/evidence/look-1-360x800.png
+A	art/characters/m1/painted-campus/evidence/look-2-360x800.png
+A	art/characters/m1/painted-campus/evidence/look-3-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/down-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/down-native-crop.png
+A	art/characters/m1/painted-campus/evidence/master-only/down-played-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/down-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/left-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/left-native-crop.png
+A	art/characters/m1/painted-campus/evidence/master-only/left-played-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/left-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/measurements.json
+A	art/characters/m1/painted-campus/evidence/master-only/reduced-motion-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/right-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/right-native-crop.png
+A	art/characters/m1/painted-campus/evidence/master-only/right-played-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/right-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/up-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/up-native-crop.png
+A	art/characters/m1/painted-campus/evidence/master-only/up-played-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/up-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/master-only/walk-and-movement-360x800.webm
+A	art/characters/m1/painted-campus/evidence/measurements.json
+A	art/characters/m1/painted-campus/evidence/native-master-down-crop.png
+A	art/characters/m1/painted-campus/evidence/native-master-left-crop.png
+A	art/characters/m1/painted-campus/evidence/native-master-right-crop.png
+A	art/characters/m1/painted-campus/evidence/native-master-up-crop.png
+A	art/characters/m1/painted-campus/evidence/played-walk-down-360x800.png
+A	art/characters/m1/painted-campus/evidence/played-walk-left-360x800.png
+A	art/characters/m1/painted-campus/evidence/played-walk-right-360x800.png
+A	art/characters/m1/painted-campus/evidence/played-walk-up-360x800.png
+A	art/characters/m1/painted-campus/evidence/reduced-motion-360x800.png
+A	art/characters/m1/painted-campus/evidence/right-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/right-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/up-idle-360x800.png
+A	art/characters/m1/painted-campus/evidence/up-walk-360x800.png
+A	art/characters/m1/painted-campus/evidence/walk-and-movement-360x800.webm
+A	art/characters/m1/painted-campus/export/down-gait.png
+A	art/characters/m1/painted-campus/export/left-gait.png
+A	art/characters/m1/painted-campus/export/look-0.126104ea6b08.png
+A	art/characters/m1/painted-campus/export/look-1.b3fbd3bcdd29.png
+A	art/characters/m1/painted-campus/export/look-2.6549c02384e3.png
+A	art/characters/m1/painted-campus/export/look-3.071b6f8ceae4.png
+A	art/characters/m1/painted-campus/export/look-4.a8f3b5c1c07b.png
+A	art/characters/m1/painted-campus/export/look-5.d7ae54019683.png
+A	art/characters/m1/painted-campus/export/manifest.json
+A	art/characters/m1/painted-campus/export/master-turnaround.png
+A	art/characters/m1/painted-campus/export/npc-looks.png
+A	art/characters/m1/painted-campus/export/player-looks.png
+A	art/characters/m1/painted-campus/export/right-gait.png
+A	art/characters/m1/painted-campus/export/up-gait.png
+A	art/characters/m1/painted-campus/source/down-back-accessory.png
+A	art/characters/m1/painted-campus/source/down-backpack-or-straps.png
+A	art/characters/m1/painted-campus/source/down-far-arm.png
+A	art/characters/m1/painted-campus/source/down-far-leg.png
+A	art/characters/m1/painted-campus/source/down-far-shoe.png
+A	art/characters/m1/painted-campus/source/down-gait.svg
+A	art/characters/m1/painted-campus/source/down-ground-shadow.png
+A	art/characters/m1/painted-campus/source/down-hair-or-covering.png
+A	art/characters/m1/painted-campus/source/down-head-and-face.png
+A	art/characters/m1/painted-campus/source/down-lower-clothing.png
+A	art/characters/m1/painted-campus/source/down-merged.png
+A	art/characters/m1/painted-campus/source/down-near-arm.png
+A	art/characters/m1/painted-campus/source/down-near-leg.png
+A	art/characters/m1/painted-campus/source/down-near-shoe.png
+A	art/characters/m1/painted-campus/source/down-torso-and-hood.png
+A	art/characters/m1/painted-campus/source/down.svg
+A	art/characters/m1/painted-campus/source/left-back-accessory.png
+A	art/characters/m1/painted-campus/source/left-backpack-or-straps.png
+A	art/characters/m1/painted-campus/source/left-far-arm.png
+A	art/characters/m1/painted-campus/source/left-far-leg.png
+A	art/characters/m1/painted-campus/source/left-far-shoe.png
+A	art/characters/m1/painted-campus/source/left-gait.svg
+A	art/characters/m1/painted-campus/source/left-ground-shadow.png
+A	art/characters/m1/painted-campus/source/left-hair-or-covering.png
+A	art/characters/m1/painted-campus/source/left-head-and-face.png
+A	art/characters/m1/painted-campus/source/left-lower-clothing.png
+A	art/characters/m1/painted-campus/source/left-merged.png
+A	art/characters/m1/painted-campus/source/left-near-arm.png
+A	art/characters/m1/painted-campus/source/left-near-leg.png
+A	art/characters/m1/painted-campus/source/left-near-shoe.png
+A	art/characters/m1/painted-campus/source/left-torso-and-hood.png
+A	art/characters/m1/painted-campus/source/left.svg
+A	art/characters/m1/painted-campus/source/master-turnaround.svg
+A	art/characters/m1/painted-campus/source/master.ora
+A	art/characters/m1/painted-campus/source/npc-looks.svg
+A	art/characters/m1/painted-campus/source/openraster-manifest.json
+A	art/characters/m1/painted-campus/source/player-looks.svg
+A	art/characters/m1/painted-campus/source/right-back-accessory.png
+A	art/characters/m1/painted-campus/source/right-backpack-or-straps.png
+A	art/characters/m1/painted-campus/source/right-far-arm.png
+A	art/characters/m1/painted-campus/source/right-far-leg.png
+A	art/characters/m1/painted-campus/source/right-far-shoe.png
+A	art/characters/m1/painted-campus/source/right-gait.svg
+A	art/characters/m1/painted-campus/source/right-ground-shadow.png
+A	art/characters/m1/painted-campus/source/right-hair-or-covering.png
+A	art/characters/m1/painted-campus/source/right-head-and-face.png
+A	art/characters/m1/painted-campus/source/right-lower-clothing.png
+A	art/characters/m1/painted-campus/source/right-merged.png
+A	art/characters/m1/painted-campus/source/right-near-arm.png
+A	art/characters/m1/painted-campus/source/right-near-leg.png
+A	art/characters/m1/painted-campus/source/right-near-shoe.png
+A	art/characters/m1/painted-campus/source/right-torso-and-hood.png
+A	art/characters/m1/painted-campus/source/right.svg
+A	art/characters/m1/painted-campus/source/up-back-accessory.png
+A	art/characters/m1/painted-campus/source/up-backpack-or-straps.png
+A	art/characters/m1/painted-campus/source/up-far-arm.png
+A	art/characters/m1/painted-campus/source/up-far-leg.png
+A	art/characters/m1/painted-campus/source/up-far-shoe.png
+A	art/characters/m1/painted-campus/source/up-gait.svg
+A	art/characters/m1/painted-campus/source/up-ground-shadow.png
+A	art/characters/m1/painted-campus/source/up-hair-or-covering.png
+A	art/characters/m1/painted-campus/source/up-head-and-face.png
+A	art/characters/m1/painted-campus/source/up-lower-clothing.png
+A	art/characters/m1/painted-campus/source/up-merged.png
+A	art/characters/m1/painted-campus/source/up-near-arm.png
+A	art/characters/m1/painted-campus/source/up-near-leg.png
+A	art/characters/m1/painted-campus/source/up-near-shoe.png
+A	art/characters/m1/painted-campus/source/up-torso-and-hood.png
+A	art/characters/m1/painted-campus/source/up.svg
+A	art/characters/m1/painted-campus/student.mjs
+M	art/characters/m1/proof-client.mjs
+A	docs/phase-4.2-m1-painted-files.txt
+A	docs/phase-4.2-m1-painted-review.md
+A	scripts/art/capture-painted-campus.mjs
+A	scripts/art/capture-painted-master.mjs
+A	scripts/art/compare-painted-campus.mjs
+A	scripts/art/export-painted-campus.mjs
+M	scripts/art/m1-proof-server.mjs
+A	scripts/art/pack-painted-campus.py
+A	scripts/art/verify-painted-campus.mjs
+
+FULL PR VS BASE (588 paths, no-renames)
+.github/workflows/ci.yml
+IMPLEMENTATION_STATUS.md
+README.md
+art/characters/README.md
+art/characters/composite.mjs
+art/characters/export/student-proof.102b6440f4c1.png
+art/characters/export/student-proof.json
+art/characters/export/student-proof.svg
+art/characters/inhouse-candidate/.gitattributes
+art/characters/inhouse-candidate/proof/IMPORT-MANIFEST.json
+art/characters/inhouse-candidate/proof/README.txt
+art/characters/inhouse-candidate/proof/cw-student-down-walk-00.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-01.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-02.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-03.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-04.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-05.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-06.png
+art/characters/inhouse-candidate/proof/cw-student-down-walk-07.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-00.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-01.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-02.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-03.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-04.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-05.png
+art/characters/inhouse-candidate/proof/cw-student-left-walk-06.png
+art/characters/inhouse-candidate/proof/cw-student-m1-candidate-atlas.json
+art/characters/inhouse-candidate/proof/cw-student-m1-candidate-atlas.png
+art/characters/inhouse-candidate/proof/cw-student-m1-candidate-preview.jpg
+art/characters/inhouse-candidate/proof/cw-student-m1-editable-frames.ora
+art/characters/inhouse-candidate/proof/cw-student-right-walk-00.png
+art/characters/inhouse-candidate/proof/cw-student-right-walk-01.png
+art/characters/inhouse-candidate/proof/cw-student-right-walk-02.png
+art/characters/inhouse-candidate/proof/cw-student-right-walk-03.png
+art/characters/inhouse-candidate/proof/cw-student-right-walk-04.png
+art/characters/inhouse-candidate/proof/cw-student-right-walk-05.png
+art/characters/inhouse-candidate/proof/cw-student-right-walk-06.png
+art/characters/inhouse-candidate/proof/cw-student-up-walk-00.png
+art/characters/inhouse-candidate/proof/cw-student-up-walk-01.png
+art/characters/inhouse-candidate/proof/cw-student-up-walk-02.png
+art/characters/inhouse-candidate/proof/cw-student-up-walk-03.png
+art/characters/inhouse-candidate/proof/cw-student-up-walk-04.png
+art/characters/inhouse-candidate/proof/cw-student-up-walk-05.png
+art/characters/inhouse-candidate/proof/source-character-sheet.png
+art/characters/inhouse-candidate/proof/split_sheet.py
+art/characters/m1/README.md
+art/characters/m1/comparison/before-manifest.json
+art/characters/m1/comparison/before-master-close-up.png
+art/characters/m1/comparison/before-walk-board.png
+art/characters/m1/comparison/face-before-after.png
+art/characters/m1/comparison/walk-before-after.png
+art/characters/m1/evidence/down-idle-360x800.png
+art/characters/m1/evidence/down-walk-360x800.png
+art/characters/m1/evidence/futa-1280x900.png
+art/characters/m1/evidence/futa-360x640.png
+art/characters/m1/evidence/futa-360x800.png
+art/characters/m1/evidence/futa-390x844.png
+art/characters/m1/evidence/keyboard-movement-360x800.png
+art/characters/m1/evidence/left-idle-360x800.png
+art/characters/m1/evidence/left-walk-360x800.png
+art/characters/m1/evidence/look-0-360x800.png
+art/characters/m1/evidence/look-1-360x800.png
+art/characters/m1/evidence/look-2-360x800.png
+art/characters/m1/evidence/look-3-360x800.png
+art/characters/m1/evidence/measurements.json
+art/characters/m1/evidence/native-master-down-crop.png
+art/characters/m1/evidence/native-master-left-crop.png
+art/characters/m1/evidence/native-master-right-crop.png
+art/characters/m1/evidence/native-master-up-crop.png
+art/characters/m1/evidence/played-walk-down-360x800.png
+art/characters/m1/evidence/played-walk-left-360x800.png
+art/characters/m1/evidence/played-walk-right-360x800.png
+art/characters/m1/evidence/played-walk-up-360x800.png
+art/characters/m1/evidence/reduced-motion-360x800.png
+art/characters/m1/evidence/right-idle-360x800.png
+art/characters/m1/evidence/right-walk-360x800.png
+art/characters/m1/evidence/up-idle-360x800.png
+art/characters/m1/evidence/up-walk-360x800.png
+art/characters/m1/evidence/walk-and-movement-360x800.webm
+art/characters/m1/export/appearance-board.png
+art/characters/m1/export/close-up.png
+art/characters/m1/export/expression-board.png
+art/characters/m1/export/look-0.f635627e22b6.png
+art/characters/m1/export/look-1.ce1855cc78ae.png
+art/characters/m1/export/look-2.c75eecc9ab42.png
+art/characters/m1/export/look-3.81fefefda7a9.png
+art/characters/m1/export/look-4.13ee4bc3633c.png
+art/characters/m1/export/look-5.9e38f3233e5a.png
+art/characters/m1/export/manifest.json
+art/characters/m1/export/master-turnaround.png
+art/characters/m1/export/walk-board.png
+art/characters/m1/forms.mjs
+art/characters/m1/painted-campus/README.md
+art/characters/m1/painted-campus/appearance.mjs
+art/characters/m1/painted-campus/comparison/native-b-before-after.png
+art/characters/m1/painted-campus/comparison/native-four-facing.png
+art/characters/m1/painted-campus/comparison/native-four-player-looks.png
+art/characters/m1/painted-campus/comparison/provenance.json
+art/characters/m1/painted-campus/comparison/selected-b-before-after.png
+art/characters/m1/painted-campus/evidence/down-idle-360x800.png
+art/characters/m1/painted-campus/evidence/down-walk-360x800.png
+art/characters/m1/painted-campus/evidence/futa-1280x900.png
+art/characters/m1/painted-campus/evidence/futa-360x640.png
+art/characters/m1/painted-campus/evidence/futa-360x800-dpr2.png
+art/characters/m1/painted-campus/evidence/futa-360x800.png
+art/characters/m1/painted-campus/evidence/futa-390x844.png
+art/characters/m1/painted-campus/evidence/keyboard-movement-360x800.png
+art/characters/m1/painted-campus/evidence/left-idle-360x800.png
+art/characters/m1/painted-campus/evidence/left-walk-360x800.png
+art/characters/m1/painted-campus/evidence/look-0-360x800.png
+art/characters/m1/painted-campus/evidence/look-1-360x800.png
+art/characters/m1/painted-campus/evidence/look-2-360x800.png
+art/characters/m1/painted-campus/evidence/look-3-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/down-idle-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/down-native-crop.png
+art/characters/m1/painted-campus/evidence/master-only/down-played-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/down-walk-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/left-idle-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/left-native-crop.png
+art/characters/m1/painted-campus/evidence/master-only/left-played-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/left-walk-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/measurements.json
+art/characters/m1/painted-campus/evidence/master-only/reduced-motion-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/right-idle-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/right-native-crop.png
+art/characters/m1/painted-campus/evidence/master-only/right-played-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/right-walk-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/up-idle-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/up-native-crop.png
+art/characters/m1/painted-campus/evidence/master-only/up-played-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/up-walk-360x800.png
+art/characters/m1/painted-campus/evidence/master-only/walk-and-movement-360x800.webm
+art/characters/m1/painted-campus/evidence/measurements.json
+art/characters/m1/painted-campus/evidence/native-master-down-crop.png
+art/characters/m1/painted-campus/evidence/native-master-left-crop.png
+art/characters/m1/painted-campus/evidence/native-master-right-crop.png
+art/characters/m1/painted-campus/evidence/native-master-up-crop.png
+art/characters/m1/painted-campus/evidence/played-walk-down-360x800.png
+art/characters/m1/painted-campus/evidence/played-walk-left-360x800.png
+art/characters/m1/painted-campus/evidence/played-walk-right-360x800.png
+art/characters/m1/painted-campus/evidence/played-walk-up-360x800.png
+art/characters/m1/painted-campus/evidence/reduced-motion-360x800.png
+art/characters/m1/painted-campus/evidence/right-idle-360x800.png
+art/characters/m1/painted-campus/evidence/right-walk-360x800.png
+art/characters/m1/painted-campus/evidence/up-idle-360x800.png
+art/characters/m1/painted-campus/evidence/up-walk-360x800.png
+art/characters/m1/painted-campus/evidence/walk-and-movement-360x800.webm
+art/characters/m1/painted-campus/export/down-gait.png
+art/characters/m1/painted-campus/export/left-gait.png
+art/characters/m1/painted-campus/export/look-0.126104ea6b08.png
+art/characters/m1/painted-campus/export/look-1.b3fbd3bcdd29.png
+art/characters/m1/painted-campus/export/look-2.6549c02384e3.png
+art/characters/m1/painted-campus/export/look-3.071b6f8ceae4.png
+art/characters/m1/painted-campus/export/look-4.a8f3b5c1c07b.png
+art/characters/m1/painted-campus/export/look-5.d7ae54019683.png
+art/characters/m1/painted-campus/export/manifest.json
+art/characters/m1/painted-campus/export/master-turnaround.png
+art/characters/m1/painted-campus/export/npc-looks.png
+art/characters/m1/painted-campus/export/player-looks.png
+art/characters/m1/painted-campus/export/right-gait.png
+art/characters/m1/painted-campus/export/up-gait.png
+art/characters/m1/painted-campus/source/down-back-accessory.png
+art/characters/m1/painted-campus/source/down-backpack-or-straps.png
+art/characters/m1/painted-campus/source/down-far-arm.png
+art/characters/m1/painted-campus/source/down-far-leg.png
+art/characters/m1/painted-campus/source/down-far-shoe.png
+art/characters/m1/painted-campus/source/down-gait.svg
+art/characters/m1/painted-campus/source/down-ground-shadow.png
+art/characters/m1/painted-campus/source/down-hair-or-covering.png
+art/characters/m1/painted-campus/source/down-head-and-face.png
+art/characters/m1/painted-campus/source/down-lower-clothing.png
+art/characters/m1/painted-campus/source/down-merged.png
+art/characters/m1/painted-campus/source/down-near-arm.png
+art/characters/m1/painted-campus/source/down-near-leg.png
+art/characters/m1/painted-campus/source/down-near-shoe.png
+art/characters/m1/painted-campus/source/down-torso-and-hood.png
+art/characters/m1/painted-campus/source/down.svg
+art/characters/m1/painted-campus/source/left-back-accessory.png
+art/characters/m1/painted-campus/source/left-backpack-or-straps.png
+art/characters/m1/painted-campus/source/left-far-arm.png
+art/characters/m1/painted-campus/source/left-far-leg.png
+art/characters/m1/painted-campus/source/left-far-shoe.png
+art/characters/m1/painted-campus/source/left-gait.svg
+art/characters/m1/painted-campus/source/left-ground-shadow.png
+art/characters/m1/painted-campus/source/left-hair-or-covering.png
+art/characters/m1/painted-campus/source/left-head-and-face.png
+art/characters/m1/painted-campus/source/left-lower-clothing.png
+art/characters/m1/painted-campus/source/left-merged.png
+art/characters/m1/painted-campus/source/left-near-arm.png
+art/characters/m1/painted-campus/source/left-near-leg.png
+art/characters/m1/painted-campus/source/left-near-shoe.png
+art/characters/m1/painted-campus/source/left-torso-and-hood.png
+art/characters/m1/painted-campus/source/left.svg
+art/characters/m1/painted-campus/source/master-turnaround.svg
+art/characters/m1/painted-campus/source/master.ora
+art/characters/m1/painted-campus/source/npc-looks.svg
+art/characters/m1/painted-campus/source/openraster-manifest.json
+art/characters/m1/painted-campus/source/player-looks.svg
+art/characters/m1/painted-campus/source/right-back-accessory.png
+art/characters/m1/painted-campus/source/right-backpack-or-straps.png
+art/characters/m1/painted-campus/source/right-far-arm.png
+art/characters/m1/painted-campus/source/right-far-leg.png
+art/characters/m1/painted-campus/source/right-far-shoe.png
+art/characters/m1/painted-campus/source/right-gait.svg
+art/characters/m1/painted-campus/source/right-ground-shadow.png
+art/characters/m1/painted-campus/source/right-hair-or-covering.png
+art/characters/m1/painted-campus/source/right-head-and-face.png
+art/characters/m1/painted-campus/source/right-lower-clothing.png
+art/characters/m1/painted-campus/source/right-merged.png
+art/characters/m1/painted-campus/source/right-near-arm.png
+art/characters/m1/painted-campus/source/right-near-leg.png
+art/characters/m1/painted-campus/source/right-near-shoe.png
+art/characters/m1/painted-campus/source/right-torso-and-hood.png
+art/characters/m1/painted-campus/source/right.svg
+art/characters/m1/painted-campus/source/up-back-accessory.png
+art/characters/m1/painted-campus/source/up-backpack-or-straps.png
+art/characters/m1/painted-campus/source/up-far-arm.png
+art/characters/m1/painted-campus/source/up-far-leg.png
+art/characters/m1/painted-campus/source/up-far-shoe.png
+art/characters/m1/painted-campus/source/up-gait.svg
+art/characters/m1/painted-campus/source/up-ground-shadow.png
+art/characters/m1/painted-campus/source/up-hair-or-covering.png
+art/characters/m1/painted-campus/source/up-head-and-face.png
+art/characters/m1/painted-campus/source/up-lower-clothing.png
+art/characters/m1/painted-campus/source/up-merged.png
+art/characters/m1/painted-campus/source/up-near-arm.png
+art/characters/m1/painted-campus/source/up-near-leg.png
+art/characters/m1/painted-campus/source/up-near-shoe.png
+art/characters/m1/painted-campus/source/up-torso-and-hood.png
+art/characters/m1/painted-campus/source/up.svg
+art/characters/m1/painted-campus/student.mjs
+art/characters/m1/proof-client.mjs
+art/characters/m1/proof-ground.mjs
+art/characters/m1/source/appearance-board.svg
+art/characters/m1/source/down-back-accessory.png
+art/characters/m1/source/down-backpack-or-straps.png
+art/characters/m1/source/down-far-arm.png
+art/characters/m1/source/down-far-leg.png
+art/characters/m1/source/down-far-shoe.png
+art/characters/m1/source/down-ground-shadow.png
+art/characters/m1/source/down-hair-or-covering.png
+art/characters/m1/source/down-head-and-face.png
+art/characters/m1/source/down-lower-clothing.png
+art/characters/m1/source/down-merged.png
+art/characters/m1/source/down-near-arm.png
+art/characters/m1/source/down-near-leg.png
+art/characters/m1/source/down-near-shoe.png
+art/characters/m1/source/down-torso-and-hood.png
+art/characters/m1/source/down.svg
+art/characters/m1/source/expression-board.svg
+art/characters/m1/source/left-back-accessory.png
+art/characters/m1/source/left-backpack-or-straps.png
+art/characters/m1/source/left-far-arm.png
+art/characters/m1/source/left-far-leg.png
+art/characters/m1/source/left-far-shoe.png
+art/characters/m1/source/left-ground-shadow.png
+art/characters/m1/source/left-hair-or-covering.png
+art/characters/m1/source/left-head-and-face.png
+art/characters/m1/source/left-lower-clothing.png
+art/characters/m1/source/left-merged.png
+art/characters/m1/source/left-near-arm.png
+art/characters/m1/source/left-near-leg.png
+art/characters/m1/source/left-near-shoe.png
+art/characters/m1/source/left-torso-and-hood.png
+art/characters/m1/source/left.svg
+art/characters/m1/source/master-turnaround.svg
+art/characters/m1/source/material-sheet.svg
+art/characters/m1/source/modular-master.ora
+art/characters/m1/source/openraster-manifest.json
+art/characters/m1/source/right-back-accessory.png
+art/characters/m1/source/right-backpack-or-straps.png
+art/characters/m1/source/right-far-arm.png
+art/characters/m1/source/right-far-leg.png
+art/characters/m1/source/right-far-shoe.png
+art/characters/m1/source/right-ground-shadow.png
+art/characters/m1/source/right-hair-or-covering.png
+art/characters/m1/source/right-head-and-face.png
+art/characters/m1/source/right-lower-clothing.png
+art/characters/m1/source/right-merged.png
+art/characters/m1/source/right-near-arm.png
+art/characters/m1/source/right-near-leg.png
+art/characters/m1/source/right-near-shoe.png
+art/characters/m1/source/right-torso-and-hood.png
+art/characters/m1/source/right.svg
+art/characters/m1/source/up-back-accessory.png
+art/characters/m1/source/up-backpack-or-straps.png
+art/characters/m1/source/up-far-arm.png
+art/characters/m1/source/up-far-leg.png
+art/characters/m1/source/up-far-shoe.png
+art/characters/m1/source/up-ground-shadow.png
+art/characters/m1/source/up-hair-or-covering.png
+art/characters/m1/source/up-head-and-face.png
+art/characters/m1/source/up-lower-clothing.png
+art/characters/m1/source/up-merged.png
+art/characters/m1/source/up-near-arm.png
+art/characters/m1/source/up-near-leg.png
+art/characters/m1/source/up-near-shoe.png
+art/characters/m1/source/up-torso-and-hood.png
+art/characters/m1/source/up.svg
+art/characters/m1/source/walk-board.svg
+art/characters/m1/student.mjs
+art/characters/m1/treatments/README.md
+art/characters/m1/treatments/a/evidence/down-idle-360x800.png
+art/characters/m1/treatments/a/evidence/down-native-crop.png
+art/characters/m1/treatments/a/evidence/down-played-360x800.png
+art/characters/m1/treatments/a/evidence/down-walk-360x800.png
+art/characters/m1/treatments/a/evidence/left-idle-360x800.png
+art/characters/m1/treatments/a/evidence/left-native-crop.png
+art/characters/m1/treatments/a/evidence/left-played-360x800.png
+art/characters/m1/treatments/a/evidence/left-walk-360x800.png
+art/characters/m1/treatments/a/evidence/measurements.json
+art/characters/m1/treatments/a/evidence/reduced-motion-360x800.png
+art/characters/m1/treatments/a/evidence/right-idle-360x800.png
+art/characters/m1/treatments/a/evidence/right-native-crop.png
+art/characters/m1/treatments/a/evidence/right-played-360x800.png
+art/characters/m1/treatments/a/evidence/right-walk-360x800.png
+art/characters/m1/treatments/a/evidence/up-idle-360x800.png
+art/characters/m1/treatments/a/evidence/up-native-crop.png
+art/characters/m1/treatments/a/evidence/up-played-360x800.png
+art/characters/m1/treatments/a/evidence/up-walk-360x800.png
+art/characters/m1/treatments/a/evidence/walk-and-movement-360x800.webm
+art/characters/m1/treatments/a/export/down-gait.png
+art/characters/m1/treatments/a/export/four-facing.png
+art/characters/m1/treatments/a/export/left-gait.png
+art/characters/m1/treatments/a/export/manifest.json
+art/characters/m1/treatments/a/export/master.png
+art/characters/m1/treatments/a/export/right-gait.png
+art/characters/m1/treatments/a/export/up-gait.png
+art/characters/m1/treatments/a/source/down-back-accessory.png
+art/characters/m1/treatments/a/source/down-backpack-or-straps.png
+art/characters/m1/treatments/a/source/down-far-arm.png
+art/characters/m1/treatments/a/source/down-far-leg.png
+art/characters/m1/treatments/a/source/down-far-shoe.png
+art/characters/m1/treatments/a/source/down-gait.svg
+art/characters/m1/treatments/a/source/down-ground-shadow.png
+art/characters/m1/treatments/a/source/down-hair-or-covering.png
+art/characters/m1/treatments/a/source/down-head-and-face.png
+art/characters/m1/treatments/a/source/down-lower-clothing.png
+art/characters/m1/treatments/a/source/down-merged.png
+art/characters/m1/treatments/a/source/down-near-arm.png
+art/characters/m1/treatments/a/source/down-near-leg.png
+art/characters/m1/treatments/a/source/down-near-shoe.png
+art/characters/m1/treatments/a/source/down-torso-and-hood.png
+art/characters/m1/treatments/a/source/down.svg
+art/characters/m1/treatments/a/source/four-facing.svg
+art/characters/m1/treatments/a/source/left-back-accessory.png
+art/characters/m1/treatments/a/source/left-backpack-or-straps.png
+art/characters/m1/treatments/a/source/left-far-arm.png
+art/characters/m1/treatments/a/source/left-far-leg.png
+art/characters/m1/treatments/a/source/left-far-shoe.png
+art/characters/m1/treatments/a/source/left-gait.svg
+art/characters/m1/treatments/a/source/left-ground-shadow.png
+art/characters/m1/treatments/a/source/left-hair-or-covering.png
+art/characters/m1/treatments/a/source/left-head-and-face.png
+art/characters/m1/treatments/a/source/left-lower-clothing.png
+art/characters/m1/treatments/a/source/left-merged.png
+art/characters/m1/treatments/a/source/left-near-arm.png
+art/characters/m1/treatments/a/source/left-near-leg.png
+art/characters/m1/treatments/a/source/left-near-shoe.png
+art/characters/m1/treatments/a/source/left-torso-and-hood.png
+art/characters/m1/treatments/a/source/left.svg
+art/characters/m1/treatments/a/source/master.ora
+art/characters/m1/treatments/a/source/openraster-manifest.json
+art/characters/m1/treatments/a/source/right-back-accessory.png
+art/characters/m1/treatments/a/source/right-backpack-or-straps.png
+art/characters/m1/treatments/a/source/right-far-arm.png
+art/characters/m1/treatments/a/source/right-far-leg.png
+art/characters/m1/treatments/a/source/right-far-shoe.png
+art/characters/m1/treatments/a/source/right-gait.svg
+art/characters/m1/treatments/a/source/right-ground-shadow.png
+art/characters/m1/treatments/a/source/right-hair-or-covering.png
+art/characters/m1/treatments/a/source/right-head-and-face.png
+art/characters/m1/treatments/a/source/right-lower-clothing.png
+art/characters/m1/treatments/a/source/right-merged.png
+art/characters/m1/treatments/a/source/right-near-arm.png
+art/characters/m1/treatments/a/source/right-near-leg.png
+art/characters/m1/treatments/a/source/right-near-shoe.png
+art/characters/m1/treatments/a/source/right-torso-and-hood.png
+art/characters/m1/treatments/a/source/right.svg
+art/characters/m1/treatments/a/source/up-back-accessory.png
+art/characters/m1/treatments/a/source/up-backpack-or-straps.png
+art/characters/m1/treatments/a/source/up-far-arm.png
+art/characters/m1/treatments/a/source/up-far-leg.png
+art/characters/m1/treatments/a/source/up-far-shoe.png
+art/characters/m1/treatments/a/source/up-gait.svg
+art/characters/m1/treatments/a/source/up-ground-shadow.png
+art/characters/m1/treatments/a/source/up-hair-or-covering.png
+art/characters/m1/treatments/a/source/up-head-and-face.png
+art/characters/m1/treatments/a/source/up-lower-clothing.png
+art/characters/m1/treatments/a/source/up-merged.png
+art/characters/m1/treatments/a/source/up-near-arm.png
+art/characters/m1/treatments/a/source/up-near-leg.png
+art/characters/m1/treatments/a/source/up-near-shoe.png
+art/characters/m1/treatments/a/source/up-torso-and-hood.png
+art/characters/m1/treatments/a/source/up.svg
+art/characters/m1/treatments/b/evidence/down-idle-360x800.png
+art/characters/m1/treatments/b/evidence/down-native-crop.png
+art/characters/m1/treatments/b/evidence/down-played-360x800.png
+art/characters/m1/treatments/b/evidence/down-walk-360x800.png
+art/characters/m1/treatments/b/evidence/left-idle-360x800.png
+art/characters/m1/treatments/b/evidence/left-native-crop.png
+art/characters/m1/treatments/b/evidence/left-played-360x800.png
+art/characters/m1/treatments/b/evidence/left-walk-360x800.png
+art/characters/m1/treatments/b/evidence/measurements.json
+art/characters/m1/treatments/b/evidence/reduced-motion-360x800.png
+art/characters/m1/treatments/b/evidence/right-idle-360x800.png
+art/characters/m1/treatments/b/evidence/right-native-crop.png
+art/characters/m1/treatments/b/evidence/right-played-360x800.png
+art/characters/m1/treatments/b/evidence/right-walk-360x800.png
+art/characters/m1/treatments/b/evidence/up-idle-360x800.png
+art/characters/m1/treatments/b/evidence/up-native-crop.png
+art/characters/m1/treatments/b/evidence/up-played-360x800.png
+art/characters/m1/treatments/b/evidence/up-walk-360x800.png
+art/characters/m1/treatments/b/evidence/walk-and-movement-360x800.webm
+art/characters/m1/treatments/b/export/down-gait.png
+art/characters/m1/treatments/b/export/four-facing.png
+art/characters/m1/treatments/b/export/left-gait.png
+art/characters/m1/treatments/b/export/manifest.json
+art/characters/m1/treatments/b/export/master.png
+art/characters/m1/treatments/b/export/right-gait.png
+art/characters/m1/treatments/b/export/up-gait.png
+art/characters/m1/treatments/b/source/down-back-accessory.png
+art/characters/m1/treatments/b/source/down-backpack-or-straps.png
+art/characters/m1/treatments/b/source/down-far-arm.png
+art/characters/m1/treatments/b/source/down-far-leg.png
+art/characters/m1/treatments/b/source/down-far-shoe.png
+art/characters/m1/treatments/b/source/down-gait.svg
+art/characters/m1/treatments/b/source/down-ground-shadow.png
+art/characters/m1/treatments/b/source/down-hair-or-covering.png
+art/characters/m1/treatments/b/source/down-head-and-face.png
+art/characters/m1/treatments/b/source/down-lower-clothing.png
+art/characters/m1/treatments/b/source/down-merged.png
+art/characters/m1/treatments/b/source/down-near-arm.png
+art/characters/m1/treatments/b/source/down-near-leg.png
+art/characters/m1/treatments/b/source/down-near-shoe.png
+art/characters/m1/treatments/b/source/down-torso-and-hood.png
+art/characters/m1/treatments/b/source/down.svg
+art/characters/m1/treatments/b/source/four-facing.svg
+art/characters/m1/treatments/b/source/left-back-accessory.png
+art/characters/m1/treatments/b/source/left-backpack-or-straps.png
+art/characters/m1/treatments/b/source/left-far-arm.png
+art/characters/m1/treatments/b/source/left-far-leg.png
+art/characters/m1/treatments/b/source/left-far-shoe.png
+art/characters/m1/treatments/b/source/left-gait.svg
+art/characters/m1/treatments/b/source/left-ground-shadow.png
+art/characters/m1/treatments/b/source/left-hair-or-covering.png
+art/characters/m1/treatments/b/source/left-head-and-face.png
+art/characters/m1/treatments/b/source/left-lower-clothing.png
+art/characters/m1/treatments/b/source/left-merged.png
+art/characters/m1/treatments/b/source/left-near-arm.png
+art/characters/m1/treatments/b/source/left-near-leg.png
+art/characters/m1/treatments/b/source/left-near-shoe.png
+art/characters/m1/treatments/b/source/left-torso-and-hood.png
+art/characters/m1/treatments/b/source/left.svg
+art/characters/m1/treatments/b/source/master.ora
+art/characters/m1/treatments/b/source/openraster-manifest.json
+art/characters/m1/treatments/b/source/right-back-accessory.png
+art/characters/m1/treatments/b/source/right-backpack-or-straps.png
+art/characters/m1/treatments/b/source/right-far-arm.png
+art/characters/m1/treatments/b/source/right-far-leg.png
+art/characters/m1/treatments/b/source/right-far-shoe.png
+art/characters/m1/treatments/b/source/right-gait.svg
+art/characters/m1/treatments/b/source/right-ground-shadow.png
+art/characters/m1/treatments/b/source/right-hair-or-covering.png
+art/characters/m1/treatments/b/source/right-head-and-face.png
+art/characters/m1/treatments/b/source/right-lower-clothing.png
+art/characters/m1/treatments/b/source/right-merged.png
+art/characters/m1/treatments/b/source/right-near-arm.png
+art/characters/m1/treatments/b/source/right-near-leg.png
+art/characters/m1/treatments/b/source/right-near-shoe.png
+art/characters/m1/treatments/b/source/right-torso-and-hood.png
+art/characters/m1/treatments/b/source/right.svg
+art/characters/m1/treatments/b/source/up-back-accessory.png
+art/characters/m1/treatments/b/source/up-backpack-or-straps.png
+art/characters/m1/treatments/b/source/up-far-arm.png
+art/characters/m1/treatments/b/source/up-far-leg.png
+art/characters/m1/treatments/b/source/up-far-shoe.png
+art/characters/m1/treatments/b/source/up-gait.svg
+art/characters/m1/treatments/b/source/up-ground-shadow.png
+art/characters/m1/treatments/b/source/up-hair-or-covering.png
+art/characters/m1/treatments/b/source/up-head-and-face.png
+art/characters/m1/treatments/b/source/up-lower-clothing.png
+art/characters/m1/treatments/b/source/up-merged.png
+art/characters/m1/treatments/b/source/up-near-arm.png
+art/characters/m1/treatments/b/source/up-near-leg.png
+art/characters/m1/treatments/b/source/up-near-shoe.png
+art/characters/m1/treatments/b/source/up-torso-and-hood.png
+art/characters/m1/treatments/b/source/up.svg
+art/characters/m1/treatments/comparisons/four-facing-a-b.png
+art/characters/m1/treatments/comparisons/four-facing-a-b.svg
+art/characters/m1/treatments/comparisons/native-360x800-a-b.png
+art/characters/m1/treatments/comparisons/native-four-facing-a-b.png
+art/characters/m1/treatments/master.mjs
+art/characters/offline/README.md
+art/characters/offline/board.mjs
+art/characters/offline/proof/0-down-idle-0.png
+art/characters/offline/proof/0-down-walk-0.png
+art/characters/offline/proof/0-down-walk-1.png
+art/characters/offline/proof/0-down-walk-2.png
+art/characters/offline/proof/0-down-walk-3.png
+art/characters/offline/proof/0-down-walk-4.png
+art/characters/offline/proof/0-down-walk-5.png
+art/characters/offline/proof/0-left-idle-0.png
+art/characters/offline/proof/0-left-walk-0.png
+art/characters/offline/proof/0-left-walk-1.png
+art/characters/offline/proof/0-left-walk-2.png
+art/characters/offline/proof/0-left-walk-3.png
+art/characters/offline/proof/0-left-walk-4.png
+art/characters/offline/proof/0-left-walk-5.png
+art/characters/offline/proof/0-right-idle-0.png
+art/characters/offline/proof/0-right-walk-0.png
+art/characters/offline/proof/0-right-walk-1.png
+art/characters/offline/proof/0-right-walk-2.png
+art/characters/offline/proof/0-right-walk-3.png
+art/characters/offline/proof/0-right-walk-4.png
+art/characters/offline/proof/0-right-walk-5.png
+art/characters/offline/proof/0-up-idle-0.png
+art/characters/offline/proof/0-up-walk-0.png
+art/characters/offline/proof/0-up-walk-1.png
+art/characters/offline/proof/0-up-walk-2.png
+art/characters/offline/proof/0-up-walk-3.png
+art/characters/offline/proof/0-up-walk-4.png
+art/characters/offline/proof/0-up-walk-5.png
+art/characters/offline/proof/1-down-idle-0.png
+art/characters/offline/proof/1-left-idle-0.png
+art/characters/offline/proof/1-right-idle-0.png
+art/characters/offline/proof/1-up-idle-0.png
+art/characters/offline/proof/2-down-idle-0.png
+art/characters/offline/proof/2-left-idle-0.png
+art/characters/offline/proof/2-right-idle-0.png
+art/characters/offline/proof/2-up-idle-0.png
+art/characters/offline/proof/3-down-idle-0.png
+art/characters/offline/proof/3-left-idle-0.png
+art/characters/offline/proof/3-right-idle-0.png
+art/characters/offline/proof/3-up-idle-0.png
+art/characters/offline/proof/close-up.png
+art/characters/offline/proof/frames.json
+art/characters/offline/proof/review-board.png
+art/characters/offline/proof/sizes.json
+art/characters/offline/proof/walk-board.png
+art/characters/offline/render-study.py
+art/characters/offline/student.py
+art/characters/proof/baseline/futa-1280x900.png
+art/characters/proof/baseline/futa-360x640.png
+art/characters/proof/baseline/futa-360x800.png
+art/characters/proof/baseline/futa-390x844.png
+art/characters/proof/baseline/measurements.json
+art/characters/proof/down-frames.svg
+art/characters/proof/left-frames.svg
+art/characters/proof/right-frames.svg
+art/characters/proof/student-board.png
+art/characters/proof/student-board.svg
+art/characters/proof/up-frames.svg
+art/characters/student-rig.mjs
+docs/decisions/015-original-sprites-and-interiors.md
+docs/phase-4.2-art-handoff.md
+docs/phase-4.2-inhouse-candidate.md
+docs/phase-4.2-m1-files.txt
+docs/phase-4.2-m1-intake-review.md
+docs/phase-4.2-m1-painted-files.txt
+docs/phase-4.2-m1-painted-review.md
+docs/phase-4.2-m1-refinement-review.md
+docs/phase-4.2-m1-selection-files.txt
+docs/phase-4.2-m1-selection-review.md
+docs/phase-4.2-review.md
+scripts/art/capture-baseline.mjs
+scripts/art/capture-m1-treatments.mjs
+scripts/art/capture-m1.mjs
+scripts/art/capture-painted-campus.mjs
+scripts/art/capture-painted-master.mjs
+scripts/art/compare-m1-treatments.mjs
+scripts/art/compare-m1.mjs
+scripts/art/compare-painted-campus.mjs
+scripts/art/export-m1-treatments.mjs
+scripts/art/export-m1.mjs
+scripts/art/export-painted-campus.mjs
+scripts/art/export-student.mjs
+scripts/art/import-m1-candidate.py
+scripts/art/m1-proof-server.mjs
+scripts/art/pack-m1-source.py
+scripts/art/pack-m1-treatments.py
+scripts/art/pack-painted-campus.py
+scripts/art/preview-student.mjs
+scripts/art/verify-m1-treatments.mjs
+scripts/art/verify-m1.mjs
+scripts/art/verify-painted-campus.mjs
+scripts/art/verify-student.mjs
+tests/e2e/wahala-consequence.spec.ts

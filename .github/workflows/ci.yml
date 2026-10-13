@@ -39,6 +39,8 @@ jobs:
         run: node scripts/art/verify-m1.mjs
       - name: Verify A/B single-master source, atlas pixels and semantic ORA layers
         run: node scripts/art/verify-m1-treatments.mjs
+      - name: Verify selected B modular source, all768 appearances and240 packed poses
+        run: node scripts/art/verify-painted-campus.mjs
       - name: Verify prior M1 comparison provenance and regenerate labeled sheets
         run: node scripts/art/compare-m1.mjs
       - run: pnpm check:world-budgets
@@ -49,6 +51,14 @@ jobs:
         run: node scripts/art/capture-m1-treatments.mjs
       - name: Assemble A/B evidence without resizing native screenshot pixels
         run: node scripts/art/compare-m1-treatments.mjs
+      - name: Capture refined B master alone before final variant evidence
+        run: |
+          node scripts/art/export-painted-campus.mjs --master-first
+          node scripts/art/capture-painted-master.mjs
+      - name: Capture four B player looks and two fictional NPCs in actual Phaser
+        run: node scripts/art/capture-painted-campus.mjs
+      - name: Assemble selected B before-after and native comparisons
+        run: node scripts/art/compare-painted-campus.mjs
       - run: pnpm test:e2e
       - run: pnpm audit --audit-level high
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -79,6 +89,11 @@ jobs:
         with:
           name: m1-treatment-selection
           path: art/characters/m1/treatments/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: m1-painted-campus-final-proof
+          path: art/characters/m1/painted-campus/
   sast:
     runs-on: ubuntu-latest
     permissions:

@@ -43,4 +43,6 @@ PR #17 remains draft, Phase 4.2 incomplete and ART REVIEW BLOCKER retained. The 
 
 Prior PR #17 M1 refinement responded to reviewer 6126592275; its technical iteration was accepted but the artwork remains rejected. See [historical M1 refinement review](docs/phase-4.2-m1-refinement-review.md).
 
-Current PR #17 M1 selection responds to reviewer 6147280115: two original editable soft-modeled master treatments of the same representative look, high-resolution four-facing comparison, untouched 360x800 Phaser views/native crops and eight-frame actual walking evidence. No new Appearance/NPC variations before selection. See [M1 selection review](docs/phase-4.2-m1-selection-review.md). Draft/unmerged; ART REVIEW BLOCKER remains; neither treatment approved. Production runtime/security/tests preserved; no M2-M6 or Phase 5. Exact head/terminal CI in PR body.
+Prior PR #17 M1 selection responded to reviewer 6147280115 with two editable master treatments. See [historical M1 selection review](docs/phase-4.2-m1-selection-review.md).
+
+Current reviewer decision 6148790041 selects **B - Painted Campus as direction only**. B-only refined source supports all 768 existing Appearance values, four contrasting player looks and two fictional NPCs, with editable SVG/ORA, native Phaser evidence and distance-driven walking. See [final M1 painted review](docs/phase-4.2-m1-painted-review.md). Final M1 visual approval remains open; draft/unmerged, no production character promotion, no M2-M6 or Phase 5. Security/gameplay authority/tests preserved. Exact head/terminal CI in PR body.
