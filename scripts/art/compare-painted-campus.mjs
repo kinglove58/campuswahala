@@ -14,16 +14,23 @@ const hash = (b) => createHash("sha256").update(b).digest("hex");
 const selected = "8fc0425f4ce14d034a380a3f511f6ad766b7ff66";
 const beforeRoot = "art/characters/m1/treatments/b";
 const rows = [];
+const expectedBefore = {
+  "export/four-facing.png":
+    "ec13d981d55c139ed9c304c159f0abb19a4ef4420acba4f3d98fc20737526d96",
+  "evidence/down-idle-360x800.png":
+    "74ca27bce503ec8f936565a1c4a93ad9b9324d2968da832a873efd585492dcac",
+};
 async function before(path) {
-  const bytes = await readFile(`${beforeRoot}/${path}`);
-  const committed = execFileSync(
+  // Regression capture legitimately refreshes working-tree evidence. Read the
+  // immutable selected commit instead, retaining an independent byte hash gate.
+  const bytes = execFileSync(
     "git",
     ["show", `${selected}:${beforeRoot}/${path}`],
     { maxBuffer: 16 * 1024 * 1024 },
   );
   assert.equal(
     hash(bytes),
-    hash(committed),
+    expectedBefore[path],
     "Selected B before image must be exact original committed bytes",
   );
   rows.push({
