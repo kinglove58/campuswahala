@@ -100,6 +100,7 @@ export class WorldEngine {
   position: Point;
   appearance: Appearance = { ...defaultAppearance };
   path: Point[] = [];
+  mapRoute = false;
   waypoint: string | null = null;
   elapsedMs = 0;
   paused = false;
@@ -131,10 +132,12 @@ export class WorldEngine {
     this.phoneOpen = open;
     this.paused = open;
     this.path = [];
+    this.mapRoute = false;
     if (open) this.bus.emit("PHONE_OPENED", {});
   }
-  moveTo(target: Point) {
+  moveTo(target: Point, mapRoute = false) {
     this.path = findPath(this.manifest, this.position, target);
+    this.mapRoute = mapRoute && this.path.length > 0;
   }
   /** Presentation only: a validated manifest spawn grants no server presence/credit. */
   resumeAtSpawn(spawnId: string) {
@@ -143,6 +146,7 @@ export class WorldEngine {
     this.position = { x: spawn.x, y: spawn.y };
     this.zoneId = spawn.zoneId;
     this.path = [];
+    this.mapRoute = false;
     this.waypoint = null;
     return true;
   }
@@ -163,6 +167,7 @@ export class WorldEngine {
     const p = this.manifest.spawnPoints.find((s) => s.id === spawnId)!;
     this.position = { x: p.x, y: p.y };
     this.path = [];
+    this.mapRoute = false;
     this.bus.emit("TRANSPORT_USED", { nodeId, spawnId });
     return true;
   }
@@ -194,6 +199,7 @@ export class WorldEngine {
     let target = this.path[0];
     if (direction.x || direction.y) {
       this.path = [];
+      this.mapRoute = false;
       const len = Math.hypot(direction.x, direction.y);
       target = {
         x: this.position.x + (direction.x / len) * speed,
@@ -220,6 +226,7 @@ export class WorldEngine {
       }
       if (d <= speed) this.path.shift();
     }
+    if (!this.path.length) this.mapRoute = false;
     const zone = this.manifest.zones.find((z) => contains(z, this.position));
     if (zone && zone.id !== this.zoneId) {
       this.zoneId = zone.id;

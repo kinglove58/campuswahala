@@ -13,6 +13,7 @@ A	apps/game/app/character-art.d.mts
 A	apps/game/app/character-art.mjs
 A	apps/game/app/character-assets.ts
 A	apps/game/app/character-visual.ts
+M	apps/game/app/style.css
 M	apps/game/app/world.tsx
 M	apps/game/next.config.ts
 A	apps/game/public/character-assets/b-2314f9a7d0b5/look-0.126104ea6b08.png
@@ -35,6 +36,7 @@ A	tests/character-visual.test.ts
 M	tests/e2e/account.spec.ts
 A	tests/e2e/character-m2-evidence.spec.ts
 A	tests/e2e/character-m2-network.spec.ts
+A	tests/e2e/character-m2-route.spec.ts
 A	tests/e2e/character-m2.spec.ts
 M	tests/pwa.test.ts
 
@@ -48,6 +50,7 @@ A	apps/game/app/character-art.d.mts
 A	apps/game/app/character-art.mjs
 A	apps/game/app/character-assets.ts
 A	apps/game/app/character-visual.ts
+M	apps/game/app/style.css
 M	apps/game/app/world.tsx
 M	apps/game/next.config.ts
 A	apps/game/public/character-assets/b-2314f9a7d0b5/look-0.126104ea6b08.png
@@ -654,6 +657,7 @@ A	tests/character-visual.test.ts
 M	tests/e2e/account.spec.ts
 A	tests/e2e/character-m2-evidence.spec.ts
 A	tests/e2e/character-m2-network.spec.ts
+A	tests/e2e/character-m2-route.spec.ts
 A	tests/e2e/character-m2.spec.ts
 M	tests/e2e/wahala-consequence.spec.ts
 M	tests/pwa.test.ts

@@ -4,7 +4,7 @@ import {
   WorldEngine,
   npcPosition,
   cameraProfile,
-  cosmeticWalkSpeed,
+  navigationPace,
   facingFor,
   appearanceKey,
   type WorldManifest,
@@ -25,6 +25,7 @@ export type WorldSnapshot = {
   period: string;
   weather: Weather;
   battery: number;
+  fastRoute: boolean;
 };
 export type WorldHandle = {
   engine: WorldEngine;
@@ -560,11 +561,14 @@ export default function CampusWorld({
                     y: (target?.y ?? engine.position.y) - engine.position.y,
                   };
             const facing = facingFor(desired.x, desired.y, this.person.facing);
-            engine.tick(
-              delta,
-              input,
-              cosmeticWalkSpeed(this.profile.spriteScale, facing),
+            const pace = navigationPace(
+              engine.position,
+              engine.path,
+              this.profile.spriteScale,
+              facing,
+              engine.mapRoute && !(input.x || input.y),
             );
+            engine.tick(delta, input, pace.speed);
             this.person.update(
               engine.position.x,
               engine.position.y,
@@ -603,6 +607,7 @@ export default function CampusWorld({
               metrics.dataset.requestedAppearance = this.avatarKey;
               metrics.dataset.characterFrame = `${this.person.facing}-${this.person.state}-${this.person.frame}`;
               metrics.dataset.position = JSON.stringify(engine.position);
+              metrics.dataset.fastRoute = String(pace.fast);
               metrics.dataset.bodyHeight = String(
                 (this.person.entry?.bodyHeight ?? 152) *
                   this.profile.spriteScale *
@@ -726,6 +731,7 @@ export default function CampusWorld({
                 period: clock.period,
                 weather,
                 battery: Math.round(engine.battery.value),
+                fastRoute: pace.fast,
               });
               this.lastSnapshot = time;
             }

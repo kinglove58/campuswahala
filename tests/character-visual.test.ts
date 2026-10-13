@@ -7,6 +7,7 @@ import {
   facingFor,
   walkPose,
   cosmeticWalkSpeed,
+  navigationPace,
   WorldEngine,
   createCampusWorld,
 } from "../packages/game-engine/src";
@@ -76,5 +77,62 @@ describe("M2 B visual contracts", () => {
     expect(b.position).toEqual(paused);
     a.dispose();
     b.dispose();
+  });
+  it("retains timely Map arrival, natural approach, and interruptible manual pace", () => {
+    const world = createCampusWorld("futa");
+    for (const [width, height] of [
+      [360, 571],
+      [1280, 633],
+      [360, 731],
+      [390, 775],
+    ] as const)
+      for (const type of ["lecture_hall", "food"]) {
+        const venue = world.venues.find((v) => v.type === type)!;
+        const spawn = world.spawnPoints.find(
+          (s) => s.id === venue.safeSpawnId,
+        )!;
+        const engine = new WorldEngine(world);
+        const scale = cameraProfile(width, height).spriteScale;
+        engine.moveTo(spawn, true);
+        const modes = new Set<boolean>();
+        let elapsed = 0;
+        while (engine.path.length && elapsed < 45000) {
+          const target = engine.path[0]!;
+          const facing = facingFor(
+            target.x - engine.position.x,
+            target.y - engine.position.y,
+            "down",
+          );
+          const pace = navigationPace(
+            engine.position,
+            engine.path,
+            scale,
+            facing,
+            engine.mapRoute,
+          );
+          modes.add(pace.fast);
+          engine.tick(50, { x: 0, y: 0 }, pace.speed);
+          elapsed += 50;
+        }
+        expect(elapsed).toBeLessThan(45000);
+        expect(
+          Math.hypot(engine.position.x - spawn.x, engine.position.y - spawn.y),
+        ).toBeLessThan(1);
+        expect(modes).toEqual(new Set([true, false]));
+        expect(engine.mapRoute).toBe(false);
+        engine.moveTo(spawn, true);
+        engine.tick(50, { x: 1, y: 0 }, cosmeticWalkSpeed(scale, "right"));
+        expect(engine.mapRoute).toBe(false);
+        expect(
+          navigationPace(
+            engine.position,
+            [{ x: 10000, y: 10000 }],
+            scale,
+            "right",
+            false,
+          ).speed,
+        ).toBe(cosmeticWalkSpeed(scale, "right"));
+        engine.dispose();
+      }
   });
 });

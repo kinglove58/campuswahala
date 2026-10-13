@@ -69,3 +69,26 @@ export function walkPose(distance: number, scale: number, facing: Facing) {
 export function cosmeticWalkSpeed(scale: number, facing: Facing) {
   return projectedStride[facing] * scale;
 }
+/** Existing long-distance Map traversal is time compressed; approach on foot.
+ * Keyboard/tap walking never enters this explicit Map mode. No clock scaling.
+ */
+export function navigationPace(
+  position: { x: number; y: number },
+  path: readonly { x: number; y: number }[],
+  scale: number,
+  facing: Facing,
+  mapRoute: boolean,
+) {
+  let remaining = 0,
+    previous = position;
+  for (const point of path) {
+    remaining += Math.hypot(point.x - previous.x, point.y - previous.y);
+    previous = point;
+  }
+  const fast = mapRoute && remaining > 96;
+  return {
+    fast,
+    remaining,
+    speed: fast ? 230 : cosmeticWalkSpeed(scale, facing),
+  };
+}
