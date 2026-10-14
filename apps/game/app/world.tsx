@@ -134,6 +134,7 @@ export default function CampusWorld({
           labels = new Map<string, PhaserType.GameObjects.Text>();
           lastSnapshot = 0;
           lastChunk = 0;
+          lastMotionTime: number | null = null;
           frames = 0;
           frameTotal = 0;
           lastMetric = 0;
@@ -556,7 +557,17 @@ export default function CampusWorld({
               engine.path,
               engine.mapRoute && !(input.x || input.y),
             );
-            engine.tick(delta, input, pace.speed);
+            const presentationDelta =
+              this.lastMotionTime === null
+                ? Math.min(delta, 50)
+                : time - this.lastMotionTime;
+            this.lastMotionTime = time;
+            engine.tick(
+              delta,
+              input,
+              pace.speed,
+              pace.fast ? undefined : presentationDelta,
+            );
             this.person.update(
               engine.position.x,
               engine.position.y,
@@ -597,6 +608,7 @@ export default function CampusWorld({
               metrics.dataset.position = JSON.stringify(engine.position);
               metrics.dataset.navigationSpeed = String(pace.speed);
               metrics.dataset.simulationElapsed = String(engine.elapsedMs);
+              metrics.dataset.motionTime = String(time);
               metrics.dataset.navigationPath = JSON.stringify(engine.path);
               const inputOrigin = this.cameras.main.getWorldPoint(0, 0);
               metrics.dataset.cameraView = JSON.stringify({

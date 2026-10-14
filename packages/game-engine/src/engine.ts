@@ -179,7 +179,12 @@ export class WorldEngine {
       this.bus.emit("PLAYER_ENTERED_VENUE", { venueId: i.venueId });
     if (i.npcId) this.bus.emit("NPC_INTERACTED", { npcId: i.npcId });
   }
-  tick(delta: number, direction: Point = { x: 0, y: 0 }, cosmeticSpeed = 230) {
+  tick(
+    delta: number,
+    direction: Point = { x: 0, y: 0 },
+    cosmeticSpeed = 230,
+    presentationDelta?: number,
+  ) {
     const dt = Math.max(0, Math.min(delta, 50));
     this.elapsedMs += dt;
     this.battery.tick(dt / 1000, this.phoneOpen);
@@ -189,43 +194,52 @@ export class WorldEngine {
       this.bus.emit("TIME_PERIOD_CHANGED", { period: time.period });
     }
     if (this.paused) return;
-    // Renderers may choose a cosmetic navigation pace; elapsed/academic time and
-    // collision rules are independent. Default preserves existing consumers.
-    const speed =
-      (dt / 1000) *
-      (Number.isFinite(cosmeticSpeed)
-        ? Math.max(0, Math.min(230, cosmeticSpeed))
-        : 230);
-    let target = this.path[0];
-    if (direction.x || direction.y) {
-      this.path = [];
-      this.mapRoute = false;
-      const len = Math.hypot(direction.x, direction.y);
-      target = {
-        x: this.position.x + (direction.x / len) * speed,
-        y: this.position.y + (direction.y / len) * speed,
-      };
-    }
-    if (target) {
-      const d = Math.hypot(
-          target.x - this.position.x,
-          target.y - this.position.y,
-        ),
-        r = d ? Math.min(1, speed / d) : 0;
-      const next = {
-        x: this.position.x + (target.x - this.position.x) * r,
-        y: this.position.y + (target.y - this.position.y) * r,
-      };
-      if (!blocked(this.manifest, next)) this.position = next;
-      else {
-        const x = { x: next.x, y: this.position.y },
-          y = { x: this.position.x, y: next.y };
-        if (!blocked(this.manifest, x)) this.position = x;
-        else if (!blocked(this.manifest, y)) this.position = y;
-        else this.path = [];
+    // Clock/battery retain the original capped dt. Optional presentation time
+    // catches up at most 100ms of ordinary movement, in collision-safe <=50ms
+    // steps. Existing consumers and explicit fast Map routes keep legacy timing.
+    let remaining =
+      presentationDelta === undefined || !Number.isFinite(presentationDelta)
+        ? dt
+        : Math.max(0, Math.min(100, presentationDelta));
+    do {
+      const step = Math.min(50, remaining);
+      remaining -= step;
+      const speed =
+        (step / 1000) *
+        (Number.isFinite(cosmeticSpeed)
+          ? Math.max(0, Math.min(230, cosmeticSpeed))
+          : 230);
+      let target = this.path[0];
+      if (direction.x || direction.y) {
+        this.path = [];
+        this.mapRoute = false;
+        const len = Math.hypot(direction.x, direction.y);
+        target = {
+          x: this.position.x + (direction.x / len) * speed,
+          y: this.position.y + (direction.y / len) * speed,
+        };
       }
-      if (d <= speed) this.path.shift();
-    }
+      if (target) {
+        const d = Math.hypot(
+            target.x - this.position.x,
+            target.y - this.position.y,
+          ),
+          r = d ? Math.min(1, speed / d) : 0;
+        const next = {
+          x: this.position.x + (target.x - this.position.x) * r,
+          y: this.position.y + (target.y - this.position.y) * r,
+        };
+        if (!blocked(this.manifest, next)) this.position = next;
+        else {
+          const x = { x: next.x, y: this.position.y },
+            y = { x: this.position.x, y: next.y };
+          if (!blocked(this.manifest, x)) this.position = x;
+          else if (!blocked(this.manifest, y)) this.position = y;
+          else this.path = [];
+        }
+        if (d <= speed) this.path.shift();
+      }
+    } while (remaining > 0);
     if (!this.path.length) this.mapRoute = false;
     const zone = this.manifest.zones.find((z) => contains(z, this.position));
     if (zone && zone.id !== this.zoneId) {

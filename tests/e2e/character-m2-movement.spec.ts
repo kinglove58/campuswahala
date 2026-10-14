@@ -1,5 +1,13 @@
-import { test, expect, type Locator, type Page } from "@playwright/test";
-import { mkdir, writeFile } from "node:fs/promises";
+import {
+  test,
+  expect,
+  chromium,
+  type Locator,
+  type Page,
+} from "@playwright/test";
+import { mkdir, writeFile, unlink } from "node:fs/promises";
+import { existsSync, readdirSync } from "node:fs";
+import { dirname, basename, join } from "node:path";
 import { execFileSync } from "node:child_process";
 import { validGuestFixture } from "../../packages/testing/src";
 import { createCampusWorld } from "../../packages/game-engine/src";
@@ -9,12 +17,30 @@ test.use({
   deviceScaleFactor: 1,
   hasTouch: true,
   isMobile: true,
-  video:
-    process.env.CAPTURE_VISUALS === "1"
-      ? { mode: "on", size: { width: 360, height: 800 } }
-      : "off",
+  // Full-page CDP screencast adds expensive JPEG/IPC/encoder work to a timing
+  // assertion. Record the actual mobile Phaser canvas directly instead.
+  video: "off",
 });
 type Point = { x: number; y: number };
+function captureFfmpeg() {
+  let directory = dirname(chromium.executablePath());
+  while (!/^chromium-\d+$/.test(basename(directory))) {
+    const parent = dirname(directory);
+    if (parent === directory)
+      throw new Error("MISSING_PLAYWRIGHT_BROWSER_REGISTRY");
+    directory = parent;
+  }
+  const registry = dirname(directory);
+  const ffmpeg = readdirSync(registry).find((name) =>
+    /^ffmpeg-\d+$/.test(name),
+  );
+  if (!ffmpeg) throw new Error("MISSING_PLAYWRIGHT_FFMPEG");
+  const executable = ["ffmpeg-win64.exe", "ffmpeg-linux", "ffmpeg-mac"]
+    .map((name) => join(registry, ffmpeg, name))
+    .find((name) => existsSync(name));
+  if (!executable) throw new Error("MISSING_PLAYWRIGHT_FFMPEG_EXECUTABLE");
+  return executable;
+}
 const directions = [
   { facing: "right", key: "ArrowRight", x: 1, y: 0 },
   { facing: "left", key: "ArrowLeft", x: -1, y: 0 },
@@ -79,11 +105,86 @@ async function sampleJourney(
     { start, target, began, keyboard },
   );
 }
+async function startCanvasVideo(world: Locator) {
+  if (
+    process.env.CAPTURE_VISUALS !== "1" ||
+    test.info().project.name !== "mobile"
+  )
+    return;
+  await world.locator("canvas").evaluate((element) => {
+    const canvas = element as HTMLCanvasElement & {
+      evidence?: {
+        recorder: MediaRecorder;
+        chunks: Blob[];
+        stream: MediaStream;
+      };
+    };
+    const stream = canvas.captureStream(30);
+    const recorder = new MediaRecorder(stream, {
+      mimeType: MediaRecorder.isTypeSupported("video/webm;codecs=vp8")
+        ? "video/webm;codecs=vp8"
+        : "video/webm",
+      videoBitsPerSecond: 500000,
+    });
+    const chunks: Blob[] = [];
+    recorder.ondataavailable = (event) => {
+      if (event.data.size) chunks.push(event.data);
+    };
+    canvas.evidence = { recorder, chunks, stream };
+    recorder.start();
+  });
+}
 async function saveEvidence(page: Page, kind: string, report: unknown) {
   if (process.env.CAPTURE_VISUALS !== "1") return;
   const out = "artifacts/m2-production";
   await mkdir(out, { recursive: true });
   const suffix = `${kind}-${test.info().project.name}-360x800`;
+  const world = page.getByTestId("campus-world");
+  const canvasPixels = await world.locator("canvas").evaluate((element) => {
+    const canvas = element as HTMLCanvasElement;
+    return { width: canvas.width, height: canvas.height };
+  });
+  if (test.info().project.name === "mobile") {
+    const video = await world.locator("canvas").evaluate(async (element) => {
+      const canvas = element as HTMLCanvasElement & {
+        evidence?: {
+          recorder: MediaRecorder;
+          chunks: Blob[];
+          stream: MediaStream;
+        };
+      };
+      const recording = canvas.evidence;
+      if (!recording) throw new Error("MISSING_PRODUCTION_CANVAS_RECORDING");
+      await new Promise<void>((resolve) => {
+        recording.recorder.onstop = () => resolve();
+        recording.recorder.stop();
+      });
+      recording.stream.getTracks().forEach((track) => track.stop());
+      const blob = new Blob(recording.chunks, { type: "video/webm" });
+      return await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result).split(",")[1]!);
+        reader.onerror = () => reject(new Error("CANVAS_VIDEO_READ_FAILED"));
+        reader.readAsDataURL(blob);
+      });
+    });
+    const raw = `${out}/production-${suffix}.raw.webm`;
+    const movie = `${out}/production-${suffix}.webm`;
+    await writeFile(raw, Buffer.from(video, "base64"));
+    // Finalize duration/seek metadata using Playwright's already-installed
+    // FFmpeg. Stream copy preserves every actual canvas frame, without resizing.
+    execFileSync(captureFfmpeg(), [
+      "-y",
+      "-i",
+      raw,
+      "-c",
+      "copy",
+      "-loglevel",
+      "error",
+      movie,
+    ]);
+    await unlink(raw);
+  }
   await page.screenshot({ path: `${out}/production-${suffix}.png` });
   await writeFile(
     `${out}/production-${suffix}.json`,
@@ -100,15 +201,21 @@ async function saveEvidence(page: Page, kind: string, report: unknown) {
         input:
           "Real guest API, production Phaser, actual keyboard/touch; renderer metrics read only",
         physicalAndroid: "not tested",
+        video:
+          test.info().project.name === "mobile"
+            ? {
+                method:
+                  "Actual Phaser canvas.captureStream(30), no scene/frame injection or full-page screencast",
+                canvasPixels,
+                viewport: { width: 360, height: 800 },
+              }
+            : "Functional timing/still/trajectory evidence; mobile project records the real canvas",
         report,
       },
       null,
       2,
     ),
   );
-  const video = page.video();
-  await page.context().close();
-  if (video) await video.saveAs(`${out}/production-${suffix}.webm`);
 }
 for (const input of ["keyboard", "touch"] as const) {
   test(`M2 native mobile ${input}: four comparable 96-unit production walks within five seconds`, async ({
@@ -143,6 +250,7 @@ for (const input of ["keyboard", "touch"] as const) {
         mutations.push(r.url());
     });
     const journeys = [];
+    await startCanvasVideo(world);
     for (const direction of directions) {
       await expect(world).toHaveAttribute("data-character-frame", /-idle-/);
       await page.waitForTimeout(350); // Let the real follow camera settle before a touch.
@@ -256,10 +364,10 @@ test("M2 mobile interrupted touch walk, reduced-motion displacement and Pocket p
   const { before, after, elapsed } = await world.evaluate(async (element) => {
     const data = (element as HTMLElement).dataset;
     const before = JSON.parse(data.position!) as Point;
-    const began = Number(data.simulationElapsed);
+    const began = Number(data.motionTime);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const after = JSON.parse(data.position!) as Point;
-    return { before, after, elapsed: Number(data.simulationElapsed) - began };
+    return { before, after, elapsed: Number(data.motionTime) - began };
   });
   await page.keyboard.up("ArrowUp");
   expect(before.y - after.y).toBeGreaterThan(3);

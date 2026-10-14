@@ -177,6 +177,57 @@ describe("M2 B visual contracts", () => {
     expect(path.length).toBeGreaterThan(1);
     expect(path.every((point) => !blocked(world, point))).toBe(true);
   });
+  it("bounded presentation time preserves clock/battery while ordinary pace survives slow frames", () => {
+    for (const direction of [
+      { x: 1, y: 0 },
+      { x: -1, y: 0 },
+      { x: 0, y: 1 },
+      { x: 0, y: -1 },
+    ]) {
+      const world = createCampusWorld("futa"),
+        legacy = new WorldEngine(world),
+        paced = new WorldEngine(world);
+      const start = { ...paced.position };
+      for (let i = 0; i < 20; i++) {
+        legacy.tick(75, direction, 22);
+        paced.tick(75, direction, 22, 75);
+      }
+      expect(
+        Math.hypot(paced.position.x - start.x, paced.position.y - start.y),
+      ).toBeCloseTo(33);
+      expect(
+        Math.hypot(legacy.position.x - start.x, legacy.position.y - start.y),
+      ).toBeCloseTo(22);
+      expect(paced.elapsedMs).toBe(1000);
+      expect(paced.elapsedMs).toBe(legacy.elapsedMs);
+      expect(paced.time).toEqual(legacy.time);
+      expect(paced.battery.value).toBe(legacy.battery.value);
+      const before = { ...paced.position };
+      paced.tick(2000, direction, 22, 2000);
+      expect(
+        Math.hypot(paced.position.x - before.x, paced.position.y - before.y),
+      ).toBeCloseTo(2.2);
+      paced.setPhone(true);
+      const paused = { ...paced.position };
+      paced.tick(2000, direction, 22, 2000);
+      expect(paced.position).toEqual(paused);
+      legacy.dispose();
+      paced.dispose();
+    }
+  });
+  it("presentation catch-up retains collision checks at every bounded substep", () => {
+    const world = createCampusWorld("futa"),
+      engine = new WorldEngine(world),
+      b = world.buildings[0]!;
+    engine.position = { x: b.x - 24, y: b.y + b.height / 2 };
+    for (let i = 0; i < 60; i++) {
+      engine.tick(1000, { x: 1, y: 0 }, 22, 1000);
+      expect(blocked(world, engine.position)).toBe(false);
+      expect(engine.position.x).toBeLessThanOrEqual(b.x - 12);
+    }
+    expect(engine.elapsedMs).toBe(3000);
+    engine.dispose();
+  });
   it("ordinary pace traverses each contact pose without skipping at the engine delta cap", () => {
     for (const [width, height] of [
       [360, 571],
