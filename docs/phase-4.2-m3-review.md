@@ -114,3 +114,31 @@ from Google's distribution after the Playwright CDN archive failure. All six cor
 M3 real-campus journeys pass locally in this matching browser version. Original approved
 M2 source/PNG hashes and all local unit/static checks remain intact. Physical Android is
 still not tested; final CI production captures are required before closing automation.
+
+### Remaining software-renderer cost
+
+Head `04d8dd711b246176e9acc54f27a4387cb9a3bd65` still failed the new desktop
+two-second movement checks: push `38532447954` **65 passed,1 failed,10 skips**;
+PR `38532452381` **63 passed,3 failed,10 skips**. Both retained academic journeys
+and all M2 pacing tests passed; both had 182 unit/PostgreSQL passes and four green
+security/container jobs. Audit and success-only later steps were skipped. Push
+FUTA distance was 32.268 units; PR FUTA/OAU/UNILAG were 14.670/33.000/18.500,
+against the unchanged >35 assertion. The push trace shows no pending character
+atlas requests and ~118ms raw frame mean at the lecture venue.
+
+A bounded floor-texture experiment did not materially improve desktop capture
+timing and was discarded, including its extra texture memory. A controlled local
+Chromium145 comparison of the same scene/capture workload measured ~80–85ms raw
+means with WebGL versus ~19–20ms with Phaser's existing Canvas fallback. The
+sprite/Graphics-only production scene now explicitly selects **Phaser.CANVAS**;
+no shader, WebGL-only feature, full 3D runtime or new framework is introduced.
+Atlas source/pixels, camera, appearance rig, input, collision stepping, ordinary
+speed and all original/new timing assertions remain unchanged. Actual renderer
+identity is exposed in read-only diagnostics and asserted in the new real-campus
+journey. Sprite culling uses 12-unit overscan (movement is ≤5.5 units between
+250ms ownership checks). Final exact-head CI must verify the production choice
+without browser flags; diagnostic comparison outputs are not final evidence.
+
+This local comparison identifies software-rendering overhead; it does not prove
+performance on physical Android GPUs. Native production screenshots and raw
+frame measurements remain required, with physical device gates explicitly open.

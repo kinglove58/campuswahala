@@ -367,6 +367,8 @@ export default function CampusWorld({
             if (metrics) {
               metrics.dataset.exteriorCampus = manifest.campusId;
               metrics.dataset.exteriorVersion = "1";
+              metrics.dataset.renderer =
+                this.game.renderer.type === Phaser.CANVAS ? "canvas" : "webgl";
               metrics.dataset.exteriorReady = String(this.exterior.ready);
               metrics.dataset.exteriorFailed = String(this.exterior.failed);
               metrics.dataset.exteriorFallback = String(
@@ -560,7 +562,9 @@ export default function CampusWorld({
           }
         }
         game = new Phaser.Game({
-          type: Phaser.AUTO,
+          // This scene uses 2D sprites/Graphics only. Canvas avoids software
+          // WebGL raster overhead without changing camera, source art or physics.
+          type: Phaser.CANVAS,
           parent: container.current,
           width: container.current.clientWidth,
           height: container.current.clientHeight,

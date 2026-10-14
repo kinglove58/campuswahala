@@ -70,10 +70,10 @@ export class ExteriorVisual {
         const left = image.x - f.pivotX * image.scaleX;
         const top = image.y - f.pivotY * image.scaleY;
         image.setVisible(
-          left + image.displayWidth >= view.x - 96 &&
-            left <= view.x + view.width + 96 &&
-            top + image.displayHeight >= view.y - 96 &&
-            top <= view.y + view.height + 96,
+          left + image.displayWidth >= view.x - 12 &&
+            left <= view.x + view.width + 12 &&
+            top + image.displayHeight >= view.y - 12 &&
+            top <= view.y + view.height + 12,
         );
       }
     this.peakObjects = Math.max(

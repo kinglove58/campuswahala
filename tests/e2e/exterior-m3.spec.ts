@@ -38,6 +38,7 @@ for (const campus of ["futa", "oau", "unilag"] as const) {
     await expect(world).toHaveAttribute("data-exterior-ready", "true", {
       timeout: 15000,
     });
+    await expect(world).toHaveAttribute("data-renderer", "canvas");
     expect(
       Number(await world.getAttribute("data-exterior-objects")),
     ).toBeGreaterThan(30);
