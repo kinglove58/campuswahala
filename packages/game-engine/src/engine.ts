@@ -76,6 +76,35 @@ export function campusTime(elapsedMs: number) {
         : "clear") as Weather,
   };
 }
+/** Settle cardinal contact at the exact existing 12-unit footprint boundary.
+ * Fractional frame steps must not creep after the first collision-idle frame.
+ * Diagonal sliding keeps its existing policy below; geometry is unchanged.
+ */
+function cardinalContact(w: WorldManifest, from: Point, next: Point): Point {
+  const radius = 12;
+  const vertical = from.x === next.x;
+  const start = vertical ? from.y : from.x;
+  const wanted = vertical ? next.y : next.x;
+  const cross = vertical ? from.x : from.y;
+  const lowerBound = (vertical ? w.bounds.y : w.bounds.x) + radius;
+  const upperBound =
+    (vertical ? w.bounds.y + w.bounds.height : w.bounds.x + w.bounds.width) -
+    radius;
+  let end = Math.max(lowerBound, Math.min(upperBound, wanted));
+  for (const b of w.buildings) {
+    const crossLower = (vertical ? b.x : b.y) - radius;
+    const crossUpper = (vertical ? b.x + b.width : b.y + b.height) + radius;
+    if (cross <= crossLower || cross >= crossUpper) continue;
+    const lower = (vertical ? b.y : b.x) - radius;
+    const upper = (vertical ? b.y + b.height : b.x + b.width) + radius;
+    if (wanted > start && start <= lower && end > lower)
+      end = Math.min(end, lower);
+    if (wanted < start && start >= upper && end < upper)
+      end = Math.max(end, upper);
+  }
+  const contact = vertical ? { x: from.x, y: end } : { x: end, y: from.y };
+  return blocked(w, contact) ? from : contact;
+}
 export const defaultDevice = {
   model: "CW Pocket One",
   batteryCapacity: 100,
@@ -230,7 +259,9 @@ export class WorldEngine {
           y: this.position.y + (target.y - this.position.y) * r,
         };
         if (!blocked(this.manifest, next)) this.position = next;
-        else {
+        else if (next.x === this.position.x || next.y === this.position.y) {
+          this.position = cardinalContact(this.manifest, this.position, next);
+        } else {
           const x = { x: next.x, y: this.position.y },
             y = { x: this.position.x, y: next.y };
           if (!blocked(this.manifest, x)) this.position = x;

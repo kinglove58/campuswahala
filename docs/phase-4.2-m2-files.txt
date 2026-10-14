@@ -8,14 +8,15 @@ Terminal head and tested PR merge checkout: PR body (avoids self-reference)
 M2 pacing correction only
 M	IMPLEMENTATION_STATUS.md
 M	README.md
+M	apps/game/app/character-visual.ts
 M	apps/game/app/world.tsx
+M	docs/phase-4.2-m2-files.txt
 A	docs/phase-4.2-m2-pace-review.md
 M	docs/phase-4.2-m2-review.md
 M	packages/game-engine/src/engine.ts
 M	packages/game-engine/src/visual.ts
 M	tests/character-visual.test.ts
 A	tests/e2e/character-m2-movement.spec.ts
-M	docs/phase-4.2-m2-files.txt
 
 Full M2 iteration
 M	.github/workflows/ci.yml

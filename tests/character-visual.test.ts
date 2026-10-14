@@ -228,6 +228,24 @@ describe("M2 B visual contracts", () => {
     expect(engine.elapsedMs).toBe(3000);
     engine.dispose();
   });
+  it("fractional frame intervals hold exact cardinal wall contact without creeping", () => {
+    const world = createCampusWorld("futa"),
+      engine = new WorldEngine(world),
+      b = world.buildings[0]!;
+    engine.position = { x: b.x + b.width / 2, y: b.y + b.height + 40 };
+    for (let i = 0; i < 80; i++)
+      engine.tick(50, { x: 0, y: -1 }, 22, [33.4, 70, 91.7, 100][i % 4]!);
+    expect(engine.position.y).toBe(b.y + b.height + 12);
+    const stopped = { ...engine.position };
+    for (const interval of [0.2, 33.4, 51.2, 77.8, 100, 1.3]) {
+      engine.tick(50, { x: 0, y: -1 }, 22, interval);
+      expect(engine.position).toEqual(stopped);
+      expect(blocked(world, engine.position)).toBe(false);
+    }
+    engine.tick(50, { x: 0, y: 1 }, 22, 50);
+    expect(engine.position.y).toBeGreaterThan(stopped.y);
+    engine.dispose();
+  });
   it("ordinary pace traverses each contact pose without skipping at the engine delta cap", () => {
     for (const [width, height] of [
       [360, 571],

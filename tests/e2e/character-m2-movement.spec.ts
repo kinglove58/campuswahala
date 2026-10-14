@@ -424,6 +424,9 @@ test("M2 mobile ordinary walking stops at the existing production building colli
   await page.keyboard.down("ArrowUp");
   await expect(world).toHaveAttribute("data-character-frame", /^up-walk-/);
   // Held input must reach the existing wall and then idle, rather than clipping.
+  await expect
+    .poll(async () => (await position(world)).y, { timeout: 5000 })
+    .toBe(building.y + building.height + 12);
   await expect(world).toHaveAttribute("data-character-frame", /^up-idle-/, {
     timeout: 5000,
   });

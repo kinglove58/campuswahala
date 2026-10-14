@@ -294,7 +294,9 @@ export class CharacterVisual {
     const dx = x - this.previous.x,
       dy = y - this.previous.y;
     this.previous = { x, y };
-    const moving = !paused && Math.hypot(dx, dy) > 0.01;
+    // Tiny real frame steps still walk; exact zero displacement idles. Retain
+    // the facing deadband separately so fractional frames cannot flash idle.
+    const moving = !paused && Math.hypot(dx, dy) > 0;
     const facing = facingFor(dx, dy, this.facing);
     if (facing !== this.facing) this.distance = 0;
     this.facing = facing;
