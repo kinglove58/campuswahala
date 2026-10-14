@@ -3,14 +3,30 @@ import { gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url),
-  { createCampusWorld } = require("../packages/game-engine/dist");
+  {
+    createCampusWorld,
+    validateExterior,
+  } = require("../packages/game-engine/dist");
 for (const campus of ["futa", "oau", "unilag"]) {
   const w = createCampusWorld(campus),
     size = Buffer.byteLength(JSON.stringify(w));
   const compressed = gzipSync(JSON.stringify(w)).length;
   if (compressed > 100 * 1024)
     throw new Error("Compressed manifest budget exceeded");
-  let artGzip = 0;
+  const exterior = validateExterior(w);
+  const exteriorBytes = await readFile(`apps/game/public${exterior.path}`);
+  if (
+    createHash("sha256").update(exteriorBytes).digest("hex") !==
+      exterior.hash ||
+    exteriorBytes.length !== exterior.bytes
+  )
+    throw new Error("Exterior integrity mismatch");
+  let artGzip = gzipSync(exteriorBytes).length;
+  if (exterior.decodedBytes > 4 * 1024 * 1024)
+    throw new Error("Exterior decoded texture budget");
+  console.log(
+    `${campus}: exterior v1 ${exterior.bytes} raw / ${artGzip} gzip; ${exterior.decodedBytes} decoded RGBA bytes, one atlas`,
+  );
   if (size > 160000) throw new Error("Manifest budget exceeded");
   for (const a of w.assetBundles) {
     const bytes = await readFile(`apps/game/public${a.path}`);

@@ -47,6 +47,8 @@ jobs:
         run: node scripts/art/verify-painted-campus.mjs
       - name: Verify prior M1 comparison provenance and regenerate labeled sheets
         run: node scripts/art/compare-m1.mjs
+      - name: Verify original M3 additive exterior source and atlas hashes
+        run: node scripts/art/export-exteriors.mjs --check
       - run: pnpm check:world-budgets
       - run: pnpm exec playwright install --with-deps chromium
       - name: Capture isolated actual Phaser M1 proof (no gameplay authority)
@@ -67,6 +69,11 @@ jobs:
       - name: Capture M2 indoor camera staging only (no M4 room or authority)
         run: node scripts/art/capture-m2-staging.mjs
       - run: pnpm audit --audit-level high
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: m3-production-exterior-proof
+          path: artifacts/m3-production/
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:

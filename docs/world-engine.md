@@ -76,3 +76,11 @@ Apply migration `202610090005_world_state` after all Phase 1 migrations for Post
 Entry points: `/play?campus=futa`, `/play?campus=oau`, `/play?campus=unilag`. Optional `destination=venue-1` must match the chosen manifest; unknown identifiers are ignored/rejected by catalogue allowlists. All private game shells remain noindex.
 
 `pnpm check:world-budgets` runs after build. `CAPTURE_VISUALS=1 pnpm test:e2e` writes optional world/phone screenshots to ignored `artifacts/`. Existing lint, types, security/PostgreSQL/upgrade/browser checks remain in CI. The isolated research job uses an ephemeral database and the real Phase 1 pipeline; it does not provision or write a production catalogue. It is opt-in on this branch with a `research:` commit prefix; ordinary code/docs commits retain all required checks without repeating research.
+
+## Additive M3 exterior art revision
+
+The current renderer uses exterior art manifest v1 alongside the unchanged schema-2/world-v2 geometry. This does not silently replace published v1/v2 JSON or their original hashed zone assets; academic snapshots, venue/spawn IDs, collisions and safe-location contracts remain unchanged. Original source/export instructions are in [art/exteriors](../art/exteriors/README.md). Six 256×256 architecture frames and sixteen 128×128 props share one 1024×768 hashed local SVG atlas per selected campus (3 MiB decoded RGBA estimate).
+
+Static paving/ground is batched by existing visible zones; independently owned upright sprites sort at 4000 + feet Y, matching characters. Foreground crowns/roofs become translucent where their bounds overlap the player. Pure decoration placement excludes roads/paths, buildings, spawn and interaction clearance; these props are cosmetic, not new colliders. Chunk exit disposes objects, scene shutdown disposes the exterior texture. A marked geometry/label fallback preserves movement legibility when the atlas request fails.
+
+Existing public immutable `/world-assets/` delivery/PWA allowlists handle the new atlas. No private state, game clock, progression, server presence or consequential mutation is stored in art or inferred from cosmetic movement. M3 remains a visual review checkpoint; no navigable interior or later-milestone completion is implied.
