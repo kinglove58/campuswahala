@@ -5,7 +5,6 @@ import {
   npcPosition,
   cameraProfile,
   navigationPace,
-  facingFor,
   appearanceKey,
   type WorldManifest,
   type Appearance,
@@ -552,20 +551,9 @@ export default function CampusWorld({
                 Math.max(down("S"), down("DOWN")) -
                 Math.max(down("W"), down("UP")),
             };
-            const target = engine.path[0];
-            const desired =
-              input.x || input.y
-                ? input
-                : {
-                    x: (target?.x ?? engine.position.x) - engine.position.x,
-                    y: (target?.y ?? engine.position.y) - engine.position.y,
-                  };
-            const facing = facingFor(desired.x, desired.y, this.person.facing);
             const pace = navigationPace(
               engine.position,
               engine.path,
-              this.profile.spriteScale,
-              facing,
               engine.mapRoute && !(input.x || input.y),
             );
             engine.tick(delta, input, pace.speed);
@@ -607,6 +595,14 @@ export default function CampusWorld({
               metrics.dataset.requestedAppearance = this.avatarKey;
               metrics.dataset.characterFrame = `${this.person.facing}-${this.person.state}-${this.person.frame}`;
               metrics.dataset.position = JSON.stringify(engine.position);
+              metrics.dataset.navigationSpeed = String(pace.speed);
+              metrics.dataset.simulationElapsed = String(engine.elapsedMs);
+              metrics.dataset.navigationPath = JSON.stringify(engine.path);
+              const inputOrigin = this.cameras.main.getWorldPoint(0, 0);
+              metrics.dataset.cameraView = JSON.stringify({
+                x: inputOrigin.x,
+                y: inputOrigin.y,
+              });
               metrics.dataset.fastRoute = String(pace.fast);
               metrics.dataset.bodyHeight = String(
                 (this.person.entry?.bodyHeight ?? 152) *

@@ -189,7 +189,7 @@ export class WorldEngine {
       this.bus.emit("TIME_PERIOD_CHANGED", { period: time.period });
     }
     if (this.paused) return;
-    // Renderers may pace walking to a sprite stride; elapsed/academic time and
+    // Renderers may choose a cosmetic navigation pace; elapsed/academic time and
     // collision rules are independent. Default preserves existing consumers.
     const speed =
       (dt / 1000) *
@@ -286,6 +286,31 @@ export class WorldEngine {
 /** Bounded grid A*: no diagonal corner cutting; paths are cosmetic and never server authority. */
 export function findPath(w: WorldManifest, from: Point, to: Point): Point[] {
   if (blocked(w, to)) return [];
+  // Nearby taps should not overshoot a grid centre and turn back for the final
+  // pixel. A short, conservatively sampled clear segment needs no A* detour.
+  // Obstructed/long routes retain the existing bounded grid search below.
+  const distance = Math.hypot(to.x - from.x, to.y - from.y);
+  if (distance <= 128) {
+    const steps = Math.max(1, Math.ceil(distance / 4));
+    let clear = true;
+    for (let i = 0; i <= steps; i++) {
+      const fraction = i / steps;
+      if (
+        blocked(
+          w,
+          {
+            x: from.x + (to.x - from.x) * fraction,
+            y: from.y + (to.y - from.y) * fraction,
+          },
+          18,
+        )
+      ) {
+        clear = false;
+        break;
+      }
+    }
+    if (clear) return [to];
+  }
   const cell = 32,
     cols = Math.ceil(w.bounds.width / cell),
     rows = Math.ceil(w.bounds.height / cell);

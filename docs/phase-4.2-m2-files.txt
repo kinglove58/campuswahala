@@ -1,9 +1,23 @@
 PR #17 M2 exact path/status inventory
+Pacing correction start: 08cc2da4d3cd42c42d2eba99b588541412b21ded
 M2 iteration start: 257f114e94f8f5e3acab870c12c94442870d6971
-PR base: 7eded507ddb1876c77d25ecde94446667388123a
-Terminal head: PR body (avoids self-reference)
+PR reviewed base: 7eded507ddb1876c77d25ecde94446667388123a
+Inspected current master: 3037d77c5b14a33fda3f4454dc836b01b38dfd5d
+Terminal head and tested PR merge checkout: PR body (avoids self-reference)
 
-M2 iteration only
+M2 pacing correction only
+M	IMPLEMENTATION_STATUS.md
+M	README.md
+M	apps/game/app/world.tsx
+A	docs/phase-4.2-m2-pace-review.md
+M	docs/phase-4.2-m2-review.md
+M	packages/game-engine/src/engine.ts
+M	packages/game-engine/src/visual.ts
+M	tests/character-visual.test.ts
+A	tests/e2e/character-m2-movement.spec.ts
+M	docs/phase-4.2-m2-files.txt
+
+Full M2 iteration
 M	.github/workflows/ci.yml
 M	IMPLEMENTATION_STATUS.md
 M	README.md
@@ -24,6 +38,7 @@ A	apps/game/public/character-assets/b-2314f9a7d0b5/look-4.a8f3b5c1c07b.png
 A	apps/game/public/character-assets/b-2314f9a7d0b5/look-5.d7ae54019683.png
 M	apps/game/public/sw.js
 A	docs/phase-4.2-m2-files.txt
+A	docs/phase-4.2-m2-pace-review.md
 A	docs/phase-4.2-m2-review.md
 M	packages/game-engine/src/engine.ts
 M	packages/game-engine/src/index.ts
@@ -35,12 +50,13 @@ A	scripts/art/verify-m2-character.mjs
 A	tests/character-visual.test.ts
 M	tests/e2e/account.spec.ts
 A	tests/e2e/character-m2-evidence.spec.ts
+A	tests/e2e/character-m2-movement.spec.ts
 A	tests/e2e/character-m2-network.spec.ts
 A	tests/e2e/character-m2-route.spec.ts
 A	tests/e2e/character-m2.spec.ts
 M	tests/pwa.test.ts
 
-Full PR vs base (includes historical M0/M1)
+Full PR vs reviewed base (includes historical M0/M1)
 M	.github/workflows/ci.yml
 M	IMPLEMENTATION_STATUS.md
 M	README.md
@@ -622,6 +638,7 @@ A	docs/phase-4.2-m1-refinement-review.md
 A	docs/phase-4.2-m1-selection-files.txt
 A	docs/phase-4.2-m1-selection-review.md
 A	docs/phase-4.2-m2-files.txt
+A	docs/phase-4.2-m2-pace-review.md
 A	docs/phase-4.2-m2-review.md
 A	docs/phase-4.2-review.md
 M	packages/game-engine/src/engine.ts
@@ -656,6 +673,7 @@ A	scripts/art/verify-student.mjs
 A	tests/character-visual.test.ts
 M	tests/e2e/account.spec.ts
 A	tests/e2e/character-m2-evidence.spec.ts
+A	tests/e2e/character-m2-movement.spec.ts
 A	tests/e2e/character-m2-network.spec.ts
 A	tests/e2e/character-m2-route.spec.ts
 A	tests/e2e/character-m2.spec.ts

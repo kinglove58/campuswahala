@@ -66,8 +66,13 @@ export function walkPose(distance: number, scale: number, facing: Facing) {
     throw new Error("INVALID_VISUAL_DISTANCE");
   return Math.floor((distance / (projectedStride[facing] * scale)) * 8) % 8;
 }
-export function cosmeticWalkSpeed(scale: number, facing: Facing) {
-  return projectedStride[facing] * scale;
+/** World units/second, independent of facing, artwork, viewport and user zoom.
+ * 96 unobstructed units take 4.37 simulation seconds. Below the legacy 230 cap.
+ * Source contact poses still follow actual displacement through walkPose.
+ */
+export const ordinaryWalkSpeed = 22;
+export function cosmeticWalkSpeed() {
+  return ordinaryWalkSpeed;
 }
 /** Existing long-distance Map traversal is time compressed; approach on foot.
  * Keyboard/tap walking never enters this explicit Map mode. No clock scaling.
@@ -75,8 +80,6 @@ export function cosmeticWalkSpeed(scale: number, facing: Facing) {
 export function navigationPace(
   position: { x: number; y: number },
   path: readonly { x: number; y: number }[],
-  scale: number,
-  facing: Facing,
   mapRoute: boolean,
 ) {
   let remaining = 0,
@@ -89,6 +92,6 @@ export function navigationPace(
   return {
     fast,
     remaining,
-    speed: fast ? 230 : cosmeticWalkSpeed(scale, facing),
+    speed: fast ? 230 : cosmeticWalkSpeed(),
   };
 }
