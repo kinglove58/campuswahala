@@ -77,6 +77,7 @@ const initialSnapshot: WorldSnapshot = {
   period: "morning",
   weather: "clear",
   battery: 100,
+  fastRoute: false,
 };
 export default function CampusExperience({
   player,
@@ -482,19 +483,28 @@ export default function CampusExperience({
             </span>
             <span>
               {online
-                ? "Virtual navigation"
+                ? snapshot.fastRoute
+                  ? "Fast map route · arriving on foot"
+                  : "Virtual navigation"
                 : "Connection interrupted · Explore locally"}
             </span>
           </div>
           {destination && (
             <div className="waypoint-banner" role="status">
-              ⌖ {venueName(destination.id)}
+              <span>
+                ⌖ {venueName(destination.id)}
+                {snapshot.fastRoute && (
+                  <small className="route-pace-label">
+                    Fast map route · arriving on foot
+                  </small>
+                )}
+              </span>
               <button
                 onClick={() => {
                   const s = manifest.spawnPoints.find(
                     (s) => s.id === destination.safeSpawnId,
                   )!;
-                  handle.current?.engine.moveTo(s);
+                  handle.current?.engine.moveTo(s, true);
                 }}
               >
                 Walk there
@@ -1159,8 +1169,8 @@ export default function CampusExperience({
                     Camera zoom
                     <input
                       type="range"
-                      min=".75"
-                      max="1.6"
+                      min=".8"
+                      max="1.2"
                       step=".05"
                       value={zoom}
                       onChange={(e) => {

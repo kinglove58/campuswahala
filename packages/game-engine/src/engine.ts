@@ -76,6 +76,35 @@ export function campusTime(elapsedMs: number) {
         : "clear") as Weather,
   };
 }
+/** Settle cardinal contact at the exact existing 12-unit footprint boundary.
+ * Fractional frame steps must not creep after the first collision-idle frame.
+ * Diagonal sliding keeps its existing policy below; geometry is unchanged.
+ */
+function cardinalContact(w: WorldManifest, from: Point, next: Point): Point {
+  const radius = 12;
+  const vertical = from.x === next.x;
+  const start = vertical ? from.y : from.x;
+  const wanted = vertical ? next.y : next.x;
+  const cross = vertical ? from.x : from.y;
+  const lowerBound = (vertical ? w.bounds.y : w.bounds.x) + radius;
+  const upperBound =
+    (vertical ? w.bounds.y + w.bounds.height : w.bounds.x + w.bounds.width) -
+    radius;
+  let end = Math.max(lowerBound, Math.min(upperBound, wanted));
+  for (const b of w.buildings) {
+    const crossLower = (vertical ? b.x : b.y) - radius;
+    const crossUpper = (vertical ? b.x + b.width : b.y + b.height) + radius;
+    if (cross <= crossLower || cross >= crossUpper) continue;
+    const lower = (vertical ? b.y : b.x) - radius;
+    const upper = (vertical ? b.y + b.height : b.x + b.width) + radius;
+    if (wanted > start && start <= lower && end > lower)
+      end = Math.min(end, lower);
+    if (wanted < start && start >= upper && end < upper)
+      end = Math.max(end, upper);
+  }
+  const contact = vertical ? { x: from.x, y: end } : { x: end, y: from.y };
+  return blocked(w, contact) ? from : contact;
+}
 export const defaultDevice = {
   model: "CW Pocket One",
   batteryCapacity: 100,
@@ -100,6 +129,7 @@ export class WorldEngine {
   position: Point;
   appearance: Appearance = { ...defaultAppearance };
   path: Point[] = [];
+  mapRoute = false;
   waypoint: string | null = null;
   elapsedMs = 0;
   paused = false;
@@ -131,10 +161,12 @@ export class WorldEngine {
     this.phoneOpen = open;
     this.paused = open;
     this.path = [];
+    this.mapRoute = false;
     if (open) this.bus.emit("PHONE_OPENED", {});
   }
-  moveTo(target: Point) {
+  moveTo(target: Point, mapRoute = false) {
     this.path = findPath(this.manifest, this.position, target);
+    this.mapRoute = mapRoute && this.path.length > 0;
   }
   /** Presentation only: a validated manifest spawn grants no server presence/credit. */
   resumeAtSpawn(spawnId: string) {
@@ -143,6 +175,7 @@ export class WorldEngine {
     this.position = { x: spawn.x, y: spawn.y };
     this.zoneId = spawn.zoneId;
     this.path = [];
+    this.mapRoute = false;
     this.waypoint = null;
     return true;
   }
@@ -163,6 +196,7 @@ export class WorldEngine {
     const p = this.manifest.spawnPoints.find((s) => s.id === spawnId)!;
     this.position = { x: p.x, y: p.y };
     this.path = [];
+    this.mapRoute = false;
     this.bus.emit("TRANSPORT_USED", { nodeId, spawnId });
     return true;
   }
@@ -174,7 +208,12 @@ export class WorldEngine {
       this.bus.emit("PLAYER_ENTERED_VENUE", { venueId: i.venueId });
     if (i.npcId) this.bus.emit("NPC_INTERACTED", { npcId: i.npcId });
   }
-  tick(delta: number, direction: Point = { x: 0, y: 0 }) {
+  tick(
+    delta: number,
+    direction: Point = { x: 0, y: 0 },
+    cosmeticSpeed = 230,
+    presentationDelta?: number,
+  ) {
     const dt = Math.max(0, Math.min(delta, 50));
     this.elapsedMs += dt;
     this.battery.tick(dt / 1000, this.phoneOpen);
@@ -184,36 +223,55 @@ export class WorldEngine {
       this.bus.emit("TIME_PERIOD_CHANGED", { period: time.period });
     }
     if (this.paused) return;
-    const speed = dt * 0.23;
-    let target = this.path[0];
-    if (direction.x || direction.y) {
-      this.path = [];
-      const len = Math.hypot(direction.x, direction.y);
-      target = {
-        x: this.position.x + (direction.x / len) * speed,
-        y: this.position.y + (direction.y / len) * speed,
-      };
-    }
-    if (target) {
-      const d = Math.hypot(
-          target.x - this.position.x,
-          target.y - this.position.y,
-        ),
-        r = d ? Math.min(1, speed / d) : 0;
-      const next = {
-        x: this.position.x + (target.x - this.position.x) * r,
-        y: this.position.y + (target.y - this.position.y) * r,
-      };
-      if (!blocked(this.manifest, next)) this.position = next;
-      else {
-        const x = { x: next.x, y: this.position.y },
-          y = { x: this.position.x, y: next.y };
-        if (!blocked(this.manifest, x)) this.position = x;
-        else if (!blocked(this.manifest, y)) this.position = y;
-        else this.path = [];
+    // Clock/battery retain the original capped dt. Optional presentation time
+    // catches up at most 100ms of ordinary movement, in collision-safe <=50ms
+    // steps. Existing consumers and explicit fast Map routes keep legacy timing.
+    let remaining =
+      presentationDelta === undefined || !Number.isFinite(presentationDelta)
+        ? dt
+        : Math.max(0, Math.min(100, presentationDelta));
+    do {
+      const step = Math.min(50, remaining);
+      remaining -= step;
+      const speed =
+        (step / 1000) *
+        (Number.isFinite(cosmeticSpeed)
+          ? Math.max(0, Math.min(230, cosmeticSpeed))
+          : 230);
+      let target = this.path[0];
+      if (direction.x || direction.y) {
+        this.path = [];
+        this.mapRoute = false;
+        const len = Math.hypot(direction.x, direction.y);
+        target = {
+          x: this.position.x + (direction.x / len) * speed,
+          y: this.position.y + (direction.y / len) * speed,
+        };
       }
-      if (d <= speed) this.path.shift();
-    }
+      if (target) {
+        const d = Math.hypot(
+            target.x - this.position.x,
+            target.y - this.position.y,
+          ),
+          r = d ? Math.min(1, speed / d) : 0;
+        const next = {
+          x: this.position.x + (target.x - this.position.x) * r,
+          y: this.position.y + (target.y - this.position.y) * r,
+        };
+        if (!blocked(this.manifest, next)) this.position = next;
+        else if (next.x === this.position.x || next.y === this.position.y) {
+          this.position = cardinalContact(this.manifest, this.position, next);
+        } else {
+          const x = { x: next.x, y: this.position.y },
+            y = { x: this.position.x, y: next.y };
+          if (!blocked(this.manifest, x)) this.position = x;
+          else if (!blocked(this.manifest, y)) this.position = y;
+          else this.path = [];
+        }
+        if (d <= speed) this.path.shift();
+      }
+    } while (remaining > 0);
+    if (!this.path.length) this.mapRoute = false;
     const zone = this.manifest.zones.find((z) => contains(z, this.position));
     if (zone && zone.id !== this.zoneId) {
       this.zoneId = zone.id;
@@ -273,6 +331,31 @@ export class WorldEngine {
 /** Bounded grid A*: no diagonal corner cutting; paths are cosmetic and never server authority. */
 export function findPath(w: WorldManifest, from: Point, to: Point): Point[] {
   if (blocked(w, to)) return [];
+  // Nearby taps should not overshoot a grid centre and turn back for the final
+  // pixel. A short, conservatively sampled clear segment needs no A* detour.
+  // Obstructed/long routes retain the existing bounded grid search below.
+  const distance = Math.hypot(to.x - from.x, to.y - from.y);
+  if (distance <= 128) {
+    const steps = Math.max(1, Math.ceil(distance / 4));
+    let clear = true;
+    for (let i = 0; i <= steps; i++) {
+      const fraction = i / steps;
+      if (
+        blocked(
+          w,
+          {
+            x: from.x + (to.x - from.x) * fraction,
+            y: from.y + (to.y - from.y) * fraction,
+          },
+          18,
+        )
+      ) {
+        clear = false;
+        break;
+      }
+    }
+    if (clear) return [to];
+  }
   const cell = 32,
     cols = Math.ceil(w.bounds.width / cell),
     rows = Math.ceil(w.bounds.height / cell);

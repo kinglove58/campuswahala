@@ -41,6 +41,10 @@ it("cache allowlist excludes all private reads, writes, facts, pointers and arbi
     "/api/world/futa/versions/2?user=x",
     "https://outside.example/world-assets/tree.abcdef123456.svg",
     "/play?campus=futa",
+    "/character-assets/b-2314f9a7d0b5/look-0.126104ea6b08.png?user=x",
+    "/character-assets/b-2314f9a7d0b5/look-6.126104ea6b08.png",
+    "/character-assets/current/look.png",
+    "https://outside.example/character-assets/b-2314f9a7d0b5/look-0.126104ea6b08.png",
   ])
     expect(allowed(path)).toBe(false);
   for (const path of [
@@ -48,6 +52,7 @@ it("cache allowlist excludes all private reads, writes, facts, pointers and arbi
     "/world-assets/zones/futa-zone-0.abcdef123456.svg",
     "/_next/static/chunks/123abc.js",
     "/offline.html",
+    "/character-assets/b-2314f9a7d0b5/look-0.126104ea6b08.png",
   ])
     expect(allowed(path)).toBe(true);
   let intercepted = false;

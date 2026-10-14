@@ -26,3 +26,5 @@ export function advancePosition(
 export * from "./world";
 export * from "./engine";
 export * from "./campuses";
+export * from "./visual";
+export * from "./exterior";

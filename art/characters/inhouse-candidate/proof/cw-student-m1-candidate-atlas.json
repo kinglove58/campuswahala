@@ -1,0 +1,298 @@
+{
+  "status": "UNAPPROVED 2D GAMEPLAY SPRITE CANDIDATE",
+  "source": "AI-generated original character turnaround/reference, manual deterministic slicing with local alpha matting",
+  "tile": [
+    80,
+    180
+  ],
+  "directions": [
+    "down",
+    "up",
+    "left",
+    "right"
+  ],
+  "framesPerDirection": 8,
+  "warning": "AI poses may be visually inconsistent. This candidate is not M1 approval and is not in Phaser yet.",
+  "frames": {
+    "cw-student-down-walk-00.png": {
+      "direction": "down",
+      "frame": 0,
+      "sourceBox": [
+        12,
+        710,
+        66,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-01.png": {
+      "direction": "down",
+      "frame": 1,
+      "sourceBox": [
+        68,
+        710,
+        122,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-02.png": {
+      "direction": "down",
+      "frame": 2,
+      "sourceBox": [
+        124,
+        710,
+        178,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-03.png": {
+      "direction": "down",
+      "frame": 3,
+      "sourceBox": [
+        180,
+        710,
+        234,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-04.png": {
+      "direction": "down",
+      "frame": 4,
+      "sourceBox": [
+        232,
+        710,
+        286,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-05.png": {
+      "direction": "down",
+      "frame": 5,
+      "sourceBox": [
+        287,
+        710,
+        341,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-06.png": {
+      "direction": "down",
+      "frame": 6,
+      "sourceBox": [
+        343,
+        710,
+        397,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-down-walk-07.png": {
+      "direction": "down",
+      "frame": 7,
+      "sourceBox": [
+        398,
+        710,
+        452,
+        885
+      ],
+      "size": [
+        54,
+        175
+      ]
+    },
+    "cw-student-up-walk-00.png": {
+      "direction": "up",
+      "frame": 0,
+      "sourceBox": [
+        474,
+        710,
+        532,
+        885
+      ],
+      "size": [
+        58,
+        175
+      ]
+    },
+    "cw-student-up-walk-01.png": {
+      "direction": "up",
+      "frame": 1,
+      "sourceBox": [
+        533,
+        710,
+        591,
+        885
+      ],
+      "size": [
+        58,
+        175
+      ]
+    },
+    "cw-student-up-walk-02.png": {
+      "direction": "up",
+      "frame": 2,
+      "sourceBox": [
+        591,
+        710,
+        649,
+        885
+      ],
+      "size": [
+        58,
+        175
+      ]
+    },
+    "cw-student-up-walk-03.png": {
+      "direction": "up",
+      "frame": 3,
+      "sourceBox": [
+        650,
+        710,
+        708,
+        885
+      ],
+      "size": [
+        58,
+        175
+      ]
+    },
+    "cw-student-up-walk-04.png": {
+      "direction": "up",
+      "frame": 4,
+      "sourceBox": [
+        707,
+        710,
+        765,
+        885
+      ],
+      "size": [
+        58,
+        175
+      ]
+    },
+    "cw-student-up-walk-05.png": {
+      "direction": "up",
+      "frame": 5,
+      "sourceBox": [
+        764,
+        710,
+        822,
+        885
+      ],
+      "size": [
+        58,
+        175
+      ]
+    },
+    "cw-student-right-walk-00.png": {
+      "direction": "right",
+      "frame": 0,
+      "sourceBox": [
+        847,
+        710,
+        912,
+        885
+      ],
+      "size": [
+        65,
+        175
+      ]
+    },
+    "cw-student-right-walk-01.png": {
+      "direction": "right",
+      "frame": 1,
+      "sourceBox": [
+        913,
+        710,
+        978,
+        885
+      ],
+      "size": [
+        65,
+        175
+      ]
+    },
+    "cw-student-right-walk-02.png": {
+      "direction": "right",
+      "frame": 2,
+      "sourceBox": [
+        976,
+        710,
+        1041,
+        885
+      ],
+      "size": [
+        65,
+        175
+      ]
+    },
+    "cw-student-right-walk-03.png": {
+      "direction": "right",
+      "frame": 3,
+      "sourceBox": [
+        1040,
+        710,
+        1105,
+        885
+      ],
+      "size": [
+        65,
+        175
+      ]
+    },
+    "cw-student-right-walk-04.png": {
+      "direction": "right",
+      "frame": 4,
+      "sourceBox": [
+        1104,
+        710,
+        1169,
+        885
+      ],
+      "size": [
+        65,
+        175
+      ]
+    },
+    "cw-student-right-walk-05.png": {
+      "direction": "right",
+      "frame": 5,
+      "sourceBox": [
+        1166,
+        710,
+        1231,
+        885
+      ],
+      "size": [
+        65,
+        175
+      ]
+    }
+  }
+}

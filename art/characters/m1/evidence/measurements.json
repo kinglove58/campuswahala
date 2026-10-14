@@ -1,0 +1,1914 @@
+{
+  "status": "M1 isolated actual Phaser candidate; human art approval pending",
+  "browser": "145.0.7632.6",
+  "renderer": "Phaser CANVAS software Chromium; DPR1; not physical Android",
+  "worldVersion": 2,
+  "sourceRevision": "geometry-2026-10-10.25",
+  "scaleMethod": "exported body alpha bounds × live sprite scale × live camera zoom / measured canvas height; excludes ground shadow",
+  "productionRuntimeChanged": false,
+  "groundComposition": "read-only adaptation of existing v2 CampusScene floor/buildings/decorations; separate UI and two art-proof NPCs; no M3 asset upgrade",
+  "masterFirst": false,
+  "capturedPlayerLooks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "comparisonVariants": "six current-source player/NPC examples",
+  "rows": [
+    {
+      "width": 360,
+      "height": 640,
+      "initial": {
+        "errors": [],
+        "frameMs": [
+          30.320000000298023,
+          30.320000000298023,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          33.31000000089407,
+          33.31000000089407,
+          33.31000000089407,
+          33.31000000089407,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 698.7999999970198,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 15.66768292682927,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.06812036055143161,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-1",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 179.52,
+          "y": 286
+        },
+        "zoom": 0.88,
+        "canvas": {
+          "width": 360,
+          "height": 571
+        },
+        "bodyHeight": 57.1,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-4",
+          "look-5",
+          "look-0"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2,
+        "canvasDOM": {
+          "x": 0,
+          "y": 69,
+          "width": 360,
+          "height": 571
+        }
+      },
+      "final": {
+        "errors": [],
+        "frameMs": [
+          30.320000000298023,
+          30.320000000298023,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          30.296666667858762,
+          33.31000000089407,
+          33.31000000089407,
+          33.31000000089407,
+          33.31000000089407,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 698.7999999970198,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 15.66768292682927,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.06812036055143161,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-0",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 179.52,
+          "y": 286
+        },
+        "zoom": 0.88,
+        "canvas": {
+          "width": 360,
+          "height": 571
+        },
+        "bodyHeight": 57.1,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-4",
+          "look-5",
+          "look-0"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2
+      },
+      "atlasResponses": [
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-0.f635627e22b6.png",
+          "bytes": 438754
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-4.13ee4bc3633c.png",
+          "bytes": 411492
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-5.9e38f3233e5a.png",
+          "bytes": 490541
+        }
+      ],
+      "authorityRequests": 0
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "initial": {
+        "errors": [],
+        "frameMs": [
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 424.59999999403954,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 20.057926829268297,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.08720837751855781,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-1",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 179.52,
+          "y": 366.08
+        },
+        "zoom": 0.88,
+        "canvas": {
+          "width": 360,
+          "height": 731
+        },
+        "bodyHeight": 73.10000000000001,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-0",
+          "look-4",
+          "look-5"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2,
+        "canvasDOM": {
+          "x": 0,
+          "y": 69,
+          "width": 360,
+          "height": 731
+        },
+        "interaction": {
+          "before": {
+            "x": 512,
+            "y": 666
+          },
+          "after": {
+            "x": 516.700848669623,
+            "y": 666
+          },
+          "tapped": {
+            "x": 511.47071654065286,
+            "y": 663.473469705305
+          },
+          "kind": "existing WorldEngine cosmetic keyboard/pointer movement only"
+        },
+        "playedFourDirections": [
+          {
+            "direction": "right",
+            "start": {
+              "x": 507.4743137020367,
+              "y": 661.5429194643959
+            },
+            "end": {
+              "x": 553.6221680733724,
+              "y": 660.8942736192929
+            },
+            "pace": {
+              "worldUnitsPerSecond": 36.4689578713969,
+              "sourceUnitsPerCycle": 72,
+              "cycleSeconds": 1,
+              "engineDeltaRatio": 0.15856068639737783,
+              "productionSpeedChanged": false
+            }
+          },
+          {
+            "direction": "down",
+            "start": {
+              "x": 582.350954326068,
+              "y": 660.8942736192929
+            },
+            "end": {
+              "x": 582.350954326068,
+              "y": 686.5722309668956
+            },
+            "pace": {
+              "worldUnitsPerSecond": 20.057926829268297,
+              "sourceUnitsPerCycle": 39.6,
+              "cycleSeconds": 1,
+              "engineDeltaRatio": 0.08720837751855781,
+              "productionSpeedChanged": false
+            }
+          },
+          {
+            "direction": "left",
+            "start": {
+              "x": 582.350954326068,
+              "y": 698.8906061498045
+            },
+            "end": {
+              "x": 536.6921837606905,
+              "y": 698.8906061498045
+            },
+            "pace": {
+              "worldUnitsPerSecond": 36.4689578713969,
+              "sourceUnitsPerCycle": 72,
+              "cycleSeconds": 1,
+              "engineDeltaRatio": 0.15856068639737783,
+              "productionSpeedChanged": false
+            }
+          },
+          {
+            "direction": "up",
+            "start": {
+              "x": 510.12965360539295,
+              "y": 698.8906061498045
+            },
+            "end": {
+              "x": 510.12965360539295,
+              "y": 672.174249930274
+            },
+            "pace": {
+              "worldUnitsPerSecond": 20.057926829268297,
+              "sourceUnitsPerCycle": 39.6,
+              "cycleSeconds": 1,
+              "engineDeltaRatio": 0.08720837751855781,
+              "productionSpeedChanged": false
+            }
+          }
+        ]
+      },
+      "final": {
+        "errors": [],
+        "frameMs": [
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          34.71000000089407,
+          35.266666666666666,
+          36.18333333333333,
+          37.190000000596044,
+          37.61666666666666,
+          37.973333333929375,
+          38.21000000089406,
+          39.56666666666666,
+          39.563333334525424,
+          39.540000000596045,
+          38.77999999970198,
+          39.020000000298026,
+          38.84000000059605,
+          38.60999999940395,
+          38.15,
+          37.8,
+          38.45,
+          39.020000000298026,
+          39.43999999910593,
+          40.05,
+          40.520000000298026,
+          40.01000000089407,
+          39.27999999970198,
+          38.87000000029802,
+          39.34000000059605,
+          39.7,
+          39.65999999940395,
+          38.74000000059605,
+          39.81000000089407,
+          40.12000000029802,
+          39.3,
+          40.4,
+          40.46000000089407,
+          40.17999999970198,
+          40.17999999970198,
+          41.17999999970198,
+          41.6,
+          41.25,
+          40.52999999970198,
+          40.559999999403956,
+          41.579999999701975,
+          40.15999999940395,
+          40.81999999880791,
+          41.49000000059605,
+          41.15,
+          40.170000000298025,
+          39.6,
+          39.579999999701975,
+          39.769999998807904,
+          39.24000000059605,
+          38,
+          38.62000000029802,
+          38.06000000089407,
+          37.979999999701974,
+          38.479999999701974,
+          39.579999999701975,
+          39.02999999970198,
+          39.559999999403956,
+          39.4,
+          40.33999999910593,
+          41.77999999970198,
+          41.17999999970198
+        ],
+        "direction": "up",
+        "state": "walk",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 424.59999999403954,
+        "peakAtlasCount": 4,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 20.057926829268297,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.08720837751855781,
+          "productionSpeedChanged": false
+        },
+        "frame": "up-walk-7",
+        "locomotion": [
+          {
+            "direction": "right",
+            "frame": "right-walk-0",
+            "position": {
+              "x": 513.5736355321508,
+              "y": 666
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-0",
+            "position": {
+              "x": 515.3755009410761,
+              "y": 665.3597616456702
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-1",
+            "position": {
+              "x": 510.1601459795453,
+              "y": 662.8403697865414
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-2",
+            "position": {
+              "x": 506.13156175407084,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-0",
+            "position": {
+              "x": 507.66070515760765,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-1",
+            "position": {
+              "x": 513.638696731898,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-2",
+            "position": {
+              "x": 518.0857214547578,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-3",
+            "position": {
+              "x": 522.4977359780287,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-4",
+            "position": {
+              "x": 527.00675792927,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-5",
+            "position": {
+              "x": 531.621175168727,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-6",
+            "position": {
+              "x": 536.1557253904239,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-7",
+            "position": {
+              "x": 540.6060323195138,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-0",
+            "position": {
+              "x": 544.946567685324,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-1",
+            "position": {
+              "x": 549.272880157597,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-2",
+            "position": {
+              "x": 553.6221680733724,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-3",
+            "position": {
+              "x": 558.0717456232942,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-4",
+            "position": {
+              "x": 562.6617286610208,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-5",
+            "position": {
+              "x": 567.2699461776288,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-6",
+            "position": {
+              "x": 571.937243405945,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-7",
+            "position": {
+              "x": 576.3999497806243,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "right",
+            "frame": "right-walk-0",
+            "position": {
+              "x": 580.8622914657467,
+              "y": 660.8942736192929
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-0",
+            "position": {
+              "x": 582.350954326068,
+              "y": 661.6897709973297
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-1",
+            "position": {
+              "x": 582.350954326068,
+              "y": 664.8230197473475
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-2",
+            "position": {
+              "x": 582.350954326068,
+              "y": 667.1467305705182
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-3",
+            "position": {
+              "x": 582.350954326068,
+              "y": 669.4148809363958
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-4",
+            "position": {
+              "x": 582.350954326068,
+              "y": 672.4259769120116
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-5",
+            "position": {
+              "x": 582.350954326068,
+              "y": 674.6746710888588
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-6",
+            "position": {
+              "x": 582.350954326068,
+              "y": 676.9883529486149
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-7",
+            "position": {
+              "x": 582.350954326068,
+              "y": 679.402123863261
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-0",
+            "position": {
+              "x": 582.350954326068,
+              "y": 681.8421706620713
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-1",
+            "position": {
+              "x": 582.350954326068,
+              "y": 685.0173404791146
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-2",
+            "position": {
+              "x": 582.350954326068,
+              "y": 687.3661237107921
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-3",
+            "position": {
+              "x": 582.350954326068,
+              "y": 689.7794934668657
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-4",
+            "position": {
+              "x": 582.350954326068,
+              "y": 692.29616154614
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-5",
+            "position": {
+              "x": 582.350954326068,
+              "y": 694.8034023997985
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "down",
+            "frame": "down-walk-6",
+            "position": {
+              "x": 582.350954326068,
+              "y": 697.2937945949086
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-0",
+            "position": {
+              "x": 580.9647692373436,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-1",
+            "position": {
+              "x": 575.1990269978758,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-2",
+            "position": {
+              "x": 570.8716204568232,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-3",
+            "position": {
+              "x": 566.3943264989409,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-4",
+            "position": {
+              "x": 561.9659009446282,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-5",
+            "position": {
+              "x": 557.6946565987736,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-6",
+            "position": {
+              "x": 553.6083098692836,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-7",
+            "position": {
+              "x": 548.2109041043168,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-0",
+            "position": {
+              "x": 544.0177033282201,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-1",
+            "position": {
+              "x": 539.6304876963454,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-2",
+            "position": {
+              "x": 535.1717929070645,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-3",
+            "position": {
+              "x": 530.6062440710682,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-4",
+            "position": {
+              "x": 526.0589297140621,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-5",
+            "position": {
+              "x": 521.5962233393284,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-6",
+            "position": {
+              "x": 515.7921886940412,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "left",
+            "frame": "left-walk-7",
+            "position": {
+              "x": 511.5355319313353,
+              "y": 698.8906061498045
+            },
+            "worldUnitsPerSecond": 36.4689578713969
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-0",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 698.1223875522435
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-1",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 695.1656485583529
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-2",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 692.9458377961519
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-3",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 689.9872935888346
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-4",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 687.6854459058899
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-5",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 685.3448864241706
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-6",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 682.906845418073
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-7",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 680.4473424302919
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-0",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 677.9543427046702
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-1",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 675.4872177047001
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-2",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 672.9944185583347
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-3",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 669.7436303570793
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-4",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 667.3220368509578
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-5",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 664.9602159668115
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-6",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 662.4896811192743
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          },
+          {
+            "direction": "up",
+            "frame": "up-walk-7",
+            "position": {
+              "x": 510.12965360539295,
+              "y": 660.059262125366
+            },
+            "worldUnitsPerSecond": 20.057926829268297
+          }
+        ],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ],
+          "0-down-walk": [
+            "down-walk-0",
+            "down-walk-1",
+            "down-walk-2",
+            "down-walk-3",
+            "down-walk-4",
+            "down-walk-5",
+            "down-walk-6",
+            "down-walk-7"
+          ],
+          "0-up-walk": [
+            "up-walk-0",
+            "up-walk-1",
+            "up-walk-2",
+            "up-walk-3",
+            "up-walk-4",
+            "up-walk-5",
+            "up-walk-6",
+            "up-walk-7"
+          ],
+          "0-up-idle": [
+            "up-idle-0",
+            "up-idle-1"
+          ],
+          "0-left-walk": [
+            "left-walk-0",
+            "left-walk-1",
+            "left-walk-2",
+            "left-walk-3",
+            "left-walk-4",
+            "left-walk-5",
+            "left-walk-6",
+            "left-walk-7"
+          ],
+          "0-left-idle": [
+            "left-idle-0",
+            "left-idle-1"
+          ],
+          "0-right-walk": [
+            "right-walk-0",
+            "right-walk-1",
+            "right-walk-2",
+            "right-walk-3",
+            "right-walk-4",
+            "right-walk-5",
+            "right-walk-6",
+            "right-walk-7"
+          ],
+          "0-right-idle": [
+            "right-idle-0",
+            "right-idle-1"
+          ],
+          "1-down-idle": [
+            "down-idle-0"
+          ],
+          "2-down-idle": [
+            "down-idle-0"
+          ],
+          "3-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 510.12965360539295,
+          "y": 658.4456019119812
+        },
+        "screenFoot": {
+          "x": 179.6340951727458,
+          "y": 365.59212968254343
+        },
+        "zoom": 0.88,
+        "canvas": {
+          "width": 360,
+          "height": 731
+        },
+        "bodyHeight": 73.10000000000001,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-4",
+          "look-5",
+          "look-0"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2,
+        "switching": false
+      },
+      "atlasResponses": [
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-0.f635627e22b6.png",
+          "bytes": 438754
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-4.13ee4bc3633c.png",
+          "bytes": 411492
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-5.9e38f3233e5a.png",
+          "bytes": 490541
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-1.ce1855cc78ae.png",
+          "bytes": 424149
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-2.c75eecc9ab42.png",
+          "bytes": 478377
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-3.81fefefda7a9.png",
+          "bytes": 433363
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-0.f635627e22b6.png",
+          "bytes": 438754
+        }
+      ],
+      "authorityRequests": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "initial": {
+        "errors": [],
+        "frameMs": [
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 338.30000001192093,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 21.265243902439025,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.0924575821845175,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-1",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 194.48,
+          "y": 388.08
+        },
+        "zoom": 0.88,
+        "canvas": {
+          "width": 390,
+          "height": 775
+        },
+        "bodyHeight": 77.5,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-0",
+          "look-5",
+          "look-4"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2,
+        "canvasDOM": {
+          "x": 0,
+          "y": 69,
+          "width": 390,
+          "height": 775
+        }
+      },
+      "final": {
+        "errors": [],
+        "frameMs": [
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          30.220000000298022,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975,
+          33.329999999701975
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 338.30000001192093,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 21.265243902439025,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.0924575821845175,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-1",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 194.48,
+          "y": 388.08
+        },
+        "zoom": 0.88,
+        "canvas": {
+          "width": 390,
+          "height": 775
+        },
+        "bodyHeight": 77.5,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-0",
+          "look-5",
+          "look-4"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2
+      },
+      "atlasResponses": [
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-0.f635627e22b6.png",
+          "bytes": 438754
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-5.9e38f3233e5a.png",
+          "bytes": 490541
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-4.13ee4bc3633c.png",
+          "bytes": 411492
+        }
+      ],
+      "authorityRequests": 0
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "initial": {
+        "errors": [],
+        "frameMs": [
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          33.33333333333333,
+          33.33333333333333,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.286666666964685,
+          33.286666666964685,
+          33.286666666964685,
+          33.286666666964685,
+          33.286666666964685,
+          33.32000000029802,
+          33.32000000029802,
+          33.32000000029802,
+          33.32000000029802,
+          33.32000000029802
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 354.79999999701977,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 19.110104529616724,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.08308741099833358,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-1",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 537.6,
+          "y": 415.8
+        },
+        "zoom": 1.05,
+        "canvas": {
+          "width": 1280,
+          "height": 831
+        },
+        "bodyHeight": 83.1,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-4",
+          "look-5",
+          "look-0"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2,
+        "canvasDOM": {
+          "x": 0,
+          "y": 69,
+          "width": 1280,
+          "height": 831
+        }
+      },
+      "final": {
+        "errors": [],
+        "frameMs": [
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          30.3,
+          33.33333333333333,
+          33.33333333333333,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.286666666964685,
+          33.286666666964685,
+          33.286666666964685,
+          33.286666666964685,
+          33.286666666964685,
+          33.32000000029802,
+          33.32000000029802,
+          33.32000000029802,
+          33.32000000029802,
+          33.32000000029802,
+          33.33333333333333,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.3,
+          33.28666666547458,
+          33.28666666547458,
+          33.28666666547458,
+          33.31999999880791,
+          33.31999999880791,
+          33.31999999880791,
+          33.31999999880791,
+          33.31999999880791,
+          33.31999999880791,
+          33.31999999880791,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33333333333333,
+          33.33000000119209,
+          33.33000000119209,
+          33.33000000119209,
+          33.33000000119209,
+          33.29666666785876,
+          33.29666666785876,
+          33.29666666785876,
+          33.29666666785876,
+          33.29666666785876,
+          33.29666666785876,
+          33.3,
+          33.3,
+          33.3
+        ],
+        "direction": "down",
+        "state": "idle",
+        "look": 0,
+        "authorityRequests": 0,
+        "reduced": false,
+        "bootAt": 354.79999999701977,
+        "peakAtlasCount": 3,
+        "ready": true,
+        "pace": {
+          "worldUnitsPerSecond": 19.110104529616724,
+          "sourceUnitsPerCycle": 39.6,
+          "cycleSeconds": 1,
+          "engineDeltaRatio": 0.08308741099833358,
+          "productionSpeedChanged": false
+        },
+        "frame": "down-idle-1",
+        "locomotion": [],
+        "seen": {
+          "0-down-idle": [
+            "down-idle-0",
+            "down-idle-1"
+          ]
+        },
+        "position": {
+          "x": 512,
+          "y": 666
+        },
+        "screenFoot": {
+          "x": 537.6,
+          "y": 415.8
+        },
+        "zoom": 1.05,
+        "canvas": {
+          "width": 1280,
+          "height": 831
+        },
+        "bodyHeight": 83.1,
+        "bodyPercent": 10,
+        "foot": {
+          "x": 64,
+          "y": 177,
+          "originX": 0.5,
+          "originY": 0.921875
+        },
+        "loadedAtlases": [
+          "look-4",
+          "look-5",
+          "look-0"
+        ],
+        "decodedAtlasBytes": 11796480,
+        "activeNpcCount": 2
+      },
+      "atlasResponses": [
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-0.f635627e22b6.png",
+          "bytes": 438754
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-4.13ee4bc3633c.png",
+          "bytes": 411492
+        },
+        {
+          "url": "http://127.0.0.1:52318/atlas/look-5.9e38f3233e5a.png",
+          "bytes": 490541
+        }
+      ],
+      "authorityRequests": 0
+    }
+  ],
+  "reduced": {
+    "errors": [],
+    "frameMs": [
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      30.390000000596046,
+      33.33333333333333,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.329999999701975,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "direction": "down",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": true,
+    "bootAt": 357.5,
+    "peakAtlasCount": 3,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 20.057926829268297,
+      "sourceUnitsPerCycle": 39.6,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.08720837751855781,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-walk-0",
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0"
+      ],
+      "0-down-walk": [
+        "down-walk-0"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 75.77439024390246,
+    "bodyPercent": 10.365853658536588,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0",
+      "look-4",
+      "look-5"
+    ],
+    "decodedAtlasBytes": 11796480,
+    "activeNpcCount": 2
+  }
+}

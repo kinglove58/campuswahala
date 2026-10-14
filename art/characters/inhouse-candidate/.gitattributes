@@ -1,0 +1,2 @@
+# Preserve the exact reviewed archive bytes across Windows/Linux checkouts.
+proof/** -text

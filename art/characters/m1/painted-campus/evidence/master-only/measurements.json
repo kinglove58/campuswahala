@@ -1,0 +1,1834 @@
+{
+  "status": "B refined master, final M1 visual approval pending",
+  "treatment": "b",
+  "sourceHash": "2314f9a7d0b5d1353074804b98552b8bbc4feea8f4dbcdfcb99a3ad503eb9fc5",
+  "browser": "145.0.7632.6",
+  "renderer": "Phaser CANVAS, software Chromium, DPR1; not physical-device performance",
+  "frameCap": 30,
+  "animationFps": 8,
+  "ground": "existing FUTA v2, read-only drawBaselineGround",
+  "worldVersion": 2,
+  "sourceRevision": "geometry-2026-10-10.25",
+  "productionRuntimeChanged": false,
+  "appearancePermutationsGenerated": 0,
+  "npcAtlasesGenerated": 0,
+  "canvasDOM": {
+    "x": 0,
+    "y": 69,
+    "width": 360,
+    "height": 731
+  },
+  "initial": {
+    "errors": [],
+    "frameMs": [
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955
+    ],
+    "direction": "down",
+    "state": "idle",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": false,
+    "bootAt": 766,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 16.788516746411485,
+      "sourceUnitsPerCycle": 30.72,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.07299355107135429,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-idle-0",
+    "plant": null,
+    "gaitClock": "preview animation time",
+    "spriteScale": 0.5465011961722489,
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 73.10000000000001,
+    "bodyPercent": 10,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "playedFourDirections": [
+    {
+      "direction": "right",
+      "start": {
+        "x": 512,
+        "y": 666
+      },
+      "end": {
+        "x": 556.4101736843562,
+        "y": 666
+      },
+      "pace": {
+        "worldUnitsPerSecond": 34.97607655502393,
+        "sourceUnitsPerCycle": 64,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.15206989806532142,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "right",
+          "frame": "right-walk-0",
+          "position": {
+            "x": 513.2290593301644,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 83,
+              "y": 175
+            },
+            "world": {
+              "x": 523.6125820574372,
+              "y": 664.9069976076555
+            },
+            "sourceDistance": 2.248960000038227,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-1",
+          "position": {
+            "x": 516.9739478468691,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 75,
+              "y": 175
+            },
+            "world": {
+              "x": 522.9854610047638,
+              "y": 664.9069976076555
+            },
+            "sourceDistance": 9.101439999961885,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-2",
+          "position": {
+            "x": 520.8765784690246,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 67,
+              "y": 175
+            },
+            "world": {
+              "x": 522.5160820575413,
+              "y": 664.9069976076555
+            },
+            "sourceDistance": 16.242560000228856,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-3",
+          "position": {
+            "x": 526.259046890098,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-4",
+          "position": {
+            "x": 530.2179889952778,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 76,
+              "y": 171
+            },
+            "world": {
+              "x": 536.7760033493448,
+              "y": 662.7209928229665
+            },
+            "sourceDistance": 33.335680000114294,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-5",
+          "position": {
+            "x": 534.187423923424,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 68,
+              "y": 171
+            },
+            "world": {
+              "x": 536.373428708113,
+              "y": 662.7209928229665
+            },
+            "sourceDistance": 40.599039999961676,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-6",
+          "position": {
+            "x": 539.2435655503017,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 60,
+              "y": 171
+            },
+            "world": {
+              "x": 537.0575607656127,
+              "y": 662.7209928229665
+            },
+            "sourceDistance": 49.85088000011429,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-7",
+          "position": {
+            "x": 543.2360846891619,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-0",
+          "position": {
+            "x": 547.0963942584981,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 83,
+              "y": 175
+            },
+            "world": {
+              "x": 557.4799169857708,
+              "y": 664.9069976076555
+            },
+            "sourceDistance": 64.22016000022852,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-1",
+          "position": {
+            "x": 552.3973684212609,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 75,
+              "y": 175
+            },
+            "world": {
+              "x": 558.4088815791556,
+              "y": 664.9069976076555
+            },
+            "sourceDistance": 73.92000000038112,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "right",
+          "frame": "right-walk-2",
+          "position": {
+            "x": 556.4101736843562,
+            "y": 666
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 67,
+              "y": 175
+            },
+            "world": {
+              "x": 558.0496772728729,
+              "y": 664.9069976076555
+            },
+            "sourceDistance": 81.26272000026655,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        }
+      ]
+    },
+    {
+      "direction": "down",
+      "start": {
+        "x": 561.9021172249844,
+        "y": 666
+      },
+      "end": {
+        "x": 561.9021172249844,
+        "y": 687.0400407272328
+      },
+      "pace": {
+        "worldUnitsPerSecond": 16.788516746411485,
+        "sourceUnitsPerCycle": 30.72,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.07299355107135429,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "down",
+          "frame": "down-walk-0",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 666.6629785263258
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 74.1,
+              "y": 182.68
+            },
+            "world": {
+              "x": 567.4217793063241,
+              "y": 669.7671053205842
+            },
+            "sourceDistance": 1.213132800018294,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-1",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 668.6314321147926
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 74.1,
+              "y": 178.84
+            },
+            "world": {
+              "x": 567.4217793063241,
+              "y": 669.6369943157495
+            },
+            "sourceDistance": 4.8150527999268755,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-2",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 670.623221741647
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 74.1,
+              "y": 175
+            },
+            "world": {
+              "x": 567.4217793063241,
+              "y": 669.5302193493025
+            },
+            "sourceDistance": 8.459673600036869,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-3",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 672.6072886507578
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-4",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 674.5765816651119
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 55.9,
+              "y": 181.68
+            },
+            "world": {
+              "x": 557.4754575359892,
+              "y": 677.134207263198
+            },
+            "sourceDistance": 15.693619200073458,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-5",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 676.5688749473885
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 55.9,
+              "y": 177.84
+            },
+            "world": {
+              "x": 557.4754575359892,
+              "y": 677.0279359521732
+            },
+            "sourceDistance": 19.339161600036753,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-6",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 679.2347235215612
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 55.9,
+              "y": 174
+            },
+            "world": {
+              "x": 557.4754575359892,
+              "y": 677.5952199330445
+            },
+            "sourceDistance": 24.217190400055166,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-7",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 681.2275204593602
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-0",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 683.1875797895037
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 74.1,
+              "y": 182.68
+            },
+            "world": {
+              "x": 567.4217793063241,
+              "y": 686.2917065837621
+            },
+            "sourceDistance": 31.45021440005498,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-1",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 685.1145657416268
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 74.1,
+              "y": 178.84
+            },
+            "world": {
+              "x": 567.4217793063241,
+              "y": 686.1201279425837
+            },
+            "sourceDistance": 34.97625600000009,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "down",
+          "frame": "down-walk-2",
+          "position": {
+            "x": 561.9021172249844,
+            "y": 687.0400407272328
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 74.1,
+              "y": 175
+            },
+            "world": {
+              "x": 567.4217793063241,
+              "y": 685.9470383348884
+            },
+            "sourceDistance": 38.499532799927024,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        }
+      ]
+    },
+    {
+      "direction": "left",
+      "start": {
+        "x": 561.9021172249844,
+        "y": 690.8626181052833
+      },
+      "end": {
+        "x": 517.4797019141467,
+        "y": 690.8626181052833
+      },
+      "pace": {
+        "worldUnitsPerSecond": 34.97607655502393,
+        "sourceUnitsPerCycle": 64,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.15206989806532142,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "left",
+          "frame": "left-walk-0",
+          "position": {
+            "x": 560.5572870814437,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 51,
+              "y": 175
+            },
+            "world": {
+              "x": 553.4527715312045,
+              "y": 689.7696157129388
+            },
+            "sourceDistance": 2.460799999999985,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-1",
+          "position": {
+            "x": 556.4381545456004,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 59,
+              "y": 175
+            },
+            "world": {
+              "x": 553.7056485647391,
+              "y": 689.7696157129388
+            },
+            "sourceDistance": 9.998079999923542,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-2",
+          "position": {
+            "x": 552.4407387562101,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 67,
+              "y": 175
+            },
+            "world": {
+              "x": 554.0802423447268,
+              "y": 689.7696157129388
+            },
+            "sourceDistance": 17.31263999977094,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-3",
+          "position": {
+            "x": 548.2824330146667,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-4",
+          "position": {
+            "x": 544.1052401916586,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 44,
+              "y": 171
+            },
+            "world": {
+              "x": 533.1752162682136,
+              "y": 687.5836109282499
+            },
+            "sourceDistance": 32.565119999694396,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-5",
+          "position": {
+            "x": 539.9616244022266,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 52,
+              "y": 171
+            },
+            "world": {
+              "x": 533.4036100481595,
+              "y": 687.5836109282499
+            },
+            "sourceDistance": 40.14719999961818,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-6",
+          "position": {
+            "x": 534.6323196174751,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 60,
+              "y": 171
+            },
+            "world": {
+              "x": 532.4463148327861,
+              "y": 687.5836109282499
+            },
+            "sourceDistance": 49.89887999973247,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-7",
+          "position": {
+            "x": 530.7912468902441,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-0",
+          "position": {
+            "x": 526.7826387562936,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 51,
+              "y": 175
+            },
+            "world": {
+              "x": 519.6781232060544,
+              "y": 689.7696157129388
+            },
+            "sourceDistance": 64.26239999961801,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-1",
+          "position": {
+            "x": 521.4547330147294,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 59,
+              "y": 175
+            },
+            "world": {
+              "x": 518.7222270338682,
+              "y": 689.7696157129388
+            },
+            "sourceDistance": 74.01151999950352,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "left",
+          "frame": "left-walk-2",
+          "position": {
+            "x": 517.4797019141467,
+            "y": 690.8626181052833
+          },
+          "worldUnitsPerSecond": 34.97607655502393,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 67,
+              "y": 175
+            },
+            "world": {
+              "x": 519.1192055026635,
+              "y": 689.7696157129388
+            },
+            "sourceDistance": 81.28511999969419,
+            "sourceUnitsPerFrame": 8,
+            "maxQuantizationWorldUnits": 4.372009569377991
+          },
+          "gaitClock": "actual cosmetic distance"
+        }
+      ]
+    },
+    {
+      "direction": "up",
+      "start": {
+        "x": 513.5462923447895,
+        "y": 690.8626181052833
+      },
+      "end": {
+        "x": 513.5462923447895,
+        "y": 669.5893848803828
+      },
+      "pace": {
+        "worldUnitsPerSecond": 16.788516746411485,
+        "sourceUnitsPerCycle": 30.72,
+        "cycleSeconds": 1,
+        "engineDeltaRatio": 0.07299355107135429,
+        "productionSpeedChanged": false
+      },
+      "samples": [
+        {
+          "direction": "up",
+          "frame": "up-walk-0",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 690.1944351387762
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 57.1,
+              "y": 167.32
+            },
+            "world": {
+              "x": 509.775434091201,
+              "y": 684.9043035598288
+            },
+            "sourceDistance": 1.2226559999999953,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-1",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 688.2536826028911
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 57.1,
+              "y": 171.16
+            },
+            "world": {
+              "x": 509.775434091201,
+              "y": 685.0621156172451
+            },
+            "sourceDistance": 4.773887999999786,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-2",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 686.2251261244522
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 57.1,
+              "y": 175
+            },
+            "world": {
+              "x": 509.775434091201,
+              "y": 685.1321237321077
+            },
+            "sourceDistance": 8.48578559994484,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-3",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 684.172562067046
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-4",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 682.1545823541273
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 72.9,
+              "y": 166.32
+            },
+            "world": {
+              "x": 518.4101529907226,
+              "y": 676.3179495790077
+            },
+            "sourceDistance": 15.934156799926468,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-5",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 680.1866324211329
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 72.9,
+              "y": 170.16
+            },
+            "world": {
+              "x": 518.4101529907226,
+              "y": 676.4485642393147
+            },
+            "sourceDistance": 19.53515519989001,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-6",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 678.2243905837923
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "far",
+            "source": {
+              "x": 72.9,
+              "y": 174
+            },
+            "world": {
+              "x": 518.4101529907226,
+              "y": 676.5848869952756
+            },
+            "sourceDistance": 23.1257087999266,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-7",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 675.6938574545356
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": null,
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-0",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 673.8014558468501
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 57.1,
+              "y": 167.32
+            },
+            "world": {
+              "x": 509.775434091201,
+              "y": 668.5113242679028
+            },
+            "sourceDistance": 31.218892800109828,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-1",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 671.4169828133372
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 57.1,
+              "y": 171.16
+            },
+            "world": {
+              "x": 509.775434091201,
+              "y": 668.2254158276912
+            },
+            "sourceDistance": 35.582054400146575,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        },
+        {
+          "direction": "up",
+          "frame": "up-walk-2",
+          "position": {
+            "x": 513.5462923447895,
+            "y": 669.5893848803828
+          },
+          "worldUnitsPerSecond": 16.788516746411485,
+          "plant": {
+            "leg": "near",
+            "source": {
+              "x": 57.1,
+              "y": 175
+            },
+            "world": {
+              "x": 509.775434091201,
+              "y": 668.4963824880383
+            },
+            "sourceDistance": 38.92623360003687,
+            "sourceUnitsPerFrame": 3.84,
+            "maxQuantizationWorldUnits": 2.0985645933014356
+          },
+          "gaitClock": "actual cosmetic distance"
+        }
+      ]
+    }
+  ],
+  "final": {
+    "errors": [],
+    "frameMs": [
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      30.459999999403955,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.33000000119209,
+      33.32666666905085,
+      33.32666666905085,
+      33.32666666905085,
+      33.32666666905085,
+      33.30666666726272,
+      33.293333332737284,
+      33.293333332737284,
+      33.293333332737284,
+      33.293333332737284,
+      33.293333332737284,
+      33.29666666487852,
+      33.29666666487852,
+      33.29666666487852,
+      33.29666666487852,
+      33.31999999880791,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.32000000178814,
+      33.32000000178814,
+      33.32000000178814,
+      33.32000000178814,
+      33.32000000178814,
+      33.32000000178814,
+      33.32000000178814,
+      33.32000000178814,
+      33.31666666666667,
+      33.31666666666667,
+      33.32999999821186,
+      33.32999999821186,
+      33.30666666428248,
+      33.30666666428248,
+      33.30666666428248,
+      33.30666666428248,
+      33.30666666428248,
+      33.293333329757054,
+      33.29666666487852,
+      33.29666666487852,
+      33.29666666487852,
+      33.29666666487852,
+      33.31999999880791,
+      33.29666666487852,
+      33.29666666487852,
+      33.29666666487852,
+      33.29666666487852,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      34.65666666726271,
+      34.733333333333334,
+      35.1,
+      36.05999999940395,
+      36.326666666070615,
+      36.303333332141236,
+      36.49000000059604,
+      37.28666666547457,
+      38.413333334525426,
+      38.40999999940395,
+      38.23999999761581,
+      38.3,
+      39.31999999880791,
+      39.83000000119209,
+      39.65,
+      39.99000000059605,
+      39.85999999940395,
+      39.08000000119209,
+      38.21999999880791,
+      39.540000000596045,
+      38.37000000178814,
+      38.21999999880791,
+      36.880000001192094,
+      35.62999999821186,
+      36.9,
+      36.65999999940395,
+      36.59000000059605,
+      36.690000000596044,
+      36.41999999880791,
+      35.519999998807904,
+      36.66999999880791,
+      36.68000000119209,
+      36.77999999821186,
+      37.210000002384184,
+      36.74000000059605,
+      36.730000001192096,
+      36.709999999403955,
+      36.56999999880791,
+      36.61000000238418,
+      36.18000000119209,
+      35.09000000059605,
+      35.07999999821186,
+      34.960000002384184,
+      34.33999999761581,
+      34.459999999403955,
+      34.71999999880791,
+      34.85999999940395,
+      35.14000000059605,
+      35.08999999761581,
+      35.43000000119209,
+      36.55,
+      36.560000002384186,
+      36.709999999403955,
+      38.310000002384186,
+      38.65,
+      38.560000002384186,
+      38.459999999403955,
+      38.21999999880791,
+      38.35,
+      38.019999998807904,
+      36.81999999880791,
+      38.25999999940395
+    ],
+    "direction": "left",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": false,
+    "bootAt": 766,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 34.97607655502393,
+      "sourceUnitsPerCycle": 64,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.15206989806532142,
+      "productionSpeedChanged": false
+    },
+    "frame": "left-walk-1",
+    "plant": {
+      "leg": "near",
+      "source": {
+        "x": 59,
+        "y": 175
+      },
+      "world": {
+        "x": 506.7302829924239,
+        "y": 663.8558805750756
+      },
+      "sourceDistance": 8.972236800018159,
+      "sourceUnitsPerFrame": 8,
+      "maxQuantizationWorldUnits": 4.372009569377991
+    },
+    "gaitClock": "actual cosmetic distance",
+    "spriteScale": 0.5465011961722489,
+    "locomotion": [
+      {
+        "direction": "up",
+        "frame": "up-walk-0",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 690.1944351387762
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 57.1,
+            "y": 167.32
+          },
+          "world": {
+            "x": 509.775434091201,
+            "y": 684.9043035598288
+          },
+          "sourceDistance": 1.2226559999999953,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-1",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 688.2536826028911
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 57.1,
+            "y": 171.16
+          },
+          "world": {
+            "x": 509.775434091201,
+            "y": 685.0621156172451
+          },
+          "sourceDistance": 4.773887999999786,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-2",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 686.2251261244522
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 57.1,
+            "y": 175
+          },
+          "world": {
+            "x": 509.775434091201,
+            "y": 685.1321237321077
+          },
+          "sourceDistance": 8.48578559994484,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-3",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 684.172562067046
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": null,
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-4",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 682.1545823541273
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "far",
+          "source": {
+            "x": 72.9,
+            "y": 166.32
+          },
+          "world": {
+            "x": 518.4101529907226,
+            "y": 676.3179495790077
+          },
+          "sourceDistance": 15.934156799926468,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-5",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 680.1866324211329
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "far",
+          "source": {
+            "x": 72.9,
+            "y": 170.16
+          },
+          "world": {
+            "x": 518.4101529907226,
+            "y": 676.4485642393147
+          },
+          "sourceDistance": 19.53515519989001,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-6",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 678.2243905837923
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "far",
+          "source": {
+            "x": 72.9,
+            "y": 174
+          },
+          "world": {
+            "x": 518.4101529907226,
+            "y": 676.5848869952756
+          },
+          "sourceDistance": 23.1257087999266,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-7",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 675.6938574545356
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": null,
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-0",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 673.8014558468501
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 57.1,
+            "y": 167.32
+          },
+          "world": {
+            "x": 509.775434091201,
+            "y": 668.5113242679028
+          },
+          "sourceDistance": 31.218892800109828,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-1",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 671.4169828133372
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 57.1,
+            "y": 171.16
+          },
+          "world": {
+            "x": 509.775434091201,
+            "y": 668.2254158276912
+          },
+          "sourceDistance": 35.582054400146575,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-2",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 669.5893848803828
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 57.1,
+            "y": 175
+          },
+          "world": {
+            "x": 509.775434091201,
+            "y": 668.4963824880383
+          },
+          "sourceDistance": 38.92623360003687,
+          "sourceUnitsPerFrame": 3.84,
+          "maxQuantizationWorldUnits": 2.0985645933014356
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "up",
+        "frame": "up-walk-3",
+        "position": {
+          "x": 513.5462923447895,
+          "y": 667.6632383540469
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": null,
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "left",
+        "frame": "left-walk-0",
+        "position": {
+          "x": 512.9843763312211,
+          "y": 667.289725803793
+        },
+        "worldUnitsPerSecond": 16.788516746411485,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 51,
+            "y": 175
+          },
+          "world": {
+            "x": 505.8798607809819,
+            "y": 666.1967234114485
+          },
+          "sourceDistance": 1.2346368000182475,
+          "sourceUnitsPerFrame": 8,
+          "maxQuantizationWorldUnits": 4.372009569377991
+        },
+        "gaitClock": "actual cosmetic distance"
+      },
+      {
+        "direction": "left",
+        "frame": "left-walk-1",
+        "position": {
+          "x": 509.4627889732851,
+          "y": 664.9488829674201
+        },
+        "worldUnitsPerSecond": 34.97607655502393,
+        "plant": {
+          "leg": "near",
+          "source": {
+            "x": 59,
+            "y": 175
+          },
+          "world": {
+            "x": 506.7302829924239,
+            "y": 663.8558805750756
+          },
+          "sourceDistance": 8.972236800018159,
+          "sourceUnitsPerFrame": 8,
+          "maxQuantizationWorldUnits": 4.372009569377991
+        },
+        "gaitClock": "actual cosmetic distance"
+      }
+    ],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0",
+        "down-idle-1"
+      ],
+      "0-down-walk": [
+        "down-walk-0",
+        "down-walk-1",
+        "down-walk-2",
+        "down-walk-3",
+        "down-walk-4",
+        "down-walk-5",
+        "down-walk-6",
+        "down-walk-7"
+      ],
+      "0-up-idle": [
+        "up-idle-0"
+      ],
+      "0-up-walk": [
+        "up-walk-0",
+        "up-walk-1",
+        "up-walk-2",
+        "up-walk-3",
+        "up-walk-4",
+        "up-walk-5",
+        "up-walk-6",
+        "up-walk-7"
+      ],
+      "0-left-walk": [
+        "left-walk-0",
+        "left-walk-1",
+        "left-walk-2",
+        "left-walk-3",
+        "left-walk-4",
+        "left-walk-5",
+        "left-walk-6",
+        "left-walk-7"
+      ],
+      "0-left-idle": [
+        "left-idle-0"
+      ],
+      "0-right-idle": [
+        "right-idle-0"
+      ],
+      "0-right-walk": [
+        "right-walk-0",
+        "right-walk-1",
+        "right-walk-2",
+        "right-walk-3",
+        "right-walk-4",
+        "right-walk-5",
+        "right-walk-6",
+        "right-walk-7"
+      ]
+    },
+    "position": {
+      "x": 509.4627889732851,
+      "y": 664.9488829674201
+    },
+    "screenFoot": {
+      "x": 179.0472542964909,
+      "y": 365.1550170113297
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 73.10000000000001,
+    "bodyPercent": 10,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "reduced": {
+    "errors": [],
+    "frameMs": [
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      30.209999999403955,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.309999999403956,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      33.33000000119209,
+      33.33000000119209
+    ],
+    "direction": "down",
+    "state": "walk",
+    "look": 0,
+    "authorityRequests": 0,
+    "reduced": true,
+    "bootAt": 380.60000002384186,
+    "peakAtlasCount": 1,
+    "ready": true,
+    "pace": {
+      "worldUnitsPerSecond": 16.788516746411485,
+      "sourceUnitsPerCycle": 30.72,
+      "cycleSeconds": 1,
+      "engineDeltaRatio": 0.07299355107135429,
+      "productionSpeedChanged": false
+    },
+    "frame": "down-walk-0",
+    "plant": {
+      "leg": "near",
+      "source": {
+        "x": 74.1,
+        "y": 182.68
+      },
+      "world": {
+        "x": 517.5196620813397,
+        "y": 669.1041267942584
+      },
+      "sourceDistance": 0,
+      "sourceUnitsPerFrame": 3.84,
+      "maxQuantizationWorldUnits": 2.0985645933014356
+    },
+    "gaitClock": "preview animation time",
+    "spriteScale": 0.5465011961722489,
+    "locomotion": [],
+    "seen": {
+      "0-down-idle": [
+        "down-idle-0"
+      ],
+      "0-down-walk": [
+        "down-walk-0"
+      ]
+    },
+    "position": {
+      "x": 512,
+      "y": 666
+    },
+    "screenFoot": {
+      "x": 179.52,
+      "y": 366.08
+    },
+    "zoom": 0.88,
+    "canvas": {
+      "width": 360,
+      "height": 731
+    },
+    "bodyHeight": 76.94736842105264,
+    "bodyPercent": 10.526315789473687,
+    "foot": {
+      "x": 64,
+      "y": 177,
+      "originX": 0.5,
+      "originY": 0.921875
+    },
+    "loadedAtlases": [
+      "look-0"
+    ],
+    "decodedAtlasBytes": 3932160,
+    "activeNpcCount": 0
+  },
+  "requests": [
+    "/",
+    "/phaser.js",
+    "/proof.js",
+    "/spec.json",
+    "/world-assets/zones/futa-zone-0.d6b2c3937984.svg",
+    "/world-assets/zones/futa-zone-3.20ef94915272.svg",
+    "/atlas/look-0.126104ea6b08.png",
+    "http://127.0.0.1:54947/97dfb9b3-80bf-45cf-959f-42202c46d17c",
+    "http://127.0.0.1:54947/7691736b-1010-4f2d-9244-72aa5d33a07e",
+    "http://127.0.0.1:54947/7d3d7b82-4c02-4f35-8193-c01d13610dd6"
+  ],
+  "authorityRequests": 0,
+  "nativeCrop": "110x115 exact screenshot pixels, no resizing, centered on measured foot; full viewports 360x800",
+  "scaleMethod": "body alpha (shadow excluded) x sprite scale x camera zoom / measured 731px canvas height"
+}

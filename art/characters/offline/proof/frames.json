@@ -1,0 +1,691 @@
+{
+  "status": "REJECTED STUDY; ART REVIEW BLOCKER",
+  "authoring": "Original procedural Blender source; no imported assets",
+  "blender": "4.0.2",
+  "sourceSha256": "b0e62f39ca7e456355f8ce7d430e86a34a45dcda89abf33d30f92c46f3e319a5",
+  "frameWidth": 128,
+  "frameHeight": 160,
+  "projection": "Elevated orthographic, fixed light",
+  "frames": [
+    {
+      "file": "0-down-idle-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "idle",
+      "index": 0,
+      "bytes": 20008,
+      "sha256": "456c861730de4c99691a32a49a3a780c98f4abfa3cafbef8330d0244b6c0fe58"
+    },
+    {
+      "file": "0-down-walk-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "walk",
+      "index": 0,
+      "bytes": 20008,
+      "sha256": "58d39f4eae7e864381ba3153b42c9fc8b6340547a822046f92eba9ed00d565d6"
+    },
+    {
+      "file": "0-down-walk-1.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "walk",
+      "index": 1,
+      "bytes": 20212,
+      "sha256": "79ef2cf162ee41ec29205841b4a38f32fd2a4a9dea1cfecb26c85f4679f5ac52"
+    },
+    {
+      "file": "0-down-walk-2.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "walk",
+      "index": 2,
+      "bytes": 20212,
+      "sha256": "e434a60f0a3ee3ccd4271f675bb726a1e8048194d34fd454dd873bc68db0a216"
+    },
+    {
+      "file": "0-down-walk-3.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "walk",
+      "index": 3,
+      "bytes": 20008,
+      "sha256": "2cf1cbe7d71f88de0d8c57f5699afc4c43f236cbb46d882993c9d901f2e2520d"
+    },
+    {
+      "file": "0-down-walk-4.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "walk",
+      "index": 4,
+      "bytes": 20218,
+      "sha256": "82f2c1e0b71db6d586c50206ab9cea4c5b357d2f0fe08463d085e5a54738d8c7"
+    },
+    {
+      "file": "0-down-walk-5.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "walk",
+      "index": 5,
+      "bytes": 20218,
+      "sha256": "3d94f6dc4d994786a7b18151e4ff00d8295b3d002a3f9363222574a6779a752a"
+    },
+    {
+      "file": "0-left-idle-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17148,
+      "sha256": "2bc14f38bdb82e215710316b180b48370cb38c14ded1d8ac4dfd55a0278bcb24"
+    },
+    {
+      "file": "0-left-walk-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "walk",
+      "index": 0,
+      "bytes": 17148,
+      "sha256": "59067624608608816f5368a17325abe5d7f18a69bbf469a9a637be241a98db98"
+    },
+    {
+      "file": "0-left-walk-1.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "walk",
+      "index": 1,
+      "bytes": 18618,
+      "sha256": "ca3c509418948464dfdb836560e3e0a3c3df30d4c929bba9f368c67cb214b4d9"
+    },
+    {
+      "file": "0-left-walk-2.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "walk",
+      "index": 2,
+      "bytes": 18618,
+      "sha256": "9b47485d0555630de5d2a26bc1aecbaa6f2bc8c180138c50379e4ca65f9760bd"
+    },
+    {
+      "file": "0-left-walk-3.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "walk",
+      "index": 3,
+      "bytes": 17148,
+      "sha256": "f571be4bf5bda7fe02667c945541198991d7c3cc885976ab4b8a075091c783b0"
+    },
+    {
+      "file": "0-left-walk-4.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "walk",
+      "index": 4,
+      "bytes": 18732,
+      "sha256": "d33bc649a1034dbad97ec49642280d3d1a9617f339f1817bc4eec5956bc24ab2"
+    },
+    {
+      "file": "0-left-walk-5.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "walk",
+      "index": 5,
+      "bytes": 18732,
+      "sha256": "69427ca5d3ab35c2c193561101346506e4815d33f43845beeefc34be7004db6d"
+    },
+    {
+      "file": "0-up-idle-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "idle",
+      "index": 0,
+      "bytes": 19415,
+      "sha256": "531d8977f189823046cd0abbd8e4b9512e5a19d48c170c79ddeb6c2a5261b5ce"
+    },
+    {
+      "file": "0-up-walk-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "walk",
+      "index": 0,
+      "bytes": 19415,
+      "sha256": "d9fea4df5491228b5b43683f7a91ab92a73d08746af88cae52aa47af7cf6606d"
+    },
+    {
+      "file": "0-up-walk-1.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "walk",
+      "index": 1,
+      "bytes": 19513,
+      "sha256": "6350d7643889ddf5141233b3c7f3a1b3ccf053a190bb7389016663a5ab1931c4"
+    },
+    {
+      "file": "0-up-walk-2.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "walk",
+      "index": 2,
+      "bytes": 19513,
+      "sha256": "94e65ba2a2add14a8a56be068f2499b992cd3863700982861e0fc5dd3c94ec1f"
+    },
+    {
+      "file": "0-up-walk-3.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "walk",
+      "index": 3,
+      "bytes": 19415,
+      "sha256": "cd97215a304fed22e5a7047ef258dca209864ad35fc9548f8cadf64597d28d0e"
+    },
+    {
+      "file": "0-up-walk-4.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "walk",
+      "index": 4,
+      "bytes": 19556,
+      "sha256": "3c4732e463959bd40b6b054aa9d3a289902ef42a0fae9cd754af63bf4685f516"
+    },
+    {
+      "file": "0-up-walk-5.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "walk",
+      "index": 5,
+      "bytes": 19556,
+      "sha256": "736e45ed362e338b8ec8298d8846a5388dcc68fa71c5144de03fdc493a47ea08"
+    },
+    {
+      "file": "0-right-idle-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17226,
+      "sha256": "a387cfccd9ee4abcd0e590d1e6f21e487150483b02b5d5d548537062edf4ede6"
+    },
+    {
+      "file": "0-right-walk-0.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "walk",
+      "index": 0,
+      "bytes": 17226,
+      "sha256": "202f7301126f67bd1a9f07774b71008a15c6b7b0bcc6443ba992fb7ea4c5379b"
+    },
+    {
+      "file": "0-right-walk-1.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "walk",
+      "index": 1,
+      "bytes": 18644,
+      "sha256": "42f22e047f74bfde0c8893592c9dd2d0286dd161a957366f62f2d94981b9fe77"
+    },
+    {
+      "file": "0-right-walk-2.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "walk",
+      "index": 2,
+      "bytes": 18644,
+      "sha256": "03bd27a4a9ddb70c0d5129b0f63c7df524746e26b21d488eade8587506c1166f"
+    },
+    {
+      "file": "0-right-walk-3.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "walk",
+      "index": 3,
+      "bytes": 17226,
+      "sha256": "f8e0dfc9631a1474a1c7223b4e880539ca3fabaf9d2a0ece707fd4216623478e"
+    },
+    {
+      "file": "0-right-walk-4.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "walk",
+      "index": 4,
+      "bytes": 18566,
+      "sha256": "227bf208197b9631d517c98ef6b099230d21c48971bae472b09484e1167cc77f"
+    },
+    {
+      "file": "0-right-walk-5.png",
+      "appearance": {
+        "skin": "deep",
+        "hair": "crop",
+        "hairColour": "black",
+        "top": "lime",
+        "bottom": "trousers",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "walk",
+      "index": 5,
+      "bytes": 18566,
+      "sha256": "8ae8bc0263e82e84704366d1f029caeb27eb51f12826587c7db598348125601d"
+    },
+    {
+      "file": "1-down-idle-0.png",
+      "appearance": {
+        "skin": "brown",
+        "hair": "braids",
+        "hairColour": "brown",
+        "top": "blue",
+        "bottom": "skirt",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "down",
+      "state": "idle",
+      "index": 0,
+      "bytes": 20828,
+      "sha256": "ea3306276c4356696c3a1c6b1ea46883f71f01335bf1a367cc7b496c83d92fb9"
+    },
+    {
+      "file": "1-left-idle-0.png",
+      "appearance": {
+        "skin": "brown",
+        "hair": "braids",
+        "hairColour": "brown",
+        "top": "blue",
+        "bottom": "skirt",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "left",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17225,
+      "sha256": "dc13e35589c1b67ebcc5d8d144758946e9f4a26fce9c96d3ebe142b47fe3683f"
+    },
+    {
+      "file": "1-up-idle-0.png",
+      "appearance": {
+        "skin": "brown",
+        "hair": "braids",
+        "hairColour": "brown",
+        "top": "blue",
+        "bottom": "skirt",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "up",
+      "state": "idle",
+      "index": 0,
+      "bytes": 19709,
+      "sha256": "8e91bfe53f4a089dde95ecce96ffc336e4f6306f840170c2bcbf88cbea463bee"
+    },
+    {
+      "file": "1-right-idle-0.png",
+      "appearance": {
+        "skin": "brown",
+        "hair": "braids",
+        "hairColour": "brown",
+        "top": "blue",
+        "bottom": "skirt",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "right",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17209,
+      "sha256": "15d79258a8baf2f86ff6f949f4b372aa93c8b57a346ccb18102de1bf939055b2"
+    },
+    {
+      "file": "2-down-idle-0.png",
+      "appearance": {
+        "skin": "warm",
+        "hair": "covered",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "skirt",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "down",
+      "state": "idle",
+      "index": 0,
+      "bytes": 20570,
+      "sha256": "dbcd0880ae0360bbf9564509ac77e7139cf8c7609b42eabeacef935251df1f26"
+    },
+    {
+      "file": "2-left-idle-0.png",
+      "appearance": {
+        "skin": "warm",
+        "hair": "covered",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "skirt",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "left",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17685,
+      "sha256": "d5ded861f31b12bfce2b4404a7233c9bac1280dc44a32464f3f163ac008e63b6"
+    },
+    {
+      "file": "2-up-idle-0.png",
+      "appearance": {
+        "skin": "warm",
+        "hair": "covered",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "skirt",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "up",
+      "state": "idle",
+      "index": 0,
+      "bytes": 19714,
+      "sha256": "b932a4384990488cf221c35e12cc3071f592b8a21d2410ff16c460fa3dccfc19"
+    },
+    {
+      "file": "2-right-idle-0.png",
+      "appearance": {
+        "skin": "warm",
+        "hair": "covered",
+        "hairColour": "black",
+        "top": "clay",
+        "bottom": "skirt",
+        "shoes": "white",
+        "accessory": "backpack"
+      },
+      "direction": "right",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17660,
+      "sha256": "6f951f7511b8d0cc3bbcafe1a17a6ba598575d5f460adc440a324c934023e6e1"
+    },
+    {
+      "file": "3-down-idle-0.png",
+      "appearance": {
+        "skin": "light",
+        "hair": "afro",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "down",
+      "state": "idle",
+      "index": 0,
+      "bytes": 20539,
+      "sha256": "f160e2a8ed1e10b82548aedc99e243b6ef45026ebf5bafeca6e67701d73bdc47"
+    },
+    {
+      "file": "3-left-idle-0.png",
+      "appearance": {
+        "skin": "light",
+        "hair": "afro",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "left",
+      "state": "idle",
+      "index": 0,
+      "bytes": 16874,
+      "sha256": "df80ff0de522d84ec9ba6384141a81b10cd18767286fe1746122c42e799faf77"
+    },
+    {
+      "file": "3-up-idle-0.png",
+      "appearance": {
+        "skin": "light",
+        "hair": "afro",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "up",
+      "state": "idle",
+      "index": 0,
+      "bytes": 19633,
+      "sha256": "d6095b3fa8c7ee9b17f4352e3cac2879e895fafd1ce6f5e040dfcfba0f72bd3d"
+    },
+    {
+      "file": "3-right-idle-0.png",
+      "appearance": {
+        "skin": "light",
+        "hair": "afro",
+        "hairColour": "black",
+        "top": "blue",
+        "bottom": "trousers",
+        "shoes": "dark",
+        "accessory": "none"
+      },
+      "direction": "right",
+      "state": "idle",
+      "index": 0,
+      "bytes": 17090,
+      "sha256": "43b7b1b9b725852f9b49c11a9bfd26729aca76429217101ed79aa724d46646c3"
+    }
+  ]
+}

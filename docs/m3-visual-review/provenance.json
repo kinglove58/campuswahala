@@ -1,0 +1,146 @@
+{
+  "sourceRun": 38539501832,
+  "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+  "sourceArtifact": 11883262093,
+  "sourceArchiveSha256": "9fd7de801ec312df9e585dc27e806d03258795dc495f307d86453fdc506ece9b",
+  "method": "Byte-for-byte copies of ZIP entries. No image/video conversion, resize, redraw, crop, annotation or recompression.",
+  "files": [
+    {
+      "file": "futa-360x800-dpr1.png",
+      "label": "FUTA native exterior",
+      "pixels": [
+        360,
+        800
+      ],
+      "bytes": 118204,
+      "sha256": "f66149ea2e92c0f4cbefae426b480be9eb1575129b2a8f276ec2c38557bdceaf",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "futa-360x800-dpr1.png"
+    },
+    {
+      "file": "oau-360x800-dpr1.png",
+      "label": "OAU native exterior",
+      "pixels": [
+        360,
+        800
+      ],
+      "bytes": 98071,
+      "sha256": "c88f15c1905ffd910ebb13862b60ce0757a6759ea50502f00f4f2b6f53506c97",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "oau-360x800-dpr1.png"
+    },
+    {
+      "file": "unilag-360x800-dpr1.png",
+      "label": "UNILAG native exterior",
+      "pixels": [
+        360,
+        800
+      ],
+      "bytes": 107478,
+      "sha256": "5b90ed156b0b8c730487a04be9564c7f6b74692d226085ec4a93b5e77ecb44e6",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "unilag-360x800-dpr1.png"
+    },
+    {
+      "file": "oau-1280x900-dpr1.png",
+      "label": "OAU desktop overview",
+      "pixels": [
+        1280,
+        900
+      ],
+      "bytes": 404963,
+      "sha256": "f1b1730d71f638ff5ea8298a682987bd2205bd25c091adaf664902ad94e47baf",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "oau-1280x900-dpr1.png"
+    },
+    {
+      "file": "oau-lecture-desktop.png",
+      "label": "OAU clear-weather venue approach",
+      "pixels": [
+        1280,
+        720
+      ],
+      "bytes": 294559,
+      "sha256": "9fcbeaa9084b04a5388a1cff18dc8237d92c2fb5b49c76367fefee2109a32daf",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "oau-lecture-desktop.png"
+    },
+    {
+      "file": "oau-rain-desktop.png",
+      "label": "OAU cosmetic rain preview",
+      "pixels": [
+        1280,
+        720
+      ],
+      "bytes": 309991,
+      "sha256": "77c870e9e08b7f06ad7ee61c589cc09f1e3f387438ac9b5531450172f7ee40ec",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "oau-rain-desktop.png"
+    },
+    {
+      "file": "unilag-lecture-mobile.png",
+      "label": "UNILAG genuine venue approach (original higher-resolution capture)",
+      "pixels": [
+        1082,
+        2202
+      ],
+      "bytes": 529847,
+      "sha256": "e888fcc77ce581a280dc4addd38c0c5bbffae8483768d3a35981fdadea698fad",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "unilag-lecture-mobile.png"
+    },
+    {
+      "file": "futa-walking-360x800.webm",
+      "pixels": [
+        360,
+        800
+      ],
+      "bytes": 904915,
+      "sha256": "297c5ef6f9d6b09f60b8a32706a581769f306e57748995eb74ccfd113863f82a",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "futa-walking-360x800.webm"
+    },
+    {
+      "file": "oau-walking-360x800.webm",
+      "pixels": [
+        360,
+        800
+      ],
+      "bytes": 833064,
+      "sha256": "f1c9d895d8b4d5b04bd883d22009f46c75b81c638cdee989fb04403d63dfd47d",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "oau-walking-360x800.webm"
+    },
+    {
+      "file": "unilag-walking-360x800.webm",
+      "pixels": [
+        360,
+        800
+      ],
+      "bytes": 876502,
+      "sha256": "6ac7d5f06d4fe7627beae76f6c1b19e38e1ba1cce03b6d676574a3c143829455",
+      "sourceRun": 38539501832,
+      "sourceCommit": "0bfb7109ea227feb7b60c66ed554f04337fab13b",
+      "sourceArtifact": 11883262093,
+      "sourceEntry": "unilag-walking-360x800.webm"
+    }
+  ]
+}

@@ -918,6 +918,11 @@ dd {
   min-height: 44px;
   padding: 6px 10px;
 }
+.route-pace-label {
+  display: block;
+  font-size: 9px;
+  margin-top: 3px;
+}
 .venue-backdrop {
   justify-content: center;
   background: #153a3060;

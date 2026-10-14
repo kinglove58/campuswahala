@@ -1,0 +1,271 @@
+{
+  "status": "UNAPPROVED; single master only; SVG authored soft shading, not human painted",
+  "canvas": [
+    128,
+    192
+  ],
+  "directions": 4,
+  "editablePartLayers": 52,
+  "files": [
+    {
+      "path": "data/down-backpack-or-straps.png",
+      "sha256": "8de1758cdc720ccab7a378f8743770a2145ca6c1cb838ce57f3aa4998d4e9574",
+      "bytes": 1153
+    },
+    {
+      "path": "data/down-near-arm.png",
+      "sha256": "e9c5121111359be5037855d85729b0d3be8280f61b1423f0943ef72ad837d5a4",
+      "bytes": 2296
+    },
+    {
+      "path": "data/down-hair-or-covering.png",
+      "sha256": "c8c8814108a8f481f910be3741251c704f6eda42d6082338c750b31740c9cd8a",
+      "bytes": 1924
+    },
+    {
+      "path": "data/down-head-and-face.png",
+      "sha256": "7c9c6c3459274b5a986874eec58acb08d2c0696413a63d587dc3c7389a7fa065",
+      "bytes": 3779
+    },
+    {
+      "path": "data/down-torso-and-hood.png",
+      "sha256": "8ede16a59a086a63b3a92887b18cf0a175488d2f940b404e8c93a64fda8568a4",
+      "bytes": 6186
+    },
+    {
+      "path": "data/down-far-arm.png",
+      "sha256": "0c226938deb8b389ee054cb177db5770f8592ad2dc3b6577b40afad1ae909d46",
+      "bytes": 2279
+    },
+    {
+      "path": "data/down-lower-clothing.png",
+      "sha256": "2c49464e1d82139567d6672d7f1148e7b539dc2ca3cfc1784344a006ee59e938",
+      "bytes": 1280
+    },
+    {
+      "path": "data/down-near-shoe.png",
+      "sha256": "4125a10596d919f28afbf725aa85a8325bd20ddc3c2c5481d2e37f5861633f10",
+      "bytes": 1013
+    },
+    {
+      "path": "data/down-near-leg.png",
+      "sha256": "49d3dae48be39ce497d33c89d49881257875f245832c0f4ccc180a1df36b1582",
+      "bytes": 2633
+    },
+    {
+      "path": "data/down-far-shoe.png",
+      "sha256": "1a43201ec9d9d640203374ffea7ba9309b6a1ca62c9a0b2f69a059eca15d5336",
+      "bytes": 1004
+    },
+    {
+      "path": "data/down-far-leg.png",
+      "sha256": "aaa1f764d61f76ea9ce918790395dac8a16aa93775fb230f4883043ffb027458",
+      "bytes": 2514
+    },
+    {
+      "path": "data/down-back-accessory.png",
+      "sha256": "9f78b61b987608d6b37aad9801be9ea9cfbbb81fd30bcc58a23664d9abf123da",
+      "bytes": 2777
+    },
+    {
+      "path": "data/down-ground-shadow.png",
+      "sha256": "2e10a5ab4ad23253ba34279e2e27861ad073d9862fc5aca518f6f33370562348",
+      "bytes": 702
+    },
+    {
+      "path": "data/up-backpack-or-straps.png",
+      "sha256": "9f78b61b987608d6b37aad9801be9ea9cfbbb81fd30bcc58a23664d9abf123da",
+      "bytes": 2777
+    },
+    {
+      "path": "data/up-near-arm.png",
+      "sha256": "e9c5121111359be5037855d85729b0d3be8280f61b1423f0943ef72ad837d5a4",
+      "bytes": 2296
+    },
+    {
+      "path": "data/up-hair-or-covering.png",
+      "sha256": "273e387f000e7764c98ec3e339be1279e5e562c9d20870495a855d8e0ca804c7",
+      "bytes": 2533
+    },
+    {
+      "path": "data/up-head-and-face.png",
+      "sha256": "c27b401ad546e6ba308e761df26d26778b2e7e9a93e76069cf12a954d85add93",
+      "bytes": 3573
+    },
+    {
+      "path": "data/up-torso-and-hood.png",
+      "sha256": "5609f8a5c410ef9fbeb8647f309f103b8231d61f4ba6786cfe17e5752a9c4849",
+      "bytes": 6061
+    },
+    {
+      "path": "data/up-far-arm.png",
+      "sha256": "0c226938deb8b389ee054cb177db5770f8592ad2dc3b6577b40afad1ae909d46",
+      "bytes": 2279
+    },
+    {
+      "path": "data/up-lower-clothing.png",
+      "sha256": "2c49464e1d82139567d6672d7f1148e7b539dc2ca3cfc1784344a006ee59e938",
+      "bytes": 1280
+    },
+    {
+      "path": "data/up-near-shoe.png",
+      "sha256": "57c562e2f49dc59a6c5deb6c124a7b525e1d90b7304e9c06d26adff59acbc7a0",
+      "bytes": 1020
+    },
+    {
+      "path": "data/up-near-leg.png",
+      "sha256": "49d3dae48be39ce497d33c89d49881257875f245832c0f4ccc180a1df36b1582",
+      "bytes": 2633
+    },
+    {
+      "path": "data/up-far-shoe.png",
+      "sha256": "1abc8acb4b1572799c219d4242173d991529affa1d30910957ccabcbdf0420b9",
+      "bytes": 1021
+    },
+    {
+      "path": "data/up-far-leg.png",
+      "sha256": "aaa1f764d61f76ea9ce918790395dac8a16aa93775fb230f4883043ffb027458",
+      "bytes": 2514
+    },
+    {
+      "path": "data/up-back-accessory.png",
+      "sha256": "4d7366f1fc6d809eed0865cd239a641d2dbe6165ed0bad0aef829f615887922f",
+      "bytes": 196
+    },
+    {
+      "path": "data/up-ground-shadow.png",
+      "sha256": "2e10a5ab4ad23253ba34279e2e27861ad073d9862fc5aca518f6f33370562348",
+      "bytes": 702
+    },
+    {
+      "path": "data/left-backpack-or-straps.png",
+      "sha256": "09896165af9adf994f961765e17db653bafb26f8281797c745289afa5968b987",
+      "bytes": 766
+    },
+    {
+      "path": "data/left-near-arm.png",
+      "sha256": "71270a00beab342f3c61d4847c03ad0a5c4b83932ea0a857bef9d7d292a001a5",
+      "bytes": 2240
+    },
+    {
+      "path": "data/left-hair-or-covering.png",
+      "sha256": "95c08cefcbef6dd3b70404def52aea184743fd1a073482ed082b8aa66dc65f4a",
+      "bytes": 1821
+    },
+    {
+      "path": "data/left-head-and-face.png",
+      "sha256": "27bbe3f4be471e10669eba803d1d501ff874e27620d5132a473bff561ddb4593",
+      "bytes": 3601
+    },
+    {
+      "path": "data/left-torso-and-hood.png",
+      "sha256": "b3fc83c646ab6b6a7f7a5b2bfd598c2e2ccb70209439df74ae826e9fcbd52dc3",
+      "bytes": 5257
+    },
+    {
+      "path": "data/left-far-arm.png",
+      "sha256": "da3e272798f98c0b68f328a762804435661842f7812792aed4ac192435f7b559",
+      "bytes": 2239
+    },
+    {
+      "path": "data/left-lower-clothing.png",
+      "sha256": "2c49464e1d82139567d6672d7f1148e7b539dc2ca3cfc1784344a006ee59e938",
+      "bytes": 1280
+    },
+    {
+      "path": "data/left-near-shoe.png",
+      "sha256": "efd8f64240143c250ae644611f049fe0774214146a3524929499dbaadf10d4c8",
+      "bytes": 993
+    },
+    {
+      "path": "data/left-near-leg.png",
+      "sha256": "b451c568776375fb25f061336d7cc3e04896d8627de1801c261265fad67e7fdd",
+      "bytes": 2605
+    },
+    {
+      "path": "data/left-far-shoe.png",
+      "sha256": "75ede34f563adba822e3d713697115c6af2a5e034621821eb2ada532cbbc8860",
+      "bytes": 992
+    },
+    {
+      "path": "data/left-far-leg.png",
+      "sha256": "29ca2d05b64daea3bec1b0720e77db68d54d362ec53238768ee4d3ff7e80f350",
+      "bytes": 2412
+    },
+    {
+      "path": "data/left-back-accessory.png",
+      "sha256": "ac5ba7efa1994e63019127ee2c8a9ce62f254cb2c5814dc0f2a4d9fb3fb432d4",
+      "bytes": 2763
+    },
+    {
+      "path": "data/left-ground-shadow.png",
+      "sha256": "337dac921fa9a67a90d313b897c589b677b3434232a1f2331a4aad41aec07184",
+      "bytes": 722
+    },
+    {
+      "path": "data/right-backpack-or-straps.png",
+      "sha256": "dc75f81b83a0aea2dd61db6286311c197aa079e3e84eaea8fd793af054c7ef6b",
+      "bytes": 793
+    },
+    {
+      "path": "data/right-near-arm.png",
+      "sha256": "7ae1b631cf1b1c8bf0184319eb83d4aa63374599ec58b29f3ded58cd0c637385",
+      "bytes": 2288
+    },
+    {
+      "path": "data/right-hair-or-covering.png",
+      "sha256": "8a4a27a4f1f5023a52ab0e4f8749516b5c9fc4c1f314446e215b6c7d0e9afafc",
+      "bytes": 1832
+    },
+    {
+      "path": "data/right-head-and-face.png",
+      "sha256": "0e20359d979cb57ac4a7916e98ff6ce6754af101a58222d062cb7e0db75bb13c",
+      "bytes": 3514
+    },
+    {
+      "path": "data/right-torso-and-hood.png",
+      "sha256": "a57bda5eaafd45fa0ce0d64d301089f9d60b26807bfa0e43d220a38cf425639a",
+      "bytes": 5136
+    },
+    {
+      "path": "data/right-far-arm.png",
+      "sha256": "dd43b9fe3c3608216e2263c94d05e5b748aaf02006f1e66d37aee58f3b014cea",
+      "bytes": 2284
+    },
+    {
+      "path": "data/right-lower-clothing.png",
+      "sha256": "2c49464e1d82139567d6672d7f1148e7b539dc2ca3cfc1784344a006ee59e938",
+      "bytes": 1280
+    },
+    {
+      "path": "data/right-near-shoe.png",
+      "sha256": "d35b3650bc78f6194e0571a4011c93879f5e9e3abf23adabe63bef0ec79f005c",
+      "bytes": 993
+    },
+    {
+      "path": "data/right-near-leg.png",
+      "sha256": "b451c568776375fb25f061336d7cc3e04896d8627de1801c261265fad67e7fdd",
+      "bytes": 2605
+    },
+    {
+      "path": "data/right-far-shoe.png",
+      "sha256": "326fff552c4029b2ac6843c5b39b2c4a3fb61ad3a85a07d8cb9f59baa6678b17",
+      "bytes": 992
+    },
+    {
+      "path": "data/right-far-leg.png",
+      "sha256": "29ca2d05b64daea3bec1b0720e77db68d54d362ec53238768ee4d3ff7e80f350",
+      "bytes": 2412
+    },
+    {
+      "path": "data/right-back-accessory.png",
+      "sha256": "734f782e085355c67ba2a4e77bb70624c90b6b0a59aed8b869f65053f41a76eb",
+      "bytes": 2757
+    },
+    {
+      "path": "data/right-ground-shadow.png",
+      "sha256": "337dac921fa9a67a90d313b897c589b677b3434232a1f2331a4aad41aec07184",
+      "bytes": 722
+    }
+  ]
+}

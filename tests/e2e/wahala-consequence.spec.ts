@@ -155,7 +155,12 @@ test("non-neutral food queue choice advances shared time once and survives retry
     expect(command.choiceId).toBe(choice.id);
     keys.push(command.commandId);
     if (!lost) {
-      const response = await route.fetch();
+      // A reused transport socket can reset before an HTTP response (CI trace:
+      // socket hang up). Retry only Playwright's ECONNRESET case, at most twice,
+      // with this exact intercepted request/body and commandId. HTTP errors and
+      // quotas still reach the assertions below; only a confirmed committed
+      // receipt may trigger the deliberate response loss.
+      const response = await route.fetch({ maxRetries: 2 });
       if (response.status() === 429) {
         await route.fulfill({ response });
         return;

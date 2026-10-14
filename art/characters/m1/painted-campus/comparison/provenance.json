@@ -1,0 +1,17 @@
+{
+  "status": "before is selected B, not rejected art promotion; no source image resampling/retouching",
+  "before": [
+    {
+      "path": "art/characters/m1/treatments/b/export/four-facing.png",
+      "sha256": "ec13d981d55c139ed9c304c159f0abb19a4ef4420acba4f3d98fc20737526d96",
+      "commit": "8fc0425f4ce14d034a380a3f511f6ad766b7ff66"
+    },
+    {
+      "path": "art/characters/m1/treatments/b/evidence/down-idle-360x800.png",
+      "sha256": "74ca27bce503ec8f936565a1c4a93ad9b9324d2968da832a873efd585492dcac",
+      "commit": "8fc0425f4ce14d034a380a3f511f6ad766b7ff66"
+    }
+  ],
+  "currentSourceHash": "2314f9a7d0b5d1353074804b98552b8bbc4feea8f4dbcdfcb99a3ad503eb9fc5",
+  "nativeComparison": "both master-only contexts, same360x800 viewport/ground/.88 camera, no NPCs; native other-look proofs separately stage2 B NPCs"
+}

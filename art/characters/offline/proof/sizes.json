@@ -1,0 +1,10 @@
+{
+  "status": "Rejected art study, not runtime assets or visual acceptance",
+  "frames": 40,
+  "frameWidth": 128,
+  "frameHeight": 160,
+  "encodedFrameBytes": 754245,
+  "decodedAllFramesRgbaBytes": 3276800,
+  "runtimeTransferBytes": 0,
+  "runtimeIntegration": false
+}
