@@ -91,3 +91,26 @@ thermal/long-session tests remain unperformed human release gates.
 
 **Stop at M3 visual review. PR #17 remains draft/open/unmerged. M4–M6 and Phase 5
 remain unstarted.** Passing CI cannot approve art or authorize the next milestone.
+
+## Exact-head CI performance correction
+
+Initial M3 head `3306278ccadfe501c2201499ceddcc3d8bb8971c` passed 182 unit/PostgreSQL
+cases and all four security/container jobs in push `38525343514` and PR `38525349128`.
+Both browser runs had **62 passed,4 failed,10 intentional skips**: the retained desktop
+academic venue click plus three new desktop M3 distance checks. Traces report roughly
+198–211ms raw desktop frame means and ~251–253ms p95. This is a genuine rendering
+cost regression, not a justification to increase timeouts, navigation speed or tolerances.
+
+Static per-zone Graphics floor accents previously expanded into hundreds of vector
+ellipses that are tessellated while rendering. The correction uses only 24 cheap floor
+quads per chunk, keeps original architecture/props/density/atlas bytes, explicitly culls
+upright sprites against real camera bounds with 96-unit overscan, and changes overlap
+alpha only when necessary. It changes no physics, clock, input, camera, paths, authority,
+original academic test or existing/new timing assertion. Tests and security controls stay
+intact; final exact-head CI in the PR supersedes this failed iteration.
+
+An official Chrome for Testing **145.0.7632.6** headless binary was obtained directly
+from Google's distribution after the Playwright CDN archive failure. All six corrected
+M3 real-campus journeys pass locally in this matching browser version. Original approved
+M2 source/PNG hashes and all local unit/static checks remain intact. Physical Android is
+still not tested; final CI production captures are required before closing automation.

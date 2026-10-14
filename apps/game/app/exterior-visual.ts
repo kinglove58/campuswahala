@@ -6,6 +6,7 @@ import {
   buildingArchetype,
   type WorldManifest,
   type Zone,
+  type Rect,
   type ExteriorKind,
 } from "@campuswahala/game-engine";
 /** One local hashed atlas; static chunk ground; independent ground-Y image ordering. */
@@ -52,7 +53,7 @@ export class ExteriorVisual {
     );
     if (!this.scene.load.isLoading()) this.scene.load.start();
   }
-  update(zones: Zone[]) {
+  update(zones: Zone[], view: Rect) {
     if (!this.ready && !this.failed) return;
     for (const [id, objects] of this.chunks)
       if (!zones.some((z) => z.id === id)) {
@@ -61,6 +62,20 @@ export class ExteriorVisual {
         this.images.delete(id);
       }
     for (const z of zones) if (!this.chunks.has(z.id)) this.draw(z);
+    // Zone ownership is coarse; explicit sprite bounds culling avoids drawing
+    // entire off-screen groves on desktop software renderers.
+    for (const images of this.images.values())
+      for (const image of images) {
+        const f = this.asset.frames[image.frame.name as ExteriorKind];
+        const left = image.x - f.pivotX * image.scaleX;
+        const top = image.y - f.pivotY * image.scaleY;
+        image.setVisible(
+          left + image.displayWidth >= view.x - 96 &&
+            left <= view.x + view.width + 96 &&
+            top + image.displayHeight >= view.y - 96 &&
+            top <= view.y + view.height + 96,
+        );
+      }
     this.peakObjects = Math.max(
       this.peakObjects,
       [...this.chunks.values()].reduce((n, c) => n + c.length, 0),
@@ -78,11 +93,15 @@ export class ExteriorVisual {
     owned.push(g);
     // Small paving joints and planted beds batched once per visible chunk.
     const p = this.asset.palette;
-    for (let y = z.y + 30; y < z.y + z.height; y += 64)
-      for (let x = z.x + 30; x < z.x + z.width; x += 68) {
-        g.fillStyle(0xe4dcb7, 0.09);
-        g.fillEllipse(x + (y % 13), y, 24, 8);
-      }
+    // Graphics commands are tessellated during rendering, even outside the
+    // camera. Keep floor accents to cheap quads; detail/density lives in the
+    // shared textured props instead of hundreds of repeated vector ellipses.
+    for (let i = 0; i < 24; i++) {
+      const x = z.x + 35 + ((i * 137) % (z.width - 70));
+      const y = z.y + 35 + ((i * 229) % (z.height - 70));
+      g.fillStyle(0xe4dcb7, 0.12);
+      g.fillRect(x, y, 8, 2);
+    }
     for (const b of this.world.buildings.filter((b) => b.zoneId === z.id)) {
       g.fillStyle(p.paving, 1);
       g.fillRoundedRect(b.x - 16, b.y + b.height - 8, b.width + 32, 65, 6);
@@ -208,18 +227,19 @@ export class ExteriorVisual {
     // Translucency keeps the player legible behind foreground crowns and roofs.
     for (const images of this.images.values())
       for (const image of images) {
+        if (!image.visible) continue;
         const f = this.asset.frames[image.frame.name as ExteriorKind];
         const left = image.x - f.pivotX * image.scaleX,
           top = image.y - f.pivotY * image.scaleY;
-        image.setAlpha(
+        const alpha =
           y < image.y &&
-            x > left &&
-            x < left + image.displayWidth &&
-            y > top &&
-            y < image.y
+          x > left &&
+          x < left + image.displayWidth &&
+          y > top &&
+          y < image.y
             ? 0.58
-            : 1,
-        );
+            : 1;
+        if (image.alpha !== alpha) image.setAlpha(alpha);
       }
   }
   get objectCount() {

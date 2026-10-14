@@ -267,7 +267,7 @@ export default function CampusWorld({
           }
           updateChunks() {
             const visible = engine.visibleZones(this.cameras.main.worldView);
-            this.exterior.update(visible);
+            this.exterior.update(visible, this.cameras.main.worldView);
             for (const [id, chunk] of this.chunks)
               if (!visible.some((z) => z.id === id)) {
                 chunk.destroy(true);
