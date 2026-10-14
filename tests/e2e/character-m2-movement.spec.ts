@@ -266,6 +266,27 @@ for (const input of ["keyboard", "touch"] as const) {
         (element, event) => {
           // Observer only: this timestamp never drives scene/engine behaviour.
           (element as HTMLElement).dataset.observedInputTime = "";
+          const world = element.closest(
+            '[data-testid="campus-world"]',
+          ) as HTMLElement;
+          if (!world) throw new Error("MISSING_PRODUCTION_WORLD_METRICS");
+          const frames = new Set<string>();
+          const observer = new MutationObserver(() => {
+            const frame = world.dataset.characterFrame;
+            if (frame?.includes("-walk-")) frames.add(frame);
+          });
+          observer.observe(world, {
+            attributes: true,
+            attributeFilter: ["data-character-frame"],
+          });
+          (
+            element as HTMLCanvasElement & {
+              observedWalk?: {
+                observer: MutationObserver;
+                frames: Set<string>;
+              };
+            }
+          ).observedWalk = { observer, frames };
           window.addEventListener(
             event,
             (e) => {
@@ -292,6 +313,16 @@ for (const input of ["keyboard", "touch"] as const) {
         input === "keyboard",
       );
       if (input === "keyboard") await page.keyboard.up(direction.key);
+      const observedFrames = await canvas.evaluate((element) => {
+        const observation = (
+          element as HTMLCanvasElement & {
+            observedWalk?: { observer: MutationObserver; frames: Set<string> };
+          }
+        ).observedWalk;
+        if (!observation) throw new Error("MISSING_RENDERED_FRAME_OBSERVER");
+        observation.observer.disconnect();
+        return [...observation.frames].sort();
+      });
       expect(
         journey.complete,
         JSON.stringify({
@@ -310,9 +341,9 @@ for (const input of ["keyboard", "touch"] as const) {
         : Math.abs(last.x - start.x);
       expect(across).toBeLessThan(2);
       const phases = new Set(
-        journey.samples
-          .filter((s) => s.frame.startsWith(`${direction.facing}-walk-`))
-          .map((s) => Number(s.frame.split("-").at(-1))),
+        observedFrames
+          .filter((frame) => frame.startsWith(`${direction.facing}-walk-`))
+          .map((frame) => Number(frame.split("-").at(-1))),
       );
       expect([...phases].sort()).toEqual([0, 1, 2, 3, 4, 5, 6, 7]);
       await expect(world).toHaveAttribute("data-fast-route", "false");
@@ -320,7 +351,7 @@ for (const input of ["keyboard", "touch"] as const) {
         "data-character-frame",
         new RegExp(`^${direction.facing}-idle-`),
       );
-      journeys.push({ facing: direction.facing, ...journey });
+      journeys.push({ facing: direction.facing, observedFrames, ...journey });
     }
     const durations = journeys.map((j) => j.durationMs);
     expect(Math.max(...durations) / Math.min(...durations)).toBeLessThanOrEqual(
