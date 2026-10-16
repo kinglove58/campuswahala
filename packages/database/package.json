@@ -15,6 +15,6 @@
     "@campuswahala/domain": "workspace:*"
   },
   "devDependencies": {
-    "prisma": "6.19.3"
+    "prisma": "7.10.0"
   }
 }
