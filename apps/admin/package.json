@@ -10,11 +10,11 @@
   "dependencies": {
     "next": "16.4.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "react-dom": "19.3.0",
     "@campuswahala/ui": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3"
+    "@types/react-dom": "19.3.0"
   }
 }
